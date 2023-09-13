@@ -29,21 +29,31 @@ function CriarConta() {
                             <div className='card_input_metade'>
                                 <InputMetade
                                     textoInput={"Nome"}
-                                    placeholder={"Nome..."} />
+                                    placeholder={"Nome..."}
+                                    id={"nome"}
+                                    name={"nome"} />
+
                                 <InputMetade
                                     textoInput={"Sobrenome"}
-                                    placeholder={"Sobrenome..."} />
+                                    placeholder={"Sobrenome..."}
+                                    id={"sobrenome"}
+                                    name={"sobrenome"} />
                             </div>
 
                             <InputMaior
                                 textoInput={"E-mail"}
-                                placeholder={"E-mail..."} />
+                                placeholder={"E-mail..."}
+                                id={"email"}
+                                name={"email"} />
+
                             <InputMaior
                                 textoInput={"Senha"}
-                                placeholder={"Senha..."} />
+                                placeholder={"Senha..."}
+                                id={"senha"}
+                                name={"name"} />
 
                             <div className='botao'>
-                                <button className='botao_submit' typeof='submit'>Criar Conta</button>
+                                <input className='botao_submit' type='submit' value={"Criar Conta"} id='submit' name='botao_criar_conta' />
                             </div>
                         </div>
                     </div>
