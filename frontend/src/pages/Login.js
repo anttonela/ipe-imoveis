@@ -54,9 +54,7 @@ function Login() {
                                 />
 
                                 <div className='login_botao'>
-                                    <a>
                                         <button className='botao_submit' type='submit'>Fazer Login</button>
-                                    </a>
                                 </div>
 
                                 <div className='login_footer'>
