@@ -1,12 +1,9 @@
 import React, { useEffect } from 'react';
 
-import '../../assets/css/login.css';
-import '../../assets/fonts/fonts.css';
-
-import Header from '../../components/login/Header';
-import InputMaior from '../../components/login/InputMaior';
-import InputMetade from '../../components/login/InputMetade';
-import Banner from '../../components/login/Banner';
+import Header from '../components/login/Header';
+import InputMaior from '../components/login/InputMaior';
+import InputMetade from '../components/login/InputMetade';
+import BannerImagem from '../assets/img/banner.png';
 
 function CriarConta() {
 
@@ -22,7 +19,7 @@ function CriarConta() {
 
                     <Header />
 
-                    <div className='card_content'>
+                    <div className='login_card_content'>
                         <div className='card_criar_conta'>
                             <div className='titulo'>Criar Conta</div>
 
@@ -52,16 +49,19 @@ function CriarConta() {
                                 id={"senha"}
                                 name={"name"} />
 
-                            <div className='botao'>
+                            <div className='login_botao'>
                                 <input className='botao_submit' type='submit' value={"Criar Conta"} id='submit' name='botao_criar_conta' />
                             </div>
+
                         </div>
                     </div>
 
                 </div>
             </div>
 
-            <Banner />
+            <div className='login_banner'>
+                <img className='imagem_banner' src={BannerImagem} />
+            </div>
 
         </div>
     );

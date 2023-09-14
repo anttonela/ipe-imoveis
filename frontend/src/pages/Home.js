@@ -1,12 +1,9 @@
 import React, { useEffect } from 'react';
 
-import '../../assets/css/style.css';
-import '../../assets/fonts/fonts.css';
-
-import Header from '../../components/cliente/Header';
-import Footer from '../../components/cliente/Footer';
-import Filtro from '../../components/cliente/Filtro';
-import Fileira from '../../components/cliente/Fileira';
+import Header from '../components/cliente/Header';
+import Footer from '../components/cliente/Footer';
+import Filtro from '../components/cliente/Filtro';
+import Fileira from '../components/cliente/Fileira';
 
 function Home() {
 

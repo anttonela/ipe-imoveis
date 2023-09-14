@@ -1,14 +1,11 @@
 import React, { useEffect } from 'react';
 
-import '../../assets/css/style.css';
-import '../../assets/fonts/fonts.css';
+import Header from '../components/cliente/Header';
+import Footer from '../components/cliente/Footer';
+import BotaoNovoImovel from '../components/administrador/BotaoNovoImovel';
+import FileiraCard from '../components/administrador/FileiraCard';
 
-import Header from '../../components/cliente/Header';
-import Footer from '../../components/cliente/Footer';
-import BotaoNovoImovel from '../../components/administrador/BotaoNovoImovel';
-import FileiraCard from '../../components/administrador/FileiraCard';
-
-function Home() {
+function HomeAdministrativo() {
 
     useEffect(() => {
         document.title = "Home Administrativo"
@@ -48,4 +45,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default HomeAdministrativo;

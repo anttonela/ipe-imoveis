@@ -4,12 +4,12 @@ function Header() {
     return (
         <div className="header_content">
 
-            <div className="header">
-                <div className="logo">
-                    <img className="logo" src={Logo} />
+            <div className="login_header">
+                <div className="login_logo">
+                    <img className="login_logo" src={Logo} />
                 </div>
 
-                <div className='header_texto'>
+                <div className='login_header_texto'>
                     <a className='link'>
                         <div className='texto_claro'>Fazer Login</div>
                     </a>

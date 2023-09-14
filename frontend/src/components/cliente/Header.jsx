@@ -1,7 +1,6 @@
 import LogoBranca from '../../assets/img/logo-branca.png';
 import IconTelefone from '../../assets/img/telefone-icon.png';
 import IconEmail from '../../assets/img/email-icon.png';
-import ImagemHeader from '../../assets/img/header.png';
 
 function Header() {
     return (

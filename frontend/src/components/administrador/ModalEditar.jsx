@@ -1,7 +1,6 @@
 import IconSetaVoltar from '../../assets/img/seta-voltar-modal.png';
 import IconPlus from '../../assets/img/plus.png';
 import IconLapis from '../../assets/img/lapis.png';
-
 import InformacoesModal from './InformacoesModal';
 import SelectModal from './SelectModal';
 

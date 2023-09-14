@@ -1,6 +1,5 @@
 import Card from './Card';
-import CardCentral from './CardCentral';
-
+import CardCentral from './CardCentral'
 import SetaEsquerda from '../../assets/img/seta-esquerda.png';
 import SetaDireita from '../../assets/img/seta-direita.png';
 

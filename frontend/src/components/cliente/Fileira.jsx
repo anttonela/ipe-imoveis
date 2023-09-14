@@ -1,4 +1,4 @@
-import { useState } from "react";
+import useState from "react";
 import FileiraCard from "./FIleiraCard";
 import FileiraCardSombreado from "./FIleiraCardSombreado";
 
