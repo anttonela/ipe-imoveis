@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import CardInput from '../components/login/CardInput';
 import Logo from '../assets/img/logo.png';
 import BannerImagem from '../assets/img/banner.png';
+import { Router } from 'react-router-dom';
 
 function Login() {
 
@@ -38,9 +39,9 @@ function Login() {
                                 <div className='card_subtitulo'>
                                     <div className='login_subtitulo'>
                                         <div className='texto'>Não tem uma conta?</div>
-                                        <a href='#criar_conta' className='link'>
-                                            <div className='texto_azul'>Criar Conta</div>
-                                        </a>
+
+                                        <div className='texto_azul'>Criar Conta</div>
+
                                     </div>
                                 </div>
 
@@ -54,7 +55,7 @@ function Login() {
                                 />
 
                                 <div className='login_botao'>
-                                        <button className='botao_submit' type='submit'>Fazer Login</button>
+                                    <button className='botao_submit' type='submit'>Fazer Login</button>
                                 </div>
 
                                 <div className='login_footer'>

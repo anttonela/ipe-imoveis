@@ -911,9 +911,6 @@ body {
     width: 34px;
 }
 
-/*      LOGIN      */
-
-
 .login_container {
     display: flex;
     width: 100%;
@@ -1134,7 +1131,7 @@ body {
 }
 
 .login_banner {
-    height: 100%;
+    height: 968px;
     width: 46%;
 }
 
