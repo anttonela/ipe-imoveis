@@ -12,7 +12,7 @@ function Login() {
 
     return (
         <>
-            <div className='container'>
+            <div className='login_container'>
                 <div className='container_content'>
                     <div className='content'>
 

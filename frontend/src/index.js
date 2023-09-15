@@ -31,7 +31,7 @@ const router = createBrowserRouter([
   {
     path: "criarConta",
     element: <CriarConta />,
-  },
+  }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

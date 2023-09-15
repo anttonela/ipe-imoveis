@@ -1,6 +1,6 @@
-import useState from "react";
-import FileiraCard from "./FIleiraCard";
-import FileiraCardSombreado from "./FIleiraCardSombreado";
+import { useState } from "react";
+import FileiraCard from "./FileiraCard";
+import FileiraCardSombreado from "./FileiraCardSombreado";
 
 function Fileira() {
 
