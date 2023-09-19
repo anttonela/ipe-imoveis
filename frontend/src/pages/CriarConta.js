@@ -8,7 +8,6 @@ import BannerImagem from '../assets/img/banner.png';
 
 function CriarConta() {
 
-
     useEffect(() => {
         document.title = "Criar Conta";
     });

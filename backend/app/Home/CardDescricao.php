@@ -16,19 +16,16 @@ class CardDescricao
 
         $produtos = $banco->executarFetchAll($table->condicoes($arDados));
 
-        /*
-        $produto [
-            "id_produto" = $produtos[0],
-
-        ]*/
-
-        foreach ($produtos as $index => $produto) {
-            print "{$index}: {$produto}";
+        foreach ($produtos[0] as $index => $primeiroCadastro) {
+            print $index . ": ";
+            print_r($primeiroCadastro);
+            print "<br><br>";
         }
+        print "<br>TESTE<br><br>";
 
-        print "<br>TESTE<br>";
-
-        //print_r($banco->getValores($produtos[0]));
+        /*
+        print_r($produtos[0]);
+        print "<br> " . current($produtos[0]);*/
     }
 
     public function textoCardDescricao(): string

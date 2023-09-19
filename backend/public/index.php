@@ -2,10 +2,12 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
+use app\Home\AdicionarProduto;
 use app\Home\CardDescricao;
 
-$print = new CardDescricao;
-$print->pegandoValores();
+$print = new AdicionarProduto;
+$print->encontrandoIdDaCategoria();
+
 /*
 header('Access-Control-Allow-Origin: *');
 
