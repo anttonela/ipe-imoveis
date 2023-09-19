@@ -8,11 +8,11 @@ function FileiraCard() {
         <div className="card_content">
             <img src={SetaEsquerda} />
 
-            <Card descricao_produto={"Setor Fulano, Número 60, Lote 08, Quadra 04"} />
-            <Card descricao_produto={"Embreagem PermaClutch II™"} />
+            <Card />
+            <Card />
             <CardCentral descricao_produto={"Setor Fulano, Número 60, Lote 08, Quadra 04"} />
-            <Card descricao_produto={"Setor Fulano, Número 60, Lote 08, Quadra 04"} />
-            <Card descricao_produto={"Embreagem PermaClutch II™"} />
+            <Card />
+            <Card />
 
             <img src={SetaDireita} />
         </div>

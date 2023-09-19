@@ -1,6 +1,9 @@
 import Logo from '../../assets/img/logo.png';
 
 function Header() {
+
+    let url = '/Login';
+
     return (
         <div className="header_content">
 
@@ -10,7 +13,7 @@ function Header() {
                 </div>
 
                 <div className='login_header_texto'>
-                    <a className='link'>
+                    <a href={url} className='link'>
                         <div className='texto_claro'>Fazer Login</div>
                     </a>
 
