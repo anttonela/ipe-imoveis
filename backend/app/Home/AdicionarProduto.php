@@ -62,10 +62,6 @@ class AdicionarProduto extends Banco
         if (!isset($this->arMensagem[0])) {
             $table = new Tabela("produto");
 
-            /*
-            id_categoria, tipo, cidade, valor, quantidade_parcela, juro_parcela,
-valor_mensal, breve_descricao, descricao, link_whatsapp, link_facebook, link_instagram, link_olx)
-            */
             $arTable = [
                 "id_categoria" => "2",
                 "tipo" => "Apartamento",
