@@ -5,54 +5,37 @@ import ModalInformacoes from './ModalInformacoes';
 
 function Card() {
 
-    const [posts, setPosts] = useState([]);
-
-    useEffect(() => {
-        axios.get('http://localhost:8080/')
-            .then(function (res) {
-                setPosts(res.data);
-            });
-    }, []);
-
     return (
         <>
-            {
-                posts.map(function (val) {
-                    return (
-                        <>
-                            <a href='#modal_informacoes' className='link'>
+            <a href='#modal_informacoes' className='link'>
 
-                                <div className='card'>
-                                    <div className='card_imagem'>
-                                        <img src={FotoImovel} className='card_imagem' />
-                                    </div>
+                <div className='card'>
+                    <div className='card_imagem'>
+                        <img src={FotoImovel} className='card_imagem' />
+                    </div>
 
-                                    <div className='card_informacoes_content'>
-                                        <div className='card_informacoes'>
-                                            <div className='card_sobre'>
-                                                <div className='nome_produto inter_700'>Goiânia</div>
-                                                <div className='card_texto'>{val.descricao_produto}</div>
-                                            </div>
-
-                                            <div className='card_valor'>
-                                                <div className='valor_produto inter_700'>R$: 1.000.000</div>
-                                                <div className='card_texto'>28x de R$ 0.000,00</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </a>
-
-                            <div id='modal_informacoes' className="modal">
-
-                                <ModalInformacoes />
-
+                    <div className='card_informacoes_content'>
+                        <div className='card_informacoes'>
+                            <div className='card_sobre'>
+                                <div className='nome_produto inter_700'>Goiânia</div>
+                                <div className='card_texto'>aqui</div>
                             </div>
-                        </>
-                    );
-                })
-            }
+
+                            <div className='card_valor'>
+                                <div className='valor_produto inter_700'>R$: 1.000.000</div>
+                                <div className='card_texto'>28x de R$ 0.000,00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </a>
+
+            <div id='modal_informacoes' className="modal">
+
+                <ModalInformacoes />
+
+            </div>
         </>
     );
 }

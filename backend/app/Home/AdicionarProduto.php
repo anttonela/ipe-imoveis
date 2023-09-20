@@ -10,6 +10,7 @@ class AdicionarProduto extends Banco
 {
     private $idProduto;
     private $idCategoria;
+    private $categoria;
     private $cidade;
     private $valor;
     private $parcelas;
@@ -47,7 +48,7 @@ class AdicionarProduto extends Banco
         $table = new Select("categoria");
         $arTable = [
             "COLUMN" => "id",
-            "WHERE" => "nome = 'Outros'",
+            "WHERE" => "nome = '$this->categoria'",
         ];
 
         $idCategoria = $this->executarFetchAll($table->condicoes($arTable));
@@ -61,11 +62,24 @@ class AdicionarProduto extends Banco
         if (!isset($this->arMensagem[0])) {
             $table = new Tabela("produto");
 
+            /*
+            id_categoria, tipo, cidade, valor, quantidade_parcela, juro_parcela,
+valor_mensal, breve_descricao, descricao, link_whatsapp, link_facebook, link_instagram, link_olx)
+            */
             $arTable = [
-                "id_categoria" => "{$this->idCategoria}",
-                "cidade" => "{$this->cidade}",
-                "valor" => "{$this->valor}",
-                "parcelas" => "{$this->parcelas}"
+                "id_categoria" => "2",
+                "tipo" => "Apartamento",
+                "cidade" => "Goiânia",
+                "valor" => "50000",
+                "quantidade_parcela" => "12",
+                "juro_parcela" => "55",
+                "valor_mensal" => "6000",
+                "breve_descricao" => "4 quartos, 1 banheiro",
+                "descricao" => "com imóveis incluidos 4x4m, 1 sala, 2 banheiros com imóveis incluidos 4x4m, 1 sala, 2 banheiros com imóveis incluidos 4x4m, 1 sala, 2 banheiros",
+                "link_whatsapp" => "link//64999324420",
+                "link_facebook" => "link//facebook",
+                "link_instagram" => "link//instagram",
+                "link_olx" => "link//olx",
             ];
 
             $table->salvarInserir($arTable);
