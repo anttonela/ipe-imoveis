@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Views\Login\Condicoes;
+namespace app\Login\Condicoes;
 
 use app\Models\Crud\Functions\Select;
 use app\Models\Crud\Utilizadores\Banco;
@@ -8,13 +8,13 @@ use app\Models\Crud\Utilizadores\Tabela;
 
 class CriarConta extends Banco
 {
-    public $nome;
-    public $sobrenome;
-    public $email;
-    public $senha;
+    private $nome;
+    private $sobrenome;
+    private $email;
+    private $senha;
     public $arMensagem;
 
-    public function setCriarConta(): void
+    private function setCriarConta(): void
     {
         $this->nome = $_POST['nome'];
         $this->sobrenome = $_POST['sobrenome'];
@@ -77,7 +77,7 @@ class CriarConta extends Banco
         $this->validandoSenha();
 
         if (!isset($this->arMensagem[0])) {
-            $table = new Tabela("login");
+            $table = new Tabela("usuario");
 
             $arTable = [
                 "nome" => "{$this->nome}",
@@ -87,11 +87,11 @@ class CriarConta extends Banco
             ];
 
             $table->salvarInserir($arTable);            
-            $this->arMensagem[] = "<br>Conta criada com sucesso!";
+            print "\nConta criada com sucesso!";
             return;
         }
  
-        $this->arMensagem[] = "<br><br>Erro ao tentar criar conta";
+        print "<br><br>Erro ao tentar criar conta";
     }
 
     public function imprimindoAviso(): void

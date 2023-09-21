@@ -5,6 +5,7 @@ namespace app\Home;
 use app\Models\Crud\Functions\Select;
 use app\Models\Crud\Utilizadores\Banco;
 use app\Models\Crud\Utilizadores\Tabela;
+use PDOException;
 
 class AdicionarProduto extends Banco
 {
@@ -48,41 +49,34 @@ class AdicionarProduto extends Banco
         $table = new Select("categoria");
         $arTable = [
             "COLUMN" => "id",
-            "WHERE" => "nome = '$this->categoria'",
+            "WHERE" => "nome = 'Outros'",
         ];
 
         $idCategoria = $this->executarFetchAll($table->condicoes($arTable));
-        $this->idCategoria = current($idCategoria[0]);
+        $this->categoria = current($idCategoria[0]);
     }
 
     public function inserindoNoBanco(): void
     {
-        $this->encontrandoIdDaCategoria();
+        //$this->encontrandoIdDaCategoria();
 
         if (!isset($this->arMensagem[0])) {
             $table = new Tabela("produto");
 
             $arTable = [
-                "id_categoria" => "2",
-                "tipo" => "Apartamento",
-                "cidade" => "Goiânia",
-                "valor" => "50000",
-                "quantidade_parcela" => "12",
-                "juro_parcela" => "55",
-                "valor_mensal" => "6000",
-                "breve_descricao" => "4 quartos, 1 banheiro",
-                "descricao" => "com imóveis incluidos 4x4m, 1 sala, 2 banheiros com imóveis incluidos 4x4m, 1 sala, 2 banheiros com imóveis incluidos 4x4m, 1 sala, 2 banheiros",
-                "link_whatsapp" => "link//64999324420",
-                "link_facebook" => "link//facebook",
-                "link_instagram" => "link//instagram",
-                "link_olx" => "link//olx",
+                "id" => "4",
+                "tipo" => "Casa",
             ];
 
-            $table->salvarInserir($arTable);
-            $this->arMensagem[] = "<br>Conta criada com sucesso!";
-            return;
+            try {
+                print "Inserindo...";
+                $table->salvarInserir($arTable);
+                print "\nConta criada com sucesso!";
+            } catch (PDOException $erro) {
+                print "\n\033[1;31mErro ocorrido ao tentar encontrar dado na tabela:\033[0m\n\n\033[1;37m{$erro}\033[0m\n";
+            }
         }
 
-        $this->arMensagem[] = "<br><br>Erro ao tentar criar conta";
+        print "<br><br>Erro ao tentar criar conta";
     }
 }

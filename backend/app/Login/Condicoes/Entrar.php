@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Views\Login\Condicoes;
+namespace app\Login\Condicoes;
 
 use app\Models\Crud\Functions\Select;
 use app\Models\Crud\Utilizadores\Banco;
@@ -35,7 +35,7 @@ class Entrar extends Banco
         $table = new Select("usuario");
         $arTable = [
             "COLUMN" => "senha",
-            "WHERE" => "email = '$this->email'",
+            "WHERE" => "email = '{$this->email}'",
         ];
         $arSelectSenha = $this->executarFetchAll($table->condicoes($arTable));
 
