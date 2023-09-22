@@ -29,6 +29,7 @@ function Login() {
 
                 <div className="login_header_texto">
                   <div className="texto">Fazer Login</div>
+                  
                   <a href={url} className="link">
                     <div className="texto_claro">Criar Conta</div>
                   </a>
