@@ -44,12 +44,12 @@ class AdicionarProduto extends Banco
         return $valorPorParcela;
     }
 
-    public function encontrandoIdDaCategoria(): void
+    public function encontrandoIdDaCategoria($nomeCategoria): void
     {
         $table = new Select("categoria");
         $arTable = [
             "COLUMN" => "id",
-            "WHERE" => "nome = 'Outros'",
+            "WHERE" => "nome = '{$nomeCategoria}'",
         ];
 
         $idCategoria = $this->executarFetchAll($table->condicoes($arTable));

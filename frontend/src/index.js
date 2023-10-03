@@ -9,6 +9,7 @@ import App from './App';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import CriarConta from './pages/CriarConta';
+import IndexTeste from './tests/index';
 import HomeAdministrativo from './pages/HomeAdministrativo';
 
 const router = createBrowserRouter([
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: "login",
     element: <Login />,
+  },
+  {
+    path: "teste",
+    element: <IndexTeste />,
   },
   {
     path: "criarConta",

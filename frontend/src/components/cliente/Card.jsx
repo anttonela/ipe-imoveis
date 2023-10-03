@@ -2,9 +2,9 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import FotoImovel from '../../assets/img/imoveis.png';
 import ModalInformacoes from './ModalInformacoes';
+import values from 'lodash/values';
 
-function Card() {
-
+function Card({ dados }) {
     return (
         <>
             <a href='#modal_informacoes' className='link'>
@@ -17,13 +17,13 @@ function Card() {
                     <div className='card_informacoes_content'>
                         <div className='card_informacoes'>
                             <div className='card_sobre'>
-                                <div className='nome_produto inter_700'>Goiânia</div>
-                                <div className='card_texto'>aqui</div>
+                                <div className='nome_produto inter_700'>{dados.cidade}</div>
+                                <div className='card_texto'>{dados.breve_descricao}</div>
                             </div>
 
                             <div className='card_valor'>
-                                <div className='valor_produto inter_700'>R$: 1.000.000</div>
-                                <div className='card_texto'>28x de R$ 0.000,00</div>
+                                <div className='valor_produto inter_700'>R$: {dados.valor}</div>
+                                <div className='card_texto'>{dados.quantidade_parcelas}</div>
                             </div>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 import ImagemImoveis from '../../assets/img/imoveis.png';
 import ModalInformacoes from './ModalInformacoes';
 
-function CardSombreado() {
+function CardSombreado({ dados }) {
     return (
         <>
             <a href='#modal_informacoes' className='link'>
@@ -17,15 +17,15 @@ function CardSombreado() {
 
                             <div className='card_sobre'>
                                 <div className='card_editar'>
-                                    <div className='nome_produto inter_700'>Goiânia</div>
+                                    <div className='nome_produto inter_700'>{dados.cidade}</div>
                                 </div>
 
-                                <div className='card_texto inter_500'>Setor Fulano, Número 60, Lote 08, Quadra 04</div>
+                                <div className='card_texto inter_500'>{dados.breve_descricao}</div>
                             </div>
 
                             <div className='card_valor'>
-                                <div className='valor_produto inter_700'>R$: 1.000.000</div>
-                                <div className='card_texto'>28x de R$ 0.000,00</div>
+                                <div className='valor_produto inter_700'>R$: {dados.valor}</div>
+                                <div className='card_texto'>{dados.quantidade_parcelas}</div>
                             </div>
                         </div>
                     </div>

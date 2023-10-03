@@ -19,10 +19,6 @@ function Fileira() {
             )}
 
             {cardSombreado && (
-                <FileiraCardSombreado />
-            )}
-
-            {cardSombreado && (
                 <div className='content_botao_ver_mais'>
                     <button class="botao_ver_mais" onClick={expandindoCard}>Ver Menos</button>
                 </div>

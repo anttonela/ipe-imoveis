@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import values from 'lodash/values';
 
 import IconSetaVoltar from '../../assets/img/seta-voltar-modal.png';
 import IconWhatsapp from '../../assets/img/whatsapp.png';
@@ -8,10 +9,8 @@ import IconInstagram from '../../assets/img/instagram.png';
 import IconOlx from '../../assets/img/olx.png';
 
 function Modal() {
-
     return (
         <>
-            return (
             <div className="modal_content">
                 <div className="sair_modal">
                     <a className="seta_voltar_modal" href="#">
@@ -35,11 +34,11 @@ function Modal() {
 
                 <div className='modal_informacoes'>
 
-                    <div className='modal_nome_produto inter_700'>Casa</div>
+                    <div className='modal_nome_produto inter_700'>id</div>
 
                     <div className='modal_valor'>
-                        <div className='modal_cidade_produto inter_700'>Goiânia</div>
-                        <div className='modal_preco inter_700'>R$ 1.000.000</div>
+                        <div className='modal_cidade_produto inter_700'>cidade</div>
+                        <div className='modal_preco inter_700'>valor</div>
                     </div>
 
                     <div className='modal_descricao inter_500'>
@@ -64,7 +63,6 @@ function Modal() {
 
                 </div>
             </div>
-            );
         </>
     );
 }

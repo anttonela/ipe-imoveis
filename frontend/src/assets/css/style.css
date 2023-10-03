@@ -320,6 +320,16 @@ body {
     justify-content: space-around;
 }
 
+.arrow-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 .card {
     height: 336px;
     width: 260px;
