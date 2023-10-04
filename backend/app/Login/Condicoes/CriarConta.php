@@ -86,16 +86,18 @@ class CriarConta extends Banco
                 "senha" => "{$this->senha}"
             ];
 
-            $table->salvarInserir($arTable);            
+            $table->salvarInserir($arTable);
             print "\nConta criada com sucesso!";
             return;
         }
- 
+
         print "<br><br>Erro ao tentar criar conta";
     }
 
     public function imprimindoAviso(): void
     {
+
+        /*
         $this->setCriarConta();
         $this->verificandoRespostas();
         $this->verificandoEmailValido();
@@ -103,6 +105,6 @@ class CriarConta extends Banco
         
         foreach($this->arMensagem as $mensagem) {
             print $mensagem;
-        }
+        }*/
     }
 }

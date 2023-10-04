@@ -59,9 +59,11 @@ function ModalEditar() {
                         placeholder={"R$ 1.000.000"}
                     />
 
-                    <div className="input_content_descricao">
-                        <div className="modalAd_texto inter_500">Descrição</div>
-                        <textarea className="modal_input descricao" placeholder="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using" type="text" />
+                    <div className='descricao_content'>
+                        <div className="input_content_descricao">
+                            <div className="modalAd_texto inter_500">Descrição</div>
+                            <textarea className="modal_input descricao" placeholder="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using" type="text" />
+                        </div>
                     </div>
 
                     <InformacoesModal
@@ -80,6 +82,11 @@ function ModalEditar() {
                         nomeInformacao={"Link OLX"}
                         placeholder={"Link..."}
                     />
+                </div>
+
+
+                <div className='content_botao_confirmar'>
+                    <button className='botao_confirmar_adicionar' type='submit'>Salvar Alteração</button>
                 </div>
 
             </div>

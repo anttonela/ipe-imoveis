@@ -55,12 +55,22 @@ function FileiraCard() {
                     {values(data).map(produto => (
 
                         <Card
-                            dados={{
+                            dados =
+                            {{
                                 cidade: produto.id_produto+ " - " + produto.cidade,
                                 breve_descricao: produto.breve_descricao,
                                 valor: produto.valor,
                                 quantidade_parcelas: produto.quantidade_parcelas + "x de R$:" + produto.valor_mensal
-                            }} />
+                            }}
+
+                            informacoesModal =
+                            {{
+                                id: produto.id_produto,
+                                cidade: produto.cidade,
+                                valor: "R$: " + produto.valor,
+                                descricao: produto.descricao
+                            }}
+                        />
 
                     ))}
                 </Carousel>

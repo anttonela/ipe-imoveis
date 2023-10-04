@@ -24,17 +24,27 @@ function FileiraCardSombreado() {
         <div className="card_content_administrativo">
             <div className="content_administrativo">
 
-                    {values(data).map(produto => (
+                {values(data).map(produto => (
 
-                        <CardSombreado
-                            dados={{
-                                cidade: produto.cidade,
-                                breve_descricao: produto.breve_descricao,
-                                valor: produto.id_produto,
-                                quantidade_parcelas: produto.quantidade_parcelas
-                            }} />
+                    <CardSombreado
+                        dados=
+                        {{
+                            cidade: produto.cidade,
+                            breve_descricao: produto.breve_descricao,
+                            valor: produto.id_produto,
+                            quantidade_parcelas: produto.quantidade_parcelas
+                        }}
 
-                    ))}
+                        informacoesModal=
+                        {{
+                            id: produto.id_produto,
+                            cidade: produto.cidade,
+                            valor: "R$: " + produto.valor,
+                            descricao: produto.descricao
+                        }}
+                    />
+
+                ))}
             </div>
         </div>
     );

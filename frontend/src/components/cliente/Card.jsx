@@ -4,7 +4,7 @@ import FotoImovel from '../../assets/img/imoveis.png';
 import ModalInformacoes from './ModalInformacoes';
 import values from 'lodash/values';
 
-function Card({ dados }) {
+function Card({ dados, informacoesModal }) {
     return (
         <>
             <a href='#modal_informacoes' className='link'>
@@ -33,7 +33,15 @@ function Card({ dados }) {
 
             <div id='modal_informacoes' className="modal">
 
-                <ModalInformacoes />
+                <ModalInformacoes
+                    dados =
+                    {{
+                        id: informacoesModal.id,
+                        cidade: informacoesModal.cidade,
+                        valor: informacoesModal.valor,
+                        descricao: informacoesModal.descricao
+                    }}
+                />
 
             </div>
         </>

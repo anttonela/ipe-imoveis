@@ -68,6 +68,10 @@ function ModalNovoImovel() {
                         nomeInformacao={"Link OLX"}
                         placeholder={"Link..."}
                     />
+
+                    <div className='content_botao_confirmar'>
+                        <button className='botao_confirmar_adicionar' type='submit'>Adicionar</button>
+                    </div>
                 </div>
 
             </div>

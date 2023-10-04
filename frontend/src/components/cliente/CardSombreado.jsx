@@ -1,7 +1,7 @@
 import ImagemImoveis from '../../assets/img/imoveis.png';
 import ModalInformacoes from './ModalInformacoes';
 
-function CardSombreado({ dados }) {
+function CardSombreado({ dados, informacoesModal }) {
     return (
         <>
             <a href='#modal_informacoes' className='link'>
@@ -35,7 +35,15 @@ function CardSombreado({ dados }) {
 
             <div id='modal_informacoes' className="modal">
 
-                <ModalInformacoes />
+                <ModalInformacoes
+                    dados=
+                    {{
+                        id: informacoesModal.id,
+                        cidade: informacoesModal.cidade,
+                        valor: informacoesModal.valor,
+                        descricao: informacoesModal.descricao
+                    }}
+                />
 
             </div>
         </>
