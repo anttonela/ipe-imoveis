@@ -47,11 +47,27 @@ function ModalEditar() {
                     <div className='modal_select'>
                         <SelectModal
                             categoria={"Cidade"}
-                            option={{ hidden: 'Goiânia', um: 'Acreúna', dois: 'Goiânia', tres: 'Indiara' }} />
+
+                            option=
+                            {{
+                                hidden: 'Goiânia',
+                                um: 'Acreúna',
+                                dois: 'Goiânia',
+                                tres: 'Indiara'
+                            }}
+                        />
 
                         <SelectModal
                             categoria={"Tipo de Imóvel"}
-                            option={{ hidden: 'Casa', um: 'Imóveis', dois: 'Máquinas', tres: 'Outros' }} />
+
+                            option=
+                            {{
+                                hidden: 'Casa',
+                                um: 'Imóveis',
+                                dois: 'Máquinas',
+                                tres: 'Outros'
+                            }}
+                        />
                     </div>
 
                     <InformacoesModal
@@ -61,7 +77,7 @@ function ModalEditar() {
 
                     <div className='descricao_content'>
                         <div className="input_content_descricao">
-                            <div className="modalAd_texto inter_500">Descrição</div>
+                            <div className="modal_ad_texto inter_500">Descrição</div>
                             <textarea className="modal_input descricao" placeholder="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using" type="text" />
                         </div>
                     </div>

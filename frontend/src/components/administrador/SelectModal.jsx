@@ -1,7 +1,7 @@
 function SelectModal({ categoria, option }) {
     return (
         <div className="select_content">
-            <div className="modalAd_texto inter_500">{categoria}</div>
+            <div className="modal_ad_texto inter_500">{categoria}</div>
             <select className="select_modal">
                 <option hidden>{option.hidden}</option>
                 <option>{option.um}</option>

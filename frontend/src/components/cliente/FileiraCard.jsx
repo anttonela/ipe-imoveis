@@ -1,10 +1,10 @@
-import Card from './Card';
-import CardCentral from './CardCentral'
-import SetaEsquerda from '../../assets/img/seta-esquerda.png';
-import SetaDireita from '../../assets/img/seta-direita.png';
-import React, { useState, useEffect } from 'react';
 import values from 'lodash/values';
 import Carousel from "react-elastic-carousel";
+import React, { useState, useEffect } from 'react';
+
+import Card from './Card';
+import SetaDireita from '../../assets/img/seta-direita.png';
+import SetaEsquerda from '../../assets/img/seta-esquerda.png';
 
 
 function FileiraCard() {

@@ -2,8 +2,10 @@ import React, { useEffect } from 'react';
 
 import Header from '../components/cliente/Header';
 import Footer from '../components/cliente/Footer';
-import BotaoNovoImovel from '../components/administrador/BotaoNovoImovel';
+import Subtitulo from '../components/cliente/Subtitulo';
 import FileiraCard from '../components/administrador/FileiraCard';
+import BotaoNovoImovel from '../components/administrador/BotaoNovoImovel';
+import PrimeiroSubtitulo from '../components/cliente/PrimeiroSubtitulo';
 
 function HomeAdministrativo() {
 
@@ -18,23 +20,17 @@ function HomeAdministrativo() {
 
             <BotaoNovoImovel />
 
-            <div className='subtitulo_content'>
-                <div className='subtitulo'>Imóveis</div>
-            </div>
+            <PrimeiroSubtitulo nome={"Imóveis"} />
 
             <FileiraCard />
             <FileiraCard />
 
-            <div className='segundo_subtitulo_content'>
-                <div className='segundo_subtitulo'>Máquinas Agrícolas</div>
-            </div>
+            <Subtitulo nome={"Máquinas Agrícolas"} />
 
             <FileiraCard />
             <FileiraCard />
 
-            <div className='segundo_subtitulo_content'>
-                <div className='segundo_subtitulo'>Outros</div>
-            </div>
+            <Subtitulo nome={"Outros"} />
 
             <FileiraCard />
             <FileiraCard />

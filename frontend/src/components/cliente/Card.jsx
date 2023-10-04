@@ -1,8 +1,5 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
 import FotoImovel from '../../assets/img/imoveis.png';
 import ModalInformacoes from './ModalInformacoes';
-import values from 'lodash/values';
 
 function Card({ dados, informacoesModal }) {
     return (
@@ -27,6 +24,7 @@ function Card({ dados, informacoesModal }) {
                             </div>
                         </div>
                     </div>
+
                 </div>
 
             </a>

@@ -1,8 +1,7 @@
-import CardSombreado from "./CardSombreado";
-import ReactDOM from "react-dom";
-import Carousel from "react-elastic-carousel";
-import React, { useState, useEffect } from 'react';
 import values from 'lodash/values';
+import React, { useState, useEffect } from 'react';
+
+import CardSombreado from "./CardSombreado";
 
 function FileiraCardSombreado() {
     const [data, setData] = useState([]);

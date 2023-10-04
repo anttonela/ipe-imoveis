@@ -658,13 +658,12 @@ body {
     justify-content: space-between;
 }
 
-.modalAd_texto {
+.modal_ad_texto {
     height: 30px;
     display: flex;
     align-items: end;
     font-size: 20px;
     color: #272727;
-    background-color: pink;
 }
 
 .modal_select {
@@ -679,17 +678,15 @@ body {
 }
 
 .descricao_content {
-    background-color: green;
-    height: 150px;
+    height: 110px;
     display: flex;
-    align-items: end;
+    align-items: center;
     justify-content: center;
 }
 
 .input_content_descricao {
-    background-color: violet;
     width: 100%;
-    height: 130px;
+    height: 100px;
     display: grid;
     scroll-behavior: auto;
 }

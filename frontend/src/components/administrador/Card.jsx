@@ -1,7 +1,7 @@
-import ImagemImoveis from '../../assets/img/imoveis.png';
 import IconLapis from '../../assets/img/lapis.png';
-import IconLixeira from '../../assets/img/lixeira.png';
 import ModalEditar from './ModalEditar';
+import IconLixeira from '../../assets/img/lixeira.png';
+import ImagemImoveis from '../../assets/img/imoveis.png';
 
 function Card() {
     return (

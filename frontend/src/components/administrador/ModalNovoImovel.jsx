@@ -35,11 +35,27 @@ function ModalNovoImovel() {
                     <div className='modal_select'>
                         <SelectModal
                             categoria={"Cidade"}
-                            option={{ hidden: 'Selecionar', um: 'Acreúna', dois: 'Goiânia', tres: 'Indiara' }} />
+
+                            option=
+                            {{
+                                hidden: 'Selecionar',
+                                um: 'Acreúna',
+                                dois: 'Goiânia',
+                                tres: 'Indiara'
+                            }}
+                        />
 
                         <SelectModal
                             categoria={"Tipo de Produto"}
-                            option={{ hidden: 'Selecionar', um: 'Imóveis', dois: 'Máquinas', tres: 'Outros' }} />
+
+                            option=
+                            {{
+                                hidden: 'Selecionar',
+                                um: 'Imóveis',
+                                dois: 'Máquinas',
+                                tres: 'Outros'
+                            }}
+                        />
                     </div>
 
                     <InformacoesModal
@@ -48,7 +64,7 @@ function ModalNovoImovel() {
                     />
 
                     <div className="input_content_descricao">
-                        <div className="modalAd_texto inter_500">Descrição</div>
+                        <div className="modal_ad_texto inter_500">Descrição</div>
                         <input className="modal_input descricao" placeholder="Descrição" type="text" />
                     </div>
 
@@ -75,6 +91,7 @@ function ModalNovoImovel() {
                 </div>
 
             </div>
+
             <div className='scroll'></div>
         </>
     );

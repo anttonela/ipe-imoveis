@@ -8,5 +8,5 @@ use app\Login\Condicoes\CriarConta;
 use app\Models\PegandoDados;
 use routes\Routes;
 
-$salvar = new CriarConta();
-$salvar->imprimindoAviso();
+$salvar = new PegandoDados();
+$salvar->enviandoParaJson();

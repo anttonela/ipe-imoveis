@@ -2,8 +2,10 @@ import React, { useEffect } from 'react';
 
 import Header from '../components/cliente/Header';
 import Footer from '../components/cliente/Footer';
-import Filtro from '../components/cliente/Filtro';
 import Fileira from '../components/cliente/Fileira';
+import Subtitulo from '../components/cliente/Subtitulo';
+import FiltroFileira from '../components/cliente/FiltroFileira';
+import PrimeiroSubtitulo from '../components/cliente/PrimeiroSubtitulo';
 
 function Home() {
 
@@ -16,37 +18,19 @@ function Home() {
 
             <Header />
 
-            <div className='filtro'>
-                <Filtro
-                    categoria={"Tipo de Imóvel"}
-                    option={{ um: '1', dois: '2', tres: '3' }} />
-                <Filtro
-                    categoria={"Produto"}
-                    option={{ um: '1', dois: '2', tres: '3' }} />
-                <Filtro
-                    categoria={"Cidade"}
-                    option={{ um: 'Acreúna', dois: 'Indiara', tres: 'Goiânia' }} />
-                <div className='botao_filtro_content'>
-                    <button className='botao_filtro inter_500'>Pesquisar</button>
-                </div>
-            </div>
+            <FiltroFileira />
 
             <div className='background_cinza'>
-                <div className='subtitulo_content'>
-                    <div className='subtitulo'>Imóveis</div>
-                </div>
+                <PrimeiroSubtitulo nome={"Imóveis"} />
                 <Fileira />
             </div>
 
-            <div className='segundo_subtitulo_content'>
-                <div className='segundo_subtitulo'>Máquinas Agrícolas</div>
-            </div>
+            <Subtitulo nome={"Máquinas Agrícolas"} />
+
             <Fileira />
 
             <div className='background_cinza'>
-                <div className='segundo_subtitulo_content'>
-                    <div className='segundo_subtitulo'>Outros</div>
-                </div>
+                <Subtitulo nome={"Outros"} />
                 <Fileira />
             </div>
 
