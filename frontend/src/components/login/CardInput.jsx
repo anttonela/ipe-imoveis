@@ -5,6 +5,7 @@ function CardInput({ textoInput, placeholder }) {
                 <div className="texto">{textoInput}</div>
                 <input className="input_text" type="text" placeholder={placeholder} />
             </div>
+            
         </div>
     );
 }
