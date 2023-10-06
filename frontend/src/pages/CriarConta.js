@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { Form } from "react-bootstrap";
+import React, { useEffect } from 'react';
 
 import Header from '../components/login/Header';
 import InputMaior from '../components/login/InputMaior';

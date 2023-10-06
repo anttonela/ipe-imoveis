@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 
-import CardInput from "../components/login/CardInput";
 import Logo from "../assets/img/logo.png";
+import CardInput from "../components/login/CardInput";
 import BannerImagem from "../assets/img/banner.png";
-import { Router } from "react-router-dom";
 
 function Login() {
+
   useEffect(() => {
     document.title = "Fazer Login";
   }, []);

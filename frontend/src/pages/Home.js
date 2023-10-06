@@ -16,11 +16,11 @@ function Home() {
     return (
         <div className='container'>
 
-            <Header />
+            <Header deslizar="#produtos"/>
 
             <FiltroFileira />
 
-            <div className='background_cinza'>
+            <div id='produtos' className='background_cinza'>
                 <PrimeiroSubtitulo nome={"Imóveis"} />
                 <Fileira />
             </div>
