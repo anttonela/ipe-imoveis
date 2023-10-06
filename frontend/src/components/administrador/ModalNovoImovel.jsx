@@ -2,11 +2,11 @@ import { useState } from 'react';
 
 import IconPlus from '../../assets/img/plus-branco.png';
 import SelectModal from './SelectModal';
+import HandleSubmit from '../cliente/HandleSubmit';
 import IconSetaVoltar from '../../assets/img/seta-voltar-modal.png';
 import InformacoesModal from './InformacoesModal';
 
 function ModalNovoImovel() {
-    //const [imagem, setImagem] = useState('');
     const [cidade, setCidade] = useState('');
     const [tipoProduto, setTipoProduto] = useState('');
     const [valor, setValor] = useState('');
@@ -15,38 +15,6 @@ function ModalNovoImovel() {
     const [linkInstagram, setLinkInstagram] = useState('');
     const [linkFacebook, setLinkFacebook] = useState('');
     const [linkOlx, setLinkOlx] = useState('');
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        const dados = {
-            cidade,
-            tipoProduto,
-            valor,
-            descricao,
-            linkWhatsapp,
-            linkInstagram,
-            linkFacebook,
-            linkOlx,
-        };
-
-        try {
-            console.log(dados);
-
-            const response = await fetch('SUA_API_URL_AQUI', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(dados),
-            });
-
-            const data = await response.json();
-            console.log('Resposta da API:', data);
-        } catch (error) {
-            console.error('Erro ao enviar os dados para a API:', error);
-        }
-    };
 
     return (
         <>
@@ -59,24 +27,26 @@ function ModalNovoImovel() {
                     <div className='botao_fechar_modal inter_500'>Voltar</div>
                 </div>
 
-                <form onSubmit={handleSubmit}>
-                    <div className='imagem_modal_content'>
-                        <div className='adicionar_foto_content'>
-                            <div className='adicionar_foto'>
+                <div className='imagem_modal_content'>
+                    <div className='adicionar_foto_content'>
+                        <div className='adicionar_foto'>
 
-                                <div className='botao_adicionar_foto_content'>
-                                    <div className='botao_adicionar_foto'>
-                                        <img src={IconPlus} />
-                                    </div>
+                            <div className='botao_adicionar_foto_content'>
+                                <div className='botao_adicionar_foto'>
+                                    <img src={IconPlus} />
                                 </div>
-
-                                <div className='texto_adicionar_foto inter_700'>Adicionar Fotos</div>
-                                <div className='texto_quantidade_foto inter_500'>máx: 0</div>
                             </div>
+
+                            <div className='texto_adicionar_foto inter_700'>Adicionar Fotos</div>
+                            <div className='texto_quantidade_foto inter_500'>máx: 0</div>
                         </div>
                     </div>
+                </div>
 
-                    <div className='modal_informacoes'>
+                <div className='modal_informacoes'>
+
+                    <form onSubmit={HandleSubmit}>
+
                         <div className='modal_select'>
 
                             <SelectModal
@@ -157,9 +127,10 @@ function ModalNovoImovel() {
                         <div className='content_botao_confirmar'>
                             <button className='botao_confirmar_adicionar' type='submit'>Adicionar</button>
                         </div>
+                        
+                    </form>
 
-                    </div>
-                </form>
+                </div>
             </div>
 
             <div className='scroll'></div>

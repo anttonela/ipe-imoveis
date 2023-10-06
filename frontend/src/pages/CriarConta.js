@@ -1,15 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Header from '../components/login/Header';
 import InputMaior from '../components/login/InputMaior';
 import InputMetade from '../components/login/InputMetade';
 import BannerImagem from '../assets/img/banner.png';
+import HandleSubmit from '../components/cliente/HandleSubmit';
 
 function CriarConta() {
 
     useEffect(() => {
         document.title = "Criar Conta";
     });
+
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
+    const [nome, setNome] = useState('');
+    const [sobrenome, setSobrenome] = useState('');
 
     return (
         <div className='login_container'>
@@ -23,35 +29,45 @@ function CriarConta() {
                         <div className='card_criar_conta'>
                             <div className='titulo'>Criar Conta</div>
 
-                            <div className='card_input_metade'>
-                                <InputMetade
-                                    textoInput={"Nome"}
-                                    placeholder={"Nome..."}
-                                    id={"nome"}
-                                    name={"nome"} />
+                            <form onSubmit={HandleSubmit}>
+                                <div className='card_input_metade'>
+                                    <InputMetade
+                                        id={"nome"}
+                                        value={nome}
+                                        onChange={setNome}
+                                        textoInput={"Nome"}
+                                        placeholder={"Nome..."}
+                                    />
 
-                                <InputMetade
-                                    textoInput={"Sobrenome"}
-                                    placeholder={"Sobrenome..."}
-                                    id={"sobrenome"}
-                                    name={"sobrenome"} />
-                            </div>
+                                    <InputMetade
+                                        id={"sobrenome"}
+                                        value={sobrenome}
+                                        onChange={setSobrenome}
+                                        textoInput={"Sobrenome"}
+                                        placeholder={"Sobrenome..."}
+                                    />
+                                </div>
 
-                            <InputMaior
-                                textoInput={"E-mail"}
-                                placeholder={"E-mail..."}
-                                id={"email"}
-                                name={"email"} />
+                                <InputMaior
+                                    id={"email"}
+                                    value={email}
+                                    onChange={setEmail}
+                                    textoInput={"E-mail"}
+                                    placeholder={"E-mail..."}
+                                />
 
-                            <InputMaior
-                                textoInput={"Senha"}
-                                placeholder={"Senha..."}
-                                id={"senha"}
-                                name={"senha"} />
+                                <InputMaior
+                                    id={senha}
+                                    value={senha}
+                                    onChange={setSenha}
+                                    textoInput={"Senha"}
+                                    placeholder={"Senha..."}
+                                />
 
-                            <div className='login_botao'>
-                                <input className='botao_submit' type='submit' value={"Criar Conta"} id='submit' name='botao_criar_conta' />
-                            </div>
+                                <div className='login_botao'>
+                                    <input className='botao_submit' type='submit' value={"Criar Conta"} id='submit' name='botao_criar_conta' />
+                                </div>
+                            </form>
 
                         </div>
                     </div>

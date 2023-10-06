@@ -4,6 +4,7 @@ import IconLapis from '../../assets/img/lapis.png';
 import InformacoesModal from './InformacoesModal';
 import SelectModal from './SelectModal';
 import { useState } from 'react';
+import HandleSubmit from '../cliente/HandleSubmit';
 
 function ModalEditar() {
     const [cidade, setCidade] = useState('');
@@ -15,37 +16,6 @@ function ModalEditar() {
     const [linkFacebook, setLinkFacebook] = useState('');
     const [linkOlx, setLinkOlx] = useState('');
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        const dados = {
-            cidade,
-            tipoProduto,
-            valor,
-            descricao,
-            linkWhatsapp,
-            linkInstagram,
-            linkFacebook,
-            linkOlx,
-        };
-
-        try {
-            console.log(dados);
-
-            const response = await fetch('SUA_API_URL_AQUI', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(dados),
-            });
-
-            const data = await response.json();
-            console.log('Resposta da API:', data);
-        } catch (error) {
-            console.error('Erro ao enviar os dados para a API:', error);
-        }
-    };
     return (
         <>
             <div className='modal_content'>
@@ -84,7 +54,8 @@ function ModalEditar() {
                     </div>
                 </div>
 
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={HandleSubmit}>
+
                     <div className='modal_informacoes'>
                         <div className='modal_select'>
                             <SelectModal
@@ -97,7 +68,7 @@ function ModalEditar() {
                                     hidden: 'Goiânia',
                                     um: 'Acreúna',
                                     dois: 'Goiânia',
-                                    tres: 'Indiara'
+                                    tres: 'Indiara',
                                 }}
                             />
 
@@ -111,7 +82,7 @@ function ModalEditar() {
                                     hidden: 'Casa',
                                     um: 'Imóveis',
                                     dois: 'Máquinas',
-                                    tres: 'Outros'
+                                    tres: 'Outros',
                                 }}
                             />
                         </div>
@@ -168,8 +139,11 @@ function ModalEditar() {
                     <div className='content_botao_confirmar'>
                         <button className='botao_confirmar_adicionar' type='submit'>Salvar Alteração</button>
                     </div>
+
                 </form>
+            
             </div>
+
             <div className='scroll'></div>
         </>
     );

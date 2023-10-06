@@ -1,14 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import Logo from "../assets/img/logo.png";
 import CardInput from "../components/login/CardInput";
 import BannerImagem from "../assets/img/banner.png";
+import HandleSubmit from "../components/cliente/HandleSubmit";
 
 function Login() {
 
   useEffect(() => {
     document.title = "Fazer Login";
   }, []);
+
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
 
   let url = "/CriarConta";
 
@@ -29,7 +33,7 @@ function Login() {
 
                 <div className="login_header_texto">
                   <div className="texto">Fazer Login</div>
-                  
+
                   <a href={url} className="link">
                     <div className="texto_claro">Criar Conta</div>
                   </a>
@@ -52,14 +56,29 @@ function Login() {
                   </div>
                 </div>
 
-                <CardInput textoInput={"E-mail"} placeholder={"E-mail..."} />
-                <CardInput textoInput={"Senha"} placeholder={"Senha..."} />
+                <form onSubmit={HandleSubmit}>
+                  <CardInput
+                    id={"email"}
+                    value={email}
+                    onChange={setEmail}
+                    textoInput={"E-mail"}
+                    placeholder={"E-mail..."}
+                  />
 
-                <div className="login_botao">
-                  <button className="botao_submit" type="submit">
-                    Fazer Login
-                  </button>
-                </div>
+                  <CardInput
+                    id={"senha"}
+                    value={senha}
+                    onChange={setSenha}
+                    textoInput={"Senha"}
+                    placeholder={"Senha..."}
+                  />
+
+                  <div className="login_botao">
+                    <button className="botao_submit" type="submit">
+                      Fazer Login
+                    </button>
+                  </div>
+                </form>
 
                 <div className="login_footer">
                   <div className="card_footer">
