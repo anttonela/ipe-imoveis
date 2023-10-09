@@ -3,10 +3,16 @@ function CardInput({ id, value, onChange, textoInput, placeholder }) {
         <div className="card_input">
             <div className="input">
                 <div className="texto">{textoInput}</div>
-                <input className="input_text" type="text" placeholder={placeholder} id={id} value={value}
+                <input
+                    className="input_text"
+                    type="text"
+                    placeholder={placeholder}
+                    id={id}
+                    value={value}
                     onChange={(e) => {
-                        { onChange } (e.target.value);
-                    }} />
+                        onChange(e.target.value);
+                    }}
+                />
             </div>
 
         </div>

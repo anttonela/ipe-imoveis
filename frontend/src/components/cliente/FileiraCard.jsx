@@ -11,7 +11,6 @@ function FileiraCard() {
     const [data, setData] = useState([]);
 
     const getProdutos = async () => {
-        console.log('Listar Produtos');
         fetch("http://localhost:8080")
             .then((response) => response.json())
             .then((responseJson) => (
@@ -55,15 +54,12 @@ function FileiraCard() {
                     {values(data).map(produto => (
 
                         <Card
-                            dados =
-                            {{
-                                cidade: produto.id_produto+ " - " + produto.cidade,
-                                breve_descricao: produto.breve_descricao,
-                                valor: produto.valor,
-                                quantidade_parcelas: produto.quantidade_parcelas + "x de R$:" + produto.valor_mensal
-                            }}
+                            cidade={produto.id_produto + " - " + produto.cidade}
+                            breve_descricao={produto.breve_descricao}
+                            valor={produto.valor}
+                            quantidade_parcelas={produto.quantidade_parcelas + "x de R$:" + produto.valor_mensal}
 
-                            informacoesModal =
+                            informacoesModal=
                             {{
                                 id: produto.id_produto,
                                 cidade: produto.cidade,

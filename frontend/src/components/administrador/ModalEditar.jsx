@@ -4,7 +4,6 @@ import IconLapis from '../../assets/img/lapis.png';
 import InformacoesModal from './InformacoesModal';
 import SelectModal from './SelectModal';
 import { useState } from 'react';
-import HandleSubmit from '../cliente/HandleSubmit';
 
 function ModalEditar() {
     const [cidade, setCidade] = useState('');
@@ -16,6 +15,38 @@ function ModalEditar() {
     const [linkFacebook, setLinkFacebook] = useState('');
     const [linkOlx, setLinkOlx] = useState('');
 
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const dados = {
+            cidade,
+            tipoProduto,
+            valor,
+            descricao,
+            linkWhatsapp,
+            linkInstagram,
+            linkFacebook,
+            linkOlx,
+        };
+
+        try {
+            console.log(dados);
+
+            const response = await fetch('SUA_API_URL_AQUI', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dados),
+            });
+
+            const data = await response.json();
+            console.log('Resposta da API:', data);
+        } catch (error) {
+            console.error('Erro ao enviar os dados para a API:', error);
+        }
+    };
     return (
         <>
             <div className='modal_content'>
@@ -54,14 +85,14 @@ function ModalEditar() {
                     </div>
                 </div>
 
-                <form onSubmit={HandleSubmit}>
+                <form onSubmit={handleSubmit}>
 
                     <div className='modal_informacoes'>
                         <div className='modal_select'>
                             <SelectModal
                                 id={"cidade"}
                                 value={cidade}
-                                onChange={setCidade}
+                                setOnChange={setCidade}
                                 categoria={"Cidade"}
                                 option=
                                 {{
@@ -75,7 +106,7 @@ function ModalEditar() {
                             <SelectModal
                                 id={"tipo_produto"}
                                 value={tipoProduto}
-                                onChange={setTipoProduto}
+                                setOnChange={setTipoProduto}
                                 categoria={"Tipo de Produto"}
                                 option=
                                 {{
@@ -98,10 +129,17 @@ function ModalEditar() {
                         <div className='descricao_content'>
                             <div className="input_content_descricao">
                                 <div className="modal_ad_texto inter_500">Descrição</div>
-                                <textarea className="modal_input descricao" placeholder="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using"
-                                    type="text" id='descricao' value={descricao} onChange={(e) => {
+                                <textarea
+                                    className="modal_input descricao"
+                                    placeholder="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its 
+                                    layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using"
+                                    type="text"
+                                    id='descricao'
+                                    value={descricao}
+                                    onChange={(e) => {
                                         setDescricao(e.target.value);
-                                    }} />
+                                    }}
+                                />
                             </div>
                         </div>
 
@@ -112,6 +150,7 @@ function ModalEditar() {
                             nomeInformacao={"Link Whatsapp"}
                             placeholder={"Link..."}
                         />
+
                         <InformacoesModal
                             id={"link_instagram"}
                             value={linkInstagram}
@@ -119,6 +158,7 @@ function ModalEditar() {
                             nomeInformacao={"Link Instagram"}
                             placeholder={"Link..."}
                         />
+
                         <InformacoesModal
                             id={"link_facebook"}
                             value={linkFacebook}
@@ -126,6 +166,7 @@ function ModalEditar() {
                             nomeInformacao={"Link Facebook"}
                             placeholder={"Link..."}
                         />
+
                         <InformacoesModal
                             id={"link_olx"}
                             value={linkOlx}
@@ -133,6 +174,7 @@ function ModalEditar() {
                             nomeInformacao={"Link OLX"}
                             placeholder={"Link..."}
                         />
+
                     </div>
 
 
@@ -141,7 +183,7 @@ function ModalEditar() {
                     </div>
 
                 </form>
-            
+
             </div>
 
             <div className='scroll'></div>

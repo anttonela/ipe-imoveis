@@ -3,10 +3,17 @@ function InputMaior({ id, value, onChange, textoInput, placeholder }) {
         <div className='card_input_maior'>
             <div className='input_maior'>
                 <div className='texto'>{textoInput}</div>
-                <input className='input_text' type='text' placeholder={placeholder} id={id} value={value}
+                <input
+                    className='input_text'
+                    type='text'
+                    placeholder={placeholder}
+                    id={id}
+                    value={value}
                     onChange={(e) => {
-                        { onChange } (e.target.value);
-                    }} required />
+                        onChange(e.target.value);
+                    }}
+                    required
+                />
             </div>
         </div>
     );

@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 import IconPlus from '../../assets/img/plus-branco.png';
 import SelectModal from './SelectModal';
-import HandleSubmit from '../cliente/HandleSubmit';
 import IconSetaVoltar from '../../assets/img/seta-voltar-modal.png';
 import InformacoesModal from './InformacoesModal';
 
@@ -15,6 +14,38 @@ function ModalNovoImovel() {
     const [linkInstagram, setLinkInstagram] = useState('');
     const [linkFacebook, setLinkFacebook] = useState('');
     const [linkOlx, setLinkOlx] = useState('');
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const dados = {
+            cidade,
+            tipoProduto,
+            valor,
+            descricao,
+            linkWhatsapp,
+            linkInstagram,
+            linkFacebook,
+            linkOlx,
+        };
+
+        try {
+            console.log(dados);
+
+            const response = await fetch('SUA_API_URL_AQUI', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dados),
+            });
+
+            const data = await response.json();
+            console.log('Resposta da API:', data);
+        } catch (error) {
+            console.error('Erro ao enviar os dados para a API:', error);
+        }
+    };
 
     return (
         <>
@@ -45,28 +76,27 @@ function ModalNovoImovel() {
 
                 <div className='modal_informacoes'>
 
-                    <form onSubmit={HandleSubmit}>
+                    <form onSubmit={handleSubmit}>
 
                         <div className='modal_select'>
-
                             <SelectModal
                                 id={"cidade"}
                                 value={cidade}
-                                onChange={setCidade}
+                                setOnChange={setCidade}
                                 categoria={"Cidade"}
                                 option=
                                 {{
-                                    hidden: 'Selecionar',
-                                    um: 'Acreúna',
-                                    dois: 'Goiânia',
-                                    tres: 'Indiara'
+                                    hidden: 'Acreúna',
+                                    um: 'Goiânia',
+                                    dois: 'Indiara',
+                                    tres: 'Arantina'
                                 }}
                             />
 
                             <SelectModal
                                 id={"tipo_produto"}
                                 value={tipoProduto}
-                                onChange={setTipoProduto}
+                                setOnChange={setTipoProduto}
                                 categoria={"Tipo de Produto"}
                                 option=
                                 {{
@@ -88,7 +118,12 @@ function ModalNovoImovel() {
 
                         <div className="input_content_descricao">
                             <div className="modal_ad_texto inter_500">Descrição</div>
-                            <input className="modal_input descricao" placeholder="Descrição" type="text" id='descricao' value={descricao}
+                            <input
+                                className="modal_input descricao"
+                                placeholder="Descrição"
+                                type="text"
+                                id='descricao'
+                                value={descricao}
                                 onChange={(e) => {
                                     setDescricao(e.target.value);
                                 }}
@@ -102,6 +137,7 @@ function ModalNovoImovel() {
                             nomeInformacao={"Link Whatsapp"}
                             placeholder={"Link..."}
                         />
+
                         <InformacoesModal
                             id={"link_instagram"}
                             value={linkInstagram}
@@ -109,6 +145,7 @@ function ModalNovoImovel() {
                             nomeInformacao={"Link Instagram"}
                             placeholder={"Link..."}
                         />
+
                         <InformacoesModal
                             id={"link_facebook"}
                             value={linkFacebook}
@@ -116,6 +153,7 @@ function ModalNovoImovel() {
                             nomeInformacao={"Link Facebook"}
                             placeholder={"Link..."}
                         />
+
                         <InformacoesModal
                             id={"link_olx"}
                             value={linkOlx}
@@ -125,9 +163,9 @@ function ModalNovoImovel() {
                         />
 
                         <div className='content_botao_confirmar'>
-                            <button className='botao_confirmar_adicionar' type='submit'>Adicionar</button>
+                            <button className='botao_confirmar_adicionar' type="submit">Adicionar</button>
                         </div>
-                        
+
                     </form>
 
                 </div>

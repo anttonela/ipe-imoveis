@@ -7,7 +7,6 @@ function FileiraCardSombreado() {
     const [data, setData] = useState([]);
 
     const getProdutos = async () => {
-        console.log('Listar Produtos');
         fetch("http://localhost:8080")
             .then((response) => response.json())
             .then((responseJson) => (

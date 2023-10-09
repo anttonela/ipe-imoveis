@@ -1,7 +1,7 @@
 import FotoImovel from '../../assets/img/imoveis.png';
 import ModalInformacoes from './ModalInformacoes';
 
-function Card({ dados, informacoesModal }) {
+function Card({ cidade, breve_descricao, valor, quantidade_parcelas, informacoesModal }) {
     return (
         <>
             <a href='#modal_informacoes' className='link'>
@@ -14,13 +14,13 @@ function Card({ dados, informacoesModal }) {
                     <div className='card_informacoes_content'>
                         <div className='card_informacoes'>
                             <div className='card_sobre'>
-                                <div className='nome_produto inter_700'>{dados.cidade}</div>
-                                <div className='card_texto'>{dados.breve_descricao}</div>
+                                <div className='nome_produto inter_700'>{cidade}</div>
+                                <div className='card_texto'>{breve_descricao}</div>
                             </div>
 
                             <div className='card_valor'>
-                                <div className='valor_produto inter_700'>R$: {dados.valor}</div>
-                                <div className='card_texto'>{dados.quantidade_parcelas}</div>
+                                <div className='valor_produto inter_700'>R$: {valor}</div>
+                                <div className='card_texto'>{quantidade_parcelas}</div>
                             </div>
                         </div>
                     </div>
@@ -32,13 +32,10 @@ function Card({ dados, informacoesModal }) {
             <div id='modal_informacoes' className="modal">
 
                 <ModalInformacoes
-                    dados =
-                    {{
-                        id: informacoesModal.id,
-                        cidade: informacoesModal.cidade,
-                        valor: informacoesModal.valor,
-                        descricao: informacoesModal.descricao
-                    }}
+                    id={informacoesModal.id}
+                    cidade={informacoesModal.cidade}
+                    valor={informacoesModal.valor}
+                    descricao={informacoesModal.descricao}
                 />
 
             </div>

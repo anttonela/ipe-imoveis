@@ -4,7 +4,7 @@ import IconFacebook from '../../assets/img/facebook.png';
 import IconInstagram from '../../assets/img/instagram.png';
 import IconOlx from '../../assets/img/olx.png';
 
-function Modal({ dados }) {
+function Modal({ id, cidade, valor, descricao }) {
     return (
         <>
             <div className="modal_content">
@@ -30,16 +30,16 @@ function Modal({ dados }) {
 
                 <div className='modal_informacoes'>
 
-                    <div className='modal_nome_produto inter_700'>{dados.id}</div>
+                    <div className='modal_nome_produto inter_700'>{id}</div>
 
                     <div className='modal_valor'>
-                        <div className='modal_cidade_produto inter_700'>{dados.cidade}</div>
-                        <div className='modal_preco inter_700'>{dados.valor}</div>
+                        <div className='modal_cidade_produto inter_700'>{cidade}</div>
+                        <div className='modal_preco inter_700'>{valor}</div>
                     </div>
 
                     <div className='modal_descricao inter_500'>
                         <div className='modal_texto inter_700'>Descrição</div>
-                        {dados.descricao}
+                        {descricao}
                     </div>
                     <div className='modal_contatos inter_700'>Entre em Contato</div>
 

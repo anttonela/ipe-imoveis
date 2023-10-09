@@ -4,7 +4,6 @@ import Header from '../components/login/Header';
 import InputMaior from '../components/login/InputMaior';
 import InputMetade from '../components/login/InputMetade';
 import BannerImagem from '../assets/img/banner.png';
-import HandleSubmit from '../components/cliente/HandleSubmit';
 
 function CriarConta() {
 
@@ -16,6 +15,34 @@ function CriarConta() {
     const [senha, setSenha] = useState('');
     const [nome, setNome] = useState('');
     const [sobrenome, setSobrenome] = useState('');
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const dados = {
+            email,
+            senha,
+            nome,
+            sobrenome,
+        };
+
+        try {
+            console.log(dados);
+
+            const response = await fetch('SUA_API_URL_AQUI', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dados),
+            });
+
+            const data = await response.json();
+            console.log('Resposta da API:', data);
+        } catch (error) {
+            console.error('Erro ao enviar os dados para a API:', error);
+        }
+    };
 
     return (
         <div className='login_container'>
@@ -29,7 +56,7 @@ function CriarConta() {
                         <div className='card_criar_conta'>
                             <div className='titulo'>Criar Conta</div>
 
-                            <form onSubmit={HandleSubmit}>
+                            <form onSubmit={handleSubmit}>
                                 <div className='card_input_metade'>
                                     <InputMetade
                                         id={"nome"}

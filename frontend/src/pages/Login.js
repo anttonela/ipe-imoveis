@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import Logo from "../assets/img/logo.png";
 import CardInput from "../components/login/CardInput";
 import BannerImagem from "../assets/img/banner.png";
-import HandleSubmit from "../components/cliente/HandleSubmit";
 
 function Login() {
 
@@ -13,6 +12,32 @@ function Login() {
 
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const dados = {
+      email,
+      senha,
+    };
+
+    try {
+      console.log(dados);
+
+      const response = await fetch('SUA_API_URL_AQUI', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dados),
+      });
+
+      const data = await response.json();
+      console.log('Resposta da API:', data);
+    } catch (error) {
+      console.error('Erro ao enviar os dados para a API:', error);
+    }
+  };
 
   let url = "/CriarConta";
 
@@ -56,7 +81,7 @@ function Login() {
                   </div>
                 </div>
 
-                <form onSubmit={HandleSubmit}>
+                <form onSubmit={handleSubmit}>
                   <CardInput
                     id={"email"}
                     value={email}

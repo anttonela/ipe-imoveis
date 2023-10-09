@@ -21,7 +21,7 @@ function Fileira() {
 
             {cardSombreado && (
                 <div className='content_botao_ver_mais'>
-                    <button class="botao_ver_mais" onClick={expandindoCard}>Ver Menos</button>
+                    <button className="botao_ver_mais" onClick={expandindoCard}>Ver Menos</button>
                 </div>
             )}
 
@@ -31,7 +31,7 @@ function Fileira() {
 
             {card && (
                 <div className='content_botao_ver_mais'>
-                    <button class="botao_ver_mais" onClick={expandindoCard}>Ver Mais</button>
+                    <button className="botao_ver_mais" onClick={expandindoCard}>Ver Mais</button>
                 </div>
             )}
         </>
