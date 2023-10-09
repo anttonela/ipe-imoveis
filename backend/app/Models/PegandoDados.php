@@ -12,9 +12,9 @@ class PegandoDados extends Banco
         header("Access-Control-Allow-Methods: GET, POST");
         header("Access-Control-Allow-Origin: *");
 
-        $tipo = $_POST['tipo'];
-        $produto = $_POST['produto'];
-        $cidade = $_POST['cidade'];
+        $tipo = $_POST['select_tipo'];
+        $produto = $_POST['select_produto'];
+        $cidade = $_POST['select_cidade'];
 
         $response = array(
             "tipo" => $tipo,
@@ -24,9 +24,7 @@ class PegandoDados extends Banco
 
         header('Content-Type: application/json');
 
-        http_response_code(200);
-
-        echo json_encode("certo");
+        echo json_encode($response);
     }
 }
 
