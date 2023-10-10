@@ -22,11 +22,13 @@ class PegandoDados extends Banco
             "cidade" => $cidade
         );
 
-        header('Content-Type: application/json');
+        echo var_dump( $_SERVER );
+     
+        http_response_code(200);
 
-        print  json_encode( 'aqui' ) ;
-        //echo json_encode( var_dump($resposta) );
-        //echo json_encode( var_dump($_POST) );
+     
+        //echo var_dump( apache_request_headers() );
+        //echo json_encode('aqui');
     }
 }
 

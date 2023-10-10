@@ -26,7 +26,7 @@ function FiltroFileira() {
                 body: JSON.stringify(dados),
             });
     
-            const data = await response.json();
+            const data = await response.text();
             console.log('Resposta da API:', data);
         } catch (error) {
             console.error('Erro ao enviar os dados para a API:', error);
