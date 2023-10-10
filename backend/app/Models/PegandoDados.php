@@ -16,7 +16,7 @@ class PegandoDados extends Banco
         $produto = $_POST['select_produto'];
         $cidade = $_POST['select_cidade'];
 
-        $response = array(
+        $resposta = array(
             "tipo" => $tipo,
             "produto" => $produto,
             "cidade" => $cidade
@@ -24,7 +24,9 @@ class PegandoDados extends Banco
 
         header('Content-Type: application/json');
 
-        echo json_encode($response);
+        print  json_encode( 'aqui' ) ;
+        //echo json_encode( var_dump($resposta) );
+        //echo json_encode( var_dump($_POST) );
     }
 }
 
