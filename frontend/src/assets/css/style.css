@@ -303,14 +303,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .content_administrativo {
-    height: 420px;
-    width: 1750px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    width: 91.5%;
+    display: grid;
+    grid-template-rows: repeat(5, 410px);
+    grid-template-columns: 20% 20% 20% 20% 20%;
 }
 
 .card_content {
@@ -720,7 +720,7 @@ body {
     font-size: 16px;
     display: flex;
     padding: 10px;
-    color:  #9E9E9E;
+    color: #9E9E9E;
     justify-content: space-between;
     background-color: transparent;
     border: 2px solid #E0E0E0;
@@ -964,6 +964,11 @@ body {
 
 .link {
     text-decoration: none;
+}
+
+.espacamento_fileira {
+    display: flex;
+    justify-content: space-around;
 }
 
 .header_content {

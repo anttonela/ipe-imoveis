@@ -2,7 +2,7 @@ import LogoBranca from '../../assets/img/logo-branca.png';
 import IconTelefone from '../../assets/img/telefone-icon.png';
 import IconEmail from '../../assets/img/email-icon.png';
 
-function Header({ deslizar }) {
+function Header({ href }) {
     return (
         <div className='header'>
             <div className='header_informacoes'>
@@ -16,11 +16,11 @@ function Header({ deslizar }) {
                         <div className='nome_empresa'>IPÊ IMÓVEIS</div>
                         <div className='header_texto'>Transformando desejos<br />em endereços.</div>
 
-                        <a href={deslizar} className='link'>
-                            <div className='botao_content'>
-                                <button className='botao_header' type='submit'>Ver Imóveis</button>
-                            </div>
-                        </a>
+                        <div className='botao_content'>
+                            <button className='botao_header' type='submit' href={href}>
+                                Ver Imóveis
+                            </button>
+                        </div>
                     </div>
                 </div>
 

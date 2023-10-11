@@ -8,9 +8,5 @@ use app\Login\Condicoes\CriarConta;
 use app\Models\PegandoDados;
 use routes\Routes;
 
-
-
-
-//$salvar = new PegandoDados();
-//$salvar->teste();
- 
+$salvar = new PegandoDados();
+$salvar->teste();

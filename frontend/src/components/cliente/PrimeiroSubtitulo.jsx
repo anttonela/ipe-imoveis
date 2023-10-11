@@ -1,6 +1,6 @@
-function PrimeiroSubtitulo({ nome }) {
+function PrimeiroSubtitulo({ id, nome }) {
     return (
-        <div className='subtitulo_content'>
+        <div id={id} className='subtitulo_content'>
             <div className='subtitulo'>{nome}</div>
         </div>
     );

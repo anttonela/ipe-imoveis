@@ -3,7 +3,7 @@ import ModalEditar from './ModalEditar';
 import IconLixeira from '../../assets/img/lixeira.png';
 import ImagemImoveis from '../../assets/img/imoveis.png';
 
-function Card() {
+function Card({ cidade, breve_descricao, valor, quantidade_parcelas, valor_mensal }) {
     return (
         <>
             <div className="card card_administrativo">
@@ -17,7 +17,7 @@ function Card() {
 
                         <div className='card_sobre'>
                             <div className='card_editar'>
-                                <div className='nome_produto inter_700'>Goiânia</div>
+                                <div className='nome_produto inter_700'>{cidade}</div>
                                 <div className='card_editar_icons'>
                                     <a href='#modal_editar' className='link'>
                                         <img className='editar_icon' src={IconLapis} />
@@ -26,12 +26,12 @@ function Card() {
                                 </div>
                             </div>
 
-                            <div className='card_texto inter_500'>Setor Fulano, Número 60, Lote 08, Quadra 04</div>
+                            <div className='card_texto inter_500'>{breve_descricao}</div>
                         </div>
 
                         <div className='card_valor'>
-                            <div className='valor_produto inter_700'>R$: 1.000.000</div>
-                            <div className='card_texto'>28x de R$ 0.000,00</div>
+                            <div className='valor_produto inter_700'>R$: {valor}</div>
+                            <div className='card_texto'>{quantidade_parcelas}x de R$ {valor_mensal}</div>
                         </div>
                     </div>
                 </div>

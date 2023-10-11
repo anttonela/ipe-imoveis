@@ -3,7 +3,7 @@ import { useState } from "react";
 import FileiraCard from "./FileiraCard";
 import FileiraCardSombreado from "./FileiraCardSombreado";
 
-function Fileira() {
+function Fileira({ href }) {
 
     const [cardSombreado, setCardSombreado] = useState();
     const [card, setCard] = useState(true);
@@ -21,7 +21,9 @@ function Fileira() {
 
             {cardSombreado && (
                 <div className='content_botao_ver_mais'>
-                    <button className="botao_ver_mais" onClick={expandindoCard}>Ver Menos</button>
+                    <a href={href} className="link">
+                        <button className="botao_ver_mais" onClick={expandindoCard}>Ver Menos</button>
+                    </a>
                 </div>
             )}
 

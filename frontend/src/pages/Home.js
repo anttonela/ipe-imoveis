@@ -16,22 +16,21 @@ function Home() {
     return (
         <div className='container'>
 
-            <Header deslizar="#produtos"/>
+            <Header href="#imoveis" />
 
             <FiltroFileira />
 
-            <div id='produtos' className='background_cinza'>
-                <PrimeiroSubtitulo nome={"Imóveis"} />
-                <Fileira />
+            <div className='background_cinza'>
+                <PrimeiroSubtitulo id={"imoveis"} nome={"Imóveis"} />
+                <Fileira href={"#imoveis"} />
             </div>
 
-            <Subtitulo nome={"Máquinas Agrícolas"} />
-
-            <Fileira />
+            <Subtitulo id={"maquinas_agricolas"} nome={"Máquinas Agrícolas"} />
+            <Fileira href={"#maquinas_agricolas"} />
 
             <div className='background_cinza'>
-                <Subtitulo nome={"Outros"} />
-                <Fileira />
+                <Subtitulo id={"outros"} nome={"Outros"} />
+                <Fileira href={"#outros"} />
             </div>
 
             <Footer />

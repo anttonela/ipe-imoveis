@@ -24,11 +24,11 @@ function FileiraCard() {
         { width: 768, itemsToShow: 3 },
         { width: 1200, itemsToShow: 5 },
     ];
-/*
+
     useEffect(() => {
         getProdutos();
     }, []);
-*/
+
     return (
         <div className='espaco_card_content'>
             <div className="card_content">
