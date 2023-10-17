@@ -2,31 +2,32 @@
 
 namespace routes;
 
-class Parametros{
+class Parametros
+{
     public function __construct()
     {
     }
 
-    public function getRequisicaoGet()
+    public function getRequisicaoGet(): string
     {
         $requisicao = $this->capturarGet();
 
         return $requisicao;
     }
 
-    public function getRequisicaoPost()
+    public function getRequisicaoPost(): string
     {
         $requisicao = $this->capturarPost();
 
         return $requisicao;
     }
 
-    public function capturarGet()
+    public function capturarGet(): string
     {
         return json_encode($_GET);
     }
 
-    public function capturarPost()
+    public function capturarPost(): string
     {
         return json_encode($_POST);
     }

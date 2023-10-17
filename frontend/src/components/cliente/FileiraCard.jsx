@@ -7,11 +7,11 @@ import SetaDireita from '../../assets/img/seta-direita.png';
 import SetaEsquerda from '../../assets/img/seta-esquerda.png';
 
 
-function FileiraCard() {
+function FileiraCard({ fetchUrl }) {
     const [data, setData] = useState([]);
 
     const getProdutos = async () => {
-        fetch("http://localhost:8080")
+        fetch({ fetchUrl })
             .then((response) => response.json())
             .then((responseJson) => (
                 setData(responseJson)

@@ -2,10 +2,10 @@
 
 namespace app\Models\Crud;
 
-require_once __DIR__ . "/../vendor/autoload.php";
+require_once __DIR__ . "/../../../vendor/autoload.php";
 
 use app\Models\Crud\InserirDados;
 
 $salvar = new InserirDados();
-$salvar->select();
+$salvar->select("Maquinas");
 return $salvar;

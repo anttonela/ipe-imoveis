@@ -21,16 +21,37 @@ function Home() {
             <FiltroFileira />
 
             <div className='background_cinza'>
-                <PrimeiroSubtitulo id={"imoveis"} nome={"Imóveis"} />
-                <Fileira href={"#imoveis"} />
+                <PrimeiroSubtitulo
+                    id={"imoveis"}
+                    nome={"Imóveis"}
+                />
+
+                <Fileira
+                    fetchUrl={"'http://localhost:8080/imoveis'"}
+                    href={"#imoveis"}
+                />
             </div>
 
-            <Subtitulo id={"maquinas_agricolas"} nome={"Máquinas Agrícolas"} />
-            <Fileira href={"#maquinas_agricolas"} />
+            <Subtitulo
+                id={"maquinas_agricolas"}
+                nome={"Máquinas Agrícolas"}
+            />
+            
+            <Fileira
+                fetchUrl={"'http://localhost:8080/maquinasAgricolas'"}
+                href={"#maquinas_agricolas"}
+            />
 
             <div className='background_cinza'>
-                <Subtitulo id={"outros"} nome={"Outros"} />
-                <Fileira href={"#outros"} />
+                <Subtitulo
+                    id={"outros"}
+                    nome={"Outros"}
+                />
+
+                <Fileira
+                    fetchUrl={"'http://localhost:8080/outros'"}
+                    href={"#outros"}
+                />
             </div>
 
             <Footer />

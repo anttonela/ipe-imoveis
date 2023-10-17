@@ -3,7 +3,7 @@ import { useState } from "react";
 import FileiraCard from "./FileiraCard";
 import FileiraCardSombreado from "./FileiraCardSombreado";
 
-function Fileira({ href }) {
+function Fileira({ fetchUrl, href }) {
 
     const [cardSombreado, setCardSombreado] = useState();
     const [card, setCard] = useState(true);
@@ -16,7 +16,9 @@ function Fileira({ href }) {
     return (
         <>
             {cardSombreado && (
-                <FileiraCardSombreado />
+                <FileiraCardSombreado
+                    fetchUrl={fetchUrl}
+                />
             )}
 
             {cardSombreado && (
@@ -28,7 +30,9 @@ function Fileira({ href }) {
             )}
 
             {card && (
-                <FileiraCard />
+                <FileiraCard
+                    fetchUrl={fetchUrl}
+                />
             )}
 
             {card && (

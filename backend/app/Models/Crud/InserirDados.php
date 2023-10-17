@@ -36,13 +36,13 @@ class InserirDados extends Banco
         print " \t\033[1;32mNovo dado inserido com sucesso!\033[0m\n";
     }
 
-    public function select(): void
+    public function select($nomeCategoria): void
     {
-        $table = new Select("login");
+        $table = new Select("produto");
 
         $arDados = [
-            "COLUMN" => "email",
-            "WHERE" => "email = 'antonelaexemplo@gmail.com'",
+            "COLUMN" => "",
+            "WHERE" => "categoria = '{$nomeCategoria}'",
             "ORDER BY" => "",
             "LIMIT" => "",
             "OFFSET" => "",
@@ -59,9 +59,8 @@ class InserirDados extends Banco
         ];
 
         try {
-            $executar = $this->executarFetchAll($table->condicoes($arDados));
-            print "\n\033[1;32mSelect será realizado com sucesso.\033[0m\n\n";
-            print_r($executar);
+            $resultado = $this->executarFetchAll($table->condicoes($arDados));
+            print_r($resultado);
         } catch (PDOException $erro) {
             print "\n\033[1;31mErro ocorrido ao tentar encontrar dado na tabela:\033[0m\n\n\033[1;37m{$erro}\033[0m\n";
         }

@@ -2,20 +2,21 @@
 
 namespace routes;
 
-class Routes{
+class Routes
+{
     public function __construct()
     {
     }
 
-    public function getRotaAtual()
+    public function getRotaAtual(): string
     {
-        $requisicao = $this->capturarRequest();
+        $requisicao = $this->pegandoRequest();
 
         return $requisicao;
     }
 
-    public function capturarRequest()
+    public function pegandoRequest(): string
     {
-        return str_replace(['\\', '/'], ['',''], $_SERVER['PATH_INFO']);
+        return str_replace(['\\', '/'], ['', ''], $_SERVER['PATH_INFO']);
     }
 }

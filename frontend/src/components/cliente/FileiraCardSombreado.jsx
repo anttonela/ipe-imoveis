@@ -3,11 +3,11 @@ import React, { useState, useEffect } from 'react';
 
 import CardSombreado from "./CardSombreado";
 
-function FileiraCardSombreado() {
+function FileiraCardSombreado({ fetchUrl }) {
     const [data, setData] = useState([]);
 
     const getProdutos = async () => {
-        fetch("http://localhost:8080")
+        fetch({ fetchUrl })
             .then((response) => response.json())
             .then((responseJson) => (
                 setData(responseJson)
