@@ -18,11 +18,8 @@ function FiltroFileira() {
         console.log('Dados a serem enviados:', dados);
     
         try {
-            const response = await fetch('http://localhost:8080/', {
+            const response = await fetch('http://localhost:8080/imoveis/', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
                 body: JSON.stringify(dados),
             });
     
