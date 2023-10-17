@@ -2,10 +2,9 @@
 
 namespace app\Models\Home;
 
-use app\Models\Crud\Utilizadores\Banco;
 use app\Models\Crud\InserirDados;
 
-class PegandoDados extends Banco
+class PegandoDados extends InserirDados
 {
     public function cabecalho(): void
     {
@@ -17,13 +16,6 @@ class PegandoDados extends Banco
     public function rodape(): void
     {
         http_response_code(200);
-    }
-
-    public function select($nomeCategoria)
-    {
-        $salvar = new InserirDados();
-        $salvar->select($nomeCategoria);
-        return $salvar;
     }
 
     public function filtro($arRequest): void

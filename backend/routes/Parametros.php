@@ -4,10 +4,6 @@ namespace routes;
 
 class Parametros
 {
-    public function __construct()
-    {
-    }
-
     public function getRequisicaoGet(): string
     {
         $requisicao = $this->capturarGet();

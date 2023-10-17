@@ -4,10 +4,6 @@ namespace routes;
 
 class Routes
 {
-    public function __construct()
-    {
-    }
-
     public function getRotaAtual(): string
     {
         $requisicao = $this->pegandoRequest();
