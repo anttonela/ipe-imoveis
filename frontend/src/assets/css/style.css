@@ -377,7 +377,6 @@ body {
 .card_sobre {
     width: 230px;
     display: grid;
-    justify-content: space-between;
 }
 
 .card_valor {
@@ -429,7 +428,6 @@ body {
     width: 270px;
     height: 160px;
     display: grid;
-
 }
 
 .card_editar {
@@ -437,6 +435,12 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: initial;
+}
+
+.content-card_editar_icons {
+    width: 100%;
+    display: flex;
+    justify-content: end;
 }
 
 .card_editar_icons {

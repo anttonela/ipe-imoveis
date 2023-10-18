@@ -1,19 +1,40 @@
-import Card from "./Card";
+import values from 'lodash/values';
+import React, { useState, useEffect } from 'react';
 
-function FileiraCard() {
+import Card from './Card';
+
+function FileiraCardSombreado({ fetchUrl }) {
+    const [data, setData] = useState([]);
+
+    const getProdutos = async () => {
+        fetch(fetchUrl)
+            .then((response) => response.json())
+            .then((responseJson) => (
+                setData(responseJson)
+            ));
+    }
+
+    useEffect(() => {
+        getProdutos();
+    }, []);
+
     return (
         <div className="card_content_administrativo">
             <div className="content_administrativo">
 
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
+                {values(data).map(produto => (
 
+                    <Card
+                        cidade={produto.cidade}
+                        breve_descricao={produto.breve_descricao}
+                        valor={produto.id_produto}
+                        quantidade_parcelas={produto.quantidade_parcelas}
+                    />
+
+                ))}
             </div>
         </div>
     );
 }
 
-export default FileiraCard;
+export default FileiraCardSombreado;

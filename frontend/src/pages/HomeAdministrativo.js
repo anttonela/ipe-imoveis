@@ -22,18 +22,21 @@ function HomeAdministrativo() {
 
             <PrimeiroSubtitulo nome={"Imóveis"} />
 
-            <FileiraCard />
-            <FileiraCard />
+            <FileiraCard
+                fetchUrl={"http://localhost:8080/imoveis"}
+            />
 
             <Subtitulo nome={"Máquinas Agrícolas"} />
 
-            <FileiraCard />
-            <FileiraCard />
+            <FileiraCard
+                fetchUrl={"http://localhost:8080/maquinasAgricolas"}
+            />
 
             <Subtitulo nome={"Outros"} />
 
-            <FileiraCard />
-            <FileiraCard />
+            <FileiraCard
+                fetchUrl={"http://localhost:8080/outros"}
+            />
 
             <Footer />
 

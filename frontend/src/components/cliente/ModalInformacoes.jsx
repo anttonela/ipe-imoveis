@@ -1,8 +1,8 @@
 import IconSetaVoltar from '../../assets/img/seta-voltar-modal.png';
-import IconWhatsapp from '../../assets/img/whatsapp.png';
-import IconFacebook from '../../assets/img/facebook.png';
-import IconInstagram from '../../assets/img/instagram.png';
-import IconOlx from '../../assets/img/olx.png';
+import IconWhatsapp from '../../assets/img/whatsapp.svg';
+import IconFacebook from '../../assets/img/facebook.svg';
+import IconInstagram from '../../assets/img/instagram.svg';
+import IconOlx from '../../assets/img/olx.svg';
 
 function Modal({ id, cidade, valor, descricao }) {
     return (

@@ -1,7 +1,7 @@
-import IconInstagram from '../../assets/img/instagram.png';
-import IconFacebook from '../../assets/img/facebook.png';
-import IconWhatsapp from '../../assets/img/whatsapp.png';
-import LogoBranca from '../../assets/img/logo-branca.png';
+import IconInstagram from '../../assets/img/instagram.svg';
+import IconFacebook from '../../assets/img/facebook.svg';
+import IconWhatsapp from '../../assets/img/whatsapp.svg';
+import LogoBranca from '../../assets/img/logo-branca.svg';
 
 function Footer() {
     return (

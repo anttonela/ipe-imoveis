@@ -1,6 +1,6 @@
-import IconLapis from '../../assets/img/lapis.png';
+import IconLapis from '../../assets/img/lapis.svg';
 import ModalEditar from './ModalEditar';
-import IconLixeira from '../../assets/img/lixeira.png';
+import IconLixeira from '../../assets/img/lixeira.svg';
 import ImagemImoveis from '../../assets/img/imoveis.png';
 
 function Card({ cidade, breve_descricao, valor, quantidade_parcelas, valor_mensal }) {
@@ -18,11 +18,13 @@ function Card({ cidade, breve_descricao, valor, quantidade_parcelas, valor_mensa
                         <div className='card_sobre'>
                             <div className='card_editar'>
                                 <div className='nome_produto inter_700'>{cidade}</div>
-                                <div className='card_editar_icons'>
-                                    <a href='#modal_editar' className='link'>
-                                        <img className='editar_icon' src={IconLapis} />
-                                    </a>
-                                    <img className='editar_icon' src={IconLixeira} />
+                                <div className='content-card_editar_icons'>
+                                    <div className='card_editar_icons'>
+                                        <a href='#modal_editar' className='link'>
+                                            <img className='editar_icon' src={IconLapis} />
+                                        </a>
+                                        <img className='editar_icon' src={IconLixeira} />
+                                    </div>
                                 </div>
                             </div>
 

@@ -1,6 +1,6 @@
-import LogoBranca from '../../assets/img/logo-branca.png';
-import IconTelefone from '../../assets/img/telefone-icon.png';
-import IconEmail from '../../assets/img/email-icon.png';
+import LogoBranca from '../../assets/img/logo-branca.svg';
+import IconTelefone from '../../assets/img/telefone-icon.svg';
+import IconEmail from '../../assets/img/email-icon.svg';
 
 function Header({ href }) {
     return (
@@ -13,7 +13,7 @@ function Header({ href }) {
 
                 <div className='texto_banner_content'>
                     <div className='texto_banner'>
-                        <div className='nome_empresa'>IPÊ IMÓVEIS</div>
+                        <div className='nome_empresa'>ARANTES IMÓVEIS</div>
                         <div className='header_texto'>Transformando desejos<br />em endereços.</div>
 
                         <div className='botao_content'>

@@ -3,8 +3,8 @@ import Carousel from "react-elastic-carousel";
 import React, { useState, useEffect } from 'react';
 
 import Card from './Card';
-import SetaDireita from '../../assets/img/seta-direita.png';
-import SetaEsquerda from '../../assets/img/seta-esquerda.png';
+import SetaDireita from '../../assets/img/seta-direita.svg';
+import SetaEsquerda from '../../assets/img/seta-esquerda.svg';
 
 
 function FileiraCard({ fetchUrl }) {

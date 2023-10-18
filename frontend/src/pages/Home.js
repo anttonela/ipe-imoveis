@@ -5,6 +5,7 @@ import Footer from '../components/cliente/Footer';
 import Fileira from '../components/cliente/Fileira';
 import Subtitulo from '../components/cliente/Subtitulo';
 import FiltroFileira from '../components/cliente/FiltroFileira';
+import Teste from '../components/cliente/Teste';
 import PrimeiroSubtitulo from '../components/cliente/PrimeiroSubtitulo';
 
 function Home() {
