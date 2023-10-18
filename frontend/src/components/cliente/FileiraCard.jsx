@@ -10,8 +10,9 @@ import SetaEsquerda from '../../assets/img/seta-esquerda.png';
 function FileiraCard({ fetchUrl }) {
     const [data, setData] = useState([]);
 
+
     const getProdutos = async () => {
-        fetch({ fetchUrl })
+        fetch(fetchUrl)
             .then((response) => response.json())
             .then((responseJson) => (
                 setData(responseJson)

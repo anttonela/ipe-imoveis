@@ -58,12 +58,8 @@ class InserirDados extends Banco
             "IS NOT NULL" => "",
         ];
 
-        try {
-            $resultado = $this->executarFetchAll($table->condicoes($arDados));
-            print_r($resultado);
-        } catch (PDOException $erro) {
-            print "\n\033[1;31mErro ocorrido ao tentar encontrar dado na tabela:\033[0m\n\n\033[1;37m{$erro}\033[0m\n";
-        }
+        $executar = $this->executarFetchAll($table->condicoes($arDados));
+        print_r($executar);
     }
 
     public function update(): void

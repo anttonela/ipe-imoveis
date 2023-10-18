@@ -27,7 +27,7 @@ function Home() {
                 />
 
                 <Fileira
-                    fetchUrl={"'http://localhost:8080/imoveis'"}
+                    fetchUrl={"http://localhost:8080/imoveis"}
                     href={"#imoveis"}
                 />
             </div>
@@ -36,9 +36,9 @@ function Home() {
                 id={"maquinas_agricolas"}
                 nome={"Máquinas Agrícolas"}
             />
-            
+
             <Fileira
-                fetchUrl={"'http://localhost:8080/maquinasAgricolas'"}
+                fetchUrl={"http://localhost:8080/maquinasAgricolas"}
                 href={"#maquinas_agricolas"}
             />
 
@@ -49,7 +49,7 @@ function Home() {
                 />
 
                 <Fileira
-                    fetchUrl={"'http://localhost:8080/outros'"}
+                    fetchUrl={"http://localhost:8080/outros"}
                     href={"#outros"}
                 />
             </div>

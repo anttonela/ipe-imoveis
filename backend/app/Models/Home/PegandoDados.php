@@ -2,65 +2,52 @@
 
 namespace app\Models\Home;
 
-use app\Models\Crud\InserirDados;
+use app\Models\Home\CorpoJson;
 
-class PegandoDados extends InserirDados
+class PegandoDados extends CorpoJson
 {
-    public function cabecalho(): void
-    {
-        header("Access-Control-Allow-Headers: Content-Type");
-        header("Access-Control-Allow-Methods: GET, POST");
-        header("Access-Control-Allow-Origin: *");
-    }
-
-    public function rodape(): void
-    {
-        http_response_code(200);
-    }
-
     public function filtro($arRequest): void
     {
         $this->cabecalho();
 
-        echo json_encode($arRequest);
+        print json_encode($arRequest);
 
-        $this->rodape();
+        $this->response();
     }
 
     public function imoveis(): void
     {
         $this->cabecalho();
 
+        http_response_code(200);
+
         echo json_encode($this->select("Imóveis"));
-
-        $this->rodape();
     }
-
 
     public function teste(): void
     {
         $this->cabecalho();
 
-        echo json_encode("Em teste");
+        print json_encode("Em teste");
 
-        $this->rodape();
+        $this->response();
     }
 
     public function maquinasAgricolas(): void
     {
         $this->cabecalho();
 
-        echo json_encode($this->select("Máquinas Agrícolas"));
+        http_response_code(200);
 
-        $this->rodape();
+        echo json_encode($this->select("Máquinas Agrícolas"));
     }
 
     public function outros(): void
     {
         $this->cabecalho();
 
-        echo json_encode($this->select("Outros"));
+        http_response_code(200);
 
-        $this->rodape();
+        echo json_encode($this->select("Outros"));
     }
 }

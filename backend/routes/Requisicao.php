@@ -6,8 +6,11 @@ use app\Models\Home\PegandoDados;
 
 class Requisicao
 {
-    public function verificandoSeRotaExiste($route, $requisicao): void
+    public function verificandoSeRotaExiste(): void
     {
+        $route = new \routes\Routes();
+        $requisicao = new \routes\Parametros();
+
         $rota = $route->getRotaAtual();
         $salvar = new PegandoDados();
 
