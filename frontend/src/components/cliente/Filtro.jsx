@@ -12,7 +12,7 @@ function Filtro({ id, name, value, onChange, categoria, option }) {
                     }}
                     typeof="file"
                 >
-                    <option hidden>{categoria}</option>
+                    <option value="" disabled selected>{categoria}</option>
                     <option>{option.um}</option>
                     <option>{option.dois}</option>
                     <option>{option.tres}</option>

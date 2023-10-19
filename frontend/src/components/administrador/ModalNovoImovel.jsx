@@ -7,7 +7,7 @@ import InformacoesModal from './InformacoesModal';
 
 function ModalNovoImovel() {
     const [cidade, setCidade] = useState('');
-    const [tipoProduto, setTipoProduto] = useState('');
+    const [classificacao, setClassificacao] = useState('');
     const [valor, setValor] = useState('');
     const [descricao, setDescricao] = useState('');
     const [linkWhatsapp, setLinkWhatsapp] = useState('');
@@ -20,7 +20,7 @@ function ModalNovoImovel() {
 
         const dados = {
             cidade,
-            tipoProduto,
+            classificacao,
             valor,
             descricao,
             linkWhatsapp,
@@ -94,10 +94,10 @@ function ModalNovoImovel() {
                             />
 
                             <SelectModal
-                                id={"tipo_produto"}
-                                value={tipoProduto}
-                                setOnChange={setTipoProduto}
-                                categoria={"Tipo de Produto"}
+                                id={"classificacao"}
+                                value={classificacao}
+                                setOnChange={setClassificacao}
+                                categoria={"Classificação"}
                                 option=
                                 {{
                                     hidden: 'Selecionar',

@@ -1,28 +1,41 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Filtro from '../cliente/Filtro';
+import FiltroAtualiza from './FiltroAtualiza';
 
 function FiltroFileira() {
-    const [tipo, setTipo] = useState('');
-    const [produto, setProduto] = useState('');
+    const [classificacaoSelecionada, setClassificacaoSelecionada] = useState('');
+    const [tipoSelecionado, setTipoSelecionado] = useState('');
     const [cidade, setCidade] = useState('');
+    const opcoesClassificacao = ['Imóvel', 'Máquinas Agrícolas', 'Outros'];
+
+    const opcoesTipos = {
+        'Imóvel': ['Apartamento', 'Casa', 'Fazenda', 'Terreno', 'Imóvel Comercial'],
+        'Máquinas Agrícolas': ['Máquinas Agrícolas', 'Implementos Agrícolas'],
+        'Outros': ['1', '2'],
+    };
+
+    const atualizarOpcoesTipo = (classificacao) => {
+        setTipoSelecionado('');
+        setClassificacaoSelecionada(classificacao);
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
+
         const dados = {
-            tipo,
-            produto,
+            classificacao: classificacaoSelecionada,
+            tipo: tipoSelecionado,
             cidade,
         };
-    
+
         console.log('Dados a serem enviados:', dados);
-    
+
         try {
             const response = await fetch('', {
                 method: 'POST',
                 body: JSON.stringify(dados),
             });
-    
+
             const data = await response.text();
             console.log('Resposta da API:', data);
         } catch (error) {
@@ -34,32 +47,38 @@ function FiltroFileira() {
         <form onSubmit={handleSubmit} encType='multipart/form-data'>
 
             <div className='filtro'>
-                <Filtro
-                    id={"select_tipo"}
-                    name={"select_tipo"}
-                    value={tipo}
-                    onChange={setTipo}
-                    categoria={"Tipo"}
+
+                <FiltroAtualiza
+                    id={"select_classificacao"}
+                    name={"select_classificacao"}
+                    value={classificacaoSelecionada}
+                    onChange={atualizarOpcoesTipo}
+                    hidden={"Classificação"}
                     option=
-                    {{
-                        um: 'Imóvel',
-                        dois: 'Máquinas Agrícolas',
-                        tres: 'Outros'
-                    }}
+                    {
+                        opcoesClassificacao.map((classificacao) => (
+                            <option key={classificacao} value={classificacao}>
+                                {classificacao}
+                            </option>
+                        ))
+                    }
                 />
 
-                <Filtro
-                    id={"select_produto"}
-                    name={"select_produto"}
-                    value={produto}
-                    onChange={setProduto}
-                    categoria={"Produto"}
+                <FiltroAtualiza
+                    id={"select_tipo"}
+                    name={"select_tipo"}
+                    value={tipoSelecionado}
+                    onChange={setTipoSelecionado}
+                    hidden={"Tipo"}
                     option=
-                    {{
-                        um: '1',
-                        dois: '2',
-                        tres: '3'
-                    }}
+                    {
+                        opcoesTipos[classificacaoSelecionada] &&
+                        opcoesTipos[classificacaoSelecionada].map((tipo) => (
+                            <option key={tipo} value={tipo}>
+                                {tipo}
+                            </option>
+                        ))
+                    }
                 />
 
                 <Filtro
@@ -67,9 +86,8 @@ function FiltroFileira() {
                     name={"select_cidade"}
                     value={cidade}
                     onChange={setCidade}
-                    categoria={"Cidade"}
-                    option=
-                    {{
+                    hidden={"Cidade"}
+                    option={{
                         um: 'Acreúna',
                         dois: 'Indiara',
                         tres: 'Goiânia'
