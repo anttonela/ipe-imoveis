@@ -1,4 +1,4 @@
-function Filtro({ id, name, value, onChange, categoria, option }) {
+function Filtro({ id, name, value, onChange, option }) {
     return (
         <>
             <div className="filtro_card">
@@ -10,9 +10,8 @@ function Filtro({ id, name, value, onChange, categoria, option }) {
                     onChange={(e) => {
                         onChange(e.target.value);
                     }}
-                    typeof="file"
                 >
-                    <option value="" disabled selected>{categoria}</option>
+                    <option hidden>{option.hidden}</option>
                     <option>{option.um}</option>
                     <option>{option.dois}</option>
                     <option>{option.tres}</option>

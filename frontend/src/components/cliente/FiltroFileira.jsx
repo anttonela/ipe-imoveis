@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import Filtro from '../cliente/Filtro';
+import React, { useState } from 'react';
 import FiltroAtualiza from './FiltroAtualiza';
 
 function FiltroFileira() {
@@ -11,7 +11,7 @@ function FiltroFileira() {
     const opcoesTipos = {
         'Imóvel': ['Apartamento', 'Casa', 'Fazenda', 'Terreno', 'Imóvel Comercial'],
         'Máquinas Agrícolas': ['Máquinas Agrícolas', 'Implementos Agrícolas'],
-        'Outros': ['1', '2'],
+        'Outros': ['Outros'],
     };
 
     const atualizarOpcoesTipo = (classificacao) => {
@@ -86,8 +86,9 @@ function FiltroFileira() {
                     name={"select_cidade"}
                     value={cidade}
                     onChange={setCidade}
-                    hidden={"Cidade"}
-                    option={{
+                    option=
+                    {{
+                        hidden: 'Cidade',
                         um: 'Acreúna',
                         dois: 'Indiara',
                         tres: 'Goiânia'
@@ -97,7 +98,9 @@ function FiltroFileira() {
                 <div className='botao_filtro_content'>
                     <button className='botao_filtro inter_500' type="submit">Pesquisar</button>
                 </div>
+
             </div>
+            
         </form>
     );
 }
