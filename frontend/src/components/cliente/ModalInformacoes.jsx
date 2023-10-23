@@ -4,7 +4,7 @@ import IconFacebook from '../../assets/img/facebook.svg';
 import IconInstagram from '../../assets/img/instagram.svg';
 import IconOlx from '../../assets/img/olx.svg';
 
-function Modal({ id, cidade, valor, descricao }) {
+function Modal({ id, cidade, valor, descricao, linkWhatsapp }) {
     return (
         <>
             <div className="modal_content">
@@ -44,9 +44,9 @@ function Modal({ id, cidade, valor, descricao }) {
                     <div className='modal_contatos inter_700'>Entre em Contato</div>
 
                     <div className='modal_redes_sociais_container'>
-                        <button className='modal_rede_social modal_whatsapp'>
+                        <a className='modal_rede_social modal_whatsapp' href={linkWhatsapp}>
                             <img className='modal_icon' src={IconWhatsapp} />
-                        </button>
+                        </a>
                         <button className='modal_rede_social modal_facebook'>
                             <img className='modal_icon' src={IconFacebook} />
                         </button>

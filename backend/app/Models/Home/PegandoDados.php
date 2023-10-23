@@ -1,7 +1,8 @@
 <?php
 
-namespace app\Models\Home;
+namespace app\Models\Home\Login;
 
+use app\Login\Condicoes\CriarConta;
 use app\Models\Crud\Utilizadores\Tabela;
 use app\Models\Home\CorpoJson;
 
@@ -106,21 +107,21 @@ class PegandoDados extends CorpoJson
         $palavras = explode(' ', $descricao);
         $table = new Tabela("produto");
 
-        $arTable = [
+        $arProduto = [
             "classificacao" => $data['classificacao'],
             "cidade" => $data['cidade'],
             "situacao" => "Não Vendido",
             "valor" => $data['valor'],
             "breve_descricao" => implode(' ', array_slice($palavras, 0, 7)),
             "descricao" => "$descricao",
-            "link_whatsapp" => "$linkWhatsapp",
+            "link_whatsapp" => "https://api.whatsapp.com/send?phone=+55" . $linkWhatsapp . "&text=Ola%21",
             "link_instagram" => "https://www.instagram.com/" . $data['linkInstagram'] . "/",
             "link_facebook" => "https://www.facebook.com/" . $data['linkFacebook'] . "/",
             "link_olx" => "$linkOlx",
 
         ];
 
-        $table->salvarInserir($arTable);
+        $table->salvarInserir($arProduto);
 
         /*
 
@@ -131,5 +132,25 @@ class PegandoDados extends CorpoJson
         muro branco, câmeras de segurança com imóveis', 'link', 'link', 'link', 'link');
 
         */
+    }
+
+    public function criarConta(): void
+    {
+        $this->cabecalho();
+
+        http_response_code(200);
+
+        $criarConta = new CriarConta();
+        $criarConta->registrandoResposta();
+    }
+
+    public function login(): void
+    {
+        $this->cabecalho();
+
+        http_response_code(200);
+
+        $login = new Entrar();
+        $login->imprimindoAviso();
     }
 }

@@ -16,10 +16,21 @@ class CriarConta extends Banco
 
     private function setCriarConta(): void
     {
-        $this->nome = $_POST['nome'];
-        $this->sobrenome = $_POST['sobrenome'];
-        $this->email = $_POST['email'];
-        $this->senha = $_POST['senha'];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $json_data = file_get_contents("php://input");
+            $data = json_decode($json_data, true);
+
+            if ($data === null) {
+                http_response_code(400);
+                echo json_encode(array("error" => "Dados inválidos"));
+                return;
+            }
+        }
+
+        $this->nome = $data['nome'];
+        $this->sobrenome = $data['sobrenome'];
+        $this->email = $data['email'];
+        $this->senha = $data['senha'];
     }
 
     public function verificandoRespostas(): void
@@ -27,7 +38,7 @@ class CriarConta extends Banco
         $this->setCriarConta();
 
         if (empty($this->nome) || empty($this->sobrenome) || empty($this->email) || empty($this->senha)) {
-            $this->arMensagem[] = '<br>Cadastro incompleto';
+            $this->arMensagem[] = 'Cadastro incompleto';
             return;
         }
     }
@@ -37,7 +48,7 @@ class CriarConta extends Banco
         $this->setCriarConta();
 
         if (filter_var($this->email, FILTER_VALIDATE_EMAIL) == false) {
-            $this->arMensagem[] = '<br>E-mail inválido';
+            $this->arMensagem[] = 'E-mail inválido';
             $this->email = null;
             return;
         }
@@ -50,7 +61,7 @@ class CriarConta extends Banco
         $table = new Select("usuario");
         $arTable = [
             "COLUMN" => "email",
-            "WHERE" => "email = '{$_POST['email']}'",
+            "WHERE" => "email = '{$this->email}'",
         ];
 
         $arSelectEmail = $this->executarFetchAll($table->condicoes($arTable));
@@ -92,19 +103,5 @@ class CriarConta extends Banco
         }
 
         print "<br><br>Erro ao tentar criar conta";
-    }
-
-    public function imprimindoAviso(): void
-    {
-
-        /*
-        $this->setCriarConta();
-        $this->verificandoRespostas();
-        $this->verificandoEmailValido();
-        $this->registrandoResposta();
-        
-        foreach($this->arMensagem as $mensagem) {
-            print $mensagem;
-        }*/
     }
 }

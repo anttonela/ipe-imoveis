@@ -21,18 +21,15 @@ function Login() {
       senha,
     };
 
-    try {
-      console.log(dados);
+    console.log('Dados a serem enviados:', dados);
 
-      const response = await fetch('SUA_API_URL_AQUI', {
+    try {
+      const response = await fetch('http://localhost:8080/login/', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
         body: JSON.stringify(dados),
       });
 
-      const data = await response.json();
+      const data = await response.text();
       console.log('Resposta da API:', data);
     } catch (error) {
       console.error('Erro ao enviar os dados para a API:', error);
@@ -77,7 +74,10 @@ function Login() {
                   <div className="login_subtitulo">
                     <div className="texto">Não tem uma conta?</div>
 
-                    <div className="texto_azul">Criar Conta</div>
+                    <a href={url} className="link">
+                      <div className="texto_azul">Criar Conta</div>
+                    </a>
+
                   </div>
                 </div>
 

@@ -26,18 +26,15 @@ function CriarConta() {
             sobrenome,
         };
 
-        try {
-            console.log(dados);
+        console.log('Dados a serem enviados:', dados);
 
-            const response = await fetch('SUA_API_URL_AQUI', {
+        try {
+            const response = await fetch('http://localhost:8080/criarConta/', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
                 body: JSON.stringify(dados),
             });
 
-            const data = await response.json();
+            const data = await response.text();
             console.log('Resposta da API:', data);
         } catch (error) {
             console.error('Erro ao enviar os dados para a API:', error);
