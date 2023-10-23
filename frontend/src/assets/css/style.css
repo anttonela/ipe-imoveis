@@ -95,6 +95,7 @@ body {
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    text-decoration: none;
 }
 
 .botao_header {
@@ -1198,4 +1199,11 @@ h1 {
 p {
     font-size: 25px;
     padding-left: 25px;
+}
+
+.mensagem_sucesso {
+    display: flex;
+    justify-content: center;
+    color: #101010;
+    align-items: center;
 }

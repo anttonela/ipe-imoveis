@@ -31,7 +31,7 @@ function FiltroFileira() {
         console.log('Dados a serem enviados:', dados);
 
         try {
-            const response = await fetch('', {
+            const response = await fetch('http://localhost:8080/filtroFileira', {
                 method: 'POST',
                 body: JSON.stringify(dados),
             });
@@ -100,7 +100,7 @@ function FiltroFileira() {
                 </div>
 
             </div>
-            
+
         </form>
     );
 }

@@ -12,6 +12,7 @@ function InformacoesModal({ id, value, onChange, nomeInformacao, placeholder }) 
                 onChange={(e) => {
                     onChange(e.target.value);
                 }}
+                required
             />
         </div>
     );

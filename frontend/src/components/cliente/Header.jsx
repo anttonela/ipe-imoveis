@@ -16,11 +16,11 @@ function Header({ href }) {
                         <div className='nome_empresa'>ARANTES IMÓVEIS</div>
                         <div className='header_texto'>Transformando desejos<br />em endereços.</div>
 
-                        <div className='botao_content'>
-                            <button className='botao_header' type='submit' href={href}>
+                        <a className='botao_content' href={href}>
+                            <button className='botao_header' type='submit'>
                                 Ver Imóveis
                             </button>
-                        </div>
+                        </a>
                     </div>
                 </div>
 

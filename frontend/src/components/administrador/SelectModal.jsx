@@ -9,6 +9,7 @@ function SelectModal({ id, value, setOnChange, categoria, option }) {
                 onChange={(e) => {
                     setOnChange(e.target.value);
                 }}
+                required
             >
                 <option hidden>{option.hidden}</option>
                 <option>{option.um}</option>
