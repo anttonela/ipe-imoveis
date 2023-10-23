@@ -20,7 +20,7 @@ class CorpoJson
     public function select($nomeCategoria): array
     {
         $banco = new Banco();
-        $select = $banco->executarFetchAll("SELECT * FROM produto WHERE categoria = '{$nomeCategoria}'");
+        $select = $banco->executarFetchAll("SELECT * FROM produto WHERE classificacao = '{$nomeCategoria}'");
 
         return $select;
     }

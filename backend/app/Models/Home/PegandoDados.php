@@ -99,28 +99,23 @@ class PegandoDados extends CorpoJson
             }
         }
 
-        $cidade = $data['cidade'];
-        $classificacao = $data['classificacao'];
-        $valor = $data['valor'];
         $descricao = $data['descricao'];
         $linkWhatsapp = $data['linkWhatsapp'];
-        $linkInstagram = $data['linkInstagram'];
-        $linkFacebook = $data['linkFacebook'];
         $linkOlx = $data['linkOlx'];
 
         $palavras = explode(' ', $descricao);
         $table = new Tabela("produto");
 
         $arTable = [
-            "categoria" => "$classificacao",
-            "cidade" => "$cidade",
+            "classificacao" => $data['classificacao'],
+            "cidade" => $data['cidade'],
             "situacao" => "Não Vendido",
-            "valor" => $valor,
-            "breve_descricao" => implode(' ', array_slice($palavras, 0, 8)),
+            "valor" => $data['valor'],
+            "breve_descricao" => implode(' ', array_slice($palavras, 0, 7)),
             "descricao" => "$descricao",
             "link_whatsapp" => "$linkWhatsapp",
-            "link_instagram" => "$linkInstagram",
-            "link_facebook" => "$linkFacebook",
+            "link_instagram" => "https://www.instagram.com/" . $data['linkInstagram'] . "/",
+            "link_facebook" => "https://www.facebook.com/" . $data['linkFacebook'] . "/",
             "link_olx" => "$linkOlx",
 
         ];

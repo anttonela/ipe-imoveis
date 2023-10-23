@@ -132,41 +132,44 @@ function ModalNovoImovel() {
                             id={"link_whatsapp"}
                             value={linkWhatsapp}
                             onChange={setLinkWhatsapp}
-                            nomeInformacao={"Link Whatsapp"}
-                            placeholder={"Link..."}
+                            nomeInformacao={"Número Whatsapp"}
+                            placeholder={"64912345678"}
                         />
 
                         <InformacoesModal
                             id={"link_instagram"}
                             value={linkInstagram}
                             onChange={setLinkInstagram}
-                            nomeInformacao={"Link Instagram"}
-                            placeholder={"Link..."}
+                            nomeInformacao={"Usuário Instagram"}
+                            placeholder={"@"}
                         />
 
                         <InformacoesModal
                             id={"link_facebook"}
                             value={linkFacebook}
                             onChange={setLinkFacebook}
-                            nomeInformacao={"Link Facebook"}
-                            placeholder={"Link..."}
+                            nomeInformacao={"Usuário Facebook"}
+                            placeholder={"@"}
                         />
 
                         <InformacoesModal
                             id={"link_olx"}
                             value={linkOlx}
                             onChange={setLinkOlx}
-                            nomeInformacao={"Link OLX"}
-                            placeholder={"Link..."}
+                            nomeInformacao={"Usuário OLX"}
+                            placeholder={"@"}
                         />
+                        
                         <div className='content_botao_confirmar'>
                             <button className='botao_confirmar_adicionar' type="submit">Adicionar</button>
                         </div>
+
                         {produtoAdicionado && (
-                            <div className='mensagem_sucesso pro'>
+                            <div className='mensagem_sucesso'>
                                 Produto adicionado com sucesso
                             </div>
                         )}
+
                     </form>
                 </div>
             </div>

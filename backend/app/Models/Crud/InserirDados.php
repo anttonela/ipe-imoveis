@@ -42,7 +42,7 @@ class InserirDados extends Banco
 
         $arDados = [
             "COLUMN" => "",
-            "WHERE" => "categoria = '{$nomeCategoria}'",
+            "WHERE" => "classificacao = '{$nomeCategoria}'",
             "ORDER BY" => "",
             "LIMIT" => "",
             "OFFSET" => "",
