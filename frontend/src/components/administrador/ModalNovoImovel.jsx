@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-import IconPlus from '../../assets/img/plus-branco.png';
 import SelectModal from './SelectModal';
 import IconSetaVoltar from '../../assets/img/seta-voltar-modal.png';
 import InformacoesModal from './InformacoesModal';
+import UploadFotos from './UploadFotos';
 
 function ModalNovoImovel() {
     const [cidade, setCidade] = useState('');
@@ -58,19 +58,7 @@ function ModalNovoImovel() {
                     <div className='botao_fechar_modal inter_500'>Voltar</div>
                 </div>
 
-                <div className='imagem_modal_content'>
-                    <div className='adicionar_foto_content'>
-                        <div className='adicionar_foto'>
-                            <div className='botao_adicionar_foto_content'>
-                                <div className='botao_adicionar_foto'>
-                                    <img src={IconPlus} alt="Ícone de Adicionar" />
-                                </div>
-                            </div>
-                            <div className='texto_adicionar_foto inter_700'>Adicionar Fotos</div>
-                            <div className='texto_quantidade_foto inter_500'>máx: 0</div>
-                        </div>
-                    </div>
-                </div>
+                <UploadFotos />
 
                 <div className='modal_informacoes'>
                     <form onSubmit={handleSubmit}>
@@ -159,7 +147,7 @@ function ModalNovoImovel() {
                             nomeInformacao={"Usuário OLX"}
                             placeholder={"@"}
                         />
-                        
+
                         <div className='content_botao_confirmar'>
                             <button className='botao_confirmar_adicionar' type="submit">Adicionar</button>
                         </div>

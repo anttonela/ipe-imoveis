@@ -6,7 +6,6 @@ import Card from './Card';
 import SetaDireita from '../../assets/img/seta-direita.svg';
 import SetaEsquerda from '../../assets/img/seta-esquerda.svg';
 
-
 function FileiraCard({ fetchUrl }) {
     const [data, setData] = useState([]);
 

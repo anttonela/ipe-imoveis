@@ -795,6 +795,22 @@ body {
     align-items: center;
 }
 
+.foto_selecionada {
+    height: 220px;
+}
+
+.navigation {
+    background-color: red;
+}
+
+.content_foto_adicionada {
+    width: 560px;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .botao_adicionar_foto {
     height: 48px;
     width: 48px;
@@ -809,6 +825,12 @@ body {
     height: 60px;
     display: flex;
     justify-content: center;
+}
+
+.input_upload {
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
 
 .texto_adicionar_foto {

@@ -1,6 +1,8 @@
 import FotoImovel from '../../assets/img/imoveis.png';
 import ModalInformacoes from './ModalInformacoes';
 
+import UploadFotos from '../administrador/UploadFotos';
+
 function Card({ cidade, breve_descricao, valor, quantidade_parcelas, informacoesModal }) {
     return (
         <>

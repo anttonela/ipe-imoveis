@@ -11,6 +11,7 @@ import Login from './pages/Login';
 import CriarConta from './pages/CriarConta';
 import HomeAdministrativo from './pages/HomeAdministrativo';
 import Teste from './components/login/Teste';
+import UploadFotos from './components/administrador/UploadFotos';
 
 const router = createBrowserRouter([
   {
@@ -35,7 +36,7 @@ const router = createBrowserRouter([
   },
   {
     path: "teste",
-    element: <Teste />
+    element: <UploadFotos />
   }
 
 ]);
