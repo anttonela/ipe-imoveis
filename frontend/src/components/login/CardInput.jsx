@@ -12,6 +12,7 @@ function CardInput({ id, value, onChange, textoInput, placeholder }) {
                     onChange={(e) => {
                         onChange(e.target.value);
                     }}
+                    required
                 />
             </div>
 

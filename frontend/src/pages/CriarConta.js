@@ -11,6 +11,7 @@ function CriarConta() {
         document.title = "Criar Conta";
     });
 
+    const [data, setData] = useState(null);
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [nome, setNome] = useState('');
@@ -35,7 +36,7 @@ function CriarConta() {
             });
 
             const data = await response.text();
-            console.log('Resposta da API:', data);
+            //console.log('Resposta da API:', data);
         } catch (error) {
             console.error('Erro ao enviar os dados para a API:', error);
         }

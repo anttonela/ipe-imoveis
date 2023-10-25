@@ -6,10 +6,9 @@ import BannerImagem from "../assets/img/banner.png";
 
 function Login() {
 
-  useEffect(() => {
-    document.title = "Fazer Login";
-  }, []);
+  let url = "/CriarConta";
 
+  //const [data, setData] = useState([]);
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
@@ -34,9 +33,23 @@ function Login() {
     } catch (error) {
       console.error('Erro ao enviar os dados para a API:', error);
     }
-  };
+  }
 
-  let url = "/CriarConta";
+  /*
+  const getProdutos = async () => {
+    console.log('Listar Produtos');
+    fetch("http://localhost:8080/login/")
+      .then((response) => response.json())
+      .then((responseJson) => (
+        console.log(responseJson),
+        setData(responseJson)
+      ));
+  }*/
+
+  useEffect(() => {
+    document.title = "Fazer Login";
+    //getProdutos();
+  }, []);
 
   return (
     <>

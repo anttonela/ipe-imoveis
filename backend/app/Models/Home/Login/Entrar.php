@@ -13,8 +13,20 @@ class Entrar extends Banco
 
     public function setEntrar(): void
     {
-        $this->email = $_POST['email'];
-        $this->senha = $_POST['senha'];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $json_data = file_get_contents("php://input");
+            $data = json_decode($json_data, true);
+
+            if ($data === null) {
+                http_response_code(400);
+                echo json_encode(array("error" => "Dados inválidos"));
+                return;
+            }
+        }
+
+
+        $this->email = $data['email'];
+        $this->senha = $data['senha'];
     }
 
     public function verificandoEmailValido(): void
@@ -22,7 +34,7 @@ class Entrar extends Banco
         $this->setEntrar();
 
         if (filter_var($this->email, FILTER_VALIDATE_EMAIL) == false) {
-            $this->arMensagem[] = '<br>E-mail inválido';
+            $this->arMensagem[] = 'E-mail inválido';
             $this->email = null;
             return;
         }
@@ -40,7 +52,7 @@ class Entrar extends Banco
         $arSelectSenha = $this->executarFetchAll($table->condicoes($arTable));
 
         $arSelectSenha[0]['senha'] === $this->senha ? $this->arMensagem[] = 'Você conseguiu entrar na sua conta com sucesso!': 
-        $this->arMensagem[] = '<br>Autenticação falhou, tente novamente';
+        $this->arMensagem[] = 'Autenticação falhou, tente novamente';
     }
 
     public function imprimindoAviso(): void

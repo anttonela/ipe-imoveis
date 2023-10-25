@@ -1,8 +1,9 @@
 <?php
 
-namespace app\Models\Home\Login;
+namespace app\Models\Home;
 
-use app\Login\Condicoes\CriarConta;
+use app\Models\Home\Login\CriarConta;
+use app\Models\Home\Login\Entrar;
 use app\Models\Crud\Utilizadores\Tabela;
 use app\Models\Home\CorpoJson;
 

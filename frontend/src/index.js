@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import CriarConta from './pages/CriarConta';
 import HomeAdministrativo from './pages/HomeAdministrativo';
+import Teste from './components/login/Teste';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
   {
     path: "criarConta",
     element: <CriarConta />,
+  },
+  {
+    path: "teste",
+    element: <Teste />
   }
 
 ]);

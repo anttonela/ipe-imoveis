@@ -1207,3 +1207,8 @@ p {
     color: #101010;
     align-items: center;
 }
+
+.recado {
+    font-size: 12px;
+    background-color: red;
+}

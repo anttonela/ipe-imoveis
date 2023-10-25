@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Login\Condicoes;
+namespace app\Models\Home\Login;
 
 use app\Models\Crud\Functions\Select;
 use app\Models\Crud\Utilizadores\Banco;
@@ -33,16 +33,6 @@ class CriarConta extends Banco
         $this->senha = $data['senha'];
     }
 
-    public function verificandoRespostas(): void
-    {
-        $this->setCriarConta();
-
-        if (empty($this->nome) || empty($this->sobrenome) || empty($this->email) || empty($this->senha)) {
-            $this->arMensagem[] = 'Cadastro incompleto';
-            return;
-        }
-    }
-
     public function verificandoEmailValido(): void
     {
         $this->setCriarConta();
@@ -67,7 +57,7 @@ class CriarConta extends Banco
         $arSelectEmail = $this->executarFetchAll($table->condicoes($arTable));
 
         if ($arSelectEmail != null) {
-            $this->arMensagem[] = '<br>E-mail já cadastrado';
+            $this->arMensagem[] = 'E-mail já cadastrado';
             return;
         }
     }
@@ -76,13 +66,12 @@ class CriarConta extends Banco
     {
         $this->setCriarConta();
 
-        strlen($this->senha) < 6 ? $this->arMensagem[] = "<br>Senha menor que 6 digitos" : null;
+        strlen($this->senha) < 6 ? $this->arMensagem[] = 'Senha menor que 6 digitos' : null;
     }
 
     public function registrandoResposta(): void
     {
         $this->setCriarConta();
-        $this->verificandoRespostas();
         $this->verificandoEmailValido();
         $this->verificandoSeCadastroJaExiste();
         $this->validandoSenha();
@@ -98,10 +87,10 @@ class CriarConta extends Banco
             ];
 
             $table->salvarInserir($arTable);
-            print "\nConta criada com sucesso!";
+            $this->arMensagem = 'Conta criada com sucesso!';
             return;
         }
 
-        print "<br><br>Erro ao tentar criar conta";
+        print json_encode($this->arMensagem);
     }
 }
