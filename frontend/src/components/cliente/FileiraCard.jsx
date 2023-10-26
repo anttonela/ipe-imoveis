@@ -36,7 +36,7 @@ function FileiraCard({ fetchUrl }) {
                 <Carousel
                     breakPoints={breakPoints}
                     renderArrow={({ type, onClick }) => (
-                        <div className="arrow-container">
+                        <div className="setas">
                             <img
                                 src={type === 'PREV' ? SetaEsquerda : SetaDireita}
                                 alt={type === 'PREV' ? 'Previous' : 'Next'}

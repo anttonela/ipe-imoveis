@@ -1,4 +1,4 @@
-function InformacoesModal({ id, value, onChange, nomeInformacao, placeholder }) {
+function InputModal({ id, value, onChange, nomeInformacao, placeholder }) {
     return (
         <div className="input_content">
             <div className="modal_ad_texto inter_500">{nomeInformacao}</div>
@@ -12,10 +12,9 @@ function InformacoesModal({ id, value, onChange, nomeInformacao, placeholder }) 
                 onChange={(e) => {
                     onChange(e.target.value);
                 }}
-                required
             />
         </div>
     );
 }
 
-export default InformacoesModal;
+export default InputModal;

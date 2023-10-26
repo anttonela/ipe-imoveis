@@ -1,4 +1,4 @@
-import IconSetaVoltar from '../../assets/img/seta-voltar-modal.png';
+import IconSetaVoltar from '../../assets/img/seta-voltar.svg';
 import IconWhatsapp from '../../assets/img/whatsapp.svg';
 import IconFacebook from '../../assets/img/facebook.svg';
 import IconInstagram from '../../assets/img/instagram.svg';

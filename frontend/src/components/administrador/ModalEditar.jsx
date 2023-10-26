@@ -1,7 +1,7 @@
-import IconSetaVoltar from '../../assets/img/seta-voltar-modal.png';
+import IconSetaVoltar from '../../assets/img/seta-voltar.svg';
 import IconPlus from '../../assets/img/plus.png';
 import IconLapis from '../../assets/img/lapis.svg';
-import InformacoesModal from './InformacoesModal';
+import InformacoesModal from './InputModal';
 import SelectModal from './SelectModal';
 import { useState } from 'react';
 

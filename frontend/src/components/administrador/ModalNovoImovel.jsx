@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 import SelectModal from './SelectModal';
-import IconSetaVoltar from '../../assets/img/seta-voltar-modal.png';
-import InformacoesModal from './InformacoesModal';
+import IconSetaVoltar from '../../assets/img/seta-voltar.svg';
+import InputModal from './InputModal';
 import UploadFotos from './UploadFotos';
 
 function ModalNovoImovel() {
@@ -50,7 +50,6 @@ function ModalNovoImovel() {
     return (
         <>
             <div className='modal_content'>
-
                 <div className='sair_modal'>
                     <a className='seta_voltar_modal' href='#'>
                         <img src={IconSetaVoltar} alt="Seta de Voltar" />
@@ -62,9 +61,7 @@ function ModalNovoImovel() {
 
                 <div className='modal_informacoes'>
                     <form onSubmit={handleSubmit}>
-
                         <div className='modal_select'>
-
                             <SelectModal
                                 id={"cidade"}
                                 value={cidade}
@@ -92,13 +89,20 @@ function ModalNovoImovel() {
                             />
                         </div>
 
-                        <InformacoesModal
-                            id={"valor"}
-                            value={valor}
-                            onChange={setValor}
-                            nomeInformacao={"Valor"}
-                            placeholder={"R$ 0,00"}
-                        />
+                        <div className="input_content">
+                            <div className="modal_ad_texto inter_500">Valor</div>
+                            <input
+                                className="modal_input"
+                                placeholder={"R$ 0,00"}
+                                type="text"
+                                id={"valor"}
+                                value={valor}
+                                onChange={(e) => {
+                                    setValor(e.target.value);
+                                }}
+                                required
+                            />
+                        </div>
 
                         <div className='descricao_content'>
                             <div className="input_content_descricao">
@@ -116,15 +120,19 @@ function ModalNovoImovel() {
                             </div>
                         </div>
 
-                        <InformacoesModal
+                        <InputModal
                             id={"link_whatsapp"}
                             value={linkWhatsapp}
-                            onChange={setLinkWhatsapp}
+                            onChange={(value) => {
+                                if (value.length <= 11) {
+                                    setLinkWhatsapp(value);
+                                }
+                            }}
                             nomeInformacao={"Número Whatsapp"}
                             placeholder={"64912345678"}
                         />
 
-                        <InformacoesModal
+                        <InputModal
                             id={"link_instagram"}
                             value={linkInstagram}
                             onChange={setLinkInstagram}
@@ -132,7 +140,7 @@ function ModalNovoImovel() {
                             placeholder={"@"}
                         />
 
-                        <InformacoesModal
+                        <InputModal
                             id={"link_facebook"}
                             value={linkFacebook}
                             onChange={setLinkFacebook}
@@ -140,7 +148,7 @@ function ModalNovoImovel() {
                             placeholder={"@"}
                         />
 
-                        <InformacoesModal
+                        <InputModal
                             id={"link_olx"}
                             value={linkOlx}
                             onChange={setLinkOlx}
