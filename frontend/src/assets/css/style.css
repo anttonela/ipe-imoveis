@@ -305,6 +305,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
+    background-color: blue;
 }
 
 .content_administrativo {
@@ -312,6 +313,7 @@ body {
     display: grid;
     grid-auto-rows: 410px;
     grid-template-columns: 20% 20% 20% 20% 20%;
+    background-color: red;
 }
 
 .card_content {

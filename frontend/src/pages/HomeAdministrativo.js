@@ -16,11 +16,14 @@ function HomeAdministrativo() {
     return (
         <div className='container'>
 
-            <Header />
+            <Header href={"#imoveis"} />
 
             <BotaoNovoImovel />
 
-            <PrimeiroSubtitulo nome={"Imóveis"} />
+            <PrimeiroSubtitulo
+                id={"imoveis"}
+                nome={"Imóveis"}
+            />
 
             <FileiraCard
                 fetchUrl={"http://localhost:8080/imoveis"}

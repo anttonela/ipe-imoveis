@@ -6,7 +6,6 @@ import SetaDireita from '../../assets/img/seta-direita.svg';
 import SetaEsquerda from '../../assets/img/seta-esquerda.svg';
 
 function UploadFotos() {
-
     const [images, setImages] = useState([]);
     const [mostrarImagens, setMostrarImagens] = useState(true);
 
@@ -15,11 +14,11 @@ function UploadFotos() {
 
         if (imagemSelecionadas.length > 0) {
             const imageArray = Array.from(imagemSelecionadas).map((file) => URL.createObjectURL(file));
+
             setImages([...images, ...imageArray]);
             setMostrarImagens(false);
         }
     }
-
     return (
         <>
             {mostrarImagens && (
@@ -79,7 +78,11 @@ function UploadFotos() {
                                                     onChange={handleImageUpload}
                                                     className='input_upload'
                                                 />
-                                                <img className='imagem_selecionada' src={image} alt={`Image ${index + 1}`} />
+                                                <img
+                                                    className='imagem_selecionada'
+                                                    src={image}
+                                                    alt={`Image ${index + 1}`}
+                                                />
                                             </label>
                                         </div>
                                     ))}
