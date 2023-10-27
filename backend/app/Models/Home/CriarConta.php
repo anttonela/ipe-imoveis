@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Models\Home\Login;
+namespace app\Models\Home;
 
 use app\Models\Crud\Functions\Select;
 use app\Models\Crud\Utilizadores\Banco;

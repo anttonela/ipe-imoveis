@@ -24,11 +24,8 @@ class Filtro
             }
         }
 
-        $tipo = $data['tipo'];
-        $cidade = $data['cidade'];
-
         $banco = new Banco();
-        $select = $banco->executarFetchAll("SELECT * FROM produto WHERE tipo = '{$tipo}' and cidade = '{$cidade}'");
+        $select = $banco->executarFetchAll("SELECT * FROM produto WHERE tipo = '" . $data['tipo'] . "' and cidade = '" . $data['cidade'] . "'");
 
         print json_encode($select);
     }

@@ -2,17 +2,17 @@
 
 namespace routes;
 
-use app\Models\Home\PegandoDados;
+use routes\Routes;
 
 class Requisicao
 {
     public function verificandoSeRotaExiste(): void
     {
-        $route = new \routes\Routes();
+        $route = new \routes\PegandoRequisicao();
         $requisicao = new \routes\Parametros();
 
         $rota = $route->getRotaAtual();
-        $salvar = new PegandoDados();
+        $salvar = new Routes();
 
         if (!is_null($rota)) {
             $parametros = $requisicao->getRequisicaoGet();

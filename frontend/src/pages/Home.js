@@ -4,7 +4,7 @@ import Header from '../components/cliente/Header';
 import Footer from '../components/cliente/Footer';
 import Fileira from '../components/cliente/Fileira';
 import Subtitulo from '../components/cliente/Subtitulo';
-import FiltroFileira from '../components/cliente/FiltroFileira';
+import Filtro from '../components/cliente/Filtro';
 import PrimeiroSubtitulo from '../components/cliente/PrimeiroSubtitulo';
 
 function Home() {
@@ -18,7 +18,7 @@ function Home() {
 
             <Header href="#imoveis" />
 
-            <FiltroFileira />
+            <Filtro />
 
             <div className='background_cinza'>
                 <PrimeiroSubtitulo

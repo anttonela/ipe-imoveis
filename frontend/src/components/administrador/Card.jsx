@@ -4,6 +4,24 @@ import IconLixeira from '../../assets/img/lixeira.svg';
 import ImagemImoveis from '../../assets/img/imoveis.png';
 
 function Card({ cidade, breve_descricao, valor, quantidade_parcelas, valor_mensal }) {
+    const handleDeleteClick = () => {
+        const apagar = window.confirm('Você deseja apagar este produto?');
+
+        if (apagar) {
+            fetch('http://localhost:8080/apagar', {
+                method: 'POST',
+                body: JSON.stringify({ cidade }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+
+                .catch(error => {
+                    console.error('Erro ao apagar o produto:', error);
+                });
+        }
+    }
+
     return (
         <div className="espacamento_fileira">
 
@@ -24,7 +42,7 @@ function Card({ cidade, breve_descricao, valor, quantidade_parcelas, valor_mensa
                                         <a href='#modal_editar' className='link'>
                                             <img className='editar_icon' src={IconLapis} />
                                         </a>
-                                        <img className='editar_icon' src={IconLixeira} />
+                                        <img className='editar_icon' src={IconLixeira} onClick={handleDeleteClick} />
                                     </div>
                                 </div>
                             </div>

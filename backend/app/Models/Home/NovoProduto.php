@@ -4,7 +4,7 @@ namespace app\Models\Home;
 
 use app\Models\Crud\Utilizadores\Tabela;
 
-class NovoImovel
+class NovoProduto
 {
     public function novoImovel(): void
     {
@@ -19,26 +19,21 @@ class NovoImovel
             }
         }
 
-        $descricao = $data['descricao'];
-        $linkWhatsapp = $data['linkWhatsapp'];
-        $linkOlx = $data['linkOlx'];
-        $palavras = explode(' ', $descricao);
-        $table = new Tabela("produto");
-
         $arProduto = [
             "classificacao" => $data['classificacao'],
             "tipo" => $data['tipo'],
             "cidade" => $data['cidade'],
             "situacao" => "Não Vendido",
             "valor" => $data['valor'],
-            "breve_descricao" => implode(' ', array_slice($palavras, 0, 7)),
-            "descricao" => "$descricao",
-            "link_whatsapp" => "https://api.whatsapp.com/send?phone=+55" . $linkWhatsapp . "&text=Ola%21",
+            "breve_descricao" => implode(' ', array_slice(explode(' ', $data['descricao']), 0, 7)),
+            "descricao" => $data['descricao'],
+            "link_whatsapp" => "https://api.whatsapp.com/send?phone=+55" . $data['linkWhatsapp'] . "&text=Ola%21",
             "link_instagram" => "https://www.instagram.com/" . $data['linkInstagram'] . "/",
             "link_facebook" => "https://www.facebook.com/" . $data['linkFacebook'] . "/",
-            "link_olx" => "$linkOlx",
+            "link_olx" => $data['linkOlx'],
         ];
 
+        $table = new Tabela("produto");
         $table->salvarInserir($arProduto);
     }
 }
