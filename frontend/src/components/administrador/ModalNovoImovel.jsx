@@ -6,6 +6,7 @@ import InputModal from './InputModal';
 import UploadFotos from './UploadFotos';
 
 function ModalNovoImovel() {
+    const [imagens, setImagens] = useState('');
     const [cidade, setCidade] = useState('');
     const [classificacao, setClassificacao] = useState('');
     const [valor, setValor] = useState('');
@@ -20,6 +21,7 @@ function ModalNovoImovel() {
         e.preventDefault();
 
         const dados = {
+            imagens,
             cidade,
             classificacao,
             valor,
@@ -57,10 +59,16 @@ function ModalNovoImovel() {
                     <div className='botao_fechar_modal inter_500'>Voltar</div>
                 </div>
 
-                <UploadFotos />
+                <form onSubmit={handleSubmit}>
 
-                <div className='modal_informacoes'>
-                    <form onSubmit={handleSubmit}>
+                    <UploadFotos
+                        value={imagens}
+                        setOnChange={setImagens}
+                    />
+
+                    <div className='modal_informacoes'>
+
+
                         <div className='modal_select'>
                             <SelectModal
                                 id={"cidade"}
@@ -160,14 +168,16 @@ function ModalNovoImovel() {
                             <button className='botao_confirmar_adicionar' type="submit">Adicionar</button>
                         </div>
 
+
                         {produtoAdicionado && (
                             <div className='mensagem_sucesso'>
                                 Produto adicionado com sucesso
                             </div>
                         )}
 
-                    </form>
-                </div>
+                    </div>
+                </form>
+
             </div>
             <div className='scroll'></div>
         </>

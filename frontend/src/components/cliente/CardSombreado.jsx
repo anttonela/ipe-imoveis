@@ -12,7 +12,7 @@ function CardSombreado({ dados, informacoesModal }) {
                             <img className="card_imagem" src={ImagemImoveis} />
                         </div>
                     </a>
-
+                    
                     <div className='card_informacoes_content'>
                         <a href='#modal_informacoes' className='link'>
                             <div className='card_informacoes'>

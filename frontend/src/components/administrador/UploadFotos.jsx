@@ -19,6 +19,8 @@ function UploadFotos() {
             setMostrarImagens(false);
         }
     }
+
+
     return (
         <>
             {mostrarImagens && (

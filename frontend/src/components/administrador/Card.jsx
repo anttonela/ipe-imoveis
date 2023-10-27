@@ -5,7 +5,8 @@ import ImagemImoveis from '../../assets/img/imoveis.png';
 
 function Card({ cidade, breve_descricao, valor, quantidade_parcelas, valor_mensal }) {
     return (
-        <>
+        <div className="espacamento_fileira">
+
             <div className="card card_administrativo">
 
                 <div className="card_imagem">
@@ -43,7 +44,7 @@ function Card({ cidade, breve_descricao, valor, quantidade_parcelas, valor_mensa
             <div id='modal_editar' className='modal'>
                 <ModalEditar />
             </div>
-        </>
+        </div>
     );
 }
 
