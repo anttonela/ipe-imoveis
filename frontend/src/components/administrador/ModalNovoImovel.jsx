@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import SelectModal from './SelectModal';
+import SelectAtualiza from './SelectAtualiza';
 import IconSetaVoltar from '../../assets/img/seta-voltar.svg';
 import InputModal from './InputModal';
 import UploadFotos from './UploadFotos';
@@ -9,6 +10,7 @@ function ModalNovoImovel() {
     const [imagens, setImagens] = useState('');
     const [cidade, setCidade] = useState('');
     const [classificacao, setClassificacao] = useState('');
+    const [tipo, setTipo] = useState('');
     const [valor, setValor] = useState('');
     const [descricao, setDescricao] = useState('');
     const [linkWhatsapp, setLinkWhatsapp] = useState('');
@@ -16,6 +18,18 @@ function ModalNovoImovel() {
     const [linkFacebook, setLinkFacebook] = useState('');
     const [linkOlx, setLinkOlx] = useState('');
     const [produtoAdicionado, setProdutoAdicionado] = useState(false);
+    const opcoesClassificacao = ['Imóvel', 'Máquinas Agrícolas', 'Outros'];
+
+    const opcoesTipos = {
+        'Imóvel': ['Apartamento', 'Casa', 'Fazenda', 'Terreno', 'Imóvel Comercial'],
+        'Máquinas Agrícolas': ['Máquinas Agrícolas', 'Implementos Agrícolas'],
+        'Outros': ['Outros'],
+    }
+
+    const atualizarOpcoesTipo = (classificacao) => {
+        setTipo('');
+        setClassificacao(classificacao);
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,6 +38,7 @@ function ModalNovoImovel() {
             imagens,
             cidade,
             classificacao,
+            tipo,
             valor,
             descricao,
             linkWhatsapp,
@@ -83,19 +98,46 @@ function ModalNovoImovel() {
                                 }}
                             />
 
-                            <SelectModal
+                            <SelectAtualiza
                                 id={"classificacao"}
                                 value={classificacao}
                                 setOnChange={setClassificacao}
                                 categoria={"Classificação"}
-                                option={{
-                                    hidden: 'Selecionar',
-                                    um: 'Imóveis',
-                                    dois: 'Máquinas Agrícolas',
-                                    tres: 'Outros'
-                                }}
+                                hidden={"Selecionar"}
+                                option=
+                                {
+                                    opcoesClassificacao.map((classificacao) => (
+                                        <option key={classificacao} value={classificacao}>
+                                            {classificacao}
+                                        </option>
+                                    ))
+                                }
                             />
                         </div>
+
+                        <div className="modal_ad_texto inter_500">Tipo</div>
+                        <div className='select_tipo_modal'>
+                            <select
+                                id={"tipo"}
+                                value={tipo}
+                                className="select_tipo"
+                                onChange={(e) => {
+                                    setTipo(e.target.value);
+                                }}
+                                required
+                            >
+                                <option hidden>Selecionar</option>
+                                {
+                                    opcoesTipos[classificacao] &&
+                                    opcoesTipos[classificacao].map((tipo) => (
+                                        <option key={tipo} value={tipo}>
+                                            {tipo}
+                                        </option>
+                                    ))
+                                }
+
+                            </select>
+                        </div >
 
                         <div className="input_content">
                             <div className="modal_ad_texto inter_500">Valor</div>

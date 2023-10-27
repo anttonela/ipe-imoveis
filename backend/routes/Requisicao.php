@@ -19,7 +19,5 @@ class Requisicao
             $salvar->{$rota}($parametros);
             return;
         }
-
-        $salvar->teste();
     }
 }

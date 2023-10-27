@@ -22,7 +22,6 @@ function Card({ cidade, breve_descricao, valor, quantidade_parcelas, informacoes
 
                             <div className='card_valor'>
                                 <div className='valor_produto inter_700'>R$: {valor}</div>
-                                <div className='card_texto'>{quantidade_parcelas}</div>
                             </div>
                         </div>
                     </div>

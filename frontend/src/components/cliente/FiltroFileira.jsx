@@ -1,6 +1,7 @@
 import Filtro from '../cliente/Filtro';
 import React, { useState } from 'react';
 import FiltroAtualiza from './FiltroAtualiza';
+import CardFiltro from './CardFiltro';
 
 function FiltroFileira() {
     const [classificacaoSelecionada, setClassificacaoSelecionada] = useState('');
@@ -12,7 +13,7 @@ function FiltroFileira() {
         'Imóvel': ['Apartamento', 'Casa', 'Fazenda', 'Terreno', 'Imóvel Comercial'],
         'Máquinas Agrícolas': ['Máquinas Agrícolas', 'Implementos Agrícolas'],
         'Outros': ['Outros'],
-    };
+    }
 
     const atualizarOpcoesTipo = (classificacao) => {
         setTipoSelecionado('');
@@ -31,7 +32,7 @@ function FiltroFileira() {
         console.log('Dados a serem enviados:', dados);
 
         try {
-            const response = await fetch('http://localhost:8080/filtroFileira', {
+            const response = await fetch('http://localhost:8080/filtro', {
                 method: 'POST',
                 body: JSON.stringify(dados),
             });
