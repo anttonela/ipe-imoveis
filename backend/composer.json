@@ -16,6 +16,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "symfony/dom-crawler": "^4.2",
         "symfony/css-selector": "^4.2",
-        "tuupola/cors-middleware": "^1.4"
+        "tuupola/cors-middleware": "^1.4",
+        "phpmailer/phpmailer": "^6.8"
     }
 }

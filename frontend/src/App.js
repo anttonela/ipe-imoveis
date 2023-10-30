@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 function App() {
   let home = "/Home";
-  let administrativo = "/Administrativo";
+  let administrador = "/Administrador";
   let login = "/Login";
   let criarConta = "/CriarConta";
 
@@ -16,8 +16,8 @@ function App() {
           /home - Home Cliente<br></br>
         </a>
 
-        <a href={administrativo} className="link">
-          /administrativo - Home administrador<br></br>
+        <a href={administrador} className="link">
+          /administrador - Home administrador<br></br>
         </a>
 
         <a href={login} className="link">

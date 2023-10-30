@@ -64,7 +64,11 @@ function FileiraCard({ fetchUrl }) {
                                 id: produto.id_produto,
                                 cidade: produto.cidade,
                                 valor: "R$: " + produto.valor,
-                                descricao: produto.descricao
+                                descricao: produto.descricao,
+                                linkWhatsapp: produto.link_whatsapp,
+                                linkFacebook: produto.link_facebook,
+                                linkInstagram: produto.link_instagram,
+                                linkOlx: produto.olx
                             }}
                         />
 

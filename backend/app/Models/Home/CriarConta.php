@@ -87,10 +87,35 @@ class CriarConta extends Banco
             ];
 
             $table->salvarInserir($arTable);
-            $this->arMensagem = 'Conta criada com sucesso!';
+            $this->arMensagem[] = 'Conta criada com sucesso!';
+            /*
+            $data_envio = date('d/m/Y');
+            $hora_envio = date('H:i:s');
+
+            // Correção das tags HTML
+            $arquivo = "
+            <html>
+                <p><b>Nome: </b>{$this->nome}</p>
+                <p><b>E-mail: </b>{$this->email}</p>
+                <p>Este e-mail foi enviado em <b>{$data_envio}</b> às <b>{$hora_envio}</b></p>
+            </html>
+            ";
+
+            $destino = "antonelaipe@gmail.com";
+            $assunto = "Contato pelo Site";
+
+            $headers  = "MIME-Version: 1.0\n";
+            $headers .= "Content-type: text/html; charset=iso-8859-1\n";
+            $headers .= "From: {$this->nome} <{$this->email}>";
+
+            mail($destino, $assunto, $arquivo, $headers);
+
+            $this->arMensagem = "<meta http-equiv='refresh' content='10;URL=../contato.html'>";
+
             return;
+            */
         }
 
-        print json_encode($this->arMensagem);
+        print_r(current($this->arMensagem));
     }
 }

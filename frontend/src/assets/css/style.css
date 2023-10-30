@@ -765,6 +765,14 @@ body {
     width: 20px;
 }
 
+.imagem_modal_content {
+    height: 340px;
+    width: 580px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .imagem_modal {
     display: grid;
     justify-content: space-between;
@@ -1246,11 +1254,20 @@ p {
     padding-left: 25px;
 }
 
-.mensagem_sucesso {
+.mensagem {
     display: flex;
     justify-content: center;
     color: #101010;
     align-items: center;
+}
+
+.mensagem_erro {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    font-size: 16px;
+    font-weight: 600;
+    color: #101010;
 }
 
 .recado {

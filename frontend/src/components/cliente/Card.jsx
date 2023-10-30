@@ -3,7 +3,7 @@ import ModalInformacoes from './ModalInformacoes';
 
 import UploadFotos from '../administrador/UploadFotos';
 
-function Card({ cidade, breve_descricao, valor, quantidade_parcelas, informacoesModal }) {
+function Card({ cidade, breve_descricao, valor, informacoesModal }) {
     return (
         <>
             <a href='#modal_informacoes' className='link'>
@@ -37,6 +37,10 @@ function Card({ cidade, breve_descricao, valor, quantidade_parcelas, informacoes
                     cidade={informacoesModal.cidade}
                     valor={informacoesModal.valor}
                     descricao={informacoesModal.descricao}
+                    linkWhatsapp={informacoesModal.linkWhatsapp}
+                    linkFacebook={informacoesModal.linkFacebook}
+                    linkInstagram={informacoesModal.linkInstagram}
+                    linkOlx={informacoesModal.linkOlx}
                 />
 
             </div>

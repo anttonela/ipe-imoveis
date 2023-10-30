@@ -11,6 +11,8 @@ function Login() {
   //const [data, setData] = useState([]);
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const [erroAutenticacao, setErroAutenticacao] = useState(false);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,6 +32,16 @@ function Login() {
 
       const data = await response.text();
       console.log('Resposta da API:', data);
+
+      if (data === 'null"Administrador"') {
+        window.location.href = '/administrador';
+      }
+
+      if (data === 'null') {
+        window.location.href = '/home';
+        return;
+      }
+      setErroAutenticacao(true);
     } catch (error) {
       console.error('Erro ao enviar os dados para a API:', error);
     }
@@ -116,6 +128,9 @@ function Login() {
                       Fazer Login
                     </button>
                   </div>
+                  {erroAutenticacao && (
+                    <div className="mensagem_erro">Autenticação falhou, tente novamente</div>
+                  )}
                 </form>
 
                 <div className="login_footer">

@@ -24,7 +24,6 @@ class Entrar extends Banco
             }
         }
 
-
         $this->email = $data['email'];
         $this->senha = $data['senha'];
     }
@@ -51,8 +50,12 @@ class Entrar extends Banco
         ];
         $arSelectSenha = $this->executarFetchAll($table->condicoes($arTable));
 
-        $arSelectSenha[0]['senha'] === $this->senha ? $this->arMensagem[] = 'Você conseguiu entrar na sua conta com sucesso!': 
-        $this->arMensagem[] = 'Autenticação falhou, tente novamente';
+        $arSelectSenha[0]['senha'] === $this->senha ? $this->arMensagem[] = null :
+            $this->arMensagem[] = 'Autenticação falhou, tente novamente';
+
+        if ($this->email === "arantesimoveis@gmail.com") {
+            $this->arMensagem[] = "Administrador";
+        }
     }
 
     public function imprimindoAviso(): void
@@ -60,8 +63,8 @@ class Entrar extends Banco
         $this->verificandoEmailValido();
         $this->verificandoSeCadastroExiste();
 
-        foreach($this->arMensagem as $mensagem) {
-            print $mensagem;
+        foreach ($this->arMensagem as $mensagem) {
+            print json_encode($mensagem);
         }
     }
 }

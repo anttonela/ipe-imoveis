@@ -16,6 +16,8 @@ function CriarConta() {
     const [senha, setSenha] = useState('');
     const [nome, setNome] = useState('');
     const [sobrenome, setSobrenome] = useState('');
+    const [mensagemLogin, setMensagemLogin] = useState(false);
+    const [respostaLocalhost, setRespostaLocalhost] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -35,8 +37,9 @@ function CriarConta() {
                 body: JSON.stringify(dados),
             });
 
-            const data = await response.text();
-            //console.log('Resposta da API:', data);
+            const resposta = await response.text();
+            setRespostaLocalhost(resposta);
+            setMensagemLogin(true);
         } catch (error) {
             console.error('Erro ao enviar os dados para a API:', error);
         }
@@ -92,8 +95,12 @@ function CriarConta() {
                                 <div className='login_botao'>
                                     <input className='botao_submit' type='submit' value={"Criar Conta"} id='submit' name='botao_criar_conta' />
                                 </div>
-                            </form>
 
+                                {mensagemLogin && (
+                                    <div className="mensagem_erro">{respostaLocalhost}</div>
+                                )}
+
+                            </form>
                         </div>
                     </div>
 

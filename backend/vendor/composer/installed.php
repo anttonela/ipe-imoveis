@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'e080c05877b528c21e7b0cf8c9b93aa782b20da1',
+        'reference' => '6c138f0134732ae0f1bcfd46dc769fa19e7819af',
         'name' => 'antonela/ipe_imoveis',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'e080c05877b528c21e7b0cf8c9b93aa782b20da1',
+            'reference' => '6c138f0134732ae0f1bcfd46dc769fa19e7819af',
             'dev_requirement' => false,
         ),
         'guzzlehttp/guzzle' => array(
@@ -53,6 +53,15 @@
             'install_path' => __DIR__ . '/../neomerx/cors-psr7',
             'aliases' => array(),
             'reference' => '515d7fdb60b9d475da70029d4e5662beaae1875f',
+            'dev_requirement' => false,
+        ),
+        'phpmailer/phpmailer' => array(
+            'pretty_version' => 'v6.8.1',
+            'version' => '6.8.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../phpmailer/phpmailer',
+            'aliases' => array(),
+            'reference' => 'e88da8d679acc3824ff231fdc553565b802ac016',
             'dev_requirement' => false,
         ),
         'psr/http-factory' => array(
