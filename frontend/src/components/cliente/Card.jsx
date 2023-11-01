@@ -1,16 +1,17 @@
 import FotoImovel from '../../assets/img/imoveis.png';
 import ModalInformacoes from './ModalInformacoes';
 
-import UploadFotos from '../administrador/UploadFotos';
-
-function Card({ cidade, breve_descricao, valor, informacoesModal }) {
+function Card({ idCard, cidade, breve_descricao, valor, informacoesModal }) {
     return (
         <>
             <a href='#modal_informacoes' className='link'>
 
-                <div className='card'>
+                <div className='card' id={idCard}>
                     <div className='card_imagem'>
-                        <img src={FotoImovel} className='card_imagem' />
+                        <img
+                            src={FotoImovel}
+                            className='card_imagem'
+                        />
                     </div>
 
                     <div className='card_informacoes_content'>

@@ -8,7 +8,7 @@ import SetaEsquerda from '../../assets/img/seta-esquerda.svg';
 
 function FileiraCard({ fetchUrl }) {
     const [data, setData] = useState([]);
-
+    // const [dataModal, setDataModal] = useState([]);
 
     const getProdutos = async () => {
         fetch(fetchUrl)
@@ -17,6 +17,14 @@ function FileiraCard({ fetchUrl }) {
                 setData(responseJson)
             ));
     }
+
+    // const getModal = async () => {
+        // fetch(fetchUrl)
+            // .then((response) => response.json())
+            // .then((responseJson) => (
+                // setData(responseJson)
+            // ));
+    // }
 
     const breakPoints = [
         { width: 1, itemsToShow: 1 },
@@ -54,10 +62,10 @@ function FileiraCard({ fetchUrl }) {
                     {values(data).map(produto => (
 
                         <Card
+                            idCard={produto.id_produto}
                             cidade={produto.id_produto + " - " + produto.cidade}
                             breve_descricao={produto.breve_descricao}
                             valor={produto.valor}
-                            quantidade_parcelas={produto.quantidade_parcelas + "x de R$:" + produto.valor_mensal}
 
                             informacoesModal=
                             {{

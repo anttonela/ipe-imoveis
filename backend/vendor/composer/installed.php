@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '6c138f0134732ae0f1bcfd46dc769fa19e7819af',
+        'reference' => 'b34f57c62217061fa70639f44741280cca5a8a13',
         'name' => 'antonela/ipe_imoveis',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '6c138f0134732ae0f1bcfd46dc769fa19e7819af',
+            'reference' => 'b34f57c62217061fa70639f44741280cca5a8a13',
             'dev_requirement' => false,
         ),
         'guzzlehttp/guzzle' => array(

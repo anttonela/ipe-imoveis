@@ -7,6 +7,7 @@ use app\Models\Home\CriarConta;
 use app\Models\Home\Entrar;
 use app\Models\Home\CorpoJson;
 use app\Models\Home\NovoProduto;
+use app\Models\Home\Modal;
 
 class Routes extends CorpoJson
 {
@@ -80,4 +81,16 @@ class Routes extends CorpoJson
         $filtro = new Filtro();
         $filtro->filtro();
     }
+
+    /*
+    public function modal(): void
+    {
+        $this->cabecalho();
+
+        http_response_code(200);
+
+        $modal = new Modal();
+        $modal->abrindoModalDoId();
+    }
+    */
 }
