@@ -24,4 +24,18 @@ class CorpoJson
 
         return $select;
     }
+
+    public function pegarDadosEnviados(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $json_data = file_get_contents("php://input");
+            $data = json_decode($json_data, true);
+
+            if ($data === null) {
+                http_response_code(400);
+                echo json_encode(array("error" => "Dados inválidos"));
+                return;
+            }
+        }
+    }
 }

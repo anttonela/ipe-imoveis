@@ -6,6 +6,11 @@ use app\Models\Crud\Utilizadores\Tabela;
 
 class NovoProduto
 {
+    private $linkWhatsapp;
+    private $linkInstagram;
+    private $linkFacebook;
+    private $linkOlx;
+
     public function novoImovel(): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -19,6 +24,11 @@ class NovoProduto
             }
         }
 
+        empty($data['linkWhatsapp']) ?  $this->linkWhatsapp = "" : $this->linkWhatsapp = "https://api.whatsapp.com/send?phone=+55" . $data['linkWhatsapp'] . "&text=Ola%21";
+        empty($data['linkInstagram']) ?  $this->linkInstagram = "" : $this->linkInstagram = "https://www.instagram.com/" . $data['linkInstagram'] . "/";
+        empty($data['linkFacebook']) ?  $this->linkFacebook = "" : $this->linkFacebook = "https://www.facebook.com/" . $data['linkFacebook'] . "/";
+        empty($data['linkOlx']) ?  $this->linkOlx = "" : $this->linkOlx = "https://www.olx.com.br/";
+
         $arProduto = [
             "classificacao" => $data['classificacao'],
             "tipo" => $data['tipo'],
@@ -27,10 +37,10 @@ class NovoProduto
             "valor" => $data['valor'],
             "breve_descricao" => implode(' ', array_slice(explode(' ', $data['descricao']), 0, 7)),
             "descricao" => $data['descricao'],
-            "link_whatsapp" => "https://api.whatsapp.com/send?phone=+55" . $data['linkWhatsapp'] . "&text=Ola%21",
-            "link_instagram" => "https://www.instagram.com/" . $data['linkInstagram'] . "/",
-            "link_facebook" => "https://www.facebook.com/" . $data['linkFacebook'] . "/",
-            "link_olx" => $data['linkOlx'],
+            "link_whatsapp" => "{$this->linkWhatsapp}",
+            "link_instagram" => "{$this->linkInstagram}",
+            "link_facebook" => "{$this->linkFacebook}",
+            "link_olx" => "{$this->linkOlx}",
         ];
 
         $table = new Tabela("produto");

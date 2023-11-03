@@ -82,7 +82,6 @@ class Routes extends CorpoJson
         $filtro->filtro();
     }
 
-    /*
     public function modal(): void
     {
         $this->cabecalho();
@@ -92,5 +91,4 @@ class Routes extends CorpoJson
         $modal = new Modal();
         $modal->abrindoModalDoId();
     }
-    */
 }

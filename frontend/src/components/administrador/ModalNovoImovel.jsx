@@ -62,7 +62,7 @@ function ModalNovoImovel() {
         } catch (error) {
             console.error('Erro ao enviar os dados para a API:', error);
         }
-    };
+    }
 
     return (
         <>

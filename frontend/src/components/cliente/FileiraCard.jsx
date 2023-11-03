@@ -8,7 +8,6 @@ import SetaEsquerda from '../../assets/img/seta-esquerda.svg';
 
 function FileiraCard({ fetchUrl }) {
     const [data, setData] = useState([]);
-    // const [dataModal, setDataModal] = useState([]);
 
     const getProdutos = async () => {
         fetch(fetchUrl)
@@ -18,18 +17,35 @@ function FileiraCard({ fetchUrl }) {
             ));
     }
 
-    // const getModal = async () => {
-        // fetch(fetchUrl)
-            // .then((response) => response.json())
-            // .then((responseJson) => (
-                // setData(responseJson)
-            // ));
-    // }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const dados = {
+            id,
+        };
+
+        console.log('Dados a serem enviados:', dados);
+
+        try {
+            const response = await fetch('http://localhost:8080/novoImovel', {
+                method: 'POST',
+                body: JSON.stringify(dados),
+            });
+
+            const data = await response.text();
+            console.log('Resposta da API:', data);
+
+            setProdutoAdicionado(true);
+        } catch (error) {
+            console.error('Erro ao enviar os dados para a API:', error);
+        }
+    }
 
     const breakPoints = [
         { width: 1, itemsToShow: 1 },
         { width: 550, itemsToShow: 2 },
         { width: 768, itemsToShow: 3 },
+        { width: 1000, itemsToShow: 4 },
         { width: 1200, itemsToShow: 5 },
     ];
 
@@ -59,28 +75,18 @@ function FileiraCard({ fetchUrl }) {
                     )}
                     pagination={false}
                 >
-                    {values(data).map(produto => (
+                    <form onSubmit={handleSubmit}>
+                        {values(data).map(produto => (
 
-                        <Card
-                            idCard={produto.id_produto}
-                            cidade={produto.id_produto + " - " + produto.cidade}
-                            breve_descricao={produto.breve_descricao}
-                            valor={produto.valor}
+                            <Card
+                                idCard={produto.id_produto}
+                                cidade={produto.id_produto + " - " + produto.cidade}
+                                breve_descricao={produto.breve_descricao}
+                                valor={produto.valor}
+                            />
 
-                            informacoesModal=
-                            {{
-                                id: produto.id_produto,
-                                cidade: produto.cidade,
-                                valor: "R$: " + produto.valor,
-                                descricao: produto.descricao,
-                                linkWhatsapp: produto.link_whatsapp,
-                                linkFacebook: produto.link_facebook,
-                                linkInstagram: produto.link_instagram,
-                                linkOlx: produto.olx
-                            }}
-                        />
-
-                    ))}
+                        ))}
+                    </form>
                 </Carousel>
 
             </div>

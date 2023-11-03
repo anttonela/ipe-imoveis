@@ -7,7 +7,6 @@ use app\Models\Crud\Utilizadores\Banco;
 
 class Modal extends Banco
 {
-    /*
     public function abrindoModalDoId(): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -21,16 +20,15 @@ class Modal extends Banco
             }
         }
 
-        $id = $data['id'];
+        $id = $data['idCard'];
         $table = new Select("produto");
 
         $arTable = [
             "COLUMN" => "",
-            "WHERE" => "id_produto = '{$id}'",
+            "WHERE" => "id_produto = '14'",
         ];
 
         $arSelectProduto = $this->executarFetchAll($table->condicoes($arTable));
-       print json_encode($arSelectProduto);
+        print json_encode($arSelectProduto);
     }
-    */
 }
