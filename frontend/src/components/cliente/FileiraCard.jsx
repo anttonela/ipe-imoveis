@@ -17,30 +17,6 @@ function FileiraCard({ fetchUrl }) {
             ));
     }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        const dados = {
-            id,
-        };
-
-        console.log('Dados a serem enviados:', dados);
-
-        try {
-            const response = await fetch('http://localhost:8080/novoImovel', {
-                method: 'POST',
-                body: JSON.stringify(dados),
-            });
-
-            const data = await response.text();
-            console.log('Resposta da API:', data);
-
-            setProdutoAdicionado(true);
-        } catch (error) {
-            console.error('Erro ao enviar os dados para a API:', error);
-        }
-    }
-
     const breakPoints = [
         { width: 1, itemsToShow: 1 },
         { width: 550, itemsToShow: 2 },
@@ -75,18 +51,17 @@ function FileiraCard({ fetchUrl }) {
                     )}
                     pagination={false}
                 >
-                    <form onSubmit={handleSubmit}>
-                        {values(data).map(produto => (
+                    {values(data).map(produto => (
 
-                            <Card
-                                idCard={produto.id_produto}
-                                cidade={produto.id_produto + " - " + produto.cidade}
-                                breve_descricao={produto.breve_descricao}
-                                valor={produto.valor}
-                            />
+                        <Card
+                            idCard={produto.id_produto}
+                            cidade={produto.id_produto + " - " + produto.cidade}
+                            breve_descricao={produto.breve_descricao}
+                            valor={produto.valor}
+                            situacao={produto.situacao}
+                        />
 
-                        ))}
-                    </form>
+                    ))}
                 </Carousel>
 
             </div>

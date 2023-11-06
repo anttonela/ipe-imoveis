@@ -27,8 +27,8 @@ function FileiraCardSombreado({ fetchUrl }) {
                     <Card
                         cidade={produto.cidade}
                         breve_descricao={produto.breve_descricao}
-                        valor={produto.id_produto}
-                        quantidade_parcelas={produto.quantidade_parcelas}
+                        valor={produto.valor}
+                        situacao={produto.situacao}
                     />
 
                 ))}

@@ -5,11 +5,13 @@ body {
 }
 
 .header {
-    height: 400px;
+    height: 41vh;
     display: flex;
     justify-content: center;
     align-items: center;
     background-image: url('../img/header.png');
+    background-size: cover;
+    background-position: center;
 }
 
 .background_cinza {
@@ -68,7 +70,7 @@ body {
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    font-size: min(21px, 2vw);
+    font-size: min(2vh, 2vw);
     font-weight: 600;
     letter-spacing: 0.610em;
     color: #FFF;
@@ -81,7 +83,7 @@ body {
     align-items: flex-end;
     justify-content: center;
     text-align: center;
-    font-size: min(40px, 3vw);
+    font-size: min(4.7vh, 3vw);
     font-style: normal;
     font-weight: 600;
     line-height: normal;
@@ -99,16 +101,16 @@ body {
 }
 
 .botao_header {
-    width: 48%;
-    height: 70%;
-    border-radius: 10px;
+    width: 43%;
+    height: 80%;
+    border-radius: 1vh;
     background-color: transparent;
-    font-size: min(19px, 2vw);
+    font-size: 2vh;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #FAFAFA;
-    border: 2px solid #FAFAFA;
+    border: 0.29vh solid #FAFAFA;
 }
 
 .botao_header:hover {
@@ -124,8 +126,8 @@ body {
 }
 
 .informacoes_pessoais_icon {
-    height: 20px;
-    width: 20px;
+    height: 2.3vh;
+    aspect-ratio: 1/1;
 }
 
 .informacoes_pessoais_texto {
@@ -234,22 +236,29 @@ body {
 }
 
 .novo_imovel {
-    height: 250px;
+    height: 25vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .texto_novo_imovel {
-    height: 30px;
+    height: 3vh;
+    font-size: 2.4vh;
     display: flex;
     align-items: center;
+    font-weight: bold;
+}
+
+.icon_plus {
+    height: 2.2vh;
+    width: 2.2vh;
 }
 
 .botao_novo_imovel {
-    width: 500px;
-    height: 136px;
-    border-radius: 10px;
+    height: 14.8vh;
+    aspect-ratio: 3.5/1;
+    border-radius: 1vh;
     font-size: 24px;
     display: grid;
     justify-content: center;
@@ -263,7 +272,7 @@ body {
 }
 
 .botao_adicionar_content {
-    height: 50px;
+    height: 5vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -271,14 +280,15 @@ body {
 
 .conteudo_adicionar_imovel {
     height: 80%;
+    width: 100%;
     display: grid;
     justify-content: space-around;
     align-items: center;
 }
 
 .botao_adicionar {
-    width: 48px;
-    height: 48px;
+    height: 4.8vh;
+    aspect-ratio: 1/1;
     border-radius: 50%;
     border: none;
     position: absolute;
@@ -652,10 +662,12 @@ body {
 
 .modal_content {
     width: 570px;
-    height: 90%;
+    height: 100%;
     max-width: 90%;
     background: #fff;
     padding: 3.2rem;
+    padding-top: 7.5rem;
+    padding-bottom: 8rem;
     overflow-y: scroll;
 }
 

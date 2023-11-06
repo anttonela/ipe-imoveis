@@ -22,6 +22,10 @@ class CorpoJson
         $banco = new Banco();
         $select = $banco->executarFetchAll("SELECT * FROM produto WHERE classificacao = '{$nomeCategoria}'");
 
+        foreach ($select as &$row) {
+            $row['valor'] = number_format($row['valor'], 2, ',', '.');
+        }
+
         return $select;
     }
 

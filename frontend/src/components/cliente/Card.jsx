@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import FotoImovel from '../../assets/img/imoveis.png';
 import ModalInformacoes from './ModalInformacoes';
 
-function Card({ idCard, cidade, breve_descricao, valor }) {
+function Card({ idCard, cidade, breve_descricao, valor, situacao }) {
     const [data, setData] = useState([]);
 
     const getModal = async () => {
@@ -44,6 +44,7 @@ function Card({ idCard, cidade, breve_descricao, valor }) {
 
                             <div className='card_valor'>
                                 <div className='valor_produto inter_700'>R$: {valor}</div>
+                                <div className='card_texto'>{situacao}</div>
                             </div>
                         </div>
                     </div>

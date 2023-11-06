@@ -11,7 +11,7 @@ function BotaoNovoImovel() {
                         <div className='conteudo_adicionar_imovel'>
                             <div className='botao_adicionar_content'>
                                 <button type='button' className='botao_adicionar'>
-                                    <img src={IconPlus}></img>
+                                    <img className='icon_plus' src={IconPlus}></img>
                                 </button>
                             </div>
 

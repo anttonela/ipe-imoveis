@@ -3,7 +3,7 @@ import ModalEditar from './ModalEditar';
 import IconLixeira from '../../assets/img/lixeira.svg';
 import ImagemImoveis from '../../assets/img/imoveis.png';
 
-function Card({ cidade, breve_descricao, valor, quantidade_parcelas, valor_mensal }) {
+function Card({ cidade, breve_descricao, valor, situacao }) {
     const handleDeleteClick = () => {
         const apagar = window.confirm('Você deseja apagar este produto?');
 
@@ -52,7 +52,7 @@ function Card({ cidade, breve_descricao, valor, quantidade_parcelas, valor_mensa
 
                         <div className='card_valor'>
                             <div className='valor_produto inter_700'>R$: {valor}</div>
-                            <div className='card_texto'>{quantidade_parcelas}x de R$ {valor_mensal}</div>
+                            <div className='card_texto'>{situacao}</div>
                         </div>
                     </div>
                 </div>
