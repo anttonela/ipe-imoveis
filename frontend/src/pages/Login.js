@@ -13,7 +13,6 @@ function Login() {
   const [senha, setSenha] = useState('');
   const [erroAutenticacao, setErroAutenticacao] = useState(false);
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 

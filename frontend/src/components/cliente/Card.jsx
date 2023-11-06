@@ -66,6 +66,8 @@ function Card({ idCard, cidade, breve_descricao, valor, situacao }) {
                         linkFacebook={produto.link_facebook}
                         linkInstagram={produto.link_instagram}
                         linkOlx={produto.link_olx}
+                        classificacao={produto.classificacao}
+                        tipo={produto.tipo}
                     />
 
                 </div>

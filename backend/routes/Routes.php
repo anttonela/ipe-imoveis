@@ -15,13 +15,24 @@ class Routes extends CorpoJson
     public $tipo;
     public $cidade;
 
+    public function filtro(): void
+    {
+        $this->cabecalho();
+
+        http_response_code(200);
+
+        $filtro = new Filtro();
+        print json_encode($filtro->filtro("Imóvel"));
+    }
+
     public function imoveis(): void
     {
         $this->cabecalho();
 
         http_response_code(200);
 
-        print json_encode($this->select("Imóvel"));
+        $filtro = new Filtro();
+        print json_encode($filtro->filtro("Imóvel"));
     }
 
     public function maquinasAgricolas(): void
@@ -30,7 +41,8 @@ class Routes extends CorpoJson
 
         http_response_code(200);
 
-        print json_encode($this->select("Máquinas Agrícolas"));
+        $filtro = new Filtro();
+        print json_encode($filtro->filtro("Máquinas Agrícolas"));
     }
 
     public function outros(): void
@@ -39,7 +51,8 @@ class Routes extends CorpoJson
 
         http_response_code(200);
 
-        print json_encode($this->select("Outros"));
+        $filtro = new Filtro();
+        print json_encode($filtro->filtro("Outros"));
     }
 
     public function novoImovel(): void
@@ -70,16 +83,6 @@ class Routes extends CorpoJson
 
         $login = new Entrar();
         $login->imprimindoAviso();
-    }
-
-    public function filtro(): void
-    {
-        $this->cabecalho();
-
-        http_response_code(200);
-
-        $filtro = new Filtro();
-        $filtro->filtro();
     }
 
     public function modal(): void

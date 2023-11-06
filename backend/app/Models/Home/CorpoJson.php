@@ -4,7 +4,7 @@ namespace app\Models\Home;
 
 use app\Models\Crud\Utilizadores\Banco;
 
-class CorpoJson
+class CorpoJson extends Banco
 {
     public function cabecalho(): void
     {
@@ -15,18 +15,6 @@ class CorpoJson
     public function response(): void
     {
         http_response_code(200);
-    }
-
-    public function select($nomeCategoria): array
-    {
-        $banco = new Banco();
-        $select = $banco->executarFetchAll("SELECT * FROM produto WHERE classificacao = '{$nomeCategoria}'");
-
-        foreach ($select as &$row) {
-            $row['valor'] = number_format($row['valor'], 2, ',', '.');
-        }
-
-        return $select;
     }
 
     public function pegarDadosEnviados(): void
