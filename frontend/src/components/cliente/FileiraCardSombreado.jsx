@@ -29,7 +29,7 @@ function FileiraCardSombreado({ fetchUrl }) {
                         {{
                             cidade: produto.cidade,
                             breve_descricao: produto.breve_descricao,
-                            valor: produto.id_valor,
+                            valor: produto.valor,
                             quantidade_parcelas: produto.quantidade_parcelas
                         }}
 

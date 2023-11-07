@@ -6,6 +6,8 @@ use app\Models\Crud\Utilizadores\Banco;
 
 class Filtro extends Banco
 {
+    private $aviso;
+
     public function filtro($nomeCategoria)
     {
         header("Access-Control-Allow-Origin: *");
@@ -19,14 +21,13 @@ class Filtro extends Banco
         }
 
         if (!empty($data['tipo']) && !empty($data['cidade'])) {
-            $select = $this->executarFetchAll("SELECT * FROM produto WHERE tipo = '" . $data['tipo'] . "' and cidade = '" . $data['cidade'] . "'");
+            $select = $this->executarFetchAll("SELECT * FROM produto WHERE classificacao = 'Outros' and tipo = 'Outros' and cidade = 'Goiânia'");
 
-            !empty($select) ? print json_encode($select) :  print json_encode("Nenhum produto encontrado");
-
+            print json_encode( !empty($select) ? $select : null  );
             return;
         }
 
-        $select = $this->executarFetchAll("SELECT * FROM produto WHERE classificacao = 'Imóvel'");
+        $select = $this->executarFetchAll("SELECT * FROM produto WHERE classificacao = 'Outros'");
 
         foreach ($select as &$row) {
             $row['valor'] = number_format($row['valor'], 2, ',', '.');

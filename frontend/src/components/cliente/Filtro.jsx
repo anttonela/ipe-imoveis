@@ -3,10 +3,12 @@ import React, { useState } from 'react';
 import FiltroAtualiza from './FiltroAtualiza';
 import CardFiltro from './CardFiltro';
 
-function Filtro() {
+function Filtro({ onClick }) {
     const [classificacaoSelecionada, setClassificacaoSelecionada] = useState('');
     const [tipoSelecionado, setTipoSelecionado] = useState('');
     const [cidade, setCidade] = useState('');
+    const [mensagemLogin, setMensagemLogin] = useState(false);
+    const [respostaLocalhost, setRespostaLocalhost] = useState('');
     const opcoesClassificacao = ['Imóvel', 'Máquinas Agrícolas', 'Outros'];
 
     const opcoesTipos = {
@@ -37,8 +39,15 @@ function Filtro() {
                 body: JSON.stringify(dados),
             });
 
-            const data = await response.text();
-            console.log('Resposta da API:', data);
+            const resposta = await response.text();
+            console.log('Resposta da API:', resposta);
+
+            setRespostaLocalhost(resposta);
+            setMensagemLogin(true);
+
+            if (resposta !== null) {
+                { onClick }
+            }
         } catch (error) {
             console.error('Erro ao enviar os dados para a API:', error);
         }
@@ -99,6 +108,10 @@ function Filtro() {
                 <div className='botao_filtro_content'>
                     <button className='botao_filtro inter_500' type="submit">Pesquisar</button>
                 </div>
+
+                {mensagemLogin && (
+                    <div className="texto">{respostaLocalhost}</div>
+                )}
 
             </div>
 

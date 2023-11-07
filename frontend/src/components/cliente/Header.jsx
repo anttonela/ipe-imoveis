@@ -2,7 +2,7 @@ import LogoBranca from '../../assets/img/logo-branca.svg';
 import IconTelefone from '../../assets/img/telefone-icon.svg';
 import IconEmail from '../../assets/img/email-icon.svg';
 
-function Header({ href }) {
+function Header({ href, onClick }) {
     return (
         <div className='header'>
             <div className='header_informacoes'>
@@ -16,7 +16,7 @@ function Header({ href }) {
                         <div className='nome_empresa'>ARANTES IMÓVEIS</div>
                         <div className='header_texto'>Transformando desejos<br />em endereços.</div>
 
-                        <a className='botao_content' href={href}>
+                        <a className='botao_content' href={href} onClick={onClick}>
                             <button className='botao_header' type='submit'>
                                 Ver Imóveis
                             </button>

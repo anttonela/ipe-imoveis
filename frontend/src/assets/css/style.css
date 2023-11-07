@@ -137,6 +137,7 @@ body {
     align-items: center;
     color: #FFF;
     font-size: max(0.05em, 0.9vw);
+    font-weight: bold;
 }
 
 .telefone {

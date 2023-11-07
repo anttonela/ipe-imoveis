@@ -34,7 +34,7 @@ function Modal({ id, cidade, valor, descricao, linkWhatsapp, linkFacebook, linkI
 
                 <div className='modal_valor'>
                     <div className='modal_cidade_produto inter_700'>{cidade}</div>
-                    <div className='modal_preco inter_700'>{valor}</div>
+                    <div className='modal_preco inter_700'>R$: {valor}</div>
                 </div>
 
                 <div className='modal_descricao inter_500'>
