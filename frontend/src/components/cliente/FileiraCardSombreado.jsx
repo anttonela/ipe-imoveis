@@ -25,6 +25,7 @@ function FileiraCardSombreado({ fetchUrl }) {
                 {values(data).map(produto => (
 
                     <CardSombreado
+                        key={produto.id_produto}
                         dados=
                         {{
                             cidade: produto.cidade,

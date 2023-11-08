@@ -8,7 +8,7 @@ function ResultadoFiltro({ onClick }) {
     const [data, setData] = useState([]);
 
     const getProdutos = async () => {
-        fetch("http://localhost:8080/filtro/")
+        fetch("http://localhost:8080/filtroView/")
             .then((response) => response.json())
             .then((responseJson) => (
                 setData(responseJson)
@@ -27,12 +27,13 @@ function ResultadoFiltro({ onClick }) {
 
             {values(data).map(produto => (
                 <PrimeiroSubtitulo
+                    key={produto.id_produto}
                     nome={produto.classificacao + " > " + produto.tipo + " > " + produto.cidade}
                 />
             ))}
 
             <FileiraCardSombreado
-                fetchUrl={"http://localhost:8080/filtro/"}
+                fetchUrl={"http://localhost:8080/filtroView/"}
             />
         </>
     );

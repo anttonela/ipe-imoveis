@@ -6,9 +6,11 @@ use app\Models\Crud\Utilizadores\Banco;
 
 class Filtro extends Banco
 {
-    private $aviso;
+    private $classificacao;
+    private $tipo;
+    private $cidade;
 
-    public function filtro($nomeCategoria)
+    public function filtro(): array
     {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
@@ -20,19 +22,36 @@ class Filtro extends Banco
             $data = json_decode($json_data, true);
         }
 
-        if (!empty($data['tipo']) && !empty($data['cidade'])) {
-            $select = $this->executarFetchAll("SELECT * FROM produto WHERE classificacao = 'Outros' and tipo = 'Outros' and cidade = 'Goiânia'");
-
-            print json_encode( !empty($select) ? $select : null  );
-            return;
+        if (empty($data['classificacao']) || empty($data['tipo']) || empty($data['cidade'])) {
+            //http_response_code(400);
+            print json_encode("ERRO: " . $data['classificacao'] . " - " . $data['tipo'] . $data['cidade']);
+            exit();
         }
 
-        $select = $this->executarFetchAll("SELECT * FROM produto WHERE classificacao = 'Outros'");
+        $this->classificacao = $data['classificacao'];
+        $this->tipo = $data['tipo'];
+        $this->cidade = $data['cidade'];
 
-        foreach ($select as &$row) {
-            $row['valor'] = number_format($row['valor'], 2, ',', '.');
+        $select = $this->executarFetchAll("SELECT * FROM produto WHERE classificacao = '{$this->classificacao}' and tipo = '{$this->tipo}' and cidade = '{$this->cidade}'");
+
+        if (empty($this->select)) {
+            //http_response_code(404);
+            print json_encode(["error" => "Nenhum resultado encontrado"]);
+            exit();
         }
 
         return $select;
     }
+
+    public function view(): void
+    {
+        $data = $this->filtro();
+
+        // foreach ($data as &$arrumandoValor) {
+        // $arrumandoValor['valor'] = number_format($arrumandoValor['valor'], 2, ',', '.');
+        // }
+
+        print json_encode($data);
+    }
+
 }

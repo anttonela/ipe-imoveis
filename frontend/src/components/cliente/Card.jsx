@@ -3,30 +3,16 @@ import { useEffect, useState } from 'react';
 import FotoImovel from '../../assets/img/imoveis.png';
 import ModalInformacoes from './ModalInformacoes';
 
-function Card({ idCard, cidade, breve_descricao, valor, situacao }) {
-    const [data, setData] = useState([]);
-
-    const getModal = async () => {
-        fetch("http://localhost:8080/modal/")
-            .then((response) => response.json())
-            .then((responseJson) => (
-                setData(responseJson)
-            ));
-    }
-
-    useEffect(() => {
-        getModal();
-    }, []);
-
+function Card({ idCard, cidade, breve_descricao, valor, situacao, informacoes }) {
     return (
         <>
-
             <a
                 href='#modal_informacoes'
                 className='link'
+                id={idCard}
             >
 
-                <div className='card'>
+                <div className='card' id={idCard}>
 
                     <div className='card_imagem'>
                         <img
@@ -53,26 +39,21 @@ function Card({ idCard, cidade, breve_descricao, valor, situacao }) {
 
             </a>
 
-            {values(data).map(produto => (
+            <div id='modal_informacoes' className="modal">
 
-                <div id='modal_informacoes' className="modal">
-
-                    <ModalInformacoes
-                        id={produto.id_produto}
-                        cidade={produto.cidade}
-                        valor={produto.valor}
-                        descricao={produto.descricao}
-                        linkWhatsapp={produto.link_whatsapp}
-                        linkFacebook={produto.link_facebook}
-                        linkInstagram={produto.link_instagram}
-                        linkOlx={produto.link_olx}
-                        classificacao={produto.classificacao}
-                        tipo={produto.tipo}
-                    />
-
-                </div>
-
-            ))}
+                <ModalInformacoes
+                    id={informacoes.id}
+                    cidade={informacoes.cidade}
+                    valor={informacoes.valor}
+                    descricao={informacoes.descricao}
+                    linkWhatsapp={informacoes.link_whatsapp}
+                    linkFacebook={informacoes.link_facebook}
+                    linkInstagram={informacoes.link_instagram}
+                    linkOlx={informacoes.link_olx}
+                    classificacao={informacoes.classificacao}
+                    tipo={informacoes.tipo}
+                />
+            </div>
         </>
     );
 }

@@ -1,9 +1,9 @@
 import InputFiltro from './InputFiltro';
 import React, { useState } from 'react';
 import FiltroAtualiza from './FiltroAtualiza';
-import CardFiltro from './CardFiltro';
 
 function Filtro({ onClick }) {
+
     const [classificacaoSelecionada, setClassificacaoSelecionada] = useState('');
     const [tipoSelecionado, setTipoSelecionado] = useState('');
     const [cidade, setCidade] = useState('');
@@ -44,10 +44,7 @@ function Filtro({ onClick }) {
 
             setRespostaLocalhost(resposta);
             setMensagemLogin(true);
-
-            if (resposta !== null) {
-                { onClick }
-            }
+            onClick();
         } catch (error) {
             console.error('Erro ao enviar os dados para a API:', error);
         }
@@ -106,12 +103,13 @@ function Filtro({ onClick }) {
                 />
 
                 <div className='botao_filtro_content'>
-                    <button className='botao_filtro inter_500' type="submit">Pesquisar</button>
+                    <button
+                        className='botao_filtro inter_500'
+                        type="submit"
+                    >
+                        Pesquisar
+                    </button>
                 </div>
-
-                {mensagemLogin && (
-                    <div className="texto">{respostaLocalhost}</div>
-                )}
 
             </div>
 

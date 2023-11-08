@@ -39,7 +39,8 @@ function Modal({ id, cidade, valor, descricao, linkWhatsapp, linkFacebook, linkI
 
                 <div className='modal_descricao inter_500'>
                     <div className='modal_texto inter_700'>Descrição</div>
-                    {descricao}
+                    {descricao}<br></br><br></br>
+                    ID: {id}
                 </div>
                 <div className='modal_contatos inter_700'>Entre em Contato</div>
 

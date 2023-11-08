@@ -27,7 +27,7 @@ try {
     $mail->Body = $body;
 
     $mail->send();
-    echo 'E-mail enviado com sucesso';
+    print 'E-mail enviado com sucesso';
 } catch (Exception $e) {
-    echo "Error: {$mail->ErrorInfo}";
+    print "Error: {$mail->ErrorInfo}";
 }

@@ -15,7 +15,7 @@ class Modal extends Banco
 
             if ($data === null) {
                 http_response_code(400);
-                echo json_encode(array("error" => "Dados inválidos"));
+                print json_encode(array("error" => "Dados inválidos"));
                 return;
             }
         }

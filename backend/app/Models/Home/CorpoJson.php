@@ -17,9 +17,18 @@ class CorpoJson extends Banco
         http_response_code(200);
     }
 
-    public function select($nomeCategoria)
+    public function select($nomeCategoria): array
     {
+        header("Access-Control-Allow-Origin: *");
+        header("Content-Type: application/json; charset=UTF-8");
+
+        http_response_code(200);
+
         $select = $this->executarFetchAll("SELECT * FROM produto WHERE classificacao = '{$nomeCategoria}'");
+
+        foreach ($select as &$row) {
+            $row['valor'] = number_format($row['valor'], 2, ',', '.');
+        }
 
         return $select;
     }
@@ -32,7 +41,7 @@ class CorpoJson extends Banco
 
             if ($data === null) {
                 http_response_code(400);
-                echo json_encode(array("error" => "Dados inválidos"));
+                print json_encode(array("error" => "Dados inválidos"));
                 return;
             }
         }

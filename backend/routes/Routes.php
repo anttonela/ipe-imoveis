@@ -2,7 +2,6 @@
 
 namespace routes;
 
-use app\Models\Crud\Utilizadores\Banco;
 use app\Models\Home\CorpoJson;
 use app\Models\Home\CriarConta;
 use app\Models\Home\Entrar;
@@ -12,44 +11,30 @@ use app\Models\Home\NovoProduto;
 
 class Routes extends CorpoJson
 {
-    public $classificacao;
-    public $tipo;
-    public $cidade;
-
     public function filtro(): void
     {
-        $this->cabecalho();
-
-        http_response_code(200);
-
         $filtro = new Filtro();
-        print json_encode('$filtro->filtro("Imóvel")');
+        $filtro->filtro();
+    }
+
+    public function filtroView(): void 
+    {
+        $filtro = new Filtro();
+        $filtro->view();
     }
 
     public function imoveis(): void
     {
-        $this->cabecalho();
-
-        http_response_code(200);
-
         print json_encode($this->select("Imóvel"));
     }
 
     public function maquinasAgricolas(): void
     {
-        $this->cabecalho();
-
-        http_response_code(200);
-
         print json_encode($this->select("Máquinas Agrícolas"));
     }
 
     public function outros(): void
     {
-        $this->cabecalho();
-
-        http_response_code(200);
-
         print json_encode($this->select("Outros"));
     }
 

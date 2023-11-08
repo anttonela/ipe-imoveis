@@ -16,9 +16,13 @@ function ConteudoHome({ onClick }) {
     return (
         <div className='container'>
 
-            <Header href="#imoveis" />
+            <Header
+                href="#imoveis"
+            />
 
-            <Filtro onClick={onClick} />
+            <Filtro
+                onClick={onClick}
+            />
 
             <div className='background_cinza'>
                 <PrimeiroSubtitulo
@@ -27,7 +31,7 @@ function ConteudoHome({ onClick }) {
                 />
 
                 <Fileira
-                    fetchUrl={"http://localhost:8080/imoveis"}
+                    fetchUrl={"http://localhost:8080/imoveis/"}
                     href={"#imoveis"}
                 />
             </div>
@@ -38,7 +42,7 @@ function ConteudoHome({ onClick }) {
             />
 
             <Fileira
-                fetchUrl={"http://localhost:8080/maquinasAgricolas"}
+                fetchUrl={"http://localhost:8080/maquinasAgricolas/"}
                 href={"#maquinas_agricolas"}
             />
 
