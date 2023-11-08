@@ -17,6 +17,13 @@ class CorpoJson extends Banco
         http_response_code(200);
     }
 
+    public function select($nomeCategoria)
+    {
+        $select = $this->executarFetchAll("SELECT * FROM produto WHERE classificacao = '{$nomeCategoria}'");
+
+        return $select;
+    }
+
     public function pegarDadosEnviados(): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

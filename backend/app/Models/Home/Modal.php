@@ -25,7 +25,7 @@ class Modal extends Banco
 
         $arTable = [
             "COLUMN" => "",
-            "WHERE" => "id_produto = '14'",
+            "WHERE" => "id_produto = '{$id}'",
         ];
 
         $arSelectProduto = $this->executarFetchAll($table->condicoes($arTable));

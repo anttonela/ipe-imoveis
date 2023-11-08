@@ -2,12 +2,13 @@
 
 namespace routes;
 
-use app\Models\Home\Filtro;
+use app\Models\Crud\Utilizadores\Banco;
+use app\Models\Home\CorpoJson;
 use app\Models\Home\CriarConta;
 use app\Models\Home\Entrar;
-use app\Models\Home\CorpoJson;
-use app\Models\Home\NovoProduto;
+use app\Models\Home\Filtro;
 use app\Models\Home\Modal;
+use app\Models\Home\NovoProduto;
 
 class Routes extends CorpoJson
 {
@@ -22,7 +23,7 @@ class Routes extends CorpoJson
         http_response_code(200);
 
         $filtro = new Filtro();
-        print json_encode($filtro->filtro("Imóvel"));
+        print json_encode('$filtro->filtro("Imóvel")');
     }
 
     public function imoveis(): void
@@ -31,8 +32,7 @@ class Routes extends CorpoJson
 
         http_response_code(200);
 
-        $filtro = new Filtro();
-        print json_encode($filtro->filtro("Imóvel"));
+        print json_encode($this->select("Imóvel"));
     }
 
     public function maquinasAgricolas(): void
@@ -41,8 +41,7 @@ class Routes extends CorpoJson
 
         http_response_code(200);
 
-        $filtro = new Filtro();
-        print json_encode($filtro->filtro("Máquinas Agrícolas"));
+        print json_encode($this->select("Máquinas Agrícolas"));
     }
 
     public function outros(): void
@@ -51,8 +50,7 @@ class Routes extends CorpoJson
 
         http_response_code(200);
 
-        $filtro = new Filtro();
-        print json_encode($filtro->filtro("Outros"));
+        print json_encode($this->select("Outros"));
     }
 
     public function novoImovel(): void
