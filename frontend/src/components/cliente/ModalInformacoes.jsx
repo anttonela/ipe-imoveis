@@ -5,13 +5,13 @@ import IconFacebook from '../../assets/img/facebook.svg';
 import IconInstagram from '../../assets/img/instagram.svg';
 import IconOlx from '../../assets/img/olx.svg';
 
-function Modal({ id, cidade, valor, descricao, linkWhatsapp, linkFacebook, linkInstagram, linkOlx, classificacao, tipo }) {
+function Modal({ onClick, id, cidade, valor, descricao, linkWhatsapp, linkFacebook, linkInstagram, linkOlx, classificacao, tipo }) {
     return (
         <div className="modal_content">
             <div className="sair_modal">
-                <a className="seta_voltar_modal" href="#">
+                <div className="seta_voltar_modal" onClick={onClick}>
                     <img src={IconSetaVoltar} />
-                </a>
+                </div>
             </div>
 
             <div className='imagem_modal_content'>

@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 
 import SelectModal from './SelectModal';
@@ -8,6 +9,7 @@ import UploadFotos from './UploadFotos';
 
 function ModalNovoImovel() {
     const [imagens, setImagens] = useState('');
+    const [message, setMessage] = useState('');
     const [cidade, setCidade] = useState('');
     const [classificacao, setClassificacao] = useState('');
     const [tipo, setTipo] = useState('');
@@ -18,7 +20,30 @@ function ModalNovoImovel() {
     const [linkFacebook, setLinkFacebook] = useState('');
     const [linkOlx, setLinkOlx] = useState('');
     const [produtoAdicionado, setProdutoAdicionado] = useState(false);
+
     const opcoesClassificacao = ['Imóvel', 'Máquinas Agrícolas', 'Outros'];
+
+    const uploadImage = async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append('imagens', imagens);
+
+        const headers = {
+            'headers': {
+                'Content-Type': 'multipart/form-data'
+            }
+        }
+
+        await axios.post('http://localhost:8080/upload-image', formData, headers)
+            .then((response) => {
+                setMessage(response.data.message);
+            }).catch((err) => {
+                if (err.response) {
+                    setMessage(err.response.data.message);
+                }
+            });
+    }
 
     const opcoesTipos = {
         'Imóvel': ['Apartamento', 'Casa', 'Fazenda', 'Terreno', 'Imóvel Comercial'],
@@ -77,8 +102,9 @@ function ModalNovoImovel() {
                 <form onSubmit={handleSubmit}>
 
                     <UploadFotos
-                        value={imagens}
-                        setOnChange={setImagens}
+                        images={imagens}
+                        setImages={setImagens}
+                        form={uploadImage}
                     />
 
                     <div className='modal_informacoes'>
