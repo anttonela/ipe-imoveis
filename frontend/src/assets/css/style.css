@@ -66,9 +66,9 @@ body {
 
 .nome_empresa {
     width: 100%;
-    height: 100%;
+    height: 99%;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
     font-size: min(2vh, 2vw);
     font-weight: 600;
@@ -102,11 +102,12 @@ body {
 
 .botao_header {
     width: 43%;
-    height: 80%;
+    height: 78%;
     border-radius: 1vh;
     background-color: transparent;
-    font-size: 2vh;
+    font-size: 1.6vh;
     display: flex;
+    text-decoration: none;
     align-items: center;
     justify-content: center;
     color: #FAFAFA;

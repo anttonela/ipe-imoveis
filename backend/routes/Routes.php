@@ -6,7 +6,7 @@ use app\Models\Home\CorpoJson;
 use app\Models\Home\CriarConta;
 use app\Models\Home\Entrar;
 use app\Models\Home\Filtro;
-use app\Models\Home\Modal;
+use app\Models\Home\IdModal;
 use app\Models\Home\NovoProduto;
 
 class Routes extends CorpoJson
@@ -74,7 +74,7 @@ class Routes extends CorpoJson
 
         http_response_code(200);
 
-        $modal = new Modal();
+        $modal = new IdModal();
         $modal->abrindoModalDoId();
     }
 }

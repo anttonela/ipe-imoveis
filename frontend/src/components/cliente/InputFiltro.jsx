@@ -10,6 +10,7 @@ function InputFiltro({ id, name, value, onChange, option }) {
                     onChange={(e) => {
                         onChange(e.target.value);
                     }}
+                    required
                 >
                     <option hidden>{option.hidden}</option>
                     <option>{option.um}</option>

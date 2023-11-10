@@ -9,8 +9,9 @@ class Filtro extends Banco
     private $classificacao;
     private $tipo;
     private $cidade;
+    private $resultado;
 
-    public function filtro(): array
+    public function filtro()
     {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
@@ -22,36 +23,22 @@ class Filtro extends Banco
             $data = json_decode($json_data, true);
         }
 
-        if (empty($data['classificacao']) || empty($data['tipo']) || empty($data['cidade'])) {
-            //http_response_code(400);
-            print json_encode("ERRO: " . $data['classificacao'] . " - " . $data['tipo'] . $data['cidade']);
-            exit();
-        }
-
         $this->classificacao = $data['classificacao'];
         $this->tipo = $data['tipo'];
         $this->cidade = $data['cidade'];
 
         $select = $this->executarFetchAll("SELECT * FROM produto WHERE classificacao = '{$this->classificacao}' and tipo = '{$this->tipo}' and cidade = '{$this->cidade}'");
 
-        if (empty($this->select)) {
-            //http_response_code(404);
-            print json_encode(["error" => "Nenhum resultado encontrado"]);
-            exit();
-        }
-
-        return $select;
+        print json_encode($select);
     }
 
-    public function view(): void
+    public function view()
     {
-        $data = $this->filtro();
+        print ($this->filtro());
 
         // foreach ($data as &$arrumandoValor) {
         // $arrumandoValor['valor'] = number_format($arrumandoValor['valor'], 2, ',', '.');
         // }
 
-        print json_encode($data);
     }
-
 }

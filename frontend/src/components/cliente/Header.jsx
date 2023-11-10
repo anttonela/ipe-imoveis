@@ -16,11 +16,11 @@ function Header({ href, onClick }) {
                         <div className='nome_empresa'>ARANTES IMÓVEIS</div>
                         <div className='header_texto'>Transformando desejos<br />em endereços.</div>
 
-                        <a className='botao_content' href={href} onClick={onClick}>
-                            <button className='botao_header' type='submit'>
+                        <div className='botao_content'>
+                            <a className='botao_header' href={href} onClick={onClick}>
                                 Ver Imóveis
-                            </button>
-                        </a>
+                            </a>
+                        </div>
                     </div>
                 </div>
 

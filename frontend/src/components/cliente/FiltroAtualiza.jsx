@@ -9,6 +9,7 @@ function FiltroAtualiza({ id, name, value, onChange, hidden, option }) {
                     name={name}
                     value={value}
                     onChange={(e) => onChange(e.target.value)}
+                    required
                 >
                     <option hidden>{hidden}</option>
                     {option}

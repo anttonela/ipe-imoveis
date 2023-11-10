@@ -44,7 +44,7 @@ function Filtro({ onClick }) {
 
             setRespostaLocalhost(resposta);
             setMensagemLogin(true);
-            onClick();
+            //onClick();
         } catch (error) {
             console.error('Erro ao enviar os dados para a API:', error);
         }

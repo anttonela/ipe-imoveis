@@ -5,7 +5,7 @@ namespace app\Models\Home;
 use app\Models\Crud\Functions\Select;
 use app\Models\Crud\Utilizadores\Banco;
 
-class Modal extends Banco
+class IdModal extends Banco
 {
     public function abrindoModalDoId(): void
     {
