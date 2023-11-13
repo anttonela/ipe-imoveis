@@ -54,6 +54,7 @@ function FileiraCard({ fetchUrl }) {
                     {values(data).map(produto => (
 
                         <Card
+                            classificacao={produto.classificacao}
                             key={produto.id_produto}
                             idCard={produto.id_produto}
                             cidade={produto.id_produto + " - " + produto.cidade}

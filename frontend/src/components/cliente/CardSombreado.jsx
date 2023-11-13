@@ -1,53 +1,58 @@
 import ImagemImoveis from '../../assets/img/imoveis.png';
 import ModalInformacoes from './ModalInformacoes';
 
-function CardSombreado({ dados, informacoesModal }) {
+function CardSombreado({ classificacao, idCard, cidade, breve_descricao, valor, situacao, informacoes }) {
     return (
         <>
             <div className="espacamento_fileira">
-                <div className="card card_administrativo">
+                <a
+                    className='link'
+                    href={`#${classificacao}/${idCard}`}
+                >
 
-                    <a href='#modal_informacoes' className='link'>
+                    <div className="card card_administrativo" id={idCard}>
                         <div className="card_imagem">
                             <img className="card_imagem" src={ImagemImoveis} />
                         </div>
-                    </a>
-                    
-                    <div className='card_informacoes_content'>
-                        <a href='#modal_informacoes' className='link'>
-                            <div className='card_informacoes'>
 
-                                <div className='card_sobre'>
-                                    <div className='card_editar'>
-                                        <div className='nome_produto inter_700'>{dados.cidade}</div>
+                        <div className='card_informacoes_content'>
+                            <a href='#modal_informacoes' className='link'>
+                                <div className='card_informacoes'>
+
+                                    <div className='card_sobre'>
+                                        <div className='card_editar'>
+                                            <div className='nome_produto inter_700'>{idCard} - {cidade}</div>
+                                        </div>
+
+                                        <div className='card_texto inter_500'>{breve_descricao}</div>
                                     </div>
 
-                                    <div className='card_texto inter_500'>{dados.breve_descricao}</div>
+                                    <div className='card_valor'>
+                                        <div className='valor_produto inter_700'>R$: {valor}</div>
+                                        <div className='card_situacao'>{situacao}</div>
+                                    </div>
                                 </div>
+                            </a>
+                        </div>
 
-                                <div className='card_valor'>
-                                    <div className='valor_produto inter_700'>R$: {dados.valor}</div>
-                                    <div className='card_texto'>{dados.quantidade_parcelas}</div>
-                                </div>
-                            </div>
-                        </a>
                     </div>
 
-                </div>
+                </a>
             </div>
 
-            <div id='modal_informacoes' className="modal">
-
+            <div className='modal' id={`${classificacao}/${idCard}`}>
                 <ModalInformacoes
-                    dados=
-                    {{
-                        id: informacoesModal.id,
-                        cidade: informacoesModal.cidade,
-                        valor: informacoesModal.valor,
-                        descricao: informacoesModal.descricao
-                    }}
+                    id={informacoes.id}
+                    cidade={informacoes.cidade}
+                    valor={informacoes.valor}
+                    descricao={informacoes.descricao}
+                    linkWhatsapp={informacoes.link_whatsapp}
+                    linkFacebook={informacoes.link_facebook}
+                    linkInstagram={informacoes.link_instagram}
+                    linkOlx={informacoes.link_olx}
+                    classificacao={informacoes.classificacao}
+                    tipo={informacoes.tipo}
                 />
-
             </div>
         </>
     );

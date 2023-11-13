@@ -1,15 +1,25 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import IconSetaVoltar from '../../assets/img/seta-voltar.svg';
 import IconWhatsapp from '../../assets/img/whatsapp.svg';
 import IconFacebook from '../../assets/img/facebook.svg';
 import IconInstagram from '../../assets/img/instagram.svg';
 import IconOlx from '../../assets/img/olx.svg';
 
-function Modal({ onClick, id, cidade, valor, descricao, linkWhatsapp, linkFacebook, linkInstagram, linkOlx, classificacao, tipo }) {
+function Modal({ id, cidade, valor, descricao, linkWhatsapp, linkFacebook, linkInstagram, linkOlx, classificacao, tipo }) {
+
+    const navigate = useNavigate();
+
+    const fecharModal = () => {
+        navigate(-1);
+    };
+
+
     return (
         <div className="modal_content">
             <div className="sair_modal">
-                <div className="seta_voltar_modal" onClick={onClick}>
+                <div className="seta_voltar_modal" onClick={fecharModal}>
                     <img src={IconSetaVoltar} />
                 </div>
             </div>
@@ -56,7 +66,7 @@ function Modal({ onClick, id, cidade, valor, descricao, linkWhatsapp, linkFacebo
                     <a className='modal_rede_social modal_instagram' href={linkInstagram}>
                         <img className='modal_icon' src={IconInstagram} />
                     </a>
-                    
+
                     <a className='modal_rede_social modal_olx' href={linkOlx}>
                         <img className='modal_olx_icon' src={IconOlx} />
                     </a>

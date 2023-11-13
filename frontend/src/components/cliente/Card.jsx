@@ -1,18 +1,15 @@
-import values from 'lodash/values';
-import { useEffect, useState } from 'react';
-import FotoImovel from '../../assets/img/imoveis.png';
 import ModalInformacoes from './ModalInformacoes';
+import FotoImovel from '../../assets/img/imoveis.png';
 
-function Card({ idCard, href, cidade, breve_descricao, valor, situacao, informacoes }) {
-
+function Card({ classificacao, idCard, cidade, breve_descricao, valor, situacao, informacoes }) {
     return (
         <>
             <a
                 className='link'
-                href={idCard}
+                href={`#${classificacao}/${idCard}`}
             >
 
-                <div className='card'>
+                <div className='card' id={idCard}>
 
                     <div className='card_imagem'>
                         <img
@@ -39,7 +36,7 @@ function Card({ idCard, href, cidade, breve_descricao, valor, situacao, informac
 
             </a>
 
-            <div className='modal' id={idCard}>
+            <div className='modal' id={`${classificacao}/${idCard}`}>
                 <ModalInformacoes
                     id={informacoes.id}
                     cidade={informacoes.cidade}

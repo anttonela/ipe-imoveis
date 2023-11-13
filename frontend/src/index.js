@@ -1,6 +1,6 @@
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import React from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import './assets/css/style.css';
 import './assets/fonts/fonts.css';
@@ -10,34 +10,40 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import CriarConta from './pages/CriarConta';
 import HomeAdministrativo from './pages/HomeAdministrativo';
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
-  {
-    path: "home",
-    element: <Home />,
-  },
-  {
-    path: "administrador",
-    element: <HomeAdministrativo />,
-  },
-  {
-    path: "login",
-    element: <Login />,
-  },
-  {
-    path: "criarConta",
-    element: <CriarConta />,
-  }
-]);
+import Card from './components/cliente/Card';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={<App />}
+        >
+          <Route
+            path=":classificacao/:idModal"
+            element={<Card/>}
+          />
+        </Route>
+        <Route
+          path="home"
+          element={<Home />}
+        />
+        <Route
+          path="administrador"
+          element={<HomeAdministrativo />}
+        />
+        <Route
+          path="login"
+          element={<Login />}
+        />
+        <Route
+          path="criarConta"
+          element={<CriarConta />}
+        />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );

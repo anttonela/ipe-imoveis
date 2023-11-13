@@ -25,25 +25,30 @@ function FileiraCardSombreado({ fetchUrl }) {
                 {values(data).map(produto => (
 
                     <CardSombreado
+                        classificacao={produto.classificacao}
+                        idCard={produto.id_produto}
                         key={produto.id_produto}
-                        dados=
-                        {{
-                            cidade: produto.cidade,
-                            breve_descricao: produto.breve_descricao,
-                            valor: produto.valor,
-                            quantidade_parcelas: produto.quantidade_parcelas
-                        }}
+                        cidade={produto.cidade}
+                        breve_descricao={produto.breve_descricao}
+                        valor={produto.valor}
+                        situacao={produto.situacao}
 
-                        informacoesModal=
+                        informacoes=
                         {{
                             id: produto.id_produto,
                             cidade: produto.cidade,
-                            valor: "R$: " + produto.valor,
-                            descricao: produto.descricao
+                            valor: produto.valor,
+                            descricao: produto.descricao,
+                            link_whatsapp: produto.link_whatsapp,
+                            link_facebook: produto.link_facebook,
+                            link_instagram: produto.link_instagram,
+                            link_olx: produto.link_olx,
+                            classificacao: produto.classificacao,
+                            tipo: produto.tipo,
                         }}
                     />
-
                 ))}
+
             </div>
         </div>
     );

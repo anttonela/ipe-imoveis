@@ -382,6 +382,12 @@ body {
     color: #9E9E9E;
 }
 
+.card_situacao {
+    font-size: 15px;
+    color: #9E9E9E;
+    font-weight: 500;
+}
+
 .card_central_texto {
     color: #9E9E9E;
 }
