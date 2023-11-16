@@ -3,7 +3,8 @@ import ModalEditar from './ModalEditar';
 import IconLixeira from '../../assets/img/lixeira.svg';
 import ImagemImoveis from '../../assets/img/imoveis.png';
 
-function Card({ cidade, breve_descricao, valor, situacao }) {
+function Card({ cidade, breve_descricao, valor, situacao, classificacao, idCard, tipo, descricao, whatsapp, instagram, facebook, olx }) {
+
     const handleDeleteClick = () => {
         const apagar = window.confirm('Você deseja apagar este produto?');
 
@@ -39,7 +40,10 @@ function Card({ cidade, breve_descricao, valor, situacao }) {
                                 <div className='nome_produto inter_700'>{cidade}</div>
                                 <div className='content-card_editar_icons'>
                                     <div className='card_editar_icons'>
-                                        <a href='#modal_editar' className='link'>
+                                        <a
+                                            className='link'
+                                            href={`#${classificacao}/${idCard}`}
+                                        >
                                             <img className='editar_icon' src={IconLapis} />
                                         </a>
                                         <img className='editar_icon' src={IconLixeira} onClick={handleDeleteClick} />
@@ -59,9 +63,24 @@ function Card({ cidade, breve_descricao, valor, situacao }) {
 
             </div>
 
-            <div id='modal_editar' className='modal'>
-                <ModalEditar />
+            <div
+                id={`${classificacao}/${idCard}`}
+                className='modal'
+            >
+                <ModalEditar
+                    idCard={idCard}
+                    cidadeProduto={cidade}
+                    classificacaoProduto={classificacao}
+                    tipoProduto={tipo}
+                    valorProduto={valor}
+                    descricaoProduto={descricao}
+                    linkWhatsappProduto={whatsapp}
+                    linkInstagramProduto={instagram}
+                    linkFacebookProduto={facebook}
+                    linkOlxProduto={olx}
+                />
             </div>
+
         </div>
     );
 }

@@ -752,6 +752,17 @@ body {
     color: #9E9E9E;
 }
 
+.modal_input_ad {
+    height: 80%;
+    width: 97%;
+    font-size: 16px;
+    resize: none;
+    border: 2px solid #E0E0E0;
+    border-radius: 10px;
+    padding-left: 10px;
+    color: #272727;
+}
+
 .modal_input:focus {
     box-shadow: 0 0 0 0;
     border: 2px solid #E0E0E0;

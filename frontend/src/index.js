@@ -24,7 +24,7 @@ root.render(
         >
           <Route
             path=":classificacao/:idModal"
-            element={<Card/>}
+            element={<Card />}
           />
         </Route>
         <Route

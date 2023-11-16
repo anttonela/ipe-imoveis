@@ -9,12 +9,11 @@ import IconOlx from '../../assets/img/olx.svg';
 
 function Modal({ id, cidade, valor, descricao, linkWhatsapp, linkFacebook, linkInstagram, linkOlx, classificacao, tipo }) {
 
-    const navigate = useNavigate();
+    const navegador = useNavigate();
 
     const fecharModal = () => {
-        navigate(-1);
+        navegador(-1);
     };
-
 
     return (
         <div className="modal_content">

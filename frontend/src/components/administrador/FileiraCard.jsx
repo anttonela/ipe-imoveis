@@ -29,6 +29,14 @@ function FileiraCardSombreado({ fetchUrl }) {
                         breve_descricao={produto.breve_descricao}
                         valor={produto.valor}
                         situacao={produto.situacao}
+                        classificacao={produto.classificacao}
+                        idCard={produto.id_produto}
+                        tipo={produto.tipo}
+                        descricao={produto.descricao}
+                        whatsapp={produto.link_whatsapp}
+                        instagram={produto.link_instagram}
+                        facebook={produto.link_facebook}
+                        olx={produto.link_olx}
                     />
 
                 ))}

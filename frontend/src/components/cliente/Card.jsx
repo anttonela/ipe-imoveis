@@ -1,5 +1,6 @@
 import ModalInformacoes from './ModalInformacoes';
 import FotoImovel from '../../assets/img/imoveis.png';
+import { Link } from 'react-router-dom';
 
 function Card({ classificacao, idCard, cidade, breve_descricao, valor, situacao, informacoes }) {
     return (
@@ -50,6 +51,7 @@ function Card({ classificacao, idCard, cidade, breve_descricao, valor, situacao,
                     tipo={informacoes.tipo}
                 />
             </div>
+            
         </>
     );
 }
