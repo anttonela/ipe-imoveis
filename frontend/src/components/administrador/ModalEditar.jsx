@@ -1,13 +1,14 @@
-import IconSetaVoltar from '../../assets/img/seta-voltar.svg';
+import { useEffect, useState } from 'react';
+import SelectModal from './SelectModal';
+import InformacoesModal from './InputModal';
 import SelectAtualiza from './SelectAtualiza';
+import { useNavigate } from 'react-router-dom';
 import IconPlus from '../../assets/img/plus.png';
 import IconLapis from '../../assets/img/lapis.svg';
-import InformacoesModal from './InputModal';
-import SelectModal from './SelectModal';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import IconSetaVoltar from '../../assets/img/seta-voltar.svg';
 
-function ModalEditar({ idCard, cidadeProduto, classificacaoProduto, tipoProduto, valorProduto, descricaoProduto, linkWhatsappProduto,  linkInstagramProduto, linkFacebookProduto, linkOlxProduto}) {
+function ModalEditar({ idCard, cidadeProduto, classificacaoProduto, tipoProduto, valorProduto, descricaoProduto, linkWhatsappProduto, linkInstagramProduto, linkFacebookProduto, linkOlxProduto }) {
+    
     const navegador = useNavigate();
 
     const [cidade, setCidade] = useState('');
@@ -20,6 +21,33 @@ function ModalEditar({ idCard, cidadeProduto, classificacaoProduto, tipoProduto,
     const [linkFacebook, setLinkFacebook] = useState('');
     const [linkOlx, setLinkOlx] = useState('');
 
+    function extrairUsuarioInstagram(linkInstagram) {
+        const buscaString = /(?:https?:\/\/)?(?:www\.)?instagram\.com\/([a-zA-Z0-9_]+)/;
+        const match = linkInstagram.match(buscaString);
+        if (match && match[1]) {
+            return match[1];
+        }
+        return '';
+    }
+
+    function extrairNumeroWhatsapp(linkWhatsapp) {
+        const buscaString = /(\+55)(\d+)/;
+        const match = linkWhatsapp.match(buscaString);
+        if (match && match[2]) {
+            return match[2];
+        }
+        return '';
+    }
+
+    function extrairUsuarioFacebook(linkFacebook) {
+        const buscaString = /(?:https?:\/\/)?(?:www\.)?facebook\.com\/([a-zA-Z0-9._-]+)/;
+        const match = linkFacebook.match(buscaString);
+        if (match && match[1]) {
+            return match[1];
+        }
+        return '';
+    }
+
     const opcoesClassificacao = ['Imóvel', 'Máquinas Agrícolas', 'Outros'];
 
     const opcoesTipos = {
@@ -28,14 +56,31 @@ function ModalEditar({ idCard, cidadeProduto, classificacaoProduto, tipoProduto,
         'Outros': ['Outros'],
     }
 
-    const atualizarOpcoesTipo = (classificacao) => {
-        setTipo('');
-        setClassificacao(classificacao);
-    }
-
     const fecharModal = () => {
         navegador(-1);
     };
+
+    useEffect(() => {
+        setCidade(cidadeProduto);
+        setClassificacao(classificacaoProduto);
+        setValor(valorProduto);
+        setTipo(tipoProduto);
+        setDescricao(descricaoProduto);
+        setLinkWhatsapp(extrairNumeroWhatsapp(linkWhatsappProduto));
+        setLinkInstagram(extrairUsuarioInstagram(linkInstagramProduto));
+        setLinkFacebook(extrairUsuarioFacebook(linkFacebookProduto));
+        setLinkOlx(linkOlxProduto);
+    }, [
+        cidadeProduto,
+        classificacaoProduto,
+        valorProduto,
+        tipoProduto,
+        descricaoProduto,
+        extrairNumeroWhatsapp(linkWhatsappProduto),
+        extrairUsuarioInstagram(linkInstagramProduto),
+        extrairUsuarioFacebook(linkFacebookProduto),
+        linkOlxProduto,
+    ]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -43,6 +88,7 @@ function ModalEditar({ idCard, cidadeProduto, classificacaoProduto, tipoProduto,
         const dados = {
             cidade,
             classificacao,
+            tipo,
             valor,
             descricao,
             linkWhatsapp,
@@ -51,23 +97,21 @@ function ModalEditar({ idCard, cidadeProduto, classificacaoProduto, tipoProduto,
             linkOlx,
         };
 
-        try {
-            console.log(dados);
+        console.log('Dados a serem enviados:', dados);
 
-            const response = await fetch('SUA_API_URL_AQUI', {
+        try {
+            const response = await fetch('http://localhost:8080/alterarProduto/', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
                 body: JSON.stringify(dados),
             });
 
-            const data = await response.json();
+            const data = await response.text();
             console.log('Resposta da API:', data);
         } catch (error) {
             console.error('Erro ao enviar os dados para a API:', error);
         }
-    };
+    }
+
     return (
         <>
             <div className='modal_content'>
@@ -191,34 +235,38 @@ function ModalEditar({ idCard, cidadeProduto, classificacaoProduto, tipoProduto,
 
                         <InformacoesModal
                             id={"link_whatsapp"}
-                            value={linkWhatsapp !== '' ? linkWhatsapp : linkWhatsappProduto}
-                            onChange={setLinkWhatsapp}
-                            nomeInformacao={"Link Whatsapp"}
-                            placeholder={"Link..."}
+                            value={linkWhatsapp !== '' ? linkWhatsapp : extrairNumeroWhatsapp(linkWhatsappProduto)}
+                            onChange={(value) => {
+                                if (value.length <= 11) {
+                                    setLinkWhatsapp(value);
+                                }
+                            }}
+                            nomeInformacao={"Número Whatsapp"}
+                            placeholder={"64912345678"}
                         />
 
                         <InformacoesModal
                             id={"link_instagram"}
-                            value={linkInstagram !== '' ? linkInstagram : linkInstagramProduto}
+                            value={linkInstagram !== '' ? linkInstagram : extrairUsuarioInstagram(linkInstagramProduto)}
                             onChange={setLinkInstagram}
-                            nomeInformacao={"Link Instagram"}
-                            placeholder={"Link..."}
+                            nomeInformacao={"Usuário Instagram"}
+                            placeholder={"@user"}
                         />
 
                         <InformacoesModal
                             id={"link_facebook"}
-                            value={linkFacebook !== '' ? linkFacebook : linkFacebookProduto}
+                            value={linkFacebook !== '' ? linkFacebook : extrairUsuarioFacebook(linkFacebookProduto)}
                             onChange={setLinkFacebook}
-                            nomeInformacao={"Link Facebook"}
-                            placeholder={"Link..."}
+                            nomeInformacao={"Usuário Facebook"}
+                            placeholder={"@user"}
                         />
 
                         <InformacoesModal
                             id={"link_olx"}
                             value={linkOlx !== '' ? linkOlx : linkOlxProduto}
                             onChange={setLinkOlx}
-                            nomeInformacao={"Link OLX"}
-                            placeholder={"Link..."}
+                            nomeInformacao={"Usuário OLX"}
+                            placeholder={"@user"}
                         />
 
                     </div>

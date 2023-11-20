@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Card from './Card';
 
 function FileiraCardSombreado({ fetchUrl }) {
+    
     const [data, setData] = useState([]);
 
     const getProdutos = async () => {

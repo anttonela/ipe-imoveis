@@ -37,7 +37,7 @@ function Card({ cidade, breve_descricao, valor, situacao, classificacao, idCard,
 
                         <div className='card_sobre'>
                             <div className='card_editar'>
-                                <div className='nome_produto inter_700'>{cidade}</div>
+                                <div className='nome_produto inter_700'>{idCard}</div>
                                 <div className='content-card_editar_icons'>
                                     <div className='card_editar_icons'>
                                         <a
