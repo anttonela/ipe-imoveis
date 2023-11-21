@@ -9,17 +9,23 @@ function Card({ cidade, breve_descricao, valor, situacao, classificacao, idCard,
         const apagar = window.confirm('Você deseja apagar este produto?');
 
         if (apagar) {
-            fetch('http://localhost:8080/apagar', {
-                method: 'POST',
-                body: JSON.stringify({ cidade }),
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            })
+            const dados = {
+                id: idCard,
+            };
 
-                .catch(error => {
-                    console.error('Erro ao apagar o produto:', error);
+            console.log('Dados a serem enviados:', dados);
+
+            try {
+                const response = fetch('http://localhost:8080/apagar/', {
+                    method: 'POST',
+                    body: JSON.stringify(dados),
                 });
+
+                const data = response.text();
+                console.log('Resposta da API:', data);
+            } catch (error) {
+                console.error('Erro ao enviar os dados para a API:', error);
+            }
         }
     }
 
@@ -72,6 +78,7 @@ function Card({ cidade, breve_descricao, valor, situacao, classificacao, idCard,
                     cidadeProduto={cidade}
                     classificacaoProduto={classificacao}
                     tipoProduto={tipo}
+                    situacaoProduto={situacao}
                     valorProduto={valor}
                     descricaoProduto={descricao}
                     linkWhatsappProduto={whatsapp}

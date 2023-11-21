@@ -7,19 +7,21 @@ import IconPlus from '../../assets/img/plus.png';
 import IconLapis from '../../assets/img/lapis.svg';
 import IconSetaVoltar from '../../assets/img/seta-voltar.svg';
 
-function ModalEditar({ idCard, cidadeProduto, classificacaoProduto, tipoProduto, valorProduto, descricaoProduto, linkWhatsappProduto, linkInstagramProduto, linkFacebookProduto, linkOlxProduto }) {
-    
+function ModalEditar({ idCard, cidadeProduto, classificacaoProduto, tipoProduto, situacaoProduto, valorProduto, descricaoProduto, linkWhatsappProduto, linkInstagramProduto, linkFacebookProduto, linkOlxProduto }) {
+
     const navegador = useNavigate();
 
     const [cidade, setCidade] = useState('');
     const [classificacao, setClassificacao] = useState('');
     const [valor, setValor] = useState('');
     const [tipo, setTipo] = useState('');
+    const [situacao, setSituacao] = useState('');
     const [descricao, setDescricao] = useState('');
     const [linkWhatsapp, setLinkWhatsapp] = useState('');
     const [linkInstagram, setLinkInstagram] = useState('');
     const [linkFacebook, setLinkFacebook] = useState('');
     const [linkOlx, setLinkOlx] = useState('');
+    const [produtoAlterado, setProdutoAlterado] = useState(false);
 
     function extrairUsuarioInstagram(linkInstagram) {
         const buscaString = /(?:https?:\/\/)?(?:www\.)?instagram\.com\/([a-zA-Z0-9_]+)/;
@@ -65,6 +67,7 @@ function ModalEditar({ idCard, cidadeProduto, classificacaoProduto, tipoProduto,
         setClassificacao(classificacaoProduto);
         setValor(valorProduto);
         setTipo(tipoProduto);
+        setSituacao(situacaoProduto)
         setDescricao(descricaoProduto);
         setLinkWhatsapp(extrairNumeroWhatsapp(linkWhatsappProduto));
         setLinkInstagram(extrairUsuarioInstagram(linkInstagramProduto));
@@ -75,6 +78,7 @@ function ModalEditar({ idCard, cidadeProduto, classificacaoProduto, tipoProduto,
         classificacaoProduto,
         valorProduto,
         tipoProduto,
+        situacaoProduto,
         descricaoProduto,
         extrairNumeroWhatsapp(linkWhatsappProduto),
         extrairUsuarioInstagram(linkInstagramProduto),
@@ -86,9 +90,11 @@ function ModalEditar({ idCard, cidadeProduto, classificacaoProduto, tipoProduto,
         e.preventDefault();
 
         const dados = {
+            id: idCard,
             cidade,
             classificacao,
             tipo,
+            situacao,
             valor,
             descricao,
             linkWhatsapp,
@@ -100,13 +106,15 @@ function ModalEditar({ idCard, cidadeProduto, classificacaoProduto, tipoProduto,
         console.log('Dados a serem enviados:', dados);
 
         try {
-            const response = await fetch('http://localhost:8080/alterarProduto/', {
+            const response = await fetch('http://localhost:8080/alterar/', {
                 method: 'POST',
                 body: JSON.stringify(dados),
             });
 
             const data = await response.text();
             console.log('Resposta da API:', data);
+
+            setProdutoAlterado(true);
         } catch (error) {
             console.error('Erro ao enviar os dados para a API:', error);
         }
@@ -207,7 +215,26 @@ function ModalEditar({ idCard, cidadeProduto, classificacaoProduto, tipoProduto,
                                 }
 
                             </select>
-                        </div >
+                        </div>
+
+                        <div className='situacao'>
+                            <div className="modal_ad_texto inter_500">Situação</div>
+                        </div>
+                        <div className='select_tipo_modal'>
+                            <select
+                                id={"situacao"}
+                                value={situacao}
+                                className="select_tipo"
+                                onChange={(e) => {
+                                    setSituacao(e.target.value);
+                                }}
+                                required
+                            >
+                                <option hidden>Selecionar</option>
+                                <option>Vendido</option>
+                                <option>Não Vendido</option>
+                            </select>
+                        </div>
 
                         <InformacoesModal
                             id={"valor"}
@@ -274,6 +301,12 @@ function ModalEditar({ idCard, cidadeProduto, classificacaoProduto, tipoProduto,
                     <div className='content_botao_confirmar'>
                         <button className='botao_confirmar_adicionar' type='submit'>Salvar Alteração</button>
                     </div>
+
+                    {produtoAlterado && (
+                        <div className='mensagem_sucesso'>
+                            Produto alterado com sucesso
+                        </div>
+                    )}
 
                 </form>
 

@@ -741,6 +741,12 @@ body {
     scroll-behavior: auto;
 }
 
+.mensagem_sucesso {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .modal_input {
     height: 80%;
     width: 97%;
@@ -857,6 +863,12 @@ body {
 
 .imagem_selecionada {
     height: 285px;
+}
+
+.situacao {
+    height: 40px;
+    display: flex;
+    align-items: end;
 }
 
 .alinhamento_imagem {

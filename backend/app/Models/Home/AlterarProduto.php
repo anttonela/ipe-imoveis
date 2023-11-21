@@ -29,27 +29,30 @@ class AlterarProduto extends Banco
         empty($data['linkFacebook']) ? $this->linkFacebook = "" : $this->linkFacebook = "https://www.facebook.com/" . $data['linkFacebook'] . "/";
         empty($data['linkOlx']) ? $this->linkOlx = "" : $this->linkOlx = "https://www.olx.com.br/";
 
-        $id = $data['idCard'];
-
-        $resultado = $this->executarFetchAll(
-            "
+        if (substr($data['valor'], -3) === ',00') {
+            $valorFormatado = substr($data['valor'], 0, -3);
+        } else {
+            $valorFormatado = $data['valor'];
+        }
+        
+        $alterar =
+        "
             UPDATE produto
             SET
-            classificacao = 'Imóvel',
-            tipo = 'Casa',
-            cidade = 'Indiara',
-            situacao = 'Não Vendido',
-            valor = 500,
-            descricao = 'Descrição',
-            breve_descricao = 'breve',
-            link_whatsapp = 'https://api.whatsapp.com/send?phone=+5564999324420&text=Ola%21',
-            link_instagram = 'https://www.instagram.com/anttonelareis/',
-            link_facebook = 'https://www.facebook.com/anttonelareis/',
-            link_olx = 'https://www.olx.com.br/'
-            WHERE id_produto = {$id}
-            "
-        );
+            classificacao = '" . $data['classificacao'] . "',
+            tipo = '" . $data['tipo'] . "',
+            cidade = '" . $data['cidade'] . "',
+            situacao = '" . $data['situacao'] . "',
+            valor = " . floatval(str_replace(',', '.', $valorFormatado)) . ",
+            descricao = '" . $data['descricao'] . "',
+            breve_descricao = '" . implode(' ', array_slice(explode(' ', $data['descricao']), 0, 7)) . "',
+            link_whatsapp = '{$this->linkWhatsapp}',
+            link_instagram = '{$this->linkInstagram}',
+            link_facebook = '{$this->linkFacebook}',
+            link_olx = '{$this->linkOlx}'
+            WHERE id_produto = " . $data['id'] . "
+        ";
 
-        print_r($resultado);
+        $this->executarFetchAll($alterar);
     }
 }

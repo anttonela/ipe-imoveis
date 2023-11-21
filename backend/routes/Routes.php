@@ -3,6 +3,7 @@
 namespace routes;
 
 use app\Models\Home\AlterarProduto;
+use app\Models\Home\ApagarProduto;
 use app\Models\Home\CorpoJson;
 use app\Models\Home\CriarConta;
 use app\Models\Home\Entrar;
@@ -12,12 +13,22 @@ use app\Models\Home\NovoProduto;
 
 class Routes extends CorpoJson
 {
-    public function alterarProduto(): void
+    public function apagar(): void
     {
         $this->cabecalho();
 
         http_response_code(200);
-        
+
+        $apagar = new ApagarProduto();
+        $apagar->apagandoProduto();
+    }
+
+    public function alterar(): void
+    {
+        $this->cabecalho();
+
+        http_response_code(200);
+
         $alter = new AlterarProduto();
         $alter->alterandoDadosDoProduto();
     }
@@ -28,7 +39,7 @@ class Routes extends CorpoJson
         $filtro->filtro();
     }
 
-    public function filtroView(): void 
+    public function filtroView(): void
     {
         $filtro = new Filtro();
         $filtro->view();

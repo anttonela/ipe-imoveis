@@ -8,6 +8,12 @@ use PHPMailer\PHPMailer\SMTP;
 
 class Email
 {
+    private function corpoDoEmail(): string
+    {
+        $conteudo = "oi";
+        return $conteudo;
+    }
+
     public function enviar(): void
     {
         $mail = new PHPMailer(true);
@@ -18,16 +24,16 @@ class Email
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
             $mail->Username = 'arantesimovel@gmail.com';
-            $mail->Password = 'Ar@ntes59_0274';
+            $mail->Password = 'qfsuhumwvlfxincx';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
             $mail->Port = 465;
 
-            $mail->setFrom('arantesimovel@gmail.com', 'Mailer'); // quem vai enviar 
-            $mail->addAddress('arantesimovel@gmail.com', 'Joe User'); // quem vai receber este email
+            $mail->setFrom('arantesimovel@gmail.com', 'Arantes Imóveis'); // quem vai enviar
+            $mail->addAddress('antonelaipe@gmail.com', 'Usuário'); // quem vai receber este email
             $mail->addReplyTo('arantesimovel@gmail.com', 'Information');
             $mail->isHTML(true);
             $mail->Subject = 'Mensagem via gmail';
-            $body = 'Mensagem enviada através do email';
+            $body = $this->corpoDoEmail();
             $mail->Body = $body;
 
             $mail->send();

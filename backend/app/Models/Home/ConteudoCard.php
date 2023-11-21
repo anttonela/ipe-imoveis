@@ -6,7 +6,7 @@ use app\Models\Crud\Utilizadores\Banco;
 
 class ConteudoCard extends Banco
 {
-    public function select($nomeCategoria)
+    public function select($nomeCategoria): void
     {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");

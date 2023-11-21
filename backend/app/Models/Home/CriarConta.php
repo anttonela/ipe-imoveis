@@ -33,7 +33,7 @@ class CriarConta extends Banco
         $this->senha = $data['senha'];
     }
 
-    public function verificandoEmailValido(): void
+    private function verificandoEmailValido(): void
     {
         $this->setCriarConta();
 
@@ -44,7 +44,7 @@ class CriarConta extends Banco
         }
     }
 
-    public function verificandoSeCadastroJaExiste(): void
+    private function verificandoSeCadastroJaExiste(): void
     {
         $this->setCriarConta();
 
@@ -62,7 +62,7 @@ class CriarConta extends Banco
         }
     }
 
-    public function validandoSenha(): void
+    private function validandoSenha(): void
     {
         $this->setCriarConta();
 

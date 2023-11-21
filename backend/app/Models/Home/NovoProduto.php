@@ -33,7 +33,7 @@ class NovoProduto
             "classificacao" => $data['classificacao'],
             "tipo" => $data['tipo'],
             "cidade" => $data['cidade'],
-            "situacao" => "Não Vendido",
+            "situacao" => $data['situacao'],
             "valor" => $data['valor'],
             "breve_descricao" => implode(' ', array_slice(explode(' ', $data['descricao']), 0, 7)),
             "descricao" => $data['descricao'],

@@ -13,6 +13,7 @@ function ModalNovoImovel() {
     const [cidade, setCidade] = useState('');
     const [classificacao, setClassificacao] = useState('');
     const [tipo, setTipo] = useState('');
+    const [situacao, setSituacao] = useState('');
     const [valor, setValor] = useState('');
     const [descricao, setDescricao] = useState('');
     const [linkWhatsapp, setLinkWhatsapp] = useState('');
@@ -64,6 +65,7 @@ function ModalNovoImovel() {
             cidade,
             classificacao,
             tipo,
+            situacao,
             valor,
             descricao,
             linkWhatsapp,
@@ -163,7 +165,26 @@ function ModalNovoImovel() {
                                 }
 
                             </select>
-                        </div >
+                        </div>
+
+                        <div className='situacao'>
+                            <div className="modal_ad_texto inter_500">Situação</div>
+                        </div>
+                        <div className='select_tipo_modal'>
+                            <select
+                                id={"situacao"}
+                                value={situacao}
+                                className="select_tipo"
+                                onChange={(e) => {
+                                    setSituacao(e.target.value);
+                                }}
+                                required
+                            >
+                                <option hidden>Selecionar</option>
+                                <option>Vendido</option>
+                                <option>Não Vendido</option>
+                            </select>
+                        </div>
 
                         <div className="input_content">
                             <div className="modal_ad_texto inter_500">Valor</div>
