@@ -38,6 +38,16 @@ function CriarConta() {
             });
 
             const resposta = await response.text();
+
+            if (resposta !== "Senha menor que 6 digitos") {
+                if (resposta !== "E-mail já cadastrado") {
+                    if (resposta !== "E-mail inválido") {
+                        setMensagemLogin("E-mail foi enviado");
+                        return;
+                    }
+                }
+            }
+
             setRespostaLocalhost(resposta);
             setMensagemLogin(true);
         } catch (error) {

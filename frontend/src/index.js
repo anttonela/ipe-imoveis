@@ -11,6 +11,7 @@ import Login from './pages/Login';
 import CriarConta from './pages/CriarConta';
 import HomeAdministrativo from './pages/HomeAdministrativo';
 import Card from './components/cliente/Card';
+import ContaConfirmada from './pages/ContaConfirmada';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -42,6 +43,10 @@ root.render(
         <Route
           path="criarConta"
           element={<CriarConta />}
+        />
+        <Route
+          path="confirmado"
+          element={<ContaConfirmada />}
         />
       </Routes>
     </BrowserRouter>

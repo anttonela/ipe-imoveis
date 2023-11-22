@@ -2,11 +2,8 @@ import InputFiltro from './InputFiltro';
 import React, { useState } from 'react';
 import FiltroAtualiza from './FiltroAtualiza';
 
-function Filtro({ onClick }) {
+function Filtro({ onClick, handleSubmit, setFiltroClicado, tipoSelecionado, setTipoSelecionado, cidade, setCidade, classificacaoSelecionada, setClassificacaoSelecionada }) {
 
-    const [classificacaoSelecionada, setClassificacaoSelecionada] = useState('');
-    const [tipoSelecionado, setTipoSelecionado] = useState('');
-    const [cidade, setCidade] = useState('');
     const [mensagemLogin, setMensagemLogin] = useState(false);
     const [respostaLocalhost, setRespostaLocalhost] = useState('');
     const opcoesClassificacao = ['Imóvel', 'Máquinas Agrícolas', 'Outros'];
@@ -21,34 +18,6 @@ function Filtro({ onClick }) {
         setTipoSelecionado('');
         setClassificacaoSelecionada(classificacao);
     }
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        const dados = {
-            classificacao: classificacaoSelecionada,
-            tipo: tipoSelecionado,
-            cidade,
-        };
-
-        console.log('Dados a serem enviados:', dados);
-
-        try {
-            const response = await fetch('http://localhost:8080/filtro/', {
-                method: 'POST',
-                body: JSON.stringify(dados),
-            });
-
-            const resposta = await response.text();
-            console.log('Resposta da API:', resposta);
-
-            setRespostaLocalhost(resposta);
-            setMensagemLogin(true);
-            //onClick();
-        } catch (error) {
-            console.error('Erro ao enviar os dados para a API:', error);
-        }
-    };
 
     return (
         <form onSubmit={handleSubmit} encType='multipart/form-data'>

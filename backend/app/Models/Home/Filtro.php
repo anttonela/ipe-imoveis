@@ -31,14 +31,4 @@ class Filtro extends Banco
 
         print json_encode($select);
     }
-
-    public function view()
-    {
-        print ($this->filtro());
-
-        // foreach ($data as &$arrumandoValor) {
-        // $arrumandoValor['valor'] = number_format($arrumandoValor['valor'], 2, ',', '.');
-        // }
-
-    }
 }

@@ -39,12 +39,6 @@ class Routes extends CorpoJson
         $filtro->filtro();
     }
 
-    public function filtroView(): void
-    {
-        $filtro = new Filtro();
-        $filtro->view();
-    }
-
     public function imoveis(): void
     {
         print json_encode($this->select("Imóvel"));
@@ -77,7 +71,17 @@ class Routes extends CorpoJson
         http_response_code(200);
 
         $criarConta = new CriarConta();
-        $criarConta->registrandoResposta();
+        $criarConta->confirmandoEmail();
+    }
+
+    public function registrandoConta(): void
+    {
+        $this->cabecalho();
+
+        http_response_code(200);
+
+        $criarConta = new CriarConta();
+        $criarConta->registrandoConta();
     }
 
     public function login(): void

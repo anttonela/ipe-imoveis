@@ -2,17 +2,13 @@
 
 namespace app\Models\Home;
 
+use app\View\TemplateEmail;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
-class Email
+class Email extends TemplateEmail
 {
-    private function corpoDoEmail(): string
-    {
-        $conteudo = "oi";
-        return $conteudo;
-    }
 
     public function enviar(): void
     {
@@ -28,12 +24,12 @@ class Email
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
             $mail->Port = 465;
 
-            $mail->setFrom('arantesimovel@gmail.com', 'Arantes Imóveis'); // quem vai enviar
+            $mail->setFrom('arantesimovel@gmail.com', 'Arantes Imoveis'); // quem vai enviar
             $mail->addAddress('antonelaipe@gmail.com', 'Usuário'); // quem vai receber este email
             $mail->addReplyTo('arantesimovel@gmail.com', 'Information');
             $mail->isHTML(true);
-            $mail->Subject = 'Mensagem via gmail';
-            $body = $this->corpoDoEmail();
+            $mail->Subject = 'Confirmacao de conta';
+            $body = $this->conteudoDoEmail();
             $mail->Body = $body;
 
             $mail->send();

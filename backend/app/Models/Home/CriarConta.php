@@ -5,6 +5,10 @@ namespace app\Models\Home;
 use app\Models\Crud\Functions\Select;
 use app\Models\Crud\Utilizadores\Banco;
 use app\Models\Crud\Utilizadores\Tabela;
+use app\View\TemplateEmail;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 
 class CriarConta extends Banco
 {
@@ -69,7 +73,7 @@ class CriarConta extends Banco
         strlen($this->senha) < 6 ? $this->arMensagem[] = 'Senha menor que 6 digitos' : null;
     }
 
-    public function registrandoResposta(): void
+    public function confirmandoEmail(): void
     {
         $this->setCriarConta();
         $this->verificandoEmailValido();
@@ -77,45 +81,53 @@ class CriarConta extends Banco
         $this->validandoSenha();
 
         if (!isset($this->arMensagem[0])) {
-            $table = new Tabela("usuario");
 
-            $arTable = [
-                "nome" => "{$this->nome}",
-                "sobrenome" => "{$this->sobrenome}",
-                "email" => "{$this->email}",
-                "senha" => "{$this->senha}"
-            ];
+            $mail = new PHPMailer(true);
+            $conteudo = new TemplateEmail();
 
-            $table->salvarInserir($arTable);
-            $this->arMensagem[] = 'Conta criada com sucesso!';
-            /*
-            $data_envio = date('d/m/Y');
-            $hora_envio = date('H:i:s');
+            try {
+                $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'arantesimovel@gmail.com';
+                $mail->Password = 'qfsuhumwvlfxincx';
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+                $mail->Port = 465;
 
-            // Correção das tags HTML
-            $arquivo = "
-            <html>
-                <p><b>Nome: </b>{$this->nome}</p>
-                <p><b>E-mail: </b>{$this->email}</p>
-                <p>Este e-mail foi enviado em <b>{$data_envio}</b> às <b>{$hora_envio}</b></p>
-            </html>
-            ";
+                $mail->setFrom('arantesimovel@gmail.com', 'Arantes Imoveis'); // quem vai enviar
+                $mail->addAddress($this->email, $this->nome); // quem vai receber este email
+                $mail->addReplyTo('arantesimovel@gmail.com', 'Information');
+                $mail->isHTML(true);
+                $mail->Subject = 'Confirmacao de conta';
+                $body = $conteudo->conteudoDoEmail();
+                $mail->Body = $body;
 
-            $destino = "antonelaipe@gmail.com";
-            $assunto = "Contato pelo Site";
-
-            $headers  = "MIME-Version: 1.0\n";
-            $headers .= "Content-type: text/html; charset=iso-8859-1\n";
-            $headers .= "From: {$this->nome} <{$this->email}>";
-
-            mail($destino, $assunto, $arquivo, $headers);
-
-            $this->arMensagem = "<meta http-equiv='refresh' content='10;URL=../contato.html'>";
+                $mail->send();
+            } catch (Exception $e) {
+                print "Error: {$mail->ErrorInfo}";
+            }
 
             return;
-            */
         }
 
         print_r(current($this->arMensagem));
+    }
+
+    public function registrandoConta(): void
+    {
+        $this->setCriarConta();
+        
+        $table = new Tabela("usuario");
+
+        $arTable = [
+            "nome" => "{$this->nome}",
+            "sobrenome" => "{$this->sobrenome}",
+            "email" => "{$this->email}",
+            "senha" => "{$this->senha}",
+        ];
+
+        $table->salvarInserir($arTable);
+        $this->arMensagem[] = 'Conta criada com sucesso!';
     }
 }
