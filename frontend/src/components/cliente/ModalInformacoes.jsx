@@ -15,6 +15,11 @@ function Modal({ id, cidade, valor, descricao, linkWhatsapp, linkFacebook, linkI
         navegador(-1);
     };
 
+    let valorEmReais = (valor / 100).toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+    });
+
     return (
         <div className="modal_content">
             <div className="sair_modal">
@@ -43,7 +48,7 @@ function Modal({ id, cidade, valor, descricao, linkWhatsapp, linkFacebook, linkI
 
                 <div className='modal_valor'>
                     <div className='modal_cidade_produto inter_700'>{cidade}</div>
-                    <div className='modal_preco inter_700'>R$: {valor}</div>
+                    <div className='modal_preco inter_700'>{valorEmReais}</div>
                 </div>
 
                 <div className='modal_descricao inter_500'>

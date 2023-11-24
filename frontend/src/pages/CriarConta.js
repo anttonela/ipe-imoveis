@@ -11,10 +11,10 @@ function CriarConta() {
         document.title = "Criar Conta";
     });
 
+    const [nome, setNome] = useState('');
     const [data, setData] = useState(null);
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-    const [nome, setNome] = useState('');
     const [sobrenome, setSobrenome] = useState('');
     const [mensagemLogin, setMensagemLogin] = useState(false);
     const [respostaLocalhost, setRespostaLocalhost] = useState('');
@@ -38,18 +38,21 @@ function CriarConta() {
             });
 
             const resposta = await response.text();
+            console.log("Resposta da API" + resposta);
 
-            if (resposta !== "Senha menor que 6 digitos") {
-                if (resposta !== "E-mail já cadastrado") {
-                    if (resposta !== "E-mail inválido") {
-                        setMensagemLogin("E-mail foi enviado");
-                        return;
-                    }
-                }
+            if (
+                resposta !== "Senha menor que 6 digitos" &&
+                resposta !== "E-mail já cadastrado" &&
+                resposta !== "E-mail inválido"
+            ) {
+                setRespostaLocalhost("E-mail para confirmação foi enviado. Verifique sua caixa principal ou de spam para ativá-la.");
+                setMensagemLogin(true);
+                return;
             }
 
             setRespostaLocalhost(resposta);
             setMensagemLogin(true);
+
         } catch (error) {
             console.error('Erro ao enviar os dados para a API:', error);
         }
@@ -107,7 +110,9 @@ function CriarConta() {
                                 </div>
 
                                 {mensagemLogin && (
-                                    <div className="mensagem_erro">{respostaLocalhost}</div>
+                                    <div className='mensagem_content'>
+                                        <div className="mensagem_erro">{respostaLocalhost}</div>
+                                    </div>
                                 )}
 
                             </form>

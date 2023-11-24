@@ -92,7 +92,6 @@ class TemplateEmail
                             </div>
                             <div class='texto'>Se você não iniciou este processo ou não reconhece esta atividade, ignore este
                                 e-mail.
-                                Gean é só um teste o link do botão ainda não tá funcionando kkkkkkkk
                                 </div>
                         </div>
                         <a class='botao_content' href='http://localhost:3000/confirmado'>

@@ -143,9 +143,11 @@ function ConteudoHome() {
                     ) : (
                         <div className='resposta_filtro_content'>
                             <div className='resposta_filtro'>
+
                                 <div className='filtro_imagem_emoji'>
                                     <img src={IconTriste} alt="Emoji triste" />
                                 </div>
+
                                 Nenhum produto foi encontrado
                             </div>
                         </div>

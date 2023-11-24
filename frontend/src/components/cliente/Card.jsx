@@ -3,6 +3,12 @@ import FotoImovel from '../../assets/img/imoveis.png';
 import { Link } from 'react-router-dom';
 
 function Card({ classificacao, idCard, cidade, breve_descricao, valor, situacao, informacoes }) {
+    
+    let valorEmReais = (valor / 100).toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+    });
+
     return (
         <>
             <a
@@ -27,7 +33,7 @@ function Card({ classificacao, idCard, cidade, breve_descricao, valor, situacao,
                             </div>
 
                             <div className='card_valor'>
-                                <div className='valor_produto inter_700'>R$: {valor}</div>
+                                <div className='valor_produto inter_700'>{valorEmReais}</div>
                                 <div className='card_texto'>{situacao}</div>
                             </div>
                         </div>

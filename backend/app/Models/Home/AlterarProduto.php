@@ -29,12 +29,6 @@ class AlterarProduto extends Banco
         empty($data['linkFacebook']) ? $this->linkFacebook = "" : $this->linkFacebook = "https://www.facebook.com/" . $data['linkFacebook'] . "/";
         empty($data['linkOlx']) ? $this->linkOlx = "" : $this->linkOlx = "https://www.olx.com.br/";
 
-        if (substr($data['valor'], -3) === ',00') {
-            $valorFormatado = substr($data['valor'], 0, -3);
-        } else {
-            $valorFormatado = $data['valor'];
-        }
-        
         $alterar =
         "
             UPDATE produto
@@ -43,7 +37,7 @@ class AlterarProduto extends Banco
             tipo = '" . $data['tipo'] . "',
             cidade = '" . $data['cidade'] . "',
             situacao = '" . $data['situacao'] . "',
-            valor = " . floatval(str_replace(',', '.', $valorFormatado)) . ",
+            valor = " . $data['valor'] . ",
             descricao = '" . $data['descricao'] . "',
             breve_descricao = '" . implode(' ', array_slice(explode(' ', $data['descricao']), 0, 7)) . "',
             link_whatsapp = '{$this->linkWhatsapp}',

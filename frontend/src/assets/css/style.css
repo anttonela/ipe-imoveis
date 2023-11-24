@@ -1332,7 +1332,16 @@ p {
     align-items: center;
 }
 
+.mensagem_content {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .mensagem_erro {
+    width: 70%;
     display: flex;
     justify-content: center;
     align-items: flex-end;

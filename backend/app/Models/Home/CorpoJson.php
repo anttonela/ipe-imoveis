@@ -26,10 +26,6 @@ class CorpoJson extends Banco
 
         $select = $this->executarFetchAll("SELECT * FROM produto WHERE classificacao = '{$nomeCategoria}' ORDER BY RANDOM()");
 
-        foreach ($select as &$row) {
-            $row['valor'] = number_format($row['valor'], 2, ',', '.');
-        }
-
         return $select;
     }
 

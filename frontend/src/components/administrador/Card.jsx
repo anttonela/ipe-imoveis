@@ -5,6 +5,11 @@ import ImagemImoveis from '../../assets/img/imoveis.png';
 
 function Card({ cidade, breve_descricao, valor, situacao, classificacao, idCard, tipo, descricao, whatsapp, instagram, facebook, olx }) {
 
+    let valorEmReais = (valor / 100).toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+    });
+
     const handleDeleteClick = () => {
         const apagar = window.confirm('Você deseja apagar este produto?');
 
@@ -61,7 +66,7 @@ function Card({ cidade, breve_descricao, valor, situacao, classificacao, idCard,
                         </div>
 
                         <div className='card_valor'>
-                            <div className='valor_produto inter_700'>R$: {valor}</div>
+                            <div className='valor_produto inter_700'>R$: {valorEmReais}</div>
                             <div className='card_texto'>{situacao}</div>
                         </div>
                     </div>

@@ -50,6 +50,11 @@ function ModalEditar({ idCard, cidadeProduto, classificacaoProduto, tipoProduto,
         return '';
     }
 
+    let valorEmReais = (valorProduto / 100).toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+    });
+
     const opcoesClassificacao = ['Imóvel', 'Máquinas Agrícolas', 'Outros'];
 
     const opcoesTipos = {
@@ -238,7 +243,7 @@ function ModalEditar({ idCard, cidadeProduto, classificacaoProduto, tipoProduto,
 
                         <InformacoesModal
                             id={"valor"}
-                            value={valor !== '' ? valor : valorProduto}
+                            value={valorEmReais}
                             onChange={setValor}
                             nomeInformacao={"Valor"}
                             placeholder={"R$ 1.000.000"}
