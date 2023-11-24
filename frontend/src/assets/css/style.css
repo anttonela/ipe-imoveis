@@ -76,6 +76,32 @@ body {
     color: #FFF;
 }
 
+.resposta_filtro_content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 390px;
+    width: 100%;
+    background-color: #F5F5F5;
+    font-size: 48px;
+    color: #9E9E9E;
+    font-weight: 600;
+}
+
+.filtro_imagem_emoji {
+    height: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.resposta_filtro {
+    display: grid;
+    align-items: center;
+    justify-content: space-between;
+    height: 200px;
+}
+
 .header_texto {
     height: 80%;
     width: 100%;

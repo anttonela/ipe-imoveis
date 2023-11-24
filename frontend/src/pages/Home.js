@@ -1,36 +1,27 @@
+import values from 'lodash/values';
 import React, { useEffect, useState } from 'react';
-import Filtro from '../components/cliente/Filtro';
-import PrimeiroSubtitulo from '../components/cliente/PrimeiroSubtitulo';
-import Fileira from '../components/cliente/Fileira';
-import Subtitulo from '../components/cliente/Subtitulo';
+
 import Footer from '../components/cliente/Footer';
 import Header from '../components/cliente/Header';
-import values from 'lodash/values';
-import FileiraCardSombreado from '../components/cliente/FileiraCardSombreado';
+import Filtro from '../components/cliente/Filtro';
+import Fileira from '../components/cliente/Fileira';
+import IconTriste from '../assets/img/emoji_triste.svg'
+import Subtitulo from '../components/cliente/Subtitulo';
 import CardSombreado from '../components/cliente/CardSombreado';
+import PrimeiroSubtitulo from '../components/cliente/PrimeiroSubtitulo';
 
-function ConteudoHome({ onClick }) {
-    const [filtroClicado, setFiltroClicado] = useState(false);
-    const [classificacaoSelecionada, setClassificacaoSelecionada] = useState('');
-    const [tipoSelecionado, setTipoSelecionado] = useState('');
+function ConteudoHome() {
+
+    const [data, setData] = useState([]);
     const [cidade, setCidade] = useState('');
     const [mensagemLogin, setMensagemLogin] = useState(false);
-    const [respostaLocalhost, setRespostaLocalhost] = useState('');
-    const [data, setData] = useState([]);
+    const [filtroClicado, setFiltroClicado] = useState(false);
+    const [tipoSelecionado, setTipoSelecionado] = useState('');
+    const [classificacaoSelecionada, setClassificacaoSelecionada] = useState('');
 
-    const getProdutos = async (filtro) => {
-        const response = await fetch('http://localhost:8080/filtro/', {
-            method: 'POST',
-            body: JSON.stringify(filtro),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-
-        const dataFiltrada = await response.json();
-
-        setData(dataFiltrada);
-    }
+    useEffect(() => {
+        document.title = "Home Cliente";
+    })
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -40,38 +31,28 @@ function ConteudoHome({ onClick }) {
             tipo: tipoSelecionado,
             cidade,
         };
-
-        console.log('Dados a serem enviados para filtrar:', dados);
+        // console.log('Dados a serem enviados:', dados);
 
         try {
-            await getProdutos(dados);
-
             const response = await fetch('http://localhost:8080/filtro/', {
                 method: 'POST',
                 body: JSON.stringify(dados),
-            });
+            })
 
-            const resposta = await response.text();
-            console.log('Resposta da API AQUII:', resposta);
+            const resposta = await response.json();
+            //  console.log('Resposta da API AQUII:', resposta);
 
-            setRespostaLocalhost(resposta);
+            setData(resposta);
             setMensagemLogin(true);
-
             setFiltroClicado(true)
         } catch (error) {
             console.error('Erro ao enviar os dados para a API:', error);
         }
     };
 
-    useEffect(() => {
-        document.title = "Home Cliente";
-        getProdutos();
-    }, []);
-
     return (
         <div className='container'>
 
-            {/* NÃO CLICADO */}
             {!filtroClicado && (
                 < Header href="#imoveis" />
             )}
@@ -81,7 +62,6 @@ function ConteudoHome({ onClick }) {
             )}
 
             <Filtro
-                onClick={onClick}
                 handleSubmit={handleSubmit}
                 setFiltroClicado={setFiltroClicado}
                 tipoSelecionado={tipoSelecionado}
@@ -132,30 +112,44 @@ function ConteudoHome({ onClick }) {
 
             {filtroClicado && (
                 <>
-                    {values(data).map(produto =>
-                        <CardSombreado
-                            classificacao={produto.classificacao}
-                            idCard={produto.id_produto}
-                            key={produto.id_produto}
-                            cidade={produto.cidade}
-                            breve_descricao={produto.breve_descricao}
-                            valor={produto.valor}
-                            situacao={produto.situacao}
-                            informacoes={{
-                                id: produto.id_produto,
-                                cidade: produto.cidade,
-                                valor: produto.valor,
-                                descricao: produto.descricao,
-                                link_whatsapp: produto.link_whatsapp,
-                                link_facebook: produto.link_facebook,
-                                link_instagram: produto.link_instagram,
-                                link_olx: produto.link_olx,
-                                classificacao: produto.classificacao,
-                                tipo: produto.tipo,
-                            }}
-                        />
+                    {data.length > 0 ? (
+                        <div className="card_content_administrativo">
+                            <div className="content_administrativo">
+                                {values(data).map(resposta => (
+                                    <CardSombreado
+                                        classificacao={resposta.classificacao}
+                                        idCard={resposta.id_produto}
+                                        key={resposta.id_produto}
+                                        cidade={resposta.cidade}
+                                        breve_descricao={resposta.breve_descricao}
+                                        valor={resposta.valor}
+                                        situacao={resposta.situacao}
+                                        informacoes={{
+                                            id: resposta.id_produto,
+                                            cidade: resposta.cidade,
+                                            valor: resposta.valor,
+                                            descricao: resposta.descricao,
+                                            link_whatsapp: resposta.link_whatsapp,
+                                            link_facebook: resposta.link_facebook,
+                                            link_instagram: resposta.link_instagram,
+                                            link_olx: resposta.link_olx,
+                                            classificacao: resposta.classificacao,
+                                            tipo: resposta.tipo,
+                                        }}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                    ) : (
+                        <div className='resposta_filtro_content'>
+                            <div className='resposta_filtro'>
+                                <div className='filtro_imagem_emoji'>
+                                    <img src={IconTriste} alt="Emoji triste" />
+                                </div>
+                                Nenhum produto foi encontrado
+                            </div>
+                        </div>
                     )}
-
                 </>
             )}
 
