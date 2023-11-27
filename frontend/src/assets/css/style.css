@@ -183,29 +183,29 @@ body {
 }
 
 .filtro {
-    height: 120px;
+    height: 12.2vh;
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
 
 .filtro_card {
-    width: 290px;
-    height: 50px;
+    width: 29vh;
+    height: 5vh;
     display: flex;
     justify-content: center;
 }
 
 .select {
-    width: 285px;
-    height: 48px;
-    padding: 10px;
-    border-radius: 10px;
-    font-size: 18px;
+    width: 100%;
+    height: 100%;
+    padding: 1vh;
+    border-radius: 1vh;
+    font-size: 1.8vh;
     display: flex;
     justify-content: space-around;
     background-color: transparent;
-    border: 2px solid #E0E0E0;
+    border: 0.2vh solid #E0E0E0;
     color: #9E9E9E;
 }
 
@@ -234,19 +234,19 @@ body {
     align-items: end;
 }
 
-.botao_fltro_content {
-    width: 290px;
-    height: 50px;
+.botao_filtro_content {
+    width: 29vh;
+    height: 5vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .botao_filtro {
-    height: 48px;
-    width: 285px;
-    border-radius: 10px;
-    font-size: 18px;
+    height: 4.8vh;
+    width: 28.5vh;
+    border-radius: 1vh;
+    font-size: 1.8vh;
     border: none;
     background-color: #2B50AA;
     color: #FAFAFA;
@@ -257,8 +257,8 @@ body {
 }
 
 .linha_divisora {
-    width: 2px;
-    height: 48px;
+    width: 0.2vh;
+    height: 4.8vh;
     border-radius: 2px;
     background-color: #272727;
 }
@@ -327,15 +327,15 @@ body {
 }
 
 .subtitulo_content {
-    height: 115px;
+    height: 11.5vh;
     display: flex;
     align-items: flex-end;
     justify-content: center;
 }
 
 .subtitulo {
-    height: 90px;
-    font-size: 48px;
+    height: 9vh;
+    font-size: 4.8vh;
     font-weight: 600;
     display: flex;
     align-items: initial;
@@ -542,21 +542,22 @@ body {
 }
 
 .content_botao_ver_mais {
-    height: 200px;
+    height: 20vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .botao_ver_mais {
-    width: 285px;
-    height: 48px;
-    border-radius: 10px;
+    width: 28.5vh;
+    height: 4.8vh;
+    border-radius: 1vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 1.3vh;
     background-color: transparent;
-    border: 2px solid #272727;
+    border: 0.2vh solid #272727;
 }
 
 .botao_ver_mais:hover {
@@ -588,13 +589,13 @@ body {
 
 .footer_content {
     width: 100%;
-    height: 420px;
+    height: 42vh;
     display: flex;
     align-items: flex-end;
 }
 
 .footer {
-    height: 300px;
+    height: 30vh;
     width: 100%;
     background-color: #272727;
     display: flex;
@@ -603,7 +604,7 @@ body {
 }
 
 .footer_informacoes {
-    height: 260px;
+    height: 26vh;
     width: 94%;
     display: flex;
     justify-content: space-between;
@@ -611,66 +612,66 @@ body {
 }
 
 .footer_informacoes_texto {
-    width: 900px;
+    width: 90vh;
     display: flex;
     justify-content: space-between;
     align-items: initial;
 }
 
 .footer_subtitulo {
-    font-size: 32px;
-    letter-spacing: 0.48px;
+    font-size: 3.2vh;
+    letter-spacing: 0.048vh;
     font-weight: 600;
     color: #FFF;
 }
 
 .footer_texto {
-    font-size: 20px;
-    letter-spacing: 0.3px;
+    font-size: 2vh;
+    letter-spacing: 0.03vh;
     font-weight: 500;
     color: #FFF;
 }
 
 .contato {
-    height: 160px;
-    width: 200px;
+    height: 16vh;
+    width: 20vh;
     display: grid;
     align-items: center;
     justify-content: center;
 }
 
 .endereco {
-    height: 160px;
-    width: 160px;
+    height: 16vh;
+    width: 16vh;
     display: grid;
     align-items: center;
     justify-content: center;
 }
 
 .geral {
-    height: 125px;
-    width: 255px;
+    height: 12.5vh;
+    width: 25.5vh;
     display: grid;
     align-items: center;
     justify-content: space-between;
 }
 
 .redes_sociais {
-    height: 150px;
-    width: 210px;
+    height: 15vh;
+    width: 21vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .rede_social_icon {
-    width: 40px;
-    height: 40px;
+    width: 4vh;
+    height: 4vh;
 }
 
 .logo_branca {
-    height: 70px;
-    width: 157px;
+    height: 7vh;
+    width: 15.7vh;
 }
 
 .modal {

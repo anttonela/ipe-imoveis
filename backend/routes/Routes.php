@@ -10,6 +10,8 @@ use app\Models\Home\Entrar;
 use app\Models\Home\Filtro;
 use app\Models\Home\IdModal;
 use app\Models\Home\NovoProduto;
+use app\Models\Home\Teste;
+use app\Models\Home\UploadImagem;
 
 class Routes extends CorpoJson
 {
@@ -52,6 +54,23 @@ class Routes extends CorpoJson
     public function outros(): void
     {
         print json_encode($this->select("Outros"));
+    }
+
+    public function upload(): void
+    {
+        $this->cabecalho();
+
+        http_response_code(200);
+
+        $uploadImagem = new UploadImagem('../../../View/Upload/');
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['images'])) {
+            $resultado = $uploadImagem->salvarImagem();
+
+            print json_encode($resultado);
+        } else {
+            print json_encode("Por favor, envie um arquivo.");
+        }
     }
 
     public function novoImovel(): void

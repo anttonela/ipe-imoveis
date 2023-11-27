@@ -243,7 +243,7 @@ function ModalEditar({ idCard, cidadeProduto, classificacaoProduto, tipoProduto,
 
                         <InformacoesModal
                             id={"valor"}
-                            value={valorEmReais}
+                            value={valor !== '' ? valor : valorEmReais}
                             onChange={setValor}
                             nomeInformacao={"Valor"}
                             placeholder={"R$ 1.000.000"}

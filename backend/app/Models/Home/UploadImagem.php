@@ -4,7 +4,14 @@ namespace app\Models\Home;
 
 class UploadImagem
 {
-    public function passandoParaCaminho()
+    private string $caminho;
+
+    public function __construct(string $caminho)
+    {
+        $this->caminho = $caminho;
+    }
+
+    public function salvarImagem()
     {
 
     }

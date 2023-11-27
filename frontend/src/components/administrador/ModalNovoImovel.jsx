@@ -8,7 +8,7 @@ import InputModal from './InputModal';
 import UploadFotos from './UploadFotos';
 
 function ModalNovoImovel() {
-    const [imagens, setImagens] = useState('');
+    const [imagens, setImagens] = useState([]);
     const [message, setMessage] = useState('');
     const [cidade, setCidade] = useState('');
     const [classificacao, setClassificacao] = useState('');
@@ -24,26 +24,26 @@ function ModalNovoImovel() {
 
     const opcoesClassificacao = ['Imóvel', 'Máquinas Agrícolas', 'Outros'];
 
-    const uploadImage = async (e) => {
-        e.preventDefault();
-
+    const uploadImages = async () => {
         const formData = new FormData();
-        formData.append('imagens', imagens);
+        imagens.forEach((image) => {
+            formData.append('images[]', image);
+        });
 
-        const headers = {
-            'headers': {
-                'Content-Type': 'multipart/form-data'
-            }
-        }
-
-        await axios.post('http://localhost:8080/upload-image', formData, headers)
-            .then((response) => {
-                setMessage(response.data.message);
-            }).catch((err) => {
-                if (err.response) {
-                    setMessage(err.response.data.message);
-                }
+        try {
+            const response = await fetch('http://localhost:8080/upload/', {
+                method: 'POST',
+                body: formData,
             });
+
+            if (response.ok) {
+                console.log('Imagens enviadas com sucesso!');
+            } else {
+                console.error('Erro ao enviar imagens:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Erro ao enviar imagens:', error);
+        }
     }
 
     const opcoesTipos = {
@@ -106,7 +106,6 @@ function ModalNovoImovel() {
                     <UploadFotos
                         images={imagens}
                         setImages={setImagens}
-                        form={uploadImage}
                     />
 
                     <div className='modal_informacoes'>
@@ -254,7 +253,7 @@ function ModalNovoImovel() {
                         />
 
                         <div className='content_botao_confirmar'>
-                            <button className='botao_confirmar_adicionar' type="submit">Adicionar</button>
+                            <button className='botao_confirmar_adicionar' onClick={uploadImages} type="submit">Adicionar</button>
                         </div>
 
 
