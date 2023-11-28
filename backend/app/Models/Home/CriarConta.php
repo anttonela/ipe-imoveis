@@ -52,15 +52,9 @@ class CriarConta extends Banco
     {
         $this->setCriarConta();
 
-        $table = new Select("usuario");
-        $arTable = [
-            "COLUMN" => "email",
-            "WHERE" => "email = '{$this->email}'",
-        ];
+        $arSelect = $this->executarFetchAll("SELECT FROM usuario WHERE email = '{$this->email}' and situacao = 2");
 
-        $arSelectEmail = $this->executarFetchAll($table->condicoes($arTable));
-
-        if ($arSelectEmail != null) {
+        if ($arSelect != null) {
             $this->arMensagem[] = 'E-mail já cadastrado';
             return;
         }
@@ -73,7 +67,7 @@ class CriarConta extends Banco
         strlen($this->senha) < 6 ? $this->arMensagem[] = 'Senha menor que 6 digitos' : null;
     }
 
-    public function confirmandoEmail(): void
+    public function enviandoEmail()
     {
         $this->setCriarConta();
         $this->verificandoEmailValido();
@@ -84,9 +78,26 @@ class CriarConta extends Banco
 
             $mail = new PHPMailer(true);
             $conteudo = new TemplateEmail();
+            $table = new Tabela("usuario");
+
+            for ($i = 0; $i < 15; $i++) {
+                $chave .= 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@&'[rand(0, strlen('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@&') - 1)];
+            }
+
+            $arTable = [
+                "nome" => "{$this->nome}",
+                "sobrenome" => "{$this->sobrenome}",
+                "email" => "{$this->email}",
+                "senha" => "{$this->senha}",
+                "chave" => "{$chave}",
+                "situacao" => "1", //  1 - Não confirmado    2 - Confirmado
+            ];
+
+            $table->salvarInserir($arTable);
 
             try {
                 $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+                $mail->CharSet = "UTF-8";
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
@@ -100,7 +111,7 @@ class CriarConta extends Banco
                 $mail->addReplyTo('arantesimovel@gmail.com', 'Information');
                 $mail->isHTML(true);
                 $mail->Subject = 'Confirmacao de conta';
-                $body = $conteudo->conteudoDoEmail();
+                $body = $conteudo->conteudoDoEmail($chave);
                 $mail->Body = $body;
 
                 $mail->send();
@@ -108,26 +119,35 @@ class CriarConta extends Banco
                 print "Error: {$mail->ErrorInfo}";
             }
 
-            return;
+            return "chave - " . $chave;
         }
 
         print_r(current($this->arMensagem));
     }
 
-    public function registrandoConta(): void
+    public function confirmandoConta()
     {
-        $this->setCriarConta();
-        
-        $table = new Tabela("usuario");
+        //$urlAtual = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        $urlAtual = "http://localhost:3000/login/chave/U3mSVMcA4KmELjQ";
+        $parteDesejada = '/login/chave/';
 
-        $arTable = [
-            "nome" => "{$this->nome}",
-            "sobrenome" => "{$this->sobrenome}",
-            "email" => "{$this->email}",
-            "senha" => "{$this->senha}",
-        ];
+        $posicao = strpos($urlAtual, $parteDesejada);
 
-        $table->salvarInserir($arTable);
-        $this->arMensagem[] = 'Conta criada com sucesso!';
+        if ($posicao !== false) {
+            $urlChave = substr($urlAtual, $posicao + strlen($parteDesejada));
+
+            $table = new Select("usuario");
+
+            $arTable = [
+                "COLUMN" => "",
+                "WHERE" => "chave = '{$urlChave}'",
+            ];
+
+            print json_encode($this->executarFetchAll($table->condicoes($arTable)));
+        } else {
+            print json_encode("urlChave: problema");
+        }
+
+        print json_encode("aqui");
     }
 }

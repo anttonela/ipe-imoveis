@@ -56,6 +56,7 @@ class Routes extends CorpoJson
         print json_encode($this->select("Outros"));
     }
 
+    /*
     public function upload(): void
     {
         $this->cabecalho();
@@ -71,6 +72,15 @@ class Routes extends CorpoJson
         } else {
             print json_encode("Por favor, envie um arquivo.");
         }
+    }*/
+    public function chave(): void
+    {
+        $this->cabecalho();
+
+        http_response_code(200);
+
+        $criarConta = new CriarConta();
+        $criarConta->confirmandoConta();
     }
 
     public function novoImovel(): void
@@ -90,9 +100,10 @@ class Routes extends CorpoJson
         http_response_code(200);
 
         $criarConta = new CriarConta();
-        $criarConta->confirmandoEmail();
+        $criarConta->enviandoEmail();
     }
 
+    /*
     public function registrandoConta(): void
     {
         $this->cabecalho();
@@ -100,8 +111,8 @@ class Routes extends CorpoJson
         http_response_code(200);
 
         $criarConta = new CriarConta();
-        $criarConta->registrandoConta();
-    }
+        $criarConta->enviandoEmail();
+    }*/
 
     public function login(): void
     {

@@ -4,7 +4,7 @@ namespace app\View;
 
 class TemplateEmail
 {
-    public function conteudoDoEmail(): string
+    public function conteudoDoEmail($chave): string
     {
         $conteudo =
             "
@@ -84,7 +84,7 @@ class TemplateEmail
                         <div class='titulo'>Confirmação de Criação de Conta - Arantes Imóveis</div>
                         <div class='inter_500'>
 
-                            <div class='texto'>Olá!</div>
+                            <div class='texto'>Olá, agradecemos a sua solicitação de cadastramento em nosso site!</div>
                             <div class='texto'>
                                 Recentemente foi iniciado um processo de criação de conta usando este endereço de e-mail. Para
                                 garantir que foi você mesmo quem solicitou a criação da conta, precisamos da sua confirmação.
@@ -94,7 +94,7 @@ class TemplateEmail
                                 e-mail.
                                 </div>
                         </div>
-                        <a class='botao_content' href='http://localhost:3000/confirmado'>
+                        <a class='botao_content' href='http://localhost:3000/login/chave/{$chave}'>
                             <button class='botao' type='submit'>
                                 Confirmar
                             </button>

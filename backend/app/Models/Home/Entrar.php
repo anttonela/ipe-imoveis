@@ -43,14 +43,9 @@ class Entrar extends Banco
     {
         $this->setEntrar();
 
-        $table = new Select("usuario");
-        $arTable = [
-            "COLUMN" => "senha",
-            "WHERE" => "email = '{$this->email}'",
-        ];
-        $arSelectSenha = $this->executarFetchAll($table->condicoes($arTable));
+        $arSelect = $this->executarFetchAll("SELECT senha FROM usuario WHERE email = '{$this->email}' and situacao = 2");
 
-        $arSelectSenha[0]['senha'] === $this->senha ? $this->arMensagem[] = null :
+        $arSelect[0]['senha'] === $this->senha ? $this->arMensagem[] = null :
             $this->arMensagem[] = 'Autenticação falhou, tente novamente';
 
         if ($this->email === "arantesimoveis@gmail.com") {

@@ -4,11 +4,11 @@ import Logo from "../assets/img/logo.png";
 import CardInput from "../components/login/CardInput";
 import BannerImagem from "../assets/img/banner.png";
 
-function Login() {
+function Login({ fetch }) {
 
   let url = "/CriarConta";
 
-  //const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [erroAutenticacao, setErroAutenticacao] = useState(false);
@@ -24,7 +24,7 @@ function Login() {
     console.log('Dados a serem enviados:', dados);
 
     try {
-      const response = await fetch('http://localhost:8080/login/', {
+      const response = await fetch("http://localhost:8080/chave/", {
         method: 'POST',
         body: JSON.stringify(dados),
       });
@@ -32,6 +32,7 @@ function Login() {
       const data = await response.text();
       console.log('Resposta da API:', data);
 
+      /*
       if (data === 'null"Administrador"') {
         window.location.href = '/administrador';
       }
@@ -39,27 +40,16 @@ function Login() {
       if (data === 'null') {
         window.location.href = '/home';
         return;
-      }
+      }*/
       setErroAutenticacao(true);
     } catch (error) {
       console.error('Erro ao enviar os dados para a API:', error);
     }
   }
 
-  /*
-  const getProdutos = async () => {
-    console.log('Listar Produtos');
-    fetch("http://localhost:8080/login/")
-      .then((response) => response.json())
-      .then((responseJson) => (
-        console.log(responseJson),
-        setData(responseJson)
-      ));
-  }*/
-
   useEffect(() => {
     document.title = "Fazer Login";
-    //getProdutos();
+    console.log(window.location.href);
   }, []);
 
   return (
@@ -106,6 +96,7 @@ function Login() {
                 </div>
 
                 <form onSubmit={handleSubmit}>
+
                   <CardInput
                     id={"email"}
                     value={email}
@@ -120,6 +111,7 @@ function Login() {
                     onChange={setSenha}
                     textoInput={"Senha"}
                     placeholder={"Senha..."}
+
                   />
 
                   <div className="login_botao">
