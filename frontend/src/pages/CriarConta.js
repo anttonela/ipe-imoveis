@@ -12,7 +12,6 @@ function CriarConta() {
     });
 
     const [nome, setNome] = useState('');
-    const [data, setData] = useState(null);
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [sobrenome, setSobrenome] = useState('');
@@ -45,7 +44,7 @@ function CriarConta() {
                 resposta !== "E-mail já cadastrado" &&
                 resposta !== "E-mail inválido"
             ) {
-                setRespostaLocalhost("E-mail para confirmação foi enviado. Verifique sua caixa principal ou de spam para ativá-la.");
+                setRespostaLocalhost("E-mail para confirmação foi enviado, verifique sua caixa principal ou de spam.");
                 setMensagemLogin(true);
                 return;
             }

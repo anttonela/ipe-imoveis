@@ -4,9 +4,10 @@ import Logo from "../assets/img/logo.png";
 import CardInput from "../components/login/CardInput";
 import BannerImagem from "../assets/img/banner.png";
 
-function Login({ fetch }) {
+function Login() {
 
-  let url = "/CriarConta";
+  let criarConta = "/criarConta";
+  let recuperarSenha = "/recuperarSenha";
 
   const [data, setData] = useState([]);
   const [email, setEmail] = useState('');
@@ -19,12 +20,13 @@ function Login({ fetch }) {
     const dados = {
       email,
       senha,
+      url: window.location.href,
     };
 
     console.log('Dados a serem enviados:', dados);
 
     try {
-      const response = await fetch("http://localhost:8080/chave/", {
+      const response = await fetch("http://localhost:8080/login/", {
         method: 'POST',
         body: JSON.stringify(dados),
       });
@@ -32,7 +34,6 @@ function Login({ fetch }) {
       const data = await response.text();
       console.log('Resposta da API:', data);
 
-      /*
       if (data === 'null"Administrador"') {
         window.location.href = '/administrador';
       }
@@ -40,7 +41,8 @@ function Login({ fetch }) {
       if (data === 'null') {
         window.location.href = '/home';
         return;
-      }*/
+      }
+
       setErroAutenticacao(true);
     } catch (error) {
       console.error('Erro ao enviar os dados para a API:', error);
@@ -49,7 +51,6 @@ function Login({ fetch }) {
 
   useEffect(() => {
     document.title = "Fazer Login";
-    console.log(window.location.href);
   }, []);
 
   return (
@@ -70,7 +71,7 @@ function Login({ fetch }) {
                 <div className="login_header_texto">
                   <div className="texto">Fazer Login</div>
 
-                  <a href={url} className="link">
+                  <a href={criarConta} className="link">
                     <div className="texto_claro">Criar Conta</div>
                   </a>
                 </div>
@@ -88,7 +89,7 @@ function Login({ fetch }) {
                   <div className="login_subtitulo">
                     <div className="texto">Não tem uma conta?</div>
 
-                    <a href={url} className="link">
+                    <a href={criarConta} className="link">
                       <div className="texto_azul">Criar Conta</div>
                     </a>
 
@@ -120,14 +121,18 @@ function Login({ fetch }) {
                     </button>
                   </div>
                   {erroAutenticacao && (
-                    <div className="mensagem_erro">Autenticação falhou, tente novamente</div>
+                    <div className='mensagem_content'>
+                      <div className="mensagem_erro">Autenticação falhou, tente novamente</div>
+                    </div>
                   )}
                 </form>
 
                 <div className="login_footer">
                   <div className="card_footer">
                     <div className="texto">Esqueceu a senha?</div>
-                    <div className="texto_azul">Recuperar Senha</div>
+                    <a href={recuperarSenha} className="link">
+                      <div className="texto_azul">Recuperar Senha</div>
+                    </a>
                   </div>
                 </div>
 

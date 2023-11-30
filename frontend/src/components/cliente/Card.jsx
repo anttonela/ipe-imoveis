@@ -1,13 +1,24 @@
 import ModalInformacoes from './ModalInformacoes';
 import FotoImovel from '../../assets/img/imoveis.png';
-import { Link } from 'react-router-dom';
 
 function Card({ classificacao, idCard, cidade, breve_descricao, valor, situacao, informacoes }) {
-    
+
     let valorEmReais = (valor / 100).toLocaleString('pt-BR', {
         style: 'currency',
         currency: 'BRL',
     });
+
+    switch (classificacao) {
+        case "Imóvel":
+            classificacao = "imovel";
+            break;
+        case "Máquinas Agrícolas":
+            classificacao = "maquinasAgricolas";
+            break;
+        case "Outros":
+            classificacao = "outros";
+            break;
+    }
 
     return (
         <>
@@ -57,7 +68,7 @@ function Card({ classificacao, idCard, cidade, breve_descricao, valor, situacao,
                     tipo={informacoes.tipo}
                 />
             </div>
-            
+
         </>
     );
 }

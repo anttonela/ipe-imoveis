@@ -2,7 +2,7 @@ import Logo from '../../assets/img/logo.png';
 
 function Header() {
 
-    let url = '/Login';
+    let url = '/login';
 
     return (
         <div className="header_content">

@@ -2,9 +2,9 @@
 
 namespace app\View;
 
-class TemplateEmail
+class EmailRecuperarSenha
 {
-    public function conteudoDoEmail($chave): string
+    public function conteudoDoEmail($codigo): string
     {
         $conteudo =
             "
@@ -63,10 +63,12 @@ class TemplateEmail
                         height: 40px;
                         width: 260px;
                         border-radius: 10px;
-                        font-size: 17px;
+                        font-size: 22px;
                         border: none;
                         background-color: #2B50AA;
                         color: #FAFAFA;
+                        letter-spacing: 5px;
+                        font-weight: bold;
                     }
 
                     .texto {
@@ -81,22 +83,22 @@ class TemplateEmail
                 <div class='card'>
                     <div class='container'>
 
-                        <div class='titulo'>Confirmação de Criação de Conta - Arantes Imóveis</div>
+                        <div class='titulo'>Recuperação de Senha - Arantes Imóveis</div>
                         <div class='inter_500'>
 
-                            <div class='texto'>Olá, agradecemos a sua solicitação de cadastramento em nosso site!</div>
+                            <div class='texto'>Olá!</div>
                             <div class='texto'>
-                                Recentemente foi iniciado um processo de criação de conta usando este endereço de e-mail. Para
-                                garantir que foi você mesmo quem solicitou a criação da conta, precisamos da sua confirmação.
-                                Clique no botão 'Confirmar' para confirmar a criação da conta.
+                                Recentemente foi iniciado um processo de recuperação de senha usando este endereço de e-mail. Para
+                                garantir que foi você mesmo quem solicitou a troca, precisamos da sua confirmação.
+                                Digite o código a seguir na página em que foi solicitada a recuperação.
                             </div>
                             <div class='texto'>Se você não iniciou este processo ou não reconhece esta atividade, ignore este
                                 e-mail.
                                 </div>
                         </div>
-                        <a class='botao_content' href='http://localhost:3000/login/chave/{$chave}'>
+                        <a class='botao_content'>
                             <button class='botao' type='submit'>
-                                Confirmar
+                                {$codigo}
                             </button>
                         </a>
 

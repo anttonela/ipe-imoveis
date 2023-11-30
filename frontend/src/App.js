@@ -2,10 +2,10 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 function App() {
-  let home = "/Home";
-  let administrador = "/Administrador";
-  let login = "/Login";
-  let criarConta = "/CriarConta";
+  let home = "/home";
+  let administrador = "/home/administrador";
+  let login = "/login";
+  let criarConta = "/criarConta";
 
   return (
     <>

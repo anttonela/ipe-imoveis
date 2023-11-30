@@ -3,15 +3,17 @@
 namespace app\Models\Home;
 
 use app\Models\Crud\Functions\Select;
+use app\Models\Crud\Functions\Update;
 use app\Models\Crud\Utilizadores\Banco;
 
 class Entrar extends Banco
 {
-    public $email;
-    public $senha;
-    public $arMensagem;
+    private $email;
+    private $senha;
+    private $url;
+    private $arMensagem;
 
-    public function setEntrar(): void
+    private function setEntrar(): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $json_data = file_get_contents("php://input");
@@ -26,9 +28,10 @@ class Entrar extends Banco
 
         $this->email = $data['email'];
         $this->senha = $data['senha'];
+        $this->url = $data['url'];
     }
 
-    public function verificandoEmailValido(): void
+    private function verificandoEmailValido(): void
     {
         $this->setEntrar();
 
@@ -39,9 +42,30 @@ class Entrar extends Banco
         }
     }
 
-    public function verificandoSeCadastroExiste(): void
+    private function identificandoChave(): array
     {
         $this->setEntrar();
+
+        $urlAtual = $this->url;
+        $parteDesejada = '/login/chave/';
+        $posicao = strpos($urlAtual, $parteDesejada);
+        $urlChave = substr($urlAtual, $posicao + strlen($parteDesejada));
+
+        $table = new Update("usuario");
+
+        $arDados = [
+            "SET" => "situacao = 2, chave = ''",
+            "WHERE" => "chave = '{$urlChave}'",
+        ];
+
+        $resultado = $this->executarFetchAll($table->condicoes($arDados));
+        return $resultado;
+    }
+
+    private function verificandoSeCadastroExiste(): void
+    {
+        $this->setEntrar();
+        $this->identificandoChave();
 
         $arSelect = $this->executarFetchAll("SELECT senha FROM usuario WHERE email = '{$this->email}' and situacao = 2");
 

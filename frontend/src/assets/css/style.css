@@ -733,6 +733,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    cursor: pointer;
 }
 
 .modal_ad_texto {
@@ -1166,6 +1167,29 @@ body {
     width: 600px;
 }
 
+.recuperar_senha_card_content {
+    height: 470px;
+    justify-content: center;
+    width: 700px;
+    background-color: #F5F5F5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.recuperar_senha_content {
+    height: 680px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.recuperar_senha {
+    height: 370px;
+    width: 600px;
+}
+
 .card_criar_conta {
     height: 590px;
     width: 600px;
@@ -1279,6 +1303,21 @@ body {
     align-items: flex-end;
 }
 
+.enviar_email_content {
+    height: 280px;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+}
+
+.recuperar_senha_botao {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+
 .botao_submit {
     width: 420px;
     height: 60px;
@@ -1347,6 +1386,24 @@ p {
     justify-content: center;
     align-items: flex-end;
     font-size: 16px;
+    font-weight: 600;
+    color: #101010;
+}
+
+.texto_recuperar_senha_content {
+    height: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.texto_recuperar_senha {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-size: 19px;
     font-weight: 600;
     color: #101010;
 }

@@ -2,10 +2,9 @@
 
 namespace app\Models\Home;
 
-use app\Models\Crud\Functions\Select;
 use app\Models\Crud\Utilizadores\Banco;
 use app\Models\Crud\Utilizadores\Tabela;
-use app\View\TemplateEmail;
+use app\View\EmailConfirmarConta;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -17,6 +16,7 @@ class CriarConta extends Banco
     private $email;
     private $senha;
     public $arMensagem;
+    private $url;
 
     private function setCriarConta(): void
     {
@@ -35,6 +35,7 @@ class CriarConta extends Banco
         $this->sobrenome = $data['sobrenome'];
         $this->email = $data['email'];
         $this->senha = $data['senha'];
+        $this->url = $data['url'];
     }
 
     private function verificandoEmailValido(): void
@@ -77,11 +78,12 @@ class CriarConta extends Banco
         if (!isset($this->arMensagem[0])) {
 
             $mail = new PHPMailer(true);
-            $conteudo = new TemplateEmail();
+            $conteudo = new EmailConfirmarConta();
             $table = new Tabela("usuario");
 
             for ($i = 0; $i < 15; $i++) {
-                $chave .= 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@&'[rand(0, strlen('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@&') - 1)];
+                $chave .= 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@&'[rand(0, 
+                strlen('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@&') - 1)];
             }
 
             $arTable = [
@@ -90,7 +92,7 @@ class CriarConta extends Banco
                 "email" => "{$this->email}",
                 "senha" => "{$this->senha}",
                 "chave" => "{$chave}",
-                "situacao" => "1", //  1 - Não confirmado    2 - Confirmado
+                "situacao" => "1",
             ];
 
             $table->salvarInserir($arTable);
@@ -106,8 +108,8 @@ class CriarConta extends Banco
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
                 $mail->Port = 465;
 
-                $mail->setFrom('arantesimovel@gmail.com', 'Arantes Imoveis'); // quem vai enviar
-                $mail->addAddress($this->email, $this->nome); // quem vai receber este email
+                $mail->setFrom('arantesimovel@gmail.com', 'Arantes Imoveis');
+                $mail->addAddress($this->email, $this->nome);
                 $mail->addReplyTo('arantesimovel@gmail.com', 'Information');
                 $mail->isHTML(true);
                 $mail->Subject = 'Confirmacao de conta';
@@ -118,36 +120,8 @@ class CriarConta extends Banco
             } catch (Exception $e) {
                 print "Error: {$mail->ErrorInfo}";
             }
-
-            return "chave - " . $chave;
         }
 
         print_r(current($this->arMensagem));
-    }
-
-    public function confirmandoConta()
-    {
-        //$urlAtual = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-        $urlAtual = "http://localhost:3000/login/chave/U3mSVMcA4KmELjQ";
-        $parteDesejada = '/login/chave/';
-
-        $posicao = strpos($urlAtual, $parteDesejada);
-
-        if ($posicao !== false) {
-            $urlChave = substr($urlAtual, $posicao + strlen($parteDesejada));
-
-            $table = new Select("usuario");
-
-            $arTable = [
-                "COLUMN" => "",
-                "WHERE" => "chave = '{$urlChave}'",
-            ];
-
-            print json_encode($this->executarFetchAll($table->condicoes($arTable)));
-        } else {
-            print json_encode("urlChave: problema");
-        }
-
-        print json_encode("aqui");
     }
 }

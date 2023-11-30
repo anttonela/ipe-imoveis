@@ -11,7 +11,7 @@ class Parametros
         return $requisicao;
     }
 
-    public function getRequisicaoPost(): string
+    private function getRequisicaoPost(): string
     {
         $requisicao = $this->capturarPost();
 

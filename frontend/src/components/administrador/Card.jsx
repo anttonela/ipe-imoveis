@@ -10,6 +10,18 @@ function Card({ cidade, breve_descricao, valor, situacao, classificacao, idCard,
         currency: 'BRL',
     });
 
+    switch (classificacao) {
+        case "Imóvel":
+            classificacao = "imovel";
+            break;
+        case "Máquinas Agrícolas":
+            classificacao = "maquinasAgricolas";
+            break;
+        case "Outros":
+            classificacao = "outros";
+            break;
+    }
+
     const handleDeleteClick = () => {
         const apagar = window.confirm('Você deseja apagar este produto?');
 

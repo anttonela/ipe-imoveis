@@ -11,6 +11,7 @@ import Login from './pages/Login';
 import CriarConta from './pages/CriarConta';
 import HomeAdministrativo from './pages/HomeAdministrativo';
 import Card from './components/cliente/Card';
+import RecuperarSenha from './pages/RecuperarSenha';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -32,20 +33,24 @@ root.render(
           element={<Home />}
         />
         <Route
-          path="administrador"
+          path="home/administrador"
           element={<HomeAdministrativo />}
         />
         <Route
           path="login"
-          element={<Login fetch="http://localhost:8080/login/" />}
+          element={<Login />}
         />
         <Route
           path="login/chave/*"
-          element={<Login fetch="http://localhost:8080/chave" />}
+          element={<Login />}
         />
         <Route
           path="criarConta"
           element={<CriarConta />}
+        />
+        <Route
+          path="recuperarSenha"
+          element={<RecuperarSenha />}
         />
       </Routes>
     </BrowserRouter>

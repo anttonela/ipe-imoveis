@@ -10,8 +10,7 @@ use app\Models\Home\Entrar;
 use app\Models\Home\Filtro;
 use app\Models\Home\IdModal;
 use app\Models\Home\NovoProduto;
-use app\Models\Home\Teste;
-use app\Models\Home\UploadImagem;
+use app\Models\Home\RecuperarSenha;
 
 class Routes extends CorpoJson
 {
@@ -56,33 +55,6 @@ class Routes extends CorpoJson
         print json_encode($this->select("Outros"));
     }
 
-    /*
-    public function upload(): void
-    {
-        $this->cabecalho();
-
-        http_response_code(200);
-
-        $uploadImagem = new UploadImagem('../../../View/Upload/');
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['images'])) {
-            $resultado = $uploadImagem->salvarImagem();
-
-            print json_encode($resultado);
-        } else {
-            print json_encode("Por favor, envie um arquivo.");
-        }
-    }*/
-    public function chave(): void
-    {
-        $this->cabecalho();
-
-        http_response_code(200);
-
-        $criarConta = new CriarConta();
-        $criarConta->confirmandoConta();
-    }
-
     public function novoImovel(): void
     {
         $this->cabecalho();
@@ -103,17 +75,6 @@ class Routes extends CorpoJson
         $criarConta->enviandoEmail();
     }
 
-    /*
-    public function registrandoConta(): void
-    {
-        $this->cabecalho();
-
-        http_response_code(200);
-
-        $criarConta = new CriarConta();
-        $criarConta->enviandoEmail();
-    }*/
-
     public function login(): void
     {
         $this->cabecalho();
@@ -132,5 +93,15 @@ class Routes extends CorpoJson
 
         $modal = new IdModal();
         $modal->abrindoModalDoId();
+    }
+
+    public function recuperarSenha(): void
+    {
+        $this->cabecalho();
+
+        http_response_code(200);
+
+        $modal = new RecuperarSenha();
+        $modal->enviandoEmail();
     }
 }

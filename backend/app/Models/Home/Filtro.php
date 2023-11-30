@@ -11,7 +11,7 @@ class Filtro extends Banco
     private $cidade;
     private $resultado;
 
-    public function filtro()
+    public function filtro(): void
     {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
