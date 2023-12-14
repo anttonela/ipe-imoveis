@@ -29,13 +29,13 @@ function CardFiltro() {
                         {{
                             cidade: produto.cidade,
                             breve_descricao: produto.breve_descricao,
-                            valor: produto.id_produto,
+                            valor: produto.id_prod,
                             quantidade_parcelas: produto.quantidade_parcelas
                         }}
 
                         informacoesModal=
                         {{
-                            id: produto.id_produto,
+                            id: produto.id_prod,
                             cidade: produto.cidade,
                             valor: "R$: " + produto.valor,
                             descricao: produto.descricao

@@ -104,4 +104,24 @@ class Routes extends CorpoJson
         $modal = new RecuperarSenha();
         $modal->enviandoEmail();
     }
+
+    public function confirmarCodigo(): void
+    {
+        $this->cabecalho();
+
+        http_response_code(200);
+
+        $modal = new RecuperarSenha();
+        $modal->confirmandoSeCodigoEstaCorreto();
+    }
+
+    public function novaSenha(): void
+    {
+        $this->cabecalho();
+
+        http_response_code(200);
+
+        $modal = new RecuperarSenha();
+        $modal->salvandoNovaSenha();
+    }
 }

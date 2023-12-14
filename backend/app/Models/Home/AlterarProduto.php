@@ -44,7 +44,7 @@ class AlterarProduto extends Banco
             link_instagram = '{$this->linkInstagram}',
             link_facebook = '{$this->linkFacebook}',
             link_olx = '{$this->linkOlx}'
-            WHERE id_produto = " . $data['id'] . "
+            WHERE id_prod = " . $data['id'] . "
         ";
 
         $this->executarFetchAll($alterar);

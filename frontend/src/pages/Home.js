@@ -118,14 +118,14 @@ function ConteudoHome() {
                                 {values(data).map(resposta => (
                                     <CardSombreado
                                         classificacao={resposta.classificacao}
-                                        idCard={resposta.id_produto}
-                                        key={resposta.id_produto}
+                                        idCard={resposta.id_prod}
+                                        key={resposta.id_prod}
                                         cidade={resposta.cidade}
                                         breve_descricao={resposta.breve_descricao}
                                         valor={resposta.valor}
                                         situacao={resposta.situacao}
                                         informacoes={{
-                                            id: resposta.id_produto,
+                                            id: resposta.id_prod,
                                             cidade: resposta.cidade,
                                             valor: resposta.valor,
                                             descricao: resposta.descricao,

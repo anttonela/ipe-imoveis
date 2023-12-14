@@ -26,8 +26,8 @@ function FileiraCardSombreado({ fetchUrl }) {
 
                     <CardSombreado
                         classificacao={produto.classificacao}
-                        idCard={produto.id_produto}
-                        key={produto.id_produto}
+                        idCard={produto.id_prod}
+                        key={produto.id_prod}
                         cidade={produto.cidade}
                         breve_descricao={produto.breve_descricao}
                         valor={produto.valor}
@@ -35,7 +35,7 @@ function FileiraCardSombreado({ fetchUrl }) {
 
                         informacoes=
                         {{
-                            id: produto.id_produto,
+                            id: produto.id_prod,
                             cidade: produto.cidade,
                             valor: produto.valor,
                             descricao: produto.descricao,

@@ -31,7 +31,7 @@ function FileiraCardSombreado({ fetchUrl }) {
                         valor={produto.valor}
                         situacao={produto.situacao}
                         classificacao={produto.classificacao}
-                        idCard={produto.id_produto}
+                        idCard={produto.id_prod}
                         tipo={produto.tipo}
                         descricao={produto.descricao}
                         whatsapp={produto.link_whatsapp}

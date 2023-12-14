@@ -22,7 +22,7 @@ class ApagarProduto
         $table = new Tabela("produto");
 
         $arTable = [
-            "id_produto" => $data["id"],
+            "id_prod" => $data["id"],
         ];
 
         $table->salvarDelete($arTable);

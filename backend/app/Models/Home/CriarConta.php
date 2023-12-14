@@ -49,6 +49,23 @@ class CriarConta extends Banco
         }
     }
 
+    private function verificandoNome(): void
+    {
+        $this->setCriarConta();
+
+        if (filter_var($this->nome, FILTER_SANITIZE_NUMBER_INT) === true) {
+            $this->arMensagem[] = "Nome inválido";
+            $this->nome = null;
+            return;
+        }
+
+        if (filter_var($this->sobrenome, FILTER_SANITIZE_NUMBER_INT) === true) {
+            $this->arMensagem[] = "Sobrenome inválido";
+            $this->sobrenome = null;
+            return;
+        }
+    }
+
     private function verificandoSeCadastroJaExiste(): void
     {
         $this->setCriarConta();
@@ -73,6 +90,7 @@ class CriarConta extends Banco
         $this->setCriarConta();
         $this->verificandoEmailValido();
         $this->verificandoSeCadastroJaExiste();
+        $this->verificandoNome();
         $this->validandoSenha();
 
         if (!isset($this->arMensagem[0])) {
@@ -82,8 +100,10 @@ class CriarConta extends Banco
             $table = new Tabela("usuario");
 
             for ($i = 0; $i < 15; $i++) {
-                $chave .= 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@&'[rand(0, 
-                strlen('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@&') - 1)];
+                $chave = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@&'[rand(
+                    0,
+                    strlen('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@&') - 1
+                )];
             }
 
             $arTable = [
@@ -104,7 +124,7 @@ class CriarConta extends Banco
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
                 $mail->Username = 'arantesimovel@gmail.com';
-                $mail->Password = 'qfsuhumwvlfxincx';
+                $mail->Password = 'skwagvbuqdzacsep';
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
                 $mail->Port = 465;
 
