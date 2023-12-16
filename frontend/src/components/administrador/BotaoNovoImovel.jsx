@@ -5,7 +5,7 @@ function BotaoNovoImovel() {
     return (
         <>
             <div className='novo_imovel'>
-                <a href='#modal_novo_imovel' className='link'>
+                <a href='#novo_produto' className='link'>
                     <div className='botao_novo_imovel' type='button'>
 
                         <div className='conteudo_adicionar_imovel'>
@@ -22,7 +22,7 @@ function BotaoNovoImovel() {
                 </a>
             </div>
 
-            <div id='modal_novo_imovel' className='modal'>
+            <div id="novo_produto" className='modal'>
                 <ModalNovoImovel />
             </div>
         </>

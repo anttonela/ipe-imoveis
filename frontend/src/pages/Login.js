@@ -100,6 +100,7 @@ function Login() {
 
                   <CardInput
                     id={"email"}
+                    type={"text"}
                     value={email}
                     onChange={setEmail}
                     textoInput={"E-mail"}
@@ -108,6 +109,7 @@ function Login() {
 
                   <CardInput
                     id={"senha"}
+                    type={"password"}
                     value={senha}
                     onChange={setSenha}
                     textoInput={"Senha"}

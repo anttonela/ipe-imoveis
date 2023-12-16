@@ -99,8 +99,10 @@ class CriarConta extends Banco
             $conteudo = new EmailConfirmarConta();
             $table = new Tabela("usuario");
 
+            $chave = '';
+
             for ($i = 0; $i < 15; $i++) {
-                $chave = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@&'[rand(
+                $chave .= 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@&'[rand(
                     0,
                     strlen('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@&') - 1
                 )];

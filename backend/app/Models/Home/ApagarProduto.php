@@ -26,5 +26,7 @@ class ApagarProduto
         ];
 
         $table->salvarDelete($arTable);
+
+        print json_encode("Apagado");
     }  
 }

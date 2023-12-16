@@ -89,6 +89,7 @@ function CriarConta() {
 
                                 <InputMaior
                                     id={"email"}
+                                    type={"text"}
                                     value={email}
                                     onChange={setEmail}
                                     textoInput={"E-mail"}
@@ -97,6 +98,7 @@ function CriarConta() {
 
                                 <InputMaior
                                     id={senha}
+                                    type={"password"}
                                     value={senha}
                                     onChange={setSenha}
                                     textoInput={"Senha"}

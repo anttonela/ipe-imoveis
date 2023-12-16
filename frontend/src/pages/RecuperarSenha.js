@@ -19,12 +19,34 @@ function RecuperarSenha() {
   const [novaSenhaInput, setNovaSenhaInput] = useState("");
   const [confirmarNovaSenha, setConfirmarNovaSenha] = useState("");
   const [emailEnviado, setEmailEnviado] = useState("");
+  const [horarioDeExpiracao, setHorarioDeExpiracao] = useState('');
+
+  function exibirHorarioAtual() {
+    const dataAtual = new Date();
+    let hora = dataAtual.getHours();
+    let minutos = dataAtual.getMinutes() + 10;
+
+    if (minutos === 60) {
+      minutos = 0;
+      hora = hora + 1;
+    }
+
+    const horaFormatada = hora < 10 ? `0${hora}` : hora;
+    const minutosFormatados = minutos < 10 ? `0${minutos}` : minutos;
+
+    const horario = `${horaFormatada}:${minutosFormatados}`;
+    setHorarioDeExpiracao(horario);
+    return horario;
+  }
+
+  const horarioAtual = exibirHorarioAtual();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const dados = {
       email,
+      horario: horarioAtual,
     };
 
     console.log("Dados a serem enviados:", dados);
@@ -42,6 +64,8 @@ function RecuperarSenha() {
         setInputCodigo(true);
         setInputEmail(false);
         setEmailEnviado(email);
+        setMensagemLogin(false);
+        setHorarioDeExpiracao(horarioAtual);
         return;
       }
 
@@ -57,6 +81,8 @@ function RecuperarSenha() {
 
     const dados = {
       email: emailEnviado,
+      horario: horarioAtual,
+      horarioDeExpiracao: horarioDeExpiracao,
       codigo,
     };
 
@@ -173,6 +199,7 @@ function RecuperarSenha() {
                             </div>
                           </div>
                         )}
+
                       </div>
                     </div>
                   </form>
@@ -229,7 +256,7 @@ function RecuperarSenha() {
                       <div className="texto">Nova Senha</div>
                       <input
                         className="input_text"
-                        type="text"
+                        type="password"
                         placeholder={"Senha..."}
                         id={"novaSenha"}
                         value={novaSenhaInput}
@@ -241,7 +268,8 @@ function RecuperarSenha() {
                     </div>
 
                     <CardInput
-                      id={"email"}
+                      id={"confirmarNovaSenha"}
+                      type={"password"}
                       value={confirmarNovaSenha}
                       onChange={setConfirmarNovaSenha}
                       textoInput={"Confirmar Nova Senha"}

@@ -53,7 +53,6 @@ function FileiraCard({ fetchUrl }) {
                 >
                     {values(data).map(produto => (
 
-
                         <Card
                             classificacao={produto.classificacao}
                             key={produto.id_prod}

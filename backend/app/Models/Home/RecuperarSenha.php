@@ -29,7 +29,7 @@ class RecuperarSenha extends Banco
 
         if (filter_var($this->email, FILTER_VALIDATE_EMAIL) === false) {
             json_encode("Email inválido");
-            return; 
+            return;
         }
 
         if (!empty($this->executarFetchAll("SELECT * FROM usuario WHERE email = '" . $this->email . "'"))) {
@@ -42,15 +42,8 @@ class RecuperarSenha extends Banco
                 $chave .= '1234567890'[rand(0, strlen('1234567890') - 1)];
             }
 
-            $adicionarChave =
-                "
-                UPDATE usuario
-                SET chave = '{$chave}'
-                WHERE email = '" . $data['email'] . "'
-                AND situacao = 2
-            ";
-
-            $this->executarFetchAll($adicionarChave);
+            $this->executarFetchAll("UPDATE usuario SET chave = '{$chave}' WHERE email = '" . $data['email'] . "' AND situacao = 2");
+            $this->executarFetchAll("UPDATE usuario SET horario = '" . $data['horario'] . "' WHERE email = '" . $data['email'] . "'");
 
             try {
                 $mail->SMTPDebug = SMTP::DEBUG_SERVER;
@@ -97,6 +90,8 @@ class RecuperarSenha extends Banco
         }
 
         $codigo = $data['codigo'];
+        $horario = $data['horario'];
+        $horarioExpiracao = $data['horarioDeExpiracao'];
         $this->email = $data['email'];
 
         $arSelect = $this->executarFetchAll("SELECT * FROM usuario WHERE email = '{$this->email}' and chave = '{$codigo}'");
@@ -106,7 +101,7 @@ class RecuperarSenha extends Banco
             return;
         }
 
-        print json_encode("Chave incorreta");
+        print json_encode("Chave incorreta, {$horario} | {$horarioExpiracao}");
     }
 
     public function salvandoNovaSenha()

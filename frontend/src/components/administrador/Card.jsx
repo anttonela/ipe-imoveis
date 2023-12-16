@@ -1,112 +1,118 @@
-import IconLapis from '../../assets/img/lapis.svg';
-import ModalEditar from './ModalEditar';
-import IconLixeira from '../../assets/img/lixeira.svg';
-import ImagemImoveis from '../../assets/img/imoveis.png';
+import IconLapis from "../../assets/img/lapis.svg";
+import ModalEditar from "./ModalEditar";
+import IconLixeira from "../../assets/img/lixeira.svg";
+import ImagemImoveis from "../../assets/img/imoveis.png";
 
-function Card({ cidade, breve_descricao, valor, situacao, classificacao, idCard, tipo, descricao, whatsapp, instagram, facebook, olx }) {
+function Card({
+  cidade,
+  breve_descricao,
+  valor,
+  situacao,
+  classificacao,
+  idCard,
+  tipo,
+  descricao,
+  whatsapp,
+  instagram,
+  facebook,
+  olx,
+}) {
+  let valorEmReais = (valor).toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
 
-    let valorEmReais = (valor / 100).toLocaleString('pt-BR', {
-        style: 'currency',
-        currency: 'BRL',
-    });
+  switch (classificacao) {
+    case "Imóvel":
+      classificacao = "imovel";
+      break;
+    case "Máquinas Agrícolas":
+      classificacao = "maquinasAgricolas";
+      break;
+    case "Outros":
+      classificacao = "outros";
+      break;
+  }
 
-    switch (classificacao) {
-        case "Imóvel":
-            classificacao = "imovel";
-            break;
-        case "Máquinas Agrícolas":
-            classificacao = "maquinasAgricolas";
-            break;
-        case "Outros":
-            classificacao = "outros";
-            break;
-    }
+  const handleDeleteClick = async (e) => {
+    const apagar = window.confirm("Você deseja apagar este produto?");
 
-    const handleDeleteClick = () => {
-        const apagar = window.confirm('Você deseja apagar este produto?');
+    if (apagar) {
+      const dados = {
+        id: idCard,
+      };
 
-        if (apagar) {
-            const dados = {
-                id: idCard,
-            };
+      console.log("Dados a serem enviados:", dados);
 
-            console.log('Dados a serem enviados:', dados);
+      try {
+        const response = await fetch("http://localhost:8080/apagar/", {
+          method: "POST",
+          body: JSON.stringify(dados),
+        });
 
-            try {
-                const response = fetch('http://localhost:8080/apagar/', {
-                    method: 'POST',
-                    body: JSON.stringify(dados),
-                });
-
-                const data = response.text();
-                console.log('Resposta da API:', data);
-            } catch (error) {
-                console.error('Erro ao enviar os dados para a API:', error);
-            }
+        if ((await response.text()) === '"Apagado"') {
+          window.location.href = "/home/administrador";
         }
+      } catch (error) {
+        console.error("Erro ao enviar os dados para a API:", error);
+      }
     }
+  };
 
-    return (
-        <div className="espacamento_fileira">
-
-            <div className="card card_administrativo">
-
-                <div className="card_imagem">
-                    <img className="card_imagem" src={ImagemImoveis} />
-                </div>
-
-                <div className='card_informacoes_content'>
-                    <div className='card_informacoes'>
-
-                        <div className='card_sobre'>
-                            <div className='card_editar'>
-                                <div className='nome_produto inter_700'>{idCard}</div>
-                                <div className='content-card_editar_icons'>
-                                    <div className='card_editar_icons'>
-                                        <a
-                                            className='link'
-                                            href={`#${classificacao}/${idCard}`}
-                                        >
-                                            <img className='editar_icon' src={IconLapis} />
-                                        </a>
-                                        <img className='editar_icon' src={IconLixeira} onClick={handleDeleteClick} />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className='card_texto inter_500'>{breve_descricao}</div>
-                        </div>
-
-                        <div className='card_valor'>
-                            <div className='valor_produto inter_700'>R$: {valorEmReais}</div>
-                            <div className='card_texto'>{situacao}</div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div
-                id={`${classificacao}/${idCard}`}
-                className='modal'
-            >
-                <ModalEditar
-                    idCard={idCard}
-                    cidadeProduto={cidade}
-                    classificacaoProduto={classificacao}
-                    tipoProduto={tipo}
-                    situacaoProduto={situacao}
-                    valorProduto={valor}
-                    descricaoProduto={descricao}
-                    linkWhatsappProduto={whatsapp}
-                    linkInstagramProduto={instagram}
-                    linkFacebookProduto={facebook}
-                    linkOlxProduto={olx}
-                />
-            </div>
-
+  return (
+    <div className="espacamento_fileira">
+      <div className="card card_administrativo">
+        <div className="card_imagem">
+          <img className="card_imagem" src={ImagemImoveis} />
         </div>
-    );
+
+        <div className="card_informacoes_content">
+          <div className="card_informacoes">
+            <div className="card_sobre">
+              <div className="card_editar">
+                <div className="nome_produto inter_700">{idCard}</div>
+                <div className="content-card_editar_icons">
+                  <div className="card_editar_icons">
+                    <a className="link" href={`#${classificacao}/${idCard}`}>
+                      <img className="editar_icon" src={IconLapis} />
+                    </a>
+                    <img
+                      className="editar_icon"
+                      src={IconLixeira}
+                      onClick={handleDeleteClick}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="card_texto inter_500">{breve_descricao}</div>
+            </div>
+
+            <div className="card_valor">
+              <div className="valor_produto inter_700">R$: {valorEmReais}</div>
+              <div className="card_texto">{situacao}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id={`${classificacao}/${idCard}`} className="modal">
+        <ModalEditar
+          idCard={idCard}
+          cidadeProduto={cidade}
+          classificacaoProduto={classificacao}
+          tipoProduto={tipo}
+          situacaoProduto={situacao}
+          valorProduto={valorEmReais}
+          descricaoProduto={descricao}
+          linkWhatsappProduto={whatsapp}
+          linkInstagramProduto={instagram}
+          linkFacebookProduto={facebook}
+          linkOlxProduto={olx}
+        />
+      </div>
+    </div>
+  );
 }
 
 export default Card;

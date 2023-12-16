@@ -27,7 +27,6 @@ class NovoProduto
         empty($data['linkWhatsapp']) ?  $this->linkWhatsapp = "" : $this->linkWhatsapp = "https://api.whatsapp.com/send?phone=+55" . $data['linkWhatsapp'] . "&text=Ola%21";
         empty($data['linkInstagram']) ?  $this->linkInstagram = "" : $this->linkInstagram = "https://www.instagram.com/" . $data['linkInstagram'] . "/";
         empty($data['linkFacebook']) ?  $this->linkFacebook = "" : $this->linkFacebook = "https://www.facebook.com/" . $data['linkFacebook'] . "/";
-        empty($data['linkOlx']) ?  $this->linkOlx = "" : $this->linkOlx = "https://www.olx.com.br/";
 
         $arProduto = [
             "classificacao" => $data['classificacao'],
@@ -40,7 +39,7 @@ class NovoProduto
             "link_whatsapp" => "{$this->linkWhatsapp}",
             "link_instagram" => "{$this->linkInstagram}",
             "link_facebook" => "{$this->linkFacebook}",
-            "link_olx" => "{$this->linkOlx}",
+            "link_olx" => $data['linkOlx'],
         ];
 
         $table = new Tabela("produto");

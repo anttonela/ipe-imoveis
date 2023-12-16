@@ -29,21 +29,6 @@ function ModalNovoImovel() {
         imagens.forEach((image) => {
             formData.append('images[]', image);
         });
-
-        try {
-            const response = await fetch('http://localhost:8080/upload/', {
-                method: 'POST',
-                body: formData,
-            });
-
-            if (response.ok) {
-                console.log('Imagens enviadas com sucesso!');
-            } else {
-                console.error('Erro ao enviar imagens:', response.statusText);
-            }
-        } catch (error) {
-            console.error('Erro ao enviar imagens:', error);
-        }
     }
 
     const opcoesTipos = {
@@ -248,7 +233,7 @@ function ModalNovoImovel() {
                             id={"link_olx"}
                             value={linkOlx}
                             onChange={setLinkOlx}
-                            nomeInformacao={"Usuário OLX"}
+                            nomeInformacao={"Link perfil OLX"}
                             placeholder={"@"}
                         />
 
