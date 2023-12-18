@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
+import md5 from 'md5';
 
 import Logo from "../assets/img/logo.png";
 import CardInput from "../components/login/CardInput";
 import BannerImagem from "../assets/img/banner.png";
+import VisualizarSenha from "../components/login/VisualizarSenha";
+import InputSenha from "../components/login/InputSenha";
 
 function Login() {
 
-  let criarConta = "/criarConta";
   let recuperarSenha = "/recuperarSenha";
+  let criarConta = "/criarConta";
 
   const [data, setData] = useState([]);
   const [email, setEmail] = useState('');
@@ -19,7 +22,7 @@ function Login() {
 
     const dados = {
       email,
-      senha,
+      senha: md5(senha),
       url: window.location.href,
     };
 
@@ -47,7 +50,7 @@ function Login() {
     } catch (error) {
       console.error('Erro ao enviar os dados para a API:', error);
     }
-  }
+  };
 
   useEffect(() => {
     document.title = "Fazer Login";
@@ -71,7 +74,7 @@ function Login() {
                 <div className="login_header_texto">
                   <div className="texto">Fazer Login</div>
 
-                  <a href={criarConta} className="link">
+                  <a className="link" href={criarConta}>
                     <div className="texto_claro">Criar Conta</div>
                   </a>
                 </div>
@@ -107,14 +110,11 @@ function Login() {
                     placeholder={"E-mail..."}
                   />
 
-                  <CardInput
-                    id={"senha"}
-                    type={"password"}
+                  <InputSenha
                     value={senha}
                     onChange={setSenha}
-                    textoInput={"Senha"}
+                    texto={"Senha"}
                     placeholder={"Senha..."}
-
                   />
 
                   <div className="login_botao">
@@ -122,6 +122,7 @@ function Login() {
                       Fazer Login
                     </button>
                   </div>
+
                   {erroAutenticacao && (
                     <div className='mensagem_content'>
                       <div className="mensagem_erro">Autenticação falhou, tente novamente</div>

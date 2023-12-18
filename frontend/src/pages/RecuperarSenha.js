@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import Logo from "../assets/img/logo.png";
 import CardInput from "../components/login/CardInput";
 import BannerImagem from "../assets/img/banner.png";
+import md5 from "md5";
+import InputSenha from "../components/login/InputSenha";
 
 function RecuperarSenha() {
   let criarConta = "/criarConta";
   let login = "/login";
-  let recuperarSenha = "/recuperarSenha";
 
   const [email, setEmail] = useState("");
   const [codigo, setCodigo] = useState("");
@@ -20,33 +21,31 @@ function RecuperarSenha() {
   const [confirmarNovaSenha, setConfirmarNovaSenha] = useState("");
   const [emailEnviado, setEmailEnviado] = useState("");
   const [horarioDeExpiracao, setHorarioDeExpiracao] = useState('');
+  const buttonRef = useRef(null);
 
-  function exibirHorarioAtual() {
+  const dataAtual = new Date();
+  const recuperarSenha = () => {
+    setInputEmail(true);
+    setInputCodigo(false);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
     const dataAtual = new Date();
-    let hora = dataAtual.getHours();
-    let minutos = dataAtual.getMinutes() + 10;
+    dataAtual.setMinutes(dataAtual.getMinutes() + 10);
 
-    if (minutos === 60) {
-      minutos = 0;
-      hora = hora + 1;
-    }
+    const hora = dataAtual.getHours();
+    const minutos = dataAtual.getMinutes();
 
     const horaFormatada = hora < 10 ? `0${hora}` : hora;
     const minutosFormatados = minutos < 10 ? `0${minutos}` : minutos;
 
     const horario = `${horaFormatada}:${minutosFormatados}`;
-    setHorarioDeExpiracao(horario);
-    return horario;
-  }
-
-  const horarioAtual = exibirHorarioAtual();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
 
     const dados = {
       email,
-      horario: horarioAtual,
+      horario: horario,
     };
 
     console.log("Dados a serem enviados:", dados);
@@ -65,7 +64,7 @@ function RecuperarSenha() {
         setInputEmail(false);
         setEmailEnviado(email);
         setMensagemLogin(false);
-        setHorarioDeExpiracao(horarioAtual);
+        setHorarioDeExpiracao(horario);
         return;
       }
 
@@ -79,9 +78,22 @@ function RecuperarSenha() {
   const handleSubmitCodigo = async (e) => {
     e.preventDefault();
 
+    let hora = dataAtual.getHours();
+    let minutos = dataAtual.getMinutes();
+
+    if (minutos === 60) {
+      minutos = 0;
+      hora = hora + 1;
+    }
+
+    const horaFormatada = hora < 10 ? `0${hora}` : hora;
+    const minutosFormatados = minutos < 10 ? `0${minutos}` : minutos;
+
+    const horario = `${horaFormatada}:${minutosFormatados}`;
+
     const dados = {
       email: emailEnviado,
-      horario: horarioAtual,
+      horario: horario,
       horarioDeExpiracao: horarioDeExpiracao,
       codigo,
     };
@@ -97,15 +109,18 @@ function RecuperarSenha() {
       const resposta = await response.text();
       console.log("Resposta da API:", resposta);
 
-      if (resposta !== '"Chave incorreta"') {
+      if (resposta === '"Chave correta"') {
         setMensagemLogin(false);
         setNovaSenha(true);
         setInputCodigo(false);
-        return;
+      } else if (resposta === '"Expirou"') {
+        setRespostaLocalhost("O código expirou, solicite outro");
+        setMensagemLogin(true);
+      } else {
+        setRespostaLocalhost("Código incorreto");
+        setMensagemLogin(true);
       }
 
-      setRespostaLocalhost("Código incorreto");
-      setMensagemLogin(true);
     } catch (error) {
       console.error("Erro ao enviar os dados para a API:", error);
     }
@@ -116,8 +131,8 @@ function RecuperarSenha() {
 
     const dados = {
       email: emailEnviado,
-      novaSenhaInput,
-      confirmarNovaSenha,
+      novaSenhaInput: md5(novaSenhaInput),
+      confirmarNovaSenha: md5(confirmarNovaSenha),
     };
 
     console.log("Dados a serem enviados:", dados);
@@ -145,7 +160,15 @@ function RecuperarSenha() {
 
   useEffect(() => {
     document.title = "Recuperar Senha";
-  }, []);
+
+    if (codigo.length === 6 && buttonRef.current) {
+      buttonRef.current.click();
+    }
+
+    if (codigo.length < 6) {
+      setMensagemLogin(false);
+    }
+  }, [codigo]);
 
   return (
     <>
@@ -215,26 +238,36 @@ function RecuperarSenha() {
                         Verifique sua caixa principal ou de spam
                       </div>
 
-                      <CardInput
-                        id={"email"}
-                        value={codigo}
-                        onChange={(value) => {
-                          if (value.length <= 6) {
-                            setCodigo(value);
-                          }
-                        }}
-                        textoInput={"Código"}
-                        placeholder={"XXXXXX"}
-                      />
+                      <div className="card_input">
+                        <div className="input">
+                          <div className="texto">Código</div>
+                          <input
+                            className="input_text"
+                            type={"text"}
+                            placeholder={"XXXXXX"}
+                            value={codigo}
+                            onChange={(e) => {
+                              const inputValue = e.target.value;
+                              if (inputValue.length <= 6) {
+                                setCodigo(inputValue);
+                              } else {
+                                setCodigo(inputValue.slice(0, 6));
+                              }
+                            }}
+                            required
+                          />
+                        </div>
+
+                      </div>
 
                       <div className="recuperar_senha_botao">
-                        <button className="botao_submit" type="submit">
+                        <button ref={buttonRef} className="botao_submit" type="submit">
                           Confirmar
                         </button>
                       </div>
 
-                      <a href={recuperarSenha} className="mensagem_content">
-                        <div className="mensagem_erro">
+                      <a onClick={recuperarSenha} className="mensagem_content">
+                        <div className="mensagem_link">
                           Não recebeu? Envie novamente
                         </div>
                       </a>
@@ -252,28 +285,18 @@ function RecuperarSenha() {
 
                 {novaSenha && (
                   <form onSubmit={handleSubmitSenha} className="nova_senha">
-                    <div className="input">
-                      <div className="texto">Nova Senha</div>
-                      <input
-                        className="input_text"
-                        type="password"
-                        placeholder={"Senha..."}
-                        id={"novaSenha"}
-                        value={novaSenhaInput}
-                        onChange={(e) => {
-                          setNovaSenhaInput(e.target.value);
-                        }}
-                        required
-                      />
-                    </div>
+                    <InputSenha
+                      value={novaSenhaInput}
+                      onChange={setNovaSenhaInput}
+                      texto={"Nova Senha"}
+                      placeholder={"Nova Senha..."}
+                    />
 
-                    <CardInput
-                      id={"confirmarNovaSenha"}
-                      type={"password"}
+                    <InputSenha
                       value={confirmarNovaSenha}
                       onChange={setConfirmarNovaSenha}
-                      textoInput={"Confirmar Nova Senha"}
-                      placeholder={"Confirme senha..."}
+                      texto={"Confirmar Nova Senha"}
+                      placeholder={"Confirme..."}
                     />
 
                     <div className="nova_senha_botao_content">

@@ -142,10 +142,10 @@ function ModalEditar({ idCard, cidadeProduto, classificacaoProduto, tipoProduto,
                         <div className='modal_botoes_editar_content'>
                             <div className='modal_botoes_editar'>
                                 <div className='botao_editar_imagem'>
-                                    <img src={IconLapis} />
+                                    <img className='botao_editar_imagem' src={IconLapis} />
                                 </div>
                                 <div className='botao_editar_imagem'>
-                                    <img src={IconPlus} />
+                                    <img className='botao_editar_imagem' src={IconPlus} />
                                 </div>
                             </div>
                         </div>

@@ -90,18 +90,22 @@ class RecuperarSenha extends Banco
         }
 
         $codigo = $data['codigo'];
-        $horario = $data['horario'];
-        $horarioExpiracao = $data['horarioDeExpiracao'];
         $this->email = $data['email'];
+
+        if (strtotime($data['horario']) > strtotime($data['horarioDeExpiracao'])) {
+            print json_encode("Expirou");
+            $this->executarFetchAll("UPDATE usuario SET chave = '', horario = '' WHERE email = '{$this->email}'");
+            return;
+        }
 
         $arSelect = $this->executarFetchAll("SELECT * FROM usuario WHERE email = '{$this->email}' and chave = '{$codigo}'");
 
         if (!empty($arSelect)) {
-            print json_encode("Chave está correta");
+            print json_encode("Chave correta");
             return;
         }
 
-        print json_encode("Chave incorreta, {$horario} | {$horarioExpiracao}");
+        print json_encode("Chave incorreta");
     }
 
     public function salvandoNovaSenha()

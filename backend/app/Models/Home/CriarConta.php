@@ -144,6 +144,6 @@ class CriarConta extends Banco
             }
         }
 
-        print_r(current($this->arMensagem));
+        print_r(current($this->arMensagem[0]));
     }
 }

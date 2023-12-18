@@ -80,16 +80,16 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 390px;
+  height: 39vh;
   width: 100%;
   background-color: #f5f5f5;
-  font-size: 48px;
+  font-size: 4.8vh;
   color: #9e9e9e;
   font-weight: 600;
 }
 
 .filtro_imagem_emoji {
-  height: 60px;
+  height: 6vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -99,7 +99,7 @@ body {
   display: grid;
   align-items: center;
   justify-content: space-between;
-  height: 200px;
+  height: 20vh;
 }
 
 .header_texto {
@@ -210,26 +210,26 @@ body {
 }
 
 .select_content {
-  height: 90px;
+  height: 9vh;
   display: grid;
   justify-content: space-between;
 }
 
 .select_tipo {
   width: 100%;
-  height: 40px;
-  border-radius: 10px;
-  font-size: 16px;
+  height: 4vh;
+  border-radius: 1vh;
+  font-size: 1.6vh;
   display: flex;
-  padding: 10px;
+  padding: 1vh;
   color: #9e9e9e;
   justify-content: space-between;
   background-color: transparent;
-  border: 2px solid #e0e0e0;
+  border: 0.2vh solid #e0e0e0;
 }
 
 .select_tipo_modal {
-  height: 50px;
+  height: 5vh;
   display: flex;
   align-items: end;
 }
@@ -259,7 +259,7 @@ body {
 .linha_divisora {
   width: 0.2vh;
   height: 4.8vh;
-  border-radius: 2px;
+  border-radius: 0.2vh;
   background-color: #272727;
 }
 
@@ -287,7 +287,7 @@ body {
   height: 14.8vh;
   aspect-ratio: 3.5/1;
   border-radius: 1vh;
-  font-size: 24px;
+  font-size: 2.4vh;
   display: grid;
   justify-content: center;
   align-items: center;
@@ -343,14 +343,14 @@ body {
 }
 
 .segundo_subtitulo_content {
-  height: 190px;
+  height: 19vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .segundo_subtitulo {
-  font-size: 48px;
+  font-size: 4.8vh;
   font-weight: 600;
   display: flex;
   align-items: initial;
@@ -367,12 +367,12 @@ body {
 .content_administrativo {
   width: 91.5%;
   display: grid;
-  grid-auto-rows: 410px;
+  grid-auto-rows: 41vh;
   grid-template-columns: 20% 20% 20% 20% 20%;
 }
 
 .card_content {
-  height: 420px;
+  height: 42vh;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -382,34 +382,34 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50px;
+  width: 5vh;
   height: 100%;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 1vh;
+  margin-right: 1vh;
 }
 
 .card {
-  height: 336px;
-  width: 260px;
+  height: 33.6vh;
+  width: 26vh;
   display: grid;
   background-color: #fafafa;
 }
 
 .card:hover {
-  box-shadow: 0px 0px 15px 0px rgba(39, 39, 39, 0.25);
+  box-shadow: 0vh 0vh 1.5vh 0vh rgba(39, 39, 39, 0.25);
 }
 
 .card_administrativo {
-  box-shadow: 0px 0px 20px 0px rgba(39, 39, 39, 0.25);
+  box-shadow: 0vh 0vh 2vh 0vh rgba(39, 39, 39, 0.25);
 }
 
 .card_texto {
-  font-size: 14px;
+  font-size: 1.4vh;
   color: #9e9e9e;
 }
 
 .card_situacao {
-  font-size: 15px;
+  font-size: 1.5vh;
   color: #9e9e9e;
   font-weight: 500;
 }
@@ -424,78 +424,44 @@ body {
 }
 
 .card_informacoes_content {
-  height: 160px;
+  height: 16vh;
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
 
 .card_informacoes {
-  width: 230px;
-  height: 160px;
+  width: 23vh;
+  height: 16vh;
   display: grid;
   align-items: center;
   justify-content: space-between;
 }
 
 .card_sobre {
-  width: 230px;
+  width: 23vh;
   display: grid;
 }
 
 .card_valor {
-  height: 50px;
+  height: 5vh;
   display: grid;
   justify-content: space-between;
 }
 
 .nome_produto {
-  font-size: 20px;
+  font-size: 2vh;
   color: #272727;
-  height: 30px;
+  height: 3vh;
 }
 
 .valor_produto {
-  font-size: 17px;
+  font-size: 1.7vh;
   color: #2b50aa;
 }
 
-.card_central {
-  height: 400px;
-  width: 310px;
-  display: grid;
-  background-color: #fafafa;
-  box-shadow: 0px 0px 20px 0px rgba(39, 39, 39, 0.25);
-}
-
-.card_central_texto {
-  font-weight: 500;
-  line-height: 28px;
-  font-family: "Inter", sans-serif;
-  color: #9e9e9e;
-}
-
-.card_central_imagem {
-  width: 310px;
-  height: 200px;
-}
-
-.card_central_informacoes_content {
-  height: 160px;
-  width: 290px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.card_central_informacoes {
-  width: 270px;
-  height: 160px;
-  display: grid;
-}
-
 .card_editar {
-  height: 35px;
+  height: 3.5vh;
   display: flex;
   justify-content: space-between;
   align-items: initial;
@@ -508,22 +474,22 @@ body {
 }
 
 .card_editar_icons {
-  width: 60px;
+  width: 6vh;
   display: flex;
   justify-content: space-between;
 }
 
 .editar_icon {
-  height: 20px;
-  width: 20px;
+  height: 2vh;
+  width: 2vh;
 }
 
 .card_central_sobre {
-  height: 100px;
+  height: 10vh;
 }
 
 .card_central_valor {
-  height: 50px;
+  height: 5vh;
   display: grid;
   justify-content: space-between;
 }
@@ -566,7 +532,7 @@ body {
 }
 
 .content_botao_confirmar {
-  height: 90px;
+  height: 9vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -575,12 +541,12 @@ body {
 
 .botao_confirmar_adicionar {
   width: 70%;
-  height: 45px;
+  height: 4.5vh;
   background-color: #272727;
   border: none;
-  border-radius: 10px;
+  border-radius: 1vh;
   color: #fafafa;
-  font-size: 18px;
+  font-size: 1.8vh;
 }
 
 .botao_confirmar_adicionar:hover {
@@ -707,7 +673,7 @@ body {
 }
 
 .modal_apagar_content {
-  width: 570px;
+  width: 57vh;
   height: 100%;
   max-width: 90%;
   background: #fff;
@@ -723,7 +689,7 @@ body {
 }
 
 .modal_content {
-  width: 570px;
+  width: 57vh;
   height: 100%;
   max-width: 90%;
   background: #fff;
@@ -734,25 +700,25 @@ body {
 }
 
 .modal_content::-webkit-scrollbar {
-  width: 12px;
-  border: 1px solid rgb(207, 141, 141);
+  width: 1.2vh;
+  border: 0.1vh solid rgb(207, 141, 141);
   z-index: 1000;
 }
 
 .modal_content::-webkit-scrollbar-thumb {
   background-color: gold;
-  border-radius: 6px;
+  border-radius: 0.6vh;
 }
 
 .scroll {
   height: 100%;
-  width: 5px;
+  width: 0.5vh;
   background-color: #fff;
 }
 
 .modal_footer {
   text-align: right;
-  margin-top: 50px;
+  margin-top: 5vh;
 }
 
 .sair_modal {
@@ -764,10 +730,10 @@ body {
 }
 
 .modal_ad_texto {
-  height: 30px;
+  height: 3Vh;
   display: flex;
   align-items: flex-end;
-  font-size: 20px;
+  font-size: 2vh;
   color: #272727;
 }
 
@@ -777,13 +743,13 @@ body {
 }
 
 .input_content {
-  height: 95px;
+  height: 9.5vh;
   display: grid;
   align-items: center;
 }
 
 .descricao_content {
-  height: 110px;
+  height: 11vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -791,7 +757,7 @@ body {
 
 .input_content_descricao {
   width: 100%;
-  height: 100px;
+  height: 10vh;
   display: grid;
   scroll-behavior: auto;
 }
@@ -805,28 +771,28 @@ body {
 .modal_input {
   height: 80%;
   width: 97%;
-  font-size: 16px;
+  font-size: 1.6vh;
   resize: none;
-  border: 2px solid #e0e0e0;
-  border-radius: 10px;
-  padding-left: 10px;
+  border: 0.2vh solid #e0e0e0;
+  border-radius: 1vh;
+  padding-left: 1vh;
   color: #9e9e9e;
 }
 
 .modal_input_ad {
   height: 80%;
   width: 97%;
-  font-size: 16px;
+  font-size: 1.6vh;
   resize: none;
-  border: 2px solid #e0e0e0;
-  border-radius: 10px;
-  padding-left: 10px;
+  border: 0.2vh solid #e0e0e0;
+  border-radius: 1vh;
+  padding-left: 1vh;
   color: #272727;
 }
 
 .modal_input:focus {
   box-shadow: 0 0 0 0;
-  border: 2px solid #e0e0e0;
+  border: 0.2vh solid #e0e0e0;
   outline: 0;
 }
 
@@ -836,32 +802,32 @@ body {
 }
 
 .select_modal {
-  width: 270px;
+  width: 27vh;
   height: 80%;
-  border-radius: 10px;
-  font-size: 16px;
+  border-radius: 1vh;
+  font-size: 1.6vh;
   display: flex;
-  padding: 10px;
+  padding: 1vh;
   color: #9e9e9e;
   justify-content: space-between;
   background-color: transparent;
-  border: 2px solid #e0e0e0;
+  border: 0.2vh solid #e0e0e0;
 }
 
 .botao_fechar_modal {
   color: #000000;
-  font-size: 20px;
+  font-size: 2vh;
   text-decoration: none;
 }
 
 .seta_voltar_modal {
-  height: 20px;
-  width: 20px;
+  height: 2vh;
+  width: 2vh;
 }
 
 .imagem_modal_content {
-  height: 340px;
-  width: 580px;
+  height: 34vh;
+  width: 58vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -870,15 +836,15 @@ body {
 .imagem_modal {
   display: grid;
   justify-content: space-between;
-  width: 580px;
-  height: 300px;
+  width: 58vh;
+  height: 30vh;
   opacity: 95%;
   background-image: url("../img/casa.png");
 }
 
 .modal_botoes_editar_content {
-  width: 555px;
-  height: 65px;
+  width: 55.5vh;
+  height: 6.5vh;
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
@@ -886,13 +852,13 @@ body {
 
 .modal_botoes_editar {
   display: flex;
-  width: 110px;
+  width: 11vh;
   justify-content: space-between;
 }
 
 .botao_editar_imagem {
-  width: 48px;
-  height: 48px;
+  width: 4.8vh;
+  height: 4.8vh;
   background-color: #fafafa;
   border-radius: 50%;
   display: flex;
@@ -901,15 +867,15 @@ body {
 }
 
 .adicionar_foto {
-  height: 110px;
+  height: 11vh;
   display: grid;
   justify-content: center;
   align-items: center;
 }
 
 .card_imagem_content {
-  width: 580px;
-  height: 300px;
+  width: 58vh;
+  height: 30vh;
   background-color: #f5f5f5;
   display: flex;
   justify-content: center;
@@ -917,17 +883,17 @@ body {
 }
 
 .imagem_selecionada {
-  height: 285px;
+  height: 28.5vh;
 }
 
 .situacao {
-  height: 40px;
+  height: 4vh;
   display: flex;
   align-items: end;
 }
 
 .alinhamento_imagem {
-  height: 290px;
+  height: 29vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -935,16 +901,16 @@ body {
 }
 
 .imagem_selecionada_content {
-  width: 560px;
-  height: 290px;
+  width: 56vh;
+  height: 29vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .botao_adicionar_foto {
-  height: 48px;
-  width: 48px;
+  height: 4.8vh;
+  width: 4.8vh;
   background-color: #272727;
   border-radius: 50%;
   display: flex;
@@ -953,7 +919,7 @@ body {
 }
 
 .botao_adicionar_foto_content {
-  height: 60px;
+  height: 6vh;
   display: flex;
   justify-content: center;
 }
@@ -965,44 +931,44 @@ body {
 }
 
 .texto_adicionar_foto {
-  font-size: 24px;
+  font-size: 2.4vh;
   color: #272727;
-  line-height: 28px;
+  line-height: 2.8vh;
 }
 
 .texto_quantidade_foto {
   display: flex;
   justify-content: center;
-  font-size: 14px;
+  font-size: 1.4vh;
   color: #959595;
 }
 
 .container_passar_imagem {
   height: 90%;
-  width: 580px;
+  width: 58vh;
   display: flex;
   align-items: flex-end;
   justify-content: center;
 }
 
 .passar_imagem {
-  height: 30px;
-  width: 300px;
+  height: 3vh;
+  width: 30vh;
   display: flex;
   justify-content: space-around;
   align-items: initial;
 }
 
 .passar_imagem_cliente {
-  width: 300px;
+  width: 30vh;
   display: flex;
   justify-content: space-around;
   align-items: initial;
 }
 
 .botao_passa_imagem {
-  width: 50px;
-  height: 5px;
+  width: 5vh;
+  height: 0.5vh;
   opacity: 50%;
   background-color: #fafafa;
 }
@@ -1012,72 +978,72 @@ body {
 }
 
 .upload_imagem {
-  height: 355px;
+  height: 35.5vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .modal_texto {
-  height: 42.5px;
-  font-size: 24px;
+  height: 4.25vh;
+  font-size: 2.4vh;
   display: flex;
   align-items: initial;
   color: #272727;
 }
 
 .modal_contatos {
-  height: 65px;
-  font-size: 24px;
+  height: 6.5vh;
+  font-size: 2.4vh;
   display: flex;
   align-items: flex-end;
   color: #272727;
 }
 
 .modal_nome_produto {
-  height: 25px;
-  font-size: 20px;
+  height: 2.5vh;
+  font-size: 2vh;
   display: flex;
   align-items: initial;
   color: #959595;
 }
 
 .modal_cidade_produto {
-  font-size: min(40px, 5vw);
+  font-size: 4vh;
   color: #272727;
 }
 
 .modal_preco {
-  font-size: min(40px, 5vw);
+  font-size:  4vh;
   color: #2b50aa;
 }
 
 .modal_descricao {
-  font-size: 24px;
+  font-size: 2.4vh;
   color: #959595;
 }
 
 .modal_valor {
-  height: 80px;
+  height: 8vh;
   display: flex;
   align-items: initial;
   justify-content: space-between;
 }
 
 .modal_redes_sociais_container {
-  height: 85px;
+  height: 8.5vh;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
 }
 
 .modal_rede_social {
-  width: 129px;
-  height: 48px;
+  width: 12.9vh;
+  height: 4.8vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
+  border-radius: 1vh;
   border: none;
 }
 
@@ -1086,8 +1052,8 @@ body {
 }
 
 .modal_icon {
-  height: 20px;
-  width: 20px;
+  height: 2vh;
+  width: 2vh;
 }
 
 .modal_whatsapp {
@@ -1107,8 +1073,8 @@ body {
 }
 
 .modal_olx_icon {
-  height: 34px;
-  width: 34px;
+  height: 3.4vh;
+  width: 3.4vh;
 }
 
 .login_container {
@@ -1117,7 +1083,7 @@ body {
 }
 
 .container_content {
-  height: 962px;
+  height: 96.2vh;
   width: 60%;
   background-color: #fafafa;
   display: inline-grid;
@@ -1146,43 +1112,43 @@ body {
 }
 
 .texto {
-  font-size: 22px;
+  font-size: 2.2vh;
   font-weight: 600;
   color: #101010;
 }
 
 .texto_claro {
-  font-size: 22px;
+  font-size: 2.2vh;
   color: #101010;
-  line-height: 30px;
+  line-height: 3vh;
   font-weight: 600;
   opacity: 50%;
   cursor: pointer;
 }
 
 .texto_azul {
-  font-size: 22px;
+  font-size: 2.2vh;
   color: #2b50aa;
   font-weight: 600;
 }
 
 .login_header_texto {
-  height: 30px;
-  width: 310px;
+  height: 3vh;
+  width: 31vh;
   display: flex;
   justify-content: inherit;
   align-items: center;
 }
 
 .login_logo {
-  width: 157px;
-  height: 60px;
+  width: 15.7vh;
+  height: 6vh;
 }
 
 .login_card_content {
-  height: 670px;
+  height: 67vh;
   justify-content: center;
-  width: 700px;
+  width: 70vh;
   background-color: #f5f5f5;
   display: flex;
   justify-content: center;
@@ -1190,14 +1156,14 @@ body {
 }
 
 .login_card {
-  height: 620px;
-  width: 600px;
+  height: 62vh;
+  width: 60vh;
 }
 
 .recuperar_senha_card_content {
-  height: 470px;
+  height: 47vh;
   justify-content: center;
-  width: 700px;
+  width: 70vh;
   background-color: #f5f5f5;
   display: flex;
   justify-content: center;
@@ -1205,7 +1171,7 @@ body {
 }
 
 .recuperar_senha_content {
-  height: 680px;
+  height: 68vh;
   width: 100%;
   display: flex;
   align-items: center;
@@ -1213,32 +1179,32 @@ body {
 }
 
 .recuperar_senha {
-  height: 370px;
-  width: 600px;
+  height: 37vh;
+  width: 60vh;
   display: grid;
   align-items: center;
 }
 
 .card_criar_conta {
-  height: 590px;
-  width: 600px;
+  height: 59vh;
+  width: 60vh;
 }
 
 .titulo {
-  font-size: 35px;
+  font-size: 3.5vh;
   color: #101010;
   font-weight: 600;
-  line-height: 60px;
+  line-height: 6vh;
   display: flex;
   justify-content: center;
   align-items: initial;
 }
 
 .titulo_codigo {
-  font-size: 20px;
+  font-size: 2vh;
   color: #101010;
   font-weight: 600;
-  line-height: 60px;
+  line-height: 6vh;
   display: flex;
   justify-content: center;
 }
@@ -1246,40 +1212,69 @@ body {
 .card_subtitulo {
   display: flex;
   justify-content: center;
-  height: 40px;
+  height: 4vh;
 }
 
 .login_subtitulo {
-  width: 380px;
+  width: 38vh;
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
 }
 
 .input {
-  height: 100px;
-  width: 470px;
+  height: 10vh;
+  width: 47vh;
   align-items: center;
 }
 
 .input_maior {
-  height: 100px;
-  width: 470px;
+  height: 10vh;
+  width: 47vh;
   display: grid;
   justify-content: center;
   align-items: center;
 }
 
 .input_text {
-  width: 420px;
-  height: 25px;
+  width: 42vh;
+  height: 2.5vh;
   border-color: #fafafa;
-  border-radius: 6px;
-  font-size: 20px;
+  border-radius: 0.6vh;
+  font-size: 2vh;
   color: #101010;
   font-weight: 600;
   border: none;
-  padding: 20px;
+  padding: 2vh;
+}
+
+.input_visualizar {
+  width: 40vh;
+  height: 2.5vh;
+  border-radius: 0.6vh;
+  font-size: 2vh;
+  color: #101010;
+  font-weight: 600;
+  border: none;
+  background-color: #fafafa;
+}
+
+.input_visualizar:focus {
+  box-shadow: 0 0 0 0;
+  border: 0 none;
+  outline: 0;
+}
+
+.input_visualizar_content {
+  width: 42vh;
+  height: 2.5vh;
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+  border-color: #fafafa;
+  border-radius: 0.6vh;
+  padding: 2vh;
+  background-color: #fafafa;
 }
 
 .input_text:focus {
@@ -1289,15 +1284,15 @@ body {
 }
 
 .input_text_metade {
-  width: 180px;
-  height: 25px;
+  width: 18vh;
+  height: 2.5vh;
   background-color: #fafafa;
-  border-radius: 6px;
-  font-size: 20px;
+  border-radius: 0.6vh;
+  font-size: 2vh;
   color: #101010;
   font-weight: 600;
   border: none;
-  padding: 20px;
+  padding: 2vh;
 }
 
 .input_text_metade:focus {
@@ -1307,8 +1302,8 @@ body {
 }
 
 .input_metade {
-  width: 230px;
-  height: 100px;
+  width: 23vh;
+  height: 10vh;
   display: grid;
   justify-content: center;
 }
@@ -1316,33 +1311,45 @@ body {
 .card_input_metade {
   display: flex;
   justify-content: center;
-  height: 130px;
+  height: 13vh;
   align-items: flex-end;
 }
 
 .card_input {
-  height: 170px;
+  height: 17vh;
   display: flex;
   justify-content: center;
   align-items: flex-end;
 }
 
+.visualizar_senha_content {
+  height: 7vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.visualizar_senha {
+  height: 3vh;
+  width: 3vh;
+}
+
 .card_input_maior {
-  height: 140px;
+  height: 14vh;
   display: flex;
   justify-content: center;
   align-items: flex-end;
 }
 
 .login_botao {
-  height: 110px;
+  height: 11v;
   display: flex;
   justify-content: center;
   align-items: flex-end;
 }
 
 .recuperar_senha_botao {
-  height: 80px;
+  height: 8vh;
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -1352,15 +1359,15 @@ body {
     display: flex;
     align-items: end;
     justify-content: center;
-    height: 130px;
+    height: 13vh;
 }
 
 .botao_submit {
-  width: 420px;
-  height: 60px;
-  border-radius: 10px;
+  width: 42vh;
+  height: 6vh;
+  border-radius: 1vh;
   background-color: #2b50aa;
-  font-size: 22px;
+  font-size: 2.2vh;
   color: #fafafa;
   font-weight: 600;
   border: none;
@@ -1376,15 +1383,15 @@ body {
 }
 
 .card_footer {
-  width: 420px;
-  height: 60px;
+  width: 42vh;
+  height: 6vh;
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
 }
 
 .login_banner {
-  height: 968px;
+  height: 96.8vh;
   width: 46%;
 }
 
@@ -1394,12 +1401,12 @@ body {
 }
 
 h1 {
-  padding-left: 25px;
+  padding-left: 2.5vh;
 }
 
 p {
-  font-size: 25px;
-  padding-left: 25px;
+  font-size: 2.5vh;
+  padding-left: 2.5vh;
 }
 
 .mensagem {
@@ -1422,14 +1429,26 @@ p {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  font-size: 16px;
+  font-size: 1.6vh;
   font-weight: 600;
-  color: #101010;
+  color: #af2525;
   text-decoration: none;
 }
 
+.mensagem_link {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  font-size: 1.6vh;
+  font-weight: 600;
+  color: #101010;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .texto_recuperar_senha_content {
-  height: 200px;
+  height: 20vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -1441,18 +1460,18 @@ p {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  font-size: 19px;
+  font-size: 1.9vh;
   font-weight: 600;
   color: #101010;
 }
 
 .recado {
-  font-size: 12px;
+  font-size: 1.2vh;
   background-color: red;
 }
 
 .nova_senha {
-  height: 420px;
+  height: 42vh;
   display: grid;
   align-items: center;
 }

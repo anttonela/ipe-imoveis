@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import md5 from 'md5';
 
 import Header from '../components/login/Header';
 import InputMaior from '../components/login/InputMaior';
 import InputMetade from '../components/login/InputMetade';
 import BannerImagem from '../assets/img/banner.png';
+import InputSenha from '../components/login/InputSenha';
 
 function CriarConta() {
 
@@ -23,7 +25,7 @@ function CriarConta() {
 
         const dados = {
             email,
-            senha,
+            senha: md5(senha),
             nome,
             sobrenome,
         };
@@ -96,12 +98,10 @@ function CriarConta() {
                                     placeholder={"E-mail..."}
                                 />
 
-                                <InputMaior
-                                    id={senha}
-                                    type={"password"}
+                                <InputSenha
                                     value={senha}
                                     onChange={setSenha}
-                                    textoInput={"Senha"}
+                                    texto={"Senha"}
                                     placeholder={"Senha..."}
                                 />
 

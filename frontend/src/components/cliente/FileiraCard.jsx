@@ -41,8 +41,8 @@ function FileiraCard({ fetchUrl }) {
                                 src={type === 'PREV' ? SetaEsquerda : SetaDireita}
                                 alt={type === 'PREV' ? 'Previous' : 'Next'}
                                 style={{
-                                    width: '48px',
-                                    height: '48px',
+                                    width: '4vh',
+                                    height: '4.5vh',
                                     cursor: 'pointer',
                                 }}
                                 onClick={onClick}
