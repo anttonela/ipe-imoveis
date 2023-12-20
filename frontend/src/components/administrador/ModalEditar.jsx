@@ -125,14 +125,27 @@ function ModalEditar({ idCard, cidadeProduto, classificacaoProduto, tipoProduto,
         }
     }
 
+    const formatarMoeda = (value) => {
+        const numero = parseFloat(value.replace(/[^\d]/g, '')) / 100;
+        return numero.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    };
+
+    const handleValorChange = (e) => {
+        const novoValor = e.target.value;
+
+        if (novoValor === '' || novoValor.match(/^\$/)) {
+            setValor(novoValor);
+        } else {
+            setValor(formatarMoeda(novoValor));
+        }
+    };
+
     return (
         <>
             <div className='modal_content'>
 
                 <div className='sair_modal'>
-                    <div className='seta_voltar_modal' onClick={fecharModal}>
-                        <img src={IconSetaVoltar} />
-                    </div>
+                    <img className='seta_voltar_modal' onClick={fecharModal} src={IconSetaVoltar} />
                     <div className='botao_fechar_modal inter_500'>Voltar</div>
                 </div>
 
@@ -241,13 +254,17 @@ function ModalEditar({ idCard, cidadeProduto, classificacaoProduto, tipoProduto,
                             </select>
                         </div>
 
-                        <InformacoesModal
-                            id={"valor"}
-                            value={valor !== '' ? valor : valorEmReais}
-                            onChange={setValor}
-                            nomeInformacao={"Valor"}
-                            placeholder={"R$ 1.000.000"}
-                        />
+                        <div className="input_content">
+                            <div className="modal_ad_texto inter_500">Valor</div>
+
+                            <input
+                                className="modal_input"
+                                placeholder="R$ 1.000.000"
+                                type="text"
+                                value={valor !== '' ? valor : valorEmReais}
+                                onChange={handleValorChange}
+                            />
+                        </div>
 
                         <div className='descricao_content'>
                             <div className="input_content_descricao">
@@ -306,18 +323,17 @@ function ModalEditar({ idCard, cidadeProduto, classificacaoProduto, tipoProduto,
                     <div className='content_botao_confirmar'>
                         <button className='botao_confirmar_adicionar' type='submit'>Salvar Alteração</button>
                     </div>
-
                     {produtoAlterado && (
-                        <div className='mensagem_sucesso'>
+                        <div className='mensagem_sucesso_produto'>
                             Produto alterado com sucesso
                         </div>
                     )}
 
+                    <div className='espacamento'></div>
+
                 </form>
 
             </div>
-
-            <div className='scroll'></div>
         </>
     );
 }

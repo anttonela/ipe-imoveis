@@ -70,7 +70,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: min(2vh, 2vw);
+  font-size: 2vh;
   font-weight: 600;
   letter-spacing: 0.61em;
   color: #fff;
@@ -109,7 +109,7 @@ body {
   align-items: flex-end;
   justify-content: center;
   text-align: center;
-  font-size: min(4.7vh, 3vw);
+  font-size: 4.5vh;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -475,7 +475,9 @@ body {
 
 .card_editar_icons {
   width: 6vh;
+  height: 2vh;
   display: flex;
+  align-items: flex-start;
   justify-content: space-between;
 }
 
@@ -677,9 +679,6 @@ body {
   height: 100%;
   max-width: 90%;
   background: #fff;
-  padding: 3.2rem;
-  padding-top: 7.5rem;
-  padding-bottom: 8rem;
   overflow-y: scroll;
 }
 
@@ -689,48 +688,55 @@ body {
 }
 
 .modal_content {
+  width: 68vh;
+  height: 100%;
+  display: grid;
+  justify-content: center;
+  max-width: 90%;
+  background: #fff;
+  overflow-y: scroll;
+}
+
+.modal_cliente_content {
   width: 57vh;
   height: 100%;
   max-width: 90%;
   background: #fff;
-  padding: 3.2rem;
-  padding-top: 7.5rem;
-  padding-bottom: 8rem;
   overflow-y: scroll;
+  padding: 5vh
+}
+
+.espacamento {
+  height: 7vh;
+  width: 100%;
 }
 
 .modal_content::-webkit-scrollbar {
-  width: 1.2vh;
+  width: 1vh;
   border: 0.1vh solid rgb(207, 141, 141);
-  z-index: 1000;
+  /* z-index: 1000; */
 }
 
 .modal_content::-webkit-scrollbar-thumb {
-  background-color: gold;
+  background-color: #272727;
   border-radius: 0.6vh;
-}
-
-.scroll {
-  height: 100%;
-  width: 0.5vh;
-  background-color: #fff;
 }
 
 .modal_footer {
   text-align: right;
-  margin-top: 5vh;
 }
 
 .sair_modal {
+  height: 5vh;
   width: 15%;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   cursor: pointer;
 }
 
 .modal_ad_texto {
-  height: 3Vh;
+  height: 3vh;
   display: flex;
   align-items: flex-end;
   font-size: 2vh;
@@ -760,12 +766,6 @@ body {
   height: 10vh;
   display: grid;
   scroll-behavior: auto;
-}
-
-.mensagem_sucesso {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .modal_input {
@@ -1014,13 +1014,14 @@ body {
 }
 
 .modal_preco {
-  font-size:  4vh;
+  font-size: 4vh;
   color: #2b50aa;
 }
 
 .modal_descricao {
   font-size: 2.4vh;
   color: #959595;
+  height: 100%;
 }
 
 .modal_valor {
@@ -1270,7 +1271,7 @@ body {
   height: 2.5vh;
   display: flex;
   justify-content: space-between;
-  align-items:center;
+  align-items: center;
   border-color: #fafafa;
   border-radius: 0.6vh;
   padding: 2vh;
@@ -1342,7 +1343,7 @@ body {
 }
 
 .login_botao {
-  height: 11v;
+  height: 11vh;
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -1356,10 +1357,10 @@ body {
 }
 
 .nova_senha_botao_content {
-    display: flex;
-    align-items: end;
-    justify-content: center;
-    height: 13vh;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  height: 9vh;
 }
 
 .botao_submit {
@@ -1391,13 +1392,15 @@ body {
 }
 
 .login_banner {
-  height: 96.8vh;
-  width: 46%;
+  height: 100vh;
+  width: 40%;
+  overflow: hidden;
 }
 
 .imagem_banner {
   height: 100%;
   width: 100%;
+  object-fit: cover;
 }
 
 h1 {
@@ -1432,6 +1435,28 @@ p {
   font-size: 1.6vh;
   font-weight: 600;
   color: #af2525;
+  text-decoration: none;
+}
+
+.mensagem_sucesso_produto {
+  height: 3vh;
+  font-size: 1.6vh;
+  font-weight: 600;
+  color: #176310;
+  text-decoration: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.mensagem_sucesso_email {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  font-size: 1.6vh;
+  font-weight: 600;
+  color: #176310;
   text-decoration: none;
 }
 

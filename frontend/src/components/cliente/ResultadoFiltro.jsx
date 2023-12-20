@@ -29,7 +29,7 @@ function ResultadoFiltro({ onClick }) {
 
                     {values(data).map(produto => (
                         <PrimeiroSubtitulo
-                            key={produto.id_prod}
+                            key={produto.id}
                             nome={produto.classificacao + " > " + produto.tipo + " > " + produto.cidade}
                         />
                     ))}

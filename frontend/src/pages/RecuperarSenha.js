@@ -27,10 +27,13 @@ function RecuperarSenha() {
   const recuperarSenha = () => {
     setInputEmail(true);
     setInputCodigo(false);
+    setMensagemLogin(false);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setRespostaLocalhost(false);
 
     const dataAtual = new Date();
     dataAtual.setMinutes(dataAtual.getMinutes() + 10);
@@ -105,24 +108,22 @@ function RecuperarSenha() {
         method: "POST",
         body: JSON.stringify(dados),
       });
-
+    
       const resposta = await response.text();
-      console.log("Resposta da API:", resposta);
+      const respostaSemAspas = resposta.replace(/^"(.*)"$/, '$1');
 
-      if (resposta === '"Chave correta"') {
-        setMensagemLogin(false);
+      console.log("Resposta:", respostaSemAspas);
+
+      if (respostaSemAspas === "Chave correta") {
         setNovaSenha(true);
         setInputCodigo(false);
-      } else if (resposta === '"Expirou"') {
-        setRespostaLocalhost("O código expirou, solicite outro");
-        setMensagemLogin(true);
-      } else {
-        setRespostaLocalhost("Código incorreto");
-        setMensagemLogin(true);
+        return;
       }
-
+    
+      setRespostaLocalhost(respostaSemAspas);
+      setMensagemLogin(true);
     } catch (error) {
-      console.error("Erro ao enviar os dados para a API:", error);
+      console.error("Erro ao chamar a API:", error);
     }
   };
 

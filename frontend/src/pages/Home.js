@@ -20,7 +20,7 @@ function ConteudoHome() {
     const [classificacaoSelecionada, setClassificacaoSelecionada] = useState('');
 
     useEffect(() => {
-        document.title = "Home Cliente";
+        document.title = "Home";
     })
 
     const handleSubmit = async (e) => {
@@ -31,7 +31,6 @@ function ConteudoHome() {
             tipo: tipoSelecionado,
             cidade,
         };
-        // console.log('Dados a serem enviados:', dados);
 
         try {
             const response = await fetch('http://localhost:8080/filtro/', {
@@ -40,7 +39,6 @@ function ConteudoHome() {
             })
 
             const resposta = await response.json();
-            //  console.log('Resposta da API AQUII:', resposta);
 
             setData(resposta);
             setMensagemLogin(true);
@@ -54,11 +52,11 @@ function ConteudoHome() {
         <div className='container'>
 
             {!filtroClicado && (
-                < Header href="#imoveis" />
+                < Header texto_botao="Ver imóveis" href="#imoveis" />
             )}
 
             {filtroClicado && (
-                <Header href="/home" />
+                <Header texto_botao="Ver Todos os Produtos" href="/home" />
             )}
 
             <Filtro
@@ -112,20 +110,21 @@ function ConteudoHome() {
 
             {filtroClicado && (
                 <>
+                    <div className='espacamento'></div>
                     {data.length > 0 ? (
                         <div className="card_content_administrativo">
                             <div className="content_administrativo">
                                 {values(data).map(resposta => (
                                     <CardSombreado
                                         classificacao={resposta.classificacao}
-                                        idCard={resposta.id_prod}
-                                        key={resposta.id_prod}
+                                        idCard={resposta.id}
+                                        key={resposta.id}
                                         cidade={resposta.cidade}
                                         breve_descricao={resposta.breve_descricao}
                                         valor={resposta.valor}
                                         situacao={resposta.situacao}
                                         informacoes={{
-                                            id: resposta.id_prod,
+                                            id: resposta.id,
                                             cidade: resposta.cidade,
                                             valor: resposta.valor,
                                             descricao: resposta.descricao,

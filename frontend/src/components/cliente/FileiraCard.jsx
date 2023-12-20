@@ -55,16 +55,16 @@ function FileiraCard({ fetchUrl }) {
 
                         <Card
                             classificacao={produto.classificacao}
-                            key={produto.id_prod}
-                            idCard={produto.id_prod}
-                            cidade={produto.id_prod + " - " + produto.cidade}
+                            key={produto.id}
+                            idCard={produto.id}
+                            cidade={produto.id + " - " + produto.cidade}
                             breve_descricao={produto.breve_descricao}
                             valor={produto.valor}
                             situacao={produto.situacao}
 
                             informacoes=
                             {{
-                                id: produto.id_prod,
+                                id: produto.id,
                                 cidade: produto.cidade,
                                 valor: produto.valor,
                                 descricao: produto.descricao,

@@ -1,12 +1,8 @@
-import ModalInformacoes from './ModalInformacoes';
+import { Link } from 'react-router-dom';
+import ModalInformacoes from './Modal';
 import FotoImovel from '../../assets/img/imoveis.png';
 
 function Card({ classificacao, idCard, cidade, breve_descricao, valor, situacao, informacoes }) {
-
-    let valorEmReais = (valor / 100).toLocaleString('pt-BR', {
-        style: 'currency',
-        currency: 'BRL',
-    });
 
     switch (classificacao) {
         case "Imóvel":
@@ -19,13 +15,10 @@ function Card({ classificacao, idCard, cidade, breve_descricao, valor, situacao,
             classificacao = "outros";
             break;
     }
-
+ 
     return (
         <>
-            <a
-                className='link'
-                href={`#${classificacao}/${idCard}`}
-            >
+            <a href={`#${classificacao}/${idCard}`} className='link'>
 
                 <div className='card' id={idCard}>
 
@@ -44,7 +37,7 @@ function Card({ classificacao, idCard, cidade, breve_descricao, valor, situacao,
                             </div>
 
                             <div className='card_valor'>
-                                <div className='valor_produto inter_700'>{valorEmReais}</div>
+                                <div className='valor_produto inter_700'>{valor}</div>
                                 <div className='card_texto'>{situacao}</div>
                             </div>
                         </div>

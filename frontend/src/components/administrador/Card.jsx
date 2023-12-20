@@ -2,6 +2,7 @@ import IconLapis from "../../assets/img/lapis.svg";
 import ModalEditar from "./ModalEditar";
 import IconLixeira from "../../assets/img/lixeira.svg";
 import ImagemImoveis from "../../assets/img/imoveis.png";
+import { useEffect, useState } from 'react';
 
 function Card({
   cidade,
@@ -17,22 +18,20 @@ function Card({
   facebook,
   olx,
 }) {
-  let valorEmReais = (valor).toLocaleString("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  });
-
   switch (classificacao) {
-    case "Imóvel":
-      classificacao = "imovel";
+    case "imovel":
+      classificacao = "Imóvel";
       break;
-    case "Máquinas Agrícolas":
-      classificacao = "maquinasAgricolas";
+    case "maquinasAgricolas":
+      classificacao = "Máquinas Agrícolas";
       break;
-    case "Outros":
-      classificacao = "outros";
+    case "outros":
+      classificacao = "Outros";
       break;
   }
+
+  const [classificacaoRota, setClassificacaoRota] = useState("");
+
 
   const handleDeleteClick = async (e) => {
     const apagar = window.confirm("Você deseja apagar este produto?");
@@ -59,6 +58,22 @@ function Card({
     }
   };
 
+  useEffect(() => {
+    switch (classificacao) {
+      case "Imóvel":
+        setClassificacaoRota("imovel");
+        break;
+      case "Máquinas Agrícolas":
+        setClassificacaoRota("maquinas");
+        break;
+      case "Outros":
+        setClassificacaoRota("outros");
+        break;
+      default:
+        setClassificacaoRota("");
+    }
+  }, [classificacao]);
+
   return (
     <div className="espacamento_fileira">
       <div className="card card_administrativo">
@@ -72,16 +87,14 @@ function Card({
               <div className="card_editar">
                 <div className="nome_produto inter_700">{idCard}</div>
                 <div className="content-card_editar_icons">
+
                   <div className="card_editar_icons">
-                    <a className="link" href={`#${classificacao}/${idCard}`}>
+                    <a href={`#${classificacaoRota}/${idCard}`}>
                       <img className="editar_icon" src={IconLapis} />
                     </a>
-                    <img
-                      className="editar_icon"
-                      src={IconLixeira}
-                      onClick={handleDeleteClick}
-                    />
+                    <img className="editar_icon" src={IconLixeira} onClick={handleDeleteClick} />
                   </div>
+
                 </div>
               </div>
 
@@ -89,21 +102,21 @@ function Card({
             </div>
 
             <div className="card_valor">
-              <div className="valor_produto inter_700">R$: {valorEmReais}</div>
+              <div className="valor_produto inter_700">{valor}</div>
               <div className="card_texto">{situacao}</div>
             </div>
           </div>
         </div>
       </div>
 
-      <div id={`${classificacao}/${idCard}`} className="modal">
+      <div id={`${classificacaoRota}/${idCard}`} className="modal">
         <ModalEditar
           idCard={idCard}
           cidadeProduto={cidade}
           classificacaoProduto={classificacao}
           tipoProduto={tipo}
           situacaoProduto={situacao}
-          valorProduto={valorEmReais}
+          valorProduto={valor}
           descricaoProduto={descricao}
           linkWhatsappProduto={whatsapp}
           linkInstagramProduto={instagram}

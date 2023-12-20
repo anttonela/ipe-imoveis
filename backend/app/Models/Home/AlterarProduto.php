@@ -37,14 +37,14 @@ class AlterarProduto extends Banco
             tipo = '" . $data['tipo'] . "',
             cidade = '" . $data['cidade'] . "',
             situacao = '" . $data['situacao'] . "',
-            valor = " . $data['valor'] . ",
+            valor = '" . $data['valor'] . "',
             descricao = '" . $data['descricao'] . "',
             breve_descricao = '" . implode(' ', array_slice(explode(' ', $data['descricao']), 0, 7)) . "',
             link_whatsapp = '{$this->linkWhatsapp}',
             link_instagram = '{$this->linkInstagram}',
             link_facebook = '{$this->linkFacebook}',
             link_olx = '{$this->linkOlx}'
-            WHERE id_prod = " . $data['id'] . "
+            WHERE id = " . $data['id'] . "
         ";
 
         $this->executarFetchAll($alterar);

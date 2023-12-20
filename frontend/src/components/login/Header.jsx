@@ -1,8 +1,8 @@
+import React from 'react';
 import Logo from '../../assets/img/logo.png';
+import { Link } from 'react-router-dom';
 
 function Header() {
-
-    let url = '/login';
 
     return (
         <div className="header_content">
@@ -13,9 +13,7 @@ function Header() {
                 </div>
 
                 <div className='login_header_texto'>
-                    <a href={url} className='link'>
-                        <div className='texto_claro'>Fazer Login</div>
-                    </a>
+                    <Link to={`/login`} className='texto_claro link'>Fazer Login</Link>
 
                     <div className='texto'>Criar Conta</div>
                 </div>

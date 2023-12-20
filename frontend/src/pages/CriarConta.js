@@ -19,9 +19,17 @@ function CriarConta() {
     const [sobrenome, setSobrenome] = useState('');
     const [mensagemLogin, setMensagemLogin] = useState(false);
     const [respostaLocalhost, setRespostaLocalhost] = useState('');
+    const [emailEnviado, setEmailEnviado] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (senha.length < 6) {
+            setEmailEnviado(false); 
+            setRespostaLocalhost("Senha deve ser maior que 6 caracteres");
+            setMensagemLogin(true);
+            return;
+        }
 
         const dados = {
             email,
@@ -39,18 +47,15 @@ function CriarConta() {
             });
 
             const resposta = await response.text();
-            console.log("Resposta da API" + resposta);
+            console.log("Resposta da API: " + resposta);
 
-            if (
-                resposta !== "Senha menor que 6 digitos" &&
-                resposta !== "E-mail já cadastrado" &&
-                resposta !== "E-mail inválido"
-            ) {
-                setRespostaLocalhost("E-mail para confirmação foi enviado, verifique sua caixa principal ou de spam.");
-                setMensagemLogin(true);
+            if (resposta.length > 60) {
+                setEmailEnviado(true);
+                setMensagemLogin(false);
                 return;
             }
 
+            setEmailEnviado(false); 
             setRespostaLocalhost(resposta);
             setMensagemLogin(true);
         } catch (error) {
@@ -112,6 +117,12 @@ function CriarConta() {
                                 {mensagemLogin && (
                                     <div className='mensagem_content'>
                                         <div className="mensagem_erro">{respostaLocalhost}</div>
+                                    </div>
+                                )}
+
+                                {emailEnviado && (
+                                    <div className='mensagem_content'>
+                                        <div className="mensagem_sucesso_email">E-mail para confirmação foi enviado, verifique sua caixa principal ou de spam.</div>
                                     </div>
                                 )}
 

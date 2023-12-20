@@ -1,12 +1,7 @@
 import ImagemImoveis from '../../assets/img/imoveis.png';
-import ModalInformacoes from './ModalInformacoes';
+import ModalInformacoes from './Modal';
 
 function CardSombreado({ classificacao, idCard, cidade, breve_descricao, valor, situacao, informacoes }) {
-
-    let valorEmReais = (valor / 100).toLocaleString('pt-BR', {
-        style: 'currency',
-        currency: 'BRL',
-    });
 
     return (
         <>
@@ -34,7 +29,7 @@ function CardSombreado({ classificacao, idCard, cidade, breve_descricao, valor, 
                                     </div>
 
                                     <div className='card_valor'>
-                                        <div className='valor_produto inter_700'>{valorEmReais}</div>
+                                        <div className='valor_produto inter_700'>{valor}</div>
                                         <div className='card_situacao'>{situacao}</div>
                                     </div>
                                 </div>

@@ -34,7 +34,7 @@ class NovoProduto
             "cidade" => $data['cidade'],
             "situacao" => $data['situacao'],
             "valor" => $data['valor'],
-            "breve_descricao" => implode(' ', array_slice(explode(' ', $data['descricao']), 0, 7)),
+            "breve_descricao" => implode(' ', array_slice(explode(' ', $data['descricao']), 0, 9)),
             "descricao" => $data['descricao'],
             "link_whatsapp" => "{$this->linkWhatsapp}",
             "link_instagram" => "{$this->linkInstagram}",

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+// import { useHistory } from 'react-router-dom';
 
 import SelectModal from './SelectModal';
 import SelectAtualiza from './SelectAtualiza';
@@ -74,15 +75,41 @@ function ModalNovoImovel() {
         } catch (error) {
             console.error('Erro ao enviar os dados para a API:', error);
         }
-    }
+    };
+
+    const formatarMoeda = (value) => {
+        const numero = parseFloat(value.replace(/[^\d]/g, '')) / 100;
+        return numero.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    };
+
+    const handleValorChange = (e) => {
+        const novoValor = e.target.value;
+
+        if (novoValor === '' || novoValor.match(/^\$/)) {
+            setValor(novoValor);
+        } else {
+            setValor(formatarMoeda(novoValor));
+        }
+    };
+
+    // const history = useHistory();
+
+    // const handleVoltar = () => {
+    //     history.goBack();
+    //     history.go(0);
+    // };
+
+    const handleVoltar = () => {
+        window.location.href = '/home/administrador';
+    };
 
     return (
         <>
             <div className='modal_content'>
                 <div className='sair_modal'>
-                    <a className='seta_voltar_modal' href='#'>
+                    <div className='seta_voltar_modal' onClick={handleVoltar}>
                         <img src={IconSetaVoltar} alt="Seta de Voltar" />
-                    </a>
+                    </div>
                     <div className='botao_fechar_modal inter_500'>Voltar</div>
                 </div>
 
@@ -172,15 +199,13 @@ function ModalNovoImovel() {
 
                         <div className="input_content">
                             <div className="modal_ad_texto inter_500">Valor</div>
+
                             <input
                                 className="modal_input"
-                                placeholder={"R$ 0,00"}
+                                placeholder="R$ 0,00"
                                 type="text"
-                                id={"valor"}
                                 value={valor}
-                                onChange={(e) => {
-                                    setValor(e.target.value);
-                                }}
+                                onChange={handleValorChange}
                                 required
                             />
                         </div>
@@ -243,10 +268,12 @@ function ModalNovoImovel() {
 
 
                         {produtoAdicionado && (
-                            <div className='mensagem_sucesso'>
+                            <div className='mensagem_sucesso_produto'>
                                 Produto adicionado com sucesso
                             </div>
                         )}
+
+                        <div className='espacamento'></div>
 
                     </div>
                 </form>

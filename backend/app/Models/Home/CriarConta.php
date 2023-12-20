@@ -53,18 +53,17 @@ class CriarConta extends Banco
     {
         $this->setCriarConta();
 
-        if (filter_var($this->nome, FILTER_SANITIZE_NUMBER_INT) === true) {
+        if (!preg_match('/^[a-zA-ZÀ-ÿ\s]+$/', $this->nome)) {
             $this->arMensagem[] = "Nome inválido";
-            $this->nome = null;
             return;
         }
 
-        if (filter_var($this->sobrenome, FILTER_SANITIZE_NUMBER_INT) === true) {
+        if (!preg_match('/^[a-zA-ZÀ-ÿ\s]+$/', $this->sobrenome)) {
             $this->arMensagem[] = "Sobrenome inválido";
-            $this->sobrenome = null;
             return;
         }
     }
+
 
     private function verificandoSeCadastroJaExiste(): void
     {
@@ -82,7 +81,10 @@ class CriarConta extends Banco
     {
         $this->setCriarConta();
 
-        strlen($this->senha) < 6 ? $this->arMensagem[] = 'Senha menor que 6 digitos' : null;
+        if (strlen($this->senha) < 6) {
+            $this->arMensagem[] = 'Senha precisa ser maior que 6 caracteres';
+            return;
+        }
     }
 
     public function enviandoEmail()
@@ -144,6 +146,11 @@ class CriarConta extends Banco
             }
         }
 
-        print_r(current($this->arMensagem[0]));
+        if (isset($this->arMensagem[0]) && is_array($this->arMensagem[0])) {
+            print_r(current($this->arMensagem[0]));
+            return;
+        }
+
+        print $this->arMensagem[0];
     }
 }

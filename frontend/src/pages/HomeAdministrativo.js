@@ -16,7 +16,7 @@ function HomeAdministrativo() {
     return (
         <div className='container'>
 
-            <Header href={"#imoveis"} />
+            <Header texto_botao="Ver imóveis" href={"#imoveis"} />
 
             <BotaoNovoImovel />
 

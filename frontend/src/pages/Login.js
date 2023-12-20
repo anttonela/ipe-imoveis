@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
 import md5 from 'md5';
+import { Link } from 'react-router-dom';
 
 import Logo from "../assets/img/logo.png";
 import CardInput from "../components/login/CardInput";
 import BannerImagem from "../assets/img/banner.png";
-import VisualizarSenha from "../components/login/VisualizarSenha";
 import InputSenha from "../components/login/InputSenha";
 
 function Login() {
-
-  let recuperarSenha = "/recuperarSenha";
-  let criarConta = "/criarConta";
 
   const [data, setData] = useState([]);
   const [email, setEmail] = useState('');
@@ -43,7 +40,6 @@ function Login() {
 
       if (data === 'null') {
         window.location.href = '/home';
-        return;
       }
 
       setErroAutenticacao(true);
@@ -74,9 +70,9 @@ function Login() {
                 <div className="login_header_texto">
                   <div className="texto">Fazer Login</div>
 
-                  <a className="link" href={criarConta}>
+                  <Link to={`/criarConta`} className="link">
                     <div className="texto_claro">Criar Conta</div>
-                  </a>
+                  </Link>
                 </div>
 
               </div>
@@ -92,9 +88,9 @@ function Login() {
                   <div className="login_subtitulo">
                     <div className="texto">Não tem uma conta?</div>
 
-                    <a href={criarConta} className="link">
+                    <Link to={`/criarConta`} className="link">
                       <div className="texto_azul">Criar Conta</div>
-                    </a>
+                    </Link>
 
                   </div>
                 </div>
@@ -133,9 +129,9 @@ function Login() {
                 <div className="login_footer">
                   <div className="card_footer">
                     <div className="texto">Esqueceu a senha?</div>
-                    <a href={recuperarSenha} className="link">
+                    <Link to={`/recuperarSenha`} className="link">
                       <div className="texto_azul">Recuperar Senha</div>
-                    </a>
+                    </Link>
                   </div>
                 </div>
 
