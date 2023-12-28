@@ -6,10 +6,9 @@ use app\Models\Crud\Utilizadores\Banco;
 
 class Filtro extends Banco
 {
-    private $classificacao;
-    private $tipo;
-    private $cidade;
-    private $resultado;
+    private string $classificacao;
+    private string $tipo;
+    private string $cidade;
 
     public function filtro(): void
     {
@@ -27,8 +26,7 @@ class Filtro extends Banco
         $this->tipo = $data['tipo'];
         $this->cidade = $data['cidade'];
 
-        $select = $this->executarFetchAll("SELECT * FROM produto WHERE classificacao = '{$this->classificacao}' and tipo = '{$this->tipo}' and cidade = '{$this->cidade}'");
-
-        print json_encode($select);
+        print json_encode($this->executarFetchAll("SELECT * FROM produto WHERE classificacao = '{$this->classificacao}' and 
+        tipo = '{$this->tipo}' and cidade = '{$this->cidade}'"));
     }
 }

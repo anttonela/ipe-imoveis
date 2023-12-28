@@ -1,15 +1,15 @@
+import md5 from "md5";
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import React, { useEffect, useRef, useState } from "react";
 
 import Logo from "../assets/img/logo.png";
-import CardInput from "../components/login/CardInput";
 import BannerImagem from "../assets/img/banner.png";
-import md5 from "md5";
+import CardInput from "../components/login/CardInput";
 import InputSenha from "../components/login/InputSenha";
 
 function RecuperarSenha() {
-  let criarConta = "/criarConta";
-  let login = "/login";
-
+  
   const [email, setEmail] = useState("");
   const [codigo, setCodigo] = useState("");
   const [mensagemLogin, setMensagemLogin] = useState(false);
@@ -21,17 +21,19 @@ function RecuperarSenha() {
   const [confirmarNovaSenha, setConfirmarNovaSenha] = useState("");
   const [emailEnviado, setEmailEnviado] = useState("");
   const [horarioDeExpiracao, setHorarioDeExpiracao] = useState('');
-  const buttonRef = useRef(null);
 
+  const irPara = useNavigate();
+  const buttonRef = useRef(null);
   const dataAtual = new Date();
+
   const recuperarSenha = () => {
     setInputEmail(true);
     setInputCodigo(false);
     setMensagemLogin(false);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
     setRespostaLocalhost(false);
 
@@ -108,7 +110,7 @@ function RecuperarSenha() {
         method: "POST",
         body: JSON.stringify(dados),
       });
-    
+
       const resposta = await response.text();
       const respostaSemAspas = resposta.replace(/^"(.*)"$/, '$1');
 
@@ -119,12 +121,17 @@ function RecuperarSenha() {
         setInputCodigo(false);
         return;
       }
-    
+
       setRespostaLocalhost(respostaSemAspas);
       setMensagemLogin(true);
     } catch (error) {
       console.error("Erro ao chamar a API:", error);
     }
+  };
+
+  const handleInputChange = (event) => {
+    setEmail(event.target.value);
+    setInputEmail(!!event.target.value);
   };
 
   const handleSubmitSenha = async (e) => {
@@ -148,7 +155,7 @@ function RecuperarSenha() {
       console.log("Resposta da API:", resposta);
 
       if (resposta !== '"Incorreto"') {
-        window.location.href = "/home";
+        irPara("/home");
         return;
       }
 
@@ -174,8 +181,9 @@ function RecuperarSenha() {
   return (
     <>
       <div className="login_container">
-        <div className="container_content">
-          <div className="content">
+        <div className="login">
+          <div className="login_conteudo">
+
             <div className="header_content">
               <div className="login_header">
                 <div className="login_logo">
@@ -183,19 +191,20 @@ function RecuperarSenha() {
                 </div>
 
                 <div className="login_header_texto">
-                  <a href={login} className="link">
+                  <Link to={`/login`} className="link">
                     <div className="texto_claro">Fazer Login</div>
-                  </a>
+                  </Link>
 
-                  <a href={criarConta} className="link">
+                  <Link to={`/criarConta`} className="link">
                     <div className="texto_claro">Criar Conta</div>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
 
             <div className="recuperar_senha_content">
               <div className="recuperar_senha_card_content">
+
                 {inputEmail && (
                   <form onSubmit={handleSubmit}>
                     <div className="recuperar_senha">
@@ -211,7 +220,7 @@ function RecuperarSenha() {
                         />
 
                         <div className="recuperar_senha_botao">
-                          <button className="botao_submit" type="submit">
+                          <button className={`botao_login ${inputEmail ? 'botao_hover' : ''}`} type="submit">
                             Enviar E-mail
                           </button>
                         </div>
@@ -235,8 +244,11 @@ function RecuperarSenha() {
                     className="enviar_email_content"
                   >
                     <div className="enviar_email">
-                      <div className="titulo_codigo">
-                        Verifique sua caixa principal ou de spam
+
+                      <div className="texto_codigo_container">
+                        <div className="titulo_codigo">
+                          Verifique sua caixa principal ou de spam, o código irá ser expirado às {horarioDeExpiracao}
+                        </div>
                       </div>
 
                       <div className="card_input">
@@ -262,7 +274,7 @@ function RecuperarSenha() {
                       </div>
 
                       <div className="recuperar_senha_botao">
-                        <button ref={buttonRef} className="botao_submit" type="submit">
+                        <button ref={buttonRef} className="botao_login" type="submit">
                           Confirmar
                         </button>
                       </div>
@@ -302,7 +314,7 @@ function RecuperarSenha() {
 
                     <div className="nova_senha_botao_content">
                       <div className="recuperar_senha_botao">
-                        <button className="botao_submit" type="submit">
+                        <button className="botao_login" type="submit">
                           Salvar
                         </button>
                       </div>
@@ -315,6 +327,7 @@ function RecuperarSenha() {
                     )}
                   </form>
                 )}
+
               </div>
             </div>
           </div>
@@ -323,6 +336,7 @@ function RecuperarSenha() {
         <div className="login_banner">
           <img className="imagem_banner" src={BannerImagem} />
         </div>
+
       </div>
     </>
   );

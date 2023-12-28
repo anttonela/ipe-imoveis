@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link, animateScroll as scroll } from "react-scroll";
 
 import FileiraCard from "./FileiraCard";
 import FileiraCardSombreado from "./FileiraCardSombreado";
@@ -22,10 +23,10 @@ function Fileira({ fetchUrl, href }) {
             )}
 
             {cardSombreado && (
-                <div className='content_botao_ver_mais'>
-                    <a href={href} className="link">
-                        <button className="botao_ver_mais" onClick={expandindoCard}>Ver Menos</button>
-                    </a>
+                <div className='botao_ver_mais'>
+                    <Link to={`${href}`}>
+                        <button className="ver_mais" onClick={expandindoCard}>Ver Menos</button>
+                    </Link>
                 </div>
             )}
 
@@ -36,8 +37,8 @@ function Fileira({ fetchUrl, href }) {
             )}
 
             {card && (
-                <div className='content_botao_ver_mais'>
-                    <button className="botao_ver_mais" onClick={expandindoCard}>Ver Mais</button>
+                <div className='botao_ver_mais'>
+                    <button className="ver_mais" onClick={expandindoCard}>Ver Mais</button>
                 </div>
             )}
         </>

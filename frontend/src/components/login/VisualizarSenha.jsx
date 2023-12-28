@@ -1,5 +1,5 @@
-import { VscEye, VscEyeClosed } from "react-icons/vsc";
 import React, { useState } from "react";
+import { VscEye, VscEyeClosed } from "react-icons/vsc";
 
 function VisualizarSenha({ inputRef }) {
   const [eyeIsClosed, setEyeState] = useState(false);

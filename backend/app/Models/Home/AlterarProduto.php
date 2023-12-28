@@ -6,10 +6,10 @@ use app\Models\Crud\Utilizadores\Banco;
 
 class AlterarProduto extends Banco
 {
-    private $linkWhatsapp;
-    private $linkInstagram;
-    private $linkFacebook;
-    private $linkOlx;
+    private string $linkWhatsapp;
+    private string $linkInstagram;
+    private string $linkFacebook;
+    private string $linkOlx;
 
     public function alterandoDadosDoProduto(): void
     {

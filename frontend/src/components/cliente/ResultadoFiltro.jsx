@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
-import FileiraCardSombreado from "./FileiraCardSombreado";
-import Header from "./Header";
 import values from 'lodash/values';
+import React, { useEffect, useState } from "react";
+
+import Header from "./Header";
 import PrimeiroSubtitulo from "./PrimeiroSubtitulo";
+import FileiraCardSombreado from "./FileiraCardSombreado";
 
 function ResultadoFiltro({ onClick }) {
     const [data, setData] = useState([]);

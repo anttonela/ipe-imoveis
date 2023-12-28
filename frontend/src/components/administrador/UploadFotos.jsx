@@ -14,8 +14,8 @@ function UploadFotos() {
         const imagemSelecionadas = e.target.files;
     
         if (imagemSelecionadas.length > 0) {
-            const imageArray = Array.from(imagemSelecionadas).map((file) => URL.createObjectURL(file));
-            setImages([...images, ...imageArray]);
+            // const imageArray = Array.from(imagemSelecionadas).map((file) => URL.createObjectURL(file));
+            setImages([...images]);
             setMostrarImagens(false);
         }
     }    
@@ -26,6 +26,7 @@ function UploadFotos() {
                 <div className='upload_imagem'>
                     <label className='card_imagem_content'>
                         <div className='adicionar_foto'>
+                            
                             <div className='botao_adicionar_foto_content'>
                                 <div className='botao_adicionar_foto'>
                                     <img src={IconPlus} alt="Ícone de Adicionar" />

@@ -1,11 +1,19 @@
-import IconPlus from '../../assets/img/plus.svg';
 import ModalNovoImovel from './ModalNovoImovel';
+import IconPlus from '../../assets/img/plus.svg';
+import { useState } from 'react';
 
 function BotaoNovoImovel() {
+
+    const [novoProduto, setNovoProduto] = useState(false);
+
+    const abrirModal = () => {
+        setNovoProduto(true);
+    };
+
     return (
         <>
             <div className='novo_imovel'>
-                <a href='#novo_produto' className='link'>
+                <div onClick={abrirModal} className='link'>
                     <div className='botao_novo_imovel' type='button'>
 
                         <div className='conteudo_adicionar_imovel'>
@@ -19,12 +27,14 @@ function BotaoNovoImovel() {
                         </div>
 
                     </div>
-                </a>
+                </div>
             </div>
 
-            <div id="novo_produto" className='modal'>
-                <ModalNovoImovel />
-            </div>
+            {novoProduto && (
+                <div className='modal'>
+                    <ModalNovoImovel />
+                </div>
+            )}
         </>
     );
 }

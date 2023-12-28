@@ -1,9 +1,11 @@
-import LogoBranca from '../../assets/img/logo-branca.svg';
-import IconTelefone from '../../assets/img/telefone-icon.svg';
-import IconEmail from '../../assets/img/email-icon.svg';
 import { Link } from 'react-router-dom';
 
-function Header({ href, texto_botao, onClick }) {
+import IconEmail from '../../assets/img/email-icon.svg';
+import LogoBranca from '../../assets/img/logo-branca.svg';
+import IconTelefone from '../../assets/img/telefone-icon.svg';
+
+function Header({ href, texto_botao }) {
+
     return (
         <div className='header'>
             <div className='header_informacoes'>
@@ -18,7 +20,7 @@ function Header({ href, texto_botao, onClick }) {
                         <div className='header_texto'>Transformando desejos<br />em endereços.</div>
 
                         <div className='botao_content'>
-                            <Link to={href} className='botao_header' onClick={onClick}>
+                            <Link to={`${href}`} className='botao_header'>
                                 {texto_botao}
                             </Link>
                         </div>

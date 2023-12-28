@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from "react";
 import md5 from 'md5';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
 
 import Logo from "../assets/img/logo.png";
-import CardInput from "../components/login/CardInput";
 import BannerImagem from "../assets/img/banner.png";
 import InputSenha from "../components/login/InputSenha";
+import CardInput from "../components/login/CardInput";
 
 function Login() {
 
-  const [data, setData] = useState([]);
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [erroAutenticacao, setErroAutenticacao] = useState(false);
+
+  const irPara = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,11 +37,11 @@ function Login() {
       console.log('Resposta da API:', data);
 
       if (data === 'null"Administrador"') {
-        window.location.href = '/administrador';
+        irPara("/home/adiministrador");
       }
 
       if (data === 'null') {
-        window.location.href = '/home';
+        irPara("/home");
       }
 
       setErroAutenticacao(true);
@@ -56,9 +58,9 @@ function Login() {
     <>
       <div className="login_container">
 
-        <div className="container_content">
+        <div className="login">
 
-          <div className="content">
+          <div className="login_conteudo">
 
             <div className="header_content">
 
@@ -82,6 +84,7 @@ function Login() {
             <div className="login_card_content">
 
               <div className="login_card">
+
                 <div className="titulo">Fazer Login</div>
 
                 <div className="card_subtitulo">
@@ -114,7 +117,7 @@ function Login() {
                   />
 
                   <div className="login_botao">
-                    <button className="botao_submit" type="submit">
+                    <button className="botao_login" type="submit">
                       Fazer Login
                     </button>
                   </div>
@@ -124,14 +127,17 @@ function Login() {
                       <div className="mensagem_erro">Autenticação falhou, tente novamente</div>
                     </div>
                   )}
+
                 </form>
 
                 <div className="login_footer">
                   <div className="card_footer">
                     <div className="texto">Esqueceu a senha?</div>
+
                     <Link to={`/recuperarSenha`} className="link">
                       <div className="texto_azul">Recuperar Senha</div>
                     </Link>
+
                   </div>
                 </div>
 

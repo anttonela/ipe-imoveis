@@ -28,7 +28,6 @@ class IdModal extends Banco
             "WHERE" => "id = '{$id}'",
         ];
 
-        $arSelectProduto = $this->executarFetchAll($table->condicoes($arTable));
-        print json_encode($arSelectProduto);
+        print json_encode($this->executarFetchAll($table->condicoes($arTable)));
     }
 }

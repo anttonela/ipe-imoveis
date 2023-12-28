@@ -1,5 +1,6 @@
-import VisualizarSenha from "./VisualizarSenha";
 import React, { useRef } from "react";
+
+import VisualizarSenha from "./VisualizarSenha";
 
 function InputSenha({ value, onChange, texto, placeholder }) {
 

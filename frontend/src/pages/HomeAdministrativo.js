@@ -4,8 +4,8 @@ import Header from '../components/cliente/Header';
 import Footer from '../components/cliente/Footer';
 import Subtitulo from '../components/cliente/Subtitulo';
 import FileiraCard from '../components/administrador/FileiraCard';
-import BotaoNovoImovel from '../components/administrador/BotaoNovoImovel';
 import PrimeiroSubtitulo from '../components/cliente/PrimeiroSubtitulo';
+import BotaoNovoImovel from '../components/administrador/BotaoNovoImovel';
 
 function HomeAdministrativo() {
 

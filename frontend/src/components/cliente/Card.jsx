@@ -1,8 +1,18 @@
-import { Link } from 'react-router-dom';
 import ModalInformacoes from './Modal';
 import FotoImovel from '../../assets/img/imoveis.png';
+import { useState } from 'react';
 
 function Card({ classificacao, idCard, cidade, breve_descricao, valor, situacao, informacoes }) {
+
+    const [modalInformacoes, setModalInformacoes] = useState(false);
+
+    const abrirModal = () => {
+        setModalInformacoes(true);
+    };
+
+    const fecharModal = () => {
+        setModalInformacoes(false);
+    }
 
     switch (classificacao) {
         case "Imóvel":
@@ -15,10 +25,10 @@ function Card({ classificacao, idCard, cidade, breve_descricao, valor, situacao,
             classificacao = "outros";
             break;
     }
- 
+
     return (
         <>
-            <a href={`#${classificacao}/${idCard}`} className='link'>
+            <div onClick={abrirModal} className='pointer'>
 
                 <div className='card' id={idCard}>
 
@@ -45,10 +55,11 @@ function Card({ classificacao, idCard, cidade, breve_descricao, valor, situacao,
 
                 </div>
 
-            </a>
+            </div>
 
-            <div className='modal' id={`${classificacao}/${idCard}`}>
+            {modalInformacoes && (
                 <ModalInformacoes
+                    fecharModal={fecharModal}
                     id={informacoes.id}
                     cidade={informacoes.cidade}
                     valor={informacoes.valor}
@@ -60,8 +71,7 @@ function Card({ classificacao, idCard, cidade, breve_descricao, valor, situacao,
                     classificacao={informacoes.classificacao}
                     tipo={informacoes.tipo}
                 />
-            </div>
-
+            )}
         </>
     );
 }

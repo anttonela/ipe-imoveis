@@ -10,7 +10,7 @@ import Subtitulo from '../components/cliente/Subtitulo';
 import CardSombreado from '../components/cliente/CardSombreado';
 import PrimeiroSubtitulo from '../components/cliente/PrimeiroSubtitulo';
 
-function ConteudoHome() {
+function Home() {
 
     const [data, setData] = useState([]);
     const [cidade, setCidade] = useState('');
@@ -52,11 +52,11 @@ function ConteudoHome() {
         <div className='container'>
 
             {!filtroClicado && (
-                < Header texto_botao="Ver imóveis" href="#imoveis" />
+                <Header texto_botao="Ver imóveis" href="imoveis" />
             )}
 
             {filtroClicado && (
-                <Header texto_botao="Ver Todos os Produtos" href="/home" />
+                <Header texto_botao="Ver Todos os Produtos" href="home" />
             )}
 
             <Filtro
@@ -80,7 +80,7 @@ function ConteudoHome() {
 
                         <Fileira
                             fetchUrl={"http://localhost:8080/imoveis/"}
-                            href={"#imoveis"}
+                            href={"imoveis"}
                         />
                     </div>
 
@@ -91,7 +91,7 @@ function ConteudoHome() {
 
                     <Fileira
                         fetchUrl={"http://localhost:8080/maquinasAgricolas/"}
-                        href={"#maquinas_agricolas"}
+                        href={"maquinas_agricolas"}
                     />
 
                     <div className='background_cinza'>
@@ -102,7 +102,7 @@ function ConteudoHome() {
 
                         <Fileira
                             fetchUrl={"http://localhost:8080/outros/"}
-                            href={"#outros"}
+                            href={"outros"}
                         />
                     </div>
                 </>
@@ -160,4 +160,4 @@ function ConteudoHome() {
     );
 }
 
-export default ConteudoHome;
+export default Home;

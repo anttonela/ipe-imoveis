@@ -8,10 +8,10 @@ use app\Models\Crud\Utilizadores\Banco;
 
 class Entrar extends Banco
 {
-    private $email;
-    private $senha;
-    private $url;
-    private $arMensagem;
+    private string $email;
+    private string $senha;
+    private string $url;
+    private array  $arMensagem;
 
     private function setEntrar(): void
     {
@@ -46,10 +46,8 @@ class Entrar extends Banco
     {
         $this->setEntrar();
 
-        $urlAtual = $this->url;
-        $parteDesejada = '/login/chave/';
-        $posicao = strpos($urlAtual, $parteDesejada);
-        $urlChave = substr($urlAtual, $posicao + strlen($parteDesejada));
+        $posicao = strpos($this->url, '/login/chave/');
+        $urlChave = substr($this->url, $posicao + strlen('/login/chave/'));
 
         $table = new Update("usuario");
 
@@ -69,8 +67,16 @@ class Entrar extends Banco
 
         $arSelect = $this->executarFetchAll("SELECT senha FROM usuario WHERE email = '{$this->email}' and situacao = 2");
 
-        $arSelect[0]['senha'] === $this->senha ? $this->arMensagem[] = null :
-            $this->arMensagem[] = 'Autenticação falhou, tente novamente';
+        // $arSelect[0]['senha'] === $this->senha ? $this->arMensagem[] = null  :
+        //     $this->arMensagem[] = 'Autenticação falhou, tente novamente';
+
+        if ($arSelect[0]['senha'] === $this->senha) {
+            $this->arMensagem[] = null;
+            session_start();
+            return;
+        }
+
+        $this->arMensagem[] = 'Autenticação falhou, tente novamente';
 
         if ($this->email === "arantesimoveis@gmail.com") {
             $this->arMensagem[] = "Administrador";

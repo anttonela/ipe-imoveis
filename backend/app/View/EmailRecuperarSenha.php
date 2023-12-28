@@ -30,19 +30,19 @@ class EmailRecuperarSenha
                     }
 
                     .inter_500 {
-                        font-size: 20px;
-                        height: 270px;
+                        font-size: 2vh;
+                        height: 27vh;
                         display: grid;
                         justify-content: space-between;
                         align-items: center;
-                        line-height: 25px;
+                        line-height: 2.5vh;
                         color: black;
                     }
 
                     .titulo {
-                        font-size: 20px;
+                        font-size: 2vh;
                         font-weight: bold;
-                        height: 32px;
+                        height: 3.2vh;
                         display: flex;
                         align-items: initial;
                         color: black;
@@ -55,19 +55,19 @@ class EmailRecuperarSenha
                     }
 
                     .paragrafo {
-                        height: 15px;
+                        height: 1.5vh;
                         background-color: green;
                     }
 
                     .botao {
-                        height: 40px;
-                        width: 260px;
-                        border-radius: 10px;
-                        font-size: 22px;
+                        height: 4vh;
+                        width: 26vh;
+                        border-radius: 1vh;
+                        font-size: 2.2vh;
                         border: none;
                         background-color: #2B50AA;
                         color: #FAFAFA;
-                        letter-spacing: 5px;
+                        letter-spacing: 0.5vh;
                         font-weight: bold;
                     }
 

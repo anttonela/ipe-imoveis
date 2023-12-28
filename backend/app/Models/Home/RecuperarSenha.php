@@ -42,7 +42,6 @@ class RecuperarSenha extends Banco
                 $chave .= '1234567890'[rand(0, strlen('1234567890') - 1)];
             }
 
-            
             $this->executarFetchAll("UPDATE usuario SET chave = '{$chave}' WHERE email = '" . $data['email'] . "' AND situacao = 2");
             $this->executarFetchAll("UPDATE usuario SET horario = '" . $data['horario'] . "' WHERE email = '" . $data['email'] . "'");
 
@@ -77,7 +76,7 @@ class RecuperarSenha extends Banco
         print json_encode("Email não cadastrado");
     }
 
-    public function confirmandoSeCodigoEstaCorreto(): void
+    public function confirmandoSeCodigoEstaCorreto()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $json_data = file_get_contents("php://input");
@@ -94,7 +93,7 @@ class RecuperarSenha extends Banco
         $this->email = $data['email'];
 
         if (strtotime($data['horario']) > strtotime($data['horarioDeExpiracao'])) {
-            print json_encode("O código expirou", JSON_UNESCAPED_UNICODE);
+            print json_encode("Expirou");
             $this->executarFetchAll("UPDATE usuario SET chave = '', horario = '' WHERE email = '{$this->email}'");
             return;
         }
@@ -102,14 +101,14 @@ class RecuperarSenha extends Banco
         $arSelect = $this->executarFetchAll("SELECT * FROM usuario WHERE email = '{$this->email}' and chave = '{$codigo}'");
 
         if (!empty($arSelect)) {
-            print json_encode('Chave correta');
+            print json_encode("Chave correta");
             return;
         }
 
-        print json_encode("Código incorreto", JSON_UNESCAPED_UNICODE);
+        print json_encode("Chave incorreta");
     }
 
-    public function salvandoNovaSenha(): void
+    public function salvandoNovaSenha()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $json_data = file_get_contents("php://input");

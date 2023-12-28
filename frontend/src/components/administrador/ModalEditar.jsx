@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import SelectModal from './SelectModal';
 import InformacoesModal from './InputModal';
 import SelectAtualiza from './SelectAtualiza';
-import { useNavigate } from 'react-router-dom';
 import IconPlus from '../../assets/img/plus.png';
 import IconLapis from '../../assets/img/lapis.svg';
 import IconSetaVoltar from '../../assets/img/seta-voltar.svg';
 
-function ModalEditar({ idCard, cidadeProduto, classificacaoProduto, tipoProduto, situacaoProduto, valorProduto, descricaoProduto, linkWhatsappProduto, linkInstagramProduto, linkFacebookProduto, linkOlxProduto }) {
-
-    const navegador = useNavigate();
+function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto, tipoProduto, situacaoProduto, valorProduto, descricaoProduto, linkWhatsappProduto, linkInstagramProduto, linkFacebookProduto, linkOlxProduto }) {
 
     const [cidade, setCidade] = useState('');
     const [classificacao, setClassificacao] = useState('');
@@ -62,10 +61,6 @@ function ModalEditar({ idCard, cidadeProduto, classificacaoProduto, tipoProduto,
         'Máquinas Agrícolas': ['Máquinas Agrícolas', 'Implementos Agrícolas'],
         'Outros': ['Outros'],
     }
-
-    const fecharModal = () => {
-        navegador(-1);
-    };
 
     useEffect(() => {
         setCidade(cidadeProduto);
@@ -142,197 +137,199 @@ function ModalEditar({ idCard, cidadeProduto, classificacaoProduto, tipoProduto,
 
     return (
         <>
-            <div className='modal_content'>
+            <div className='modal_editar_produto'>
+                <div className='modal_content'>
 
-                <div className='sair_modal'>
-                    <img className='seta_voltar_modal' onClick={fecharModal} src={IconSetaVoltar} />
-                    <div className='botao_fechar_modal inter_500'>Voltar</div>
-                </div>
-
-                <div className='imagem_modal_content'>
-                    <div className='imagem_modal'>
-
-                        <div className='modal_botoes_editar_content'>
-                            <div className='modal_botoes_editar'>
-                                <div className='botao_editar_imagem'>
-                                    <img className='botao_editar_imagem' src={IconLapis} />
-                                </div>
-                                <div className='botao_editar_imagem'>
-                                    <img className='botao_editar_imagem' src={IconPlus} />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className='container_passar_imagem'>
-                            <div className='passar_imagem'>
-                                <div className='botao_passa_imagem'></div>
-                                <div className='botao_passa_imagem clicado'></div>
-                                <div className='botao_passa_imagem'></div>
-                                <div className='botao_passa_imagem'></div>
-                                <div className='botao_passa_imagem'></div>
-                            </div>
-                        </div>
-
+                    <div className='sair_modal'>
+                        <img className='seta_voltar_modal' onClick={fecharModal} src={IconSetaVoltar} />
+                        <div className='botao_fechar_modal inter_500'>Voltar</div>
                     </div>
-                </div>
 
-                <form onSubmit={handleSubmit}>
+                    <div className='imagem_modal_content'>
+                        <div className='imagem_modal'>
 
-                    <div className='modal_informacoes'>
-                        <div className='modal_select'>
-                            <SelectModal
-                                id={"cidade"}
-                                value={cidade}
-                                setOnChange={setCidade}
-                                categoria={"Cidade"}
-                                option=
-                                {{
-                                    hidden: cidadeProduto,
-                                    um: 'Acreúna',
-                                    dois: 'Goiânia',
-                                    tres: 'Indiara',
-                                }}
-                            />
+                            <div className='modal_botoes_editar'>
+                                <div className='modal_editar'>
+                                    <div className='botao_editar_imagem'>
+                                        <img className='botao_editar_imagem' src={IconLapis} />
+                                    </div>
+                                    <div className='botao_editar_imagem'>
+                                        <img className='botao_editar_imagem' src={IconPlus} />
+                                    </div>
+                                </div>
+                            </div>
 
-                            <SelectAtualiza
-                                id={"classificacao"}
-                                value={classificacao}
-                                setOnChange={setClassificacao}
-                                categoria={"Classificação"}
-                                hidden={classificacaoProduto}
-                                option=
-                                {
-                                    opcoesClassificacao.map((classificacao) => (
-                                        <option key={classificacao} value={classificacao}>
-                                            {classificacao}
-                                        </option>
-                                    ))
-                                }
-                            />
+                            <div className='container_passar_imagem'>
+                                <div className='passar_imagem'>
+                                    <div className='botao_passa_imagem'></div>
+                                    <div className='botao_passa_imagem clicado'></div>
+                                    <div className='botao_passa_imagem'></div>
+                                    <div className='botao_passa_imagem'></div>
+                                    <div className='botao_passa_imagem'></div>
+                                </div>
+                            </div>
+
                         </div>
+                    </div>
 
-                        <div className="modal_ad_texto inter_500">Tipo</div>
-                        <div className='select_tipo_modal'>
-                            <select
-                                id={"tipo"}
-                                value={tipo}
-                                className="select_tipo"
-                                onChange={(e) => {
-                                    setTipo(e.target.value);
-                                }}
-                                required
-                            >
-                                <option hidden>{tipoProduto}</option>
-                                {
-                                    opcoesTipos[classificacao] &&
-                                    opcoesTipos[classificacao].map((tipo) => (
-                                        <option key={tipo} value={tipo}>
-                                            {tipo}
-                                        </option>
-                                    ))
-                                }
+                    <form onSubmit={handleSubmit}>
 
-                            </select>
-                        </div>
-
-                        <div className='situacao'>
-                            <div className="modal_ad_texto inter_500">Situação</div>
-                        </div>
-                        <div className='select_tipo_modal'>
-                            <select
-                                id={"situacao"}
-                                value={situacao}
-                                className="select_tipo"
-                                onChange={(e) => {
-                                    setSituacao(e.target.value);
-                                }}
-                                required
-                            >
-                                <option hidden>Selecionar</option>
-                                <option>Vendido</option>
-                                <option>Não Vendido</option>
-                            </select>
-                        </div>
-
-                        <div className="input_content">
-                            <div className="modal_ad_texto inter_500">Valor</div>
-
-                            <input
-                                className="modal_input"
-                                placeholder="R$ 1.000.000"
-                                type="text"
-                                value={valor !== '' ? valor : valorEmReais}
-                                onChange={handleValorChange}
-                            />
-                        </div>
-
-                        <div className='descricao_content'>
-                            <div className="input_content_descricao">
-                                <div className="modal_ad_texto inter_500">Descrição</div>
-                                <textarea
-                                    className="modal_input descricao"
-                                    placeholder={idCard}
-                                    type="text"
-                                    id='descricao'
-                                    value={descricao !== '' ? descricao : descricaoProduto}
-                                    onChange={(e) => {
-                                        setDescricao(e.target.value);
+                        <div className='modal_informacoes'>
+                            <div className='modal_select'>
+                                <SelectModal
+                                    id={"cidade"}
+                                    value={cidade}
+                                    setOnChange={setCidade}
+                                    categoria={"Cidade"}
+                                    option=
+                                    {{
+                                        hidden: cidadeProduto,
+                                        um: 'Acreúna',
+                                        dois: 'Goiânia',
+                                        tres: 'Indiara',
                                     }}
                                 />
+
+                                <SelectAtualiza
+                                    id={"classificacao"}
+                                    value={classificacao}
+                                    setOnChange={setClassificacao}
+                                    categoria={"Classificação"}
+                                    hidden={classificacaoProduto}
+                                    option=
+                                    {
+                                        opcoesClassificacao.map((classificacao) => (
+                                            <option key={classificacao} value={classificacao}>
+                                                {classificacao}
+                                            </option>
+                                        ))
+                                    }
+                                />
                             </div>
+
+                            <div className="modal_ad_texto inter_500">Tipo</div>
+                            <div className='select_tipo_modal'>
+                                <select
+                                    id={"tipo"}
+                                    value={tipo}
+                                    className="select_tipo"
+                                    onChange={(e) => {
+                                        setTipo(e.target.value);
+                                    }}
+                                    required
+                                >
+                                    <option hidden>{tipoProduto}</option>
+                                    {
+                                        opcoesTipos[classificacao] &&
+                                        opcoesTipos[classificacao].map((tipo) => (
+                                            <option key={tipo} value={tipo}>
+                                                {tipo}
+                                            </option>
+                                        ))
+                                    }
+
+                                </select>
+                            </div>
+
+                            <div className='situacao'>
+                                <div className="modal_ad_texto inter_500">Situação</div>
+                            </div>
+                            <div className='select_tipo_modal'>
+                                <select
+                                    id={"situacao"}
+                                    value={situacao}
+                                    className="select_tipo"
+                                    onChange={(e) => {
+                                        setSituacao(e.target.value);
+                                    }}
+                                    required
+                                >
+                                    <option hidden>Selecionar</option>
+                                    <option>Vendido</option>
+                                    <option>Não Vendido</option>
+                                </select>
+                            </div>
+
+                            <div className="input_content">
+                                <div className="modal_ad_texto inter_500">Valor</div>
+
+                                <input
+                                    className="modal_input"
+                                    placeholder="R$ 1.000.000"
+                                    type="text"
+                                    value={valor !== '' ? valor : valorEmReais}
+                                    onChange={handleValorChange}
+                                />
+                            </div>
+
+                            <div className='descricao_content'>
+                                <div className="input_content_descricao">
+                                    <div className="modal_ad_texto inter_500">Descrição</div>
+                                    <textarea
+                                        className="modal_input descricao"
+                                        placeholder={idCard}
+                                        type="text"
+                                        id='descricao'
+                                        value={descricao !== '' ? descricao : descricaoProduto}
+                                        onChange={(e) => {
+                                            setDescricao(e.target.value);
+                                        }}
+                                    />
+                                </div>
+                            </div>
+
+                            <InformacoesModal
+                                id={"link_whatsapp"}
+                                value={linkWhatsapp !== '' ? linkWhatsapp : extrairNumeroWhatsapp(linkWhatsappProduto)}
+                                onChange={(value) => {
+                                    if (value.length <= 11) {
+                                        setLinkWhatsapp(value);
+                                    }
+                                }}
+                                nomeInformacao={"Número Whatsapp"}
+                                placeholder={"64912345678"}
+                            />
+
+                            <InformacoesModal
+                                id={"link_instagram"}
+                                value={linkInstagram !== '' ? linkInstagram : extrairUsuarioInstagram(linkInstagramProduto)}
+                                onChange={setLinkInstagram}
+                                nomeInformacao={"Usuário Instagram"}
+                                placeholder={"@user"}
+                            />
+
+                            <InformacoesModal
+                                id={"link_facebook"}
+                                value={linkFacebook !== '' ? linkFacebook : extrairUsuarioFacebook(linkFacebookProduto)}
+                                onChange={setLinkFacebook}
+                                nomeInformacao={"Usuário Facebook"}
+                                placeholder={"@user"}
+                            />
+
+                            <InformacoesModal
+                                id={"link_olx"}
+                                value={linkOlx !== '' ? linkOlx : linkOlxProduto}
+                                onChange={setLinkOlx}
+                                nomeInformacao={"Usuário OLX"}
+                                placeholder={"@user"}
+                            />
+
                         </div>
 
-                        <InformacoesModal
-                            id={"link_whatsapp"}
-                            value={linkWhatsapp !== '' ? linkWhatsapp : extrairNumeroWhatsapp(linkWhatsappProduto)}
-                            onChange={(value) => {
-                                if (value.length <= 11) {
-                                    setLinkWhatsapp(value);
-                                }
-                            }}
-                            nomeInformacao={"Número Whatsapp"}
-                            placeholder={"64912345678"}
-                        />
-
-                        <InformacoesModal
-                            id={"link_instagram"}
-                            value={linkInstagram !== '' ? linkInstagram : extrairUsuarioInstagram(linkInstagramProduto)}
-                            onChange={setLinkInstagram}
-                            nomeInformacao={"Usuário Instagram"}
-                            placeholder={"@user"}
-                        />
-
-                        <InformacoesModal
-                            id={"link_facebook"}
-                            value={linkFacebook !== '' ? linkFacebook : extrairUsuarioFacebook(linkFacebookProduto)}
-                            onChange={setLinkFacebook}
-                            nomeInformacao={"Usuário Facebook"}
-                            placeholder={"@user"}
-                        />
-
-                        <InformacoesModal
-                            id={"link_olx"}
-                            value={linkOlx !== '' ? linkOlx : linkOlxProduto}
-                            onChange={setLinkOlx}
-                            nomeInformacao={"Usuário OLX"}
-                            placeholder={"@user"}
-                        />
-
-                    </div>
-
-                    <div className='content_botao_confirmar'>
-                        <button className='botao_confirmar_adicionar' type='submit'>Salvar Alteração</button>
-                    </div>
-                    {produtoAlterado && (
-                        <div className='mensagem_sucesso_produto'>
-                            Produto alterado com sucesso
+                        <div className='botao_confirmar'>
+                            <button className='botao_confirmar_adicionar' type='submit'>Salvar Alteração</button>
                         </div>
-                    )}
+                        {produtoAlterado && (
+                            <div className='mensagem_sucesso_produto'>
+                                Produto alterado com sucesso
+                            </div>
+                        )}
 
-                    <div className='espacamento'></div>
+                        <div className='espacamento'></div>
 
-                </form>
+                    </form>
 
+                </div>
             </div>
         </>
     );

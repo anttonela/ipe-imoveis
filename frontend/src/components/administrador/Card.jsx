@@ -1,8 +1,10 @@
-import IconLapis from "../../assets/img/lapis.svg";
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import ModalEditar from "./ModalEditar";
+import IconLapis from "../../assets/img/lapis.svg";
 import IconLixeira from "../../assets/img/lixeira.svg";
 import ImagemImoveis from "../../assets/img/imoveis.png";
-import { useEffect, useState } from 'react';
 
 function Card({
   cidade,
@@ -31,30 +33,46 @@ function Card({
   }
 
   const [classificacaoRota, setClassificacaoRota] = useState("");
+  const [modalApagar, setModalApagar] = useState(false);
+  const [modalEditar, setModalEditar] = useState(false);
+  const navigate = useNavigate();
 
+  const fecharModalApagar = () => {
+    setModalApagar(false);
+  };
+
+  const abrirModalApagar = () => {
+    setModalApagar(true)
+  }
+
+  const abrirModalEditar = () => {
+    setModalEditar(true);
+  }
+
+  const fecharModalEditar = () => {
+    setModalEditar(false);
+  };
 
   const handleDeleteClick = async (e) => {
-    const apagar = window.confirm("Você deseja apagar este produto?");
+    e.preventDefault();
 
-    if (apagar) {
-      const dados = {
-        id: idCard,
-      };
+    const dados = {
+      id: idCard,
+    };
 
-      console.log("Dados a serem enviados:", dados);
+    console.log("Dados a serem enviados:", dados);
 
-      try {
-        const response = await fetch("http://localhost:8080/apagar/", {
-          method: "POST",
-          body: JSON.stringify(dados),
-        });
+    try {
+      const response = await fetch("http://localhost:8080/apagar/", {
+        method: "POST",
+        body: JSON.stringify(dados),
+      });
 
-        if ((await response.text()) === '"Apagado"') {
-          window.location.href = "/home/administrador";
-        }
-      } catch (error) {
-        console.error("Erro ao enviar os dados para a API:", error);
+      if ((await response.text()) === '"Apagado"') {
+        window.location.href = "/home/administrador";
       }
+    } catch (error) {
+      console.error("Erro ao enviar os dados para a API:", error);
     }
   };
 
@@ -83,16 +101,15 @@ function Card({
 
         <div className="card_informacoes_content">
           <div className="card_informacoes">
+
             <div className="card_sobre">
               <div className="card_editar">
                 <div className="nome_produto inter_700">{idCard}</div>
-                <div className="content-card_editar_icons">
+                <div className="card_editar_icons">
 
-                  <div className="card_editar_icons">
-                    <a href={`#${classificacaoRota}/${idCard}`}>
-                      <img className="editar_icon" src={IconLapis} />
-                    </a>
-                    <img className="editar_icon" src={IconLixeira} onClick={handleDeleteClick} />
+                  <div className="editar_icons">
+                    <img onClick={abrirModalEditar} className="editar_icon" src={IconLapis} />
+                    <img onClick={abrirModalApagar} className="editar_icon" src={IconLixeira} />
                   </div>
 
                 </div>
@@ -109,8 +126,9 @@ function Card({
         </div>
       </div>
 
-      <div id={`${classificacaoRota}/${idCard}`} className="modal">
+      {modalEditar && (
         <ModalEditar
+          fecharModal={fecharModalEditar}
           idCard={idCard}
           cidadeProduto={cidade}
           classificacaoProduto={classificacao}
@@ -123,7 +141,22 @@ function Card({
           linkFacebookProduto={facebook}
           linkOlxProduto={olx}
         />
-      </div>
+      )}
+
+      {modalApagar && (
+        <div className="modal_apagar_content">
+          <div className="modal_apagar">
+            <div className="apagar_conteudo">
+              <div className="apagar_texto">Você deseja apagar este produto?</div>
+              <div className="botoes_apagar">
+                <button onClick={fecharModalApagar} className="botao_cancelar_apagar">Cancelar</button>
+                <button onClick={handleDeleteClick} className="botao_apagar">Apagar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }

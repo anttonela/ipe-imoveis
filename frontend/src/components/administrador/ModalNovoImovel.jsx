@@ -1,16 +1,13 @@
-import axios from 'axios';
 import React, { useState } from 'react';
-// import { useHistory } from 'react-router-dom';
 
+import InputModal from './InputModal';
+import UploadFotos from './UploadFotos';
 import SelectModal from './SelectModal';
 import SelectAtualiza from './SelectAtualiza';
 import IconSetaVoltar from '../../assets/img/seta-voltar.svg';
-import InputModal from './InputModal';
-import UploadFotos from './UploadFotos';
 
 function ModalNovoImovel() {
     const [imagens, setImagens] = useState([]);
-    const [message, setMessage] = useState('');
     const [cidade, setCidade] = useState('');
     const [classificacao, setClassificacao] = useState('');
     const [tipo, setTipo] = useState('');
@@ -25,24 +22,12 @@ function ModalNovoImovel() {
 
     const opcoesClassificacao = ['Imóvel', 'Máquinas Agrícolas', 'Outros'];
 
-    const uploadImages = async () => {
-        const formData = new FormData();
-        imagens.forEach((image) => {
-            formData.append('images[]', image);
-        });
-    }
-
     const opcoesTipos = {
         'Imóvel': ['Apartamento', 'Casa', 'Fazenda', 'Terreno', 'Imóvel Comercial'],
         'Máquinas Agrícolas': ['Máquinas Agrícolas', 'Implementos Agrícolas'],
         'Outros': ['Outros'],
     }
-
-    const atualizarOpcoesTipo = (classificacao) => {
-        setTipo('');
-        setClassificacao(classificacao);
-    }
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -92,25 +77,19 @@ function ModalNovoImovel() {
         }
     };
 
-    // const history = useHistory();
-
-    // const handleVoltar = () => {
-    //     history.goBack();
-    //     history.go(0);
-    // };
-
     const handleVoltar = () => {
         window.location.href = '/home/administrador';
     };
 
     return (
         <>
-            <div className='modal_content'>
+            <div className='modal_novo_imovel'>
+
                 <div className='sair_modal'>
-                    <div className='seta_voltar_modal' onClick={handleVoltar}>
+                    <div className='seta_sair_modal' onClick={handleVoltar}>
                         <img src={IconSetaVoltar} alt="Seta de Voltar" />
                     </div>
-                    <div className='botao_fechar_modal inter_500'>Voltar</div>
+                    <div className='botao_voltar_modal inter_500'>Voltar</div>
                 </div>
 
                 <form onSubmit={handleSubmit}>
@@ -121,7 +100,6 @@ function ModalNovoImovel() {
                     />
 
                     <div className='modal_informacoes'>
-
 
                         <div className='modal_select'>
                             <SelectModal
@@ -262,8 +240,8 @@ function ModalNovoImovel() {
                             placeholder={"@"}
                         />
 
-                        <div className='content_botao_confirmar'>
-                            <button className='botao_confirmar_adicionar' onClick={uploadImages} type="submit">Adicionar</button>
+                        <div className='botao_confirmar'>
+                            <button className='botao_confirmar_adicionar' type="submit">Adicionar</button>
                         </div>
 
 

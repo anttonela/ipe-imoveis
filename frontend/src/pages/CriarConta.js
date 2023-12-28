@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
 import md5 from 'md5';
+import React, { useEffect, useState } from 'react';
 
 import Header from '../components/login/Header';
-import InputMaior from '../components/login/InputMaior';
-import InputMetade from '../components/login/InputMetade';
 import BannerImagem from '../assets/img/banner.png';
 import InputSenha from '../components/login/InputSenha';
+import InputMaior from '../components/login/InputMaior';
+import InputMetade from '../components/login/InputMetade';
 
 function CriarConta() {
 
@@ -66,7 +66,7 @@ function CriarConta() {
     return (
         <div className='login_container'>
 
-            <div className='container_content'>
+            <div className='login'>
                 <div className='content'>
 
                     <Header />
@@ -111,7 +111,7 @@ function CriarConta() {
                                 />
 
                                 <div className='login_botao'>
-                                    <input className='botao_submit' type='submit' value={"Criar Conta"} id='submit' name='botao_criar_conta' />
+                                    <input className='botao_login' type='submit' value={"Criar Conta"} id='submit' name='botao_criar_conta' />
                                 </div>
 
                                 {mensagemLogin && (
