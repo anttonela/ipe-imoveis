@@ -2,7 +2,6 @@
 
 namespace app\Models\Home;
 
-use app\Models\Crud\Functions\Select;
 use app\Models\Crud\Functions\Update;
 use app\Models\Crud\Utilizadores\Banco;
 
@@ -11,7 +10,7 @@ class Entrar extends Banco
     private string $email;
     private string $senha;
     private string $url;
-    private array  $arMensagem;
+    private array  $arMensagem = [];
 
     private function setEntrar(): void
     {
@@ -65,23 +64,24 @@ class Entrar extends Banco
         $this->setEntrar();
         $this->identificandoChave();
 
+        session_start();
+
         $arSelect = $this->executarFetchAll("SELECT senha FROM usuario WHERE email = '{$this->email}' and situacao = 2");
 
-        // $arSelect[0]['senha'] === $this->senha ? $this->arMensagem[] = null  :
-        //     $this->arMensagem[] = 'Autenticação falhou, tente novamente';
+        if (!empty($arSelect) && $arSelect[0]['senha'] === $this->senha) {
+            $_SESSION['usuario'] = true;
+            print json_encode("aqui em USUARIO");
 
-        if ($arSelect[0]['senha'] === $this->senha) {
-            $this->arMensagem[] = null;
-            session_start();
-            return;
-        }
+            if ($this->email === "arantesimovel@gmail.com") {
+                $_SESSION['administrador'] = true;
+                print json_encode("aqui em ADMINISTRADOR");
+            }
 
-        $this->arMensagem[] = 'Autenticação falhou, tente novamente';
-
-        if ($this->email === "arantesimoveis@gmail.com") {
-            $this->arMensagem[] = "Administrador";
+            // http_response_code(200);
+            // print json_encode(["message" => "Autenticado", "admin" => $_SESSION['administrador']]);
         }
     }
+
 
     public function imprimindoAviso(): void
     {

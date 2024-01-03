@@ -55,14 +55,24 @@ class Routes extends CorpoJson
         print json_encode($this->select("Outros"));
     }
 
-    public function novoImovel(): void
+    public function novoProduto(): void
     {
         $this->cabecalho();
 
         http_response_code(200);
 
         $novoImovel = new NovoProduto();
-        $novoImovel->novoImovel();
+        $novoImovel->novoProduto();
+    }
+
+    public function imagem(): void
+    {
+        $this->cabecalho();
+
+        http_response_code(200);
+
+        $novoProduto = new NovoProduto();
+        $novoProduto->salvandoImagem();
     }
 
     public function criarConta(): void
@@ -77,7 +87,8 @@ class Routes extends CorpoJson
 
     public function login(): void
     {
-        $this->cabecalho();
+        header("Access-Control-Allow-Origin: *");
+        header("Content-Type: application/json; charset=UTF-8");
 
         http_response_code(200);
 

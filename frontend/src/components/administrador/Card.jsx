@@ -104,7 +104,7 @@ function Card({
 
             <div className="card_sobre">
               <div className="card_editar">
-                <div className="nome_produto inter_700">{idCard}</div>
+                <div className="nome_produto inter_700">{cidade}</div>
                 <div className="card_editar_icons">
 
                   <div className="editar_icons">
@@ -149,8 +149,8 @@ function Card({
             <div className="apagar_conteudo">
               <div className="apagar_texto">Você deseja apagar este produto?</div>
               <div className="botoes_apagar">
-                <button onClick={fecharModalApagar} className="botao_cancelar_apagar">Cancelar</button>
-                <button onClick={handleDeleteClick} className="botao_apagar">Apagar</button>
+                <button onClick={fecharModalApagar} className="botao_cancelar_apagar pointer">Cancelar</button>
+                <button onClick={handleDeleteClick} className="botao_apagar pointer">Apagar</button>
               </div>
             </div>
           </div>

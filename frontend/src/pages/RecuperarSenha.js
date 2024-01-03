@@ -9,7 +9,7 @@ import CardInput from "../components/login/CardInput";
 import InputSenha from "../components/login/InputSenha";
 
 function RecuperarSenha() {
-  
+
   const [email, setEmail] = useState("");
   const [codigo, setCodigo] = useState("");
   const [mensagemLogin, setMensagemLogin] = useState(false);
@@ -21,6 +21,8 @@ function RecuperarSenha() {
   const [confirmarNovaSenha, setConfirmarNovaSenha] = useState("");
   const [emailEnviado, setEmailEnviado] = useState("");
   const [horarioDeExpiracao, setHorarioDeExpiracao] = useState('');
+  const [botaoEmailEnviado, setBotaoEmailEnviado] = useState(false);
+  const [botaoEmail, setBotaoEmail] = useState(true);
 
   const irPara = useNavigate();
   const buttonRef = useRef(null);
@@ -30,12 +32,17 @@ function RecuperarSenha() {
     setInputEmail(true);
     setInputCodigo(false);
     setMensagemLogin(false);
+    setBotaoEmail(true);
+    setBotaoEmailEnviado(false);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    setBotaoEmailEnviado(true);
     setRespostaLocalhost(false);
+    setMensagemLogin(false);
+    setBotaoEmail(false);
 
     const dataAtual = new Date();
     dataAtual.setMinutes(dataAtual.getMinutes() + 10);
@@ -73,6 +80,8 @@ function RecuperarSenha() {
         return;
       }
 
+      setBotaoEmailEnviado(false);
+      setBotaoEmail(true);
       setRespostaLocalhost("Email não cadastrado");
       setMensagemLogin(true);
     } catch (error) {
@@ -127,11 +136,6 @@ function RecuperarSenha() {
     } catch (error) {
       console.error("Erro ao chamar a API:", error);
     }
-  };
-
-  const handleInputChange = (event) => {
-    setEmail(event.target.value);
-    setInputEmail(!!event.target.value);
   };
 
   const handleSubmitSenha = async (e) => {
@@ -199,6 +203,7 @@ function RecuperarSenha() {
                     <div className="texto_claro">Criar Conta</div>
                   </Link>
                 </div>
+                
               </div>
             </div>
 
@@ -220,9 +225,17 @@ function RecuperarSenha() {
                         />
 
                         <div className="recuperar_senha_botao">
-                          <button className={`botao_login ${inputEmail ? 'botao_hover' : ''}`} type="submit">
-                            Enviar E-mail
-                          </button>
+                          {botaoEmail && (
+                            <button className="botao_login" type="submit">
+                              Enviar E-mail
+                            </button>
+                          )}
+
+                          {botaoEmailEnviado && (
+                            <button className="botao_login botao_hover" type="button">
+                              Enviando...
+                            </button>
+                          )}
                         </div>
 
                         {mensagemLogin && (

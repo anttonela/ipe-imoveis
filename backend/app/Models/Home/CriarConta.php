@@ -16,7 +16,6 @@ class CriarConta extends Banco
     private string  $email;
     private string  $senha;
     public array    $arMensagem;
-    // private string  $url;
 
     private function setCriarConta(): void
     {
@@ -35,7 +34,6 @@ class CriarConta extends Banco
         $this->sobrenome = $data['sobrenome'];
         $this->email = $data['email'];
         $this->senha = $data['senha'];
-        // $this->url = $data['url'];
     }
 
     private function verificandoEmailValido(): void
@@ -44,7 +42,6 @@ class CriarConta extends Banco
 
         if (filter_var($this->email, FILTER_VALIDATE_EMAIL) == false) {
             $this->arMensagem[] = 'E-mail inválido';
-            $this->email = null;
             return;
         }
     }

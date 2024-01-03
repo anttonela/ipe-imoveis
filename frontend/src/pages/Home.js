@@ -1,4 +1,7 @@
 import values from 'lodash/values';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 
 import Footer from '../components/cliente/Footer';
@@ -19,9 +22,20 @@ function Home() {
     const [tipoSelecionado, setTipoSelecionado] = useState('');
     const [classificacaoSelecionada, setClassificacaoSelecionada] = useState('');
 
-    useEffect(() => {
-        document.title = "Home";
-    })
+    const voltarParaHome = () => {
+        window.location.href = '/home';
+    };
+
+    const descerParaImoveis = () => {
+        const elemento = document.getElementById('imoveis');
+
+        if (elemento) {
+            window.scrollTo({
+                top: elemento.offsetTop,
+                behavior: 'smooth',
+            });
+        }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -42,21 +56,26 @@ function Home() {
 
             setData(resposta);
             setMensagemLogin(true);
-            setFiltroClicado(true)
+            setFiltroClicado(true);
+
         } catch (error) {
             console.error('Erro ao enviar os dados para a API:', error);
         }
     };
 
+    useEffect(() => {
+        document.title = "Home";
+    });
+
     return (
         <div className='container'>
 
             {!filtroClicado && (
-                <Header texto_botao="Ver imóveis" href="imoveis" />
+                <Header botao={<div onClick={descerParaImoveis} className='botao_header'>Ver Imóveis</div>} />
             )}
 
             {filtroClicado && (
-                <Header texto_botao="Ver Todos os Produtos" href="home" />
+                <Header botao={<div className='botao_header' onClick={voltarParaHome}>Ver Todos Produtos</div>} />
             )}
 
             <Filtro

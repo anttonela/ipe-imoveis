@@ -9,6 +9,17 @@ function Fileira({ fetchUrl, href }) {
     const [cardSombreado, setCardSombreado] = useState();
     const [card, setCard] = useState(true);
 
+    const descerParaImoveis = () => {
+        const elemento = document.getElementById(`${href}`);
+
+        if (elemento) {
+            window.scrollTo({
+                top: elemento.offsetTop,
+                behavior: 'smooth',
+            });
+        }
+    };
+
     function expandindoCard() {
         setCard(!card);
         setCardSombreado(!cardSombreado);
@@ -24,9 +35,9 @@ function Fileira({ fetchUrl, href }) {
 
             {cardSombreado && (
                 <div className='botao_ver_mais'>
-                    <Link to={`${href}`}>
+                    <div onClick={descerParaImoveis}>
                         <button className="ver_mais" onClick={expandindoCard}>Ver Menos</button>
-                    </Link>
+                    </div>
                 </div>
             )}
 

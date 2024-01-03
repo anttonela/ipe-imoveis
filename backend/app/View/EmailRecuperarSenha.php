@@ -52,6 +52,7 @@ class EmailRecuperarSenha
                         display: flex;
                         justify-content: center;
                         align-items: center;
+                        background-color: red;
                     }
 
                     .paragrafo {
@@ -69,6 +70,9 @@ class EmailRecuperarSenha
                         color: #FAFAFA;
                         letter-spacing: 0.5vh;
                         font-weight: bold;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
                     }
 
                     .texto {
@@ -96,11 +100,9 @@ class EmailRecuperarSenha
                                 e-mail.
                                 </div>
                         </div>
-                        <a class='botao_content'>
-                            <button class='botao' type='submit'>
-                                {$codigo}
-                            </button>
-                        </a>
+                        <div class='botao_content' style='display: flex; justify-content: center;'>
+                            <div class='botao' style='margin: 0 auto;'>{$codigo}</div>
+                        </div>
 
                     </div>
                 </div>

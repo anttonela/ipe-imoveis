@@ -10,6 +10,11 @@ function BotaoNovoImovel() {
         setNovoProduto(true);
     };
 
+    const fecharModal = () => {
+        setNovoProduto(false);
+        window.location.href = '/home/administrador';
+    }
+
     return (
         <>
             <div className='novo_imovel'>
@@ -31,8 +36,8 @@ function BotaoNovoImovel() {
             </div>
 
             {novoProduto && (
-                <div className='modal'>
-                    <ModalNovoImovel />
+                <div className='modal_editar_produto'>
+                    <ModalNovoImovel fecharModal={fecharModal} />
                 </div>
             )}
         </>

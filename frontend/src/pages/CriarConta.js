@@ -20,12 +20,14 @@ function CriarConta() {
     const [mensagemLogin, setMensagemLogin] = useState(false);
     const [respostaLocalhost, setRespostaLocalhost] = useState('');
     const [emailEnviado, setEmailEnviado] = useState(false);
+    const [botaoCriarConta, setBotaoCriarConta] = useState(true);
+    const [botaoEnviandoEmail, setBotaoEnviandoEmail] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (senha.length < 6) {
-            setEmailEnviado(false); 
+            setEmailEnviado(false);
             setRespostaLocalhost("Senha deve ser maior que 6 caracteres");
             setMensagemLogin(true);
             return;
@@ -38,6 +40,10 @@ function CriarConta() {
             sobrenome,
         };
 
+        setMensagemLogin(false);
+        setBotaoCriarConta(false);
+        setBotaoEnviandoEmail(true);
+
         console.log('Dados a serem enviados:', dados);
 
         try {
@@ -49,13 +55,20 @@ function CriarConta() {
             const resposta = await response.text();
             console.log("Resposta da API: " + resposta);
 
+            setBotaoEnviandoEmail(true);
+            setBotaoCriarConta(false);
+
             if (resposta.length > 60) {
                 setEmailEnviado(true);
                 setMensagemLogin(false);
+                setBotaoCriarConta(true);
+                setBotaoEnviandoEmail(false);
                 return;
             }
 
-            setEmailEnviado(false); 
+            setBotaoCriarConta(true);
+            setBotaoEnviandoEmail(false);
+            setEmailEnviado(false);
             setRespostaLocalhost(resposta);
             setMensagemLogin(true);
         } catch (error) {
@@ -111,7 +124,14 @@ function CriarConta() {
                                 />
 
                                 <div className='login_botao'>
-                                    <input className='botao_login' type='submit' value={"Criar Conta"} id='submit' name='botao_criar_conta' />
+
+                                    {botaoCriarConta && (
+                                        <input className='botao_login' type='submit' value={"Criar Conta"} id='submit' name='botao_criar_conta' />
+                                    )}
+
+                                    {botaoEnviandoEmail && (
+                                        <input className='botao_login botao_hover' type='button' value={"Enviando E-mail..."} />
+                                    )}
                                 </div>
 
                                 {mensagemLogin && (

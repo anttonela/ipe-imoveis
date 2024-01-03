@@ -9,6 +9,17 @@ import BotaoNovoImovel from '../components/administrador/BotaoNovoImovel';
 
 function HomeAdministrativo() {
 
+    const descerParaImoveis = () => {
+        const elemento = document.getElementById('imoveis');
+
+        if (elemento) {
+            window.scrollTo({
+                top: elemento.offsetTop,
+                behavior: 'smooth',
+            });
+        }
+    };
+
     useEffect(() => {
         document.title = "Home Administrativo"
     }, []);
@@ -16,7 +27,7 @@ function HomeAdministrativo() {
     return (
         <div className='container'>
 
-            <Header texto_botao="Ver imóveis" href={"#imoveis"} />
+            <Header botao={<div onClick={descerParaImoveis} className='botao_header'>Ver Imóveis</div>} />
 
             <BotaoNovoImovel />
 

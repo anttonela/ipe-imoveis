@@ -1,10 +1,12 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import IconEmail from '../../assets/img/email-icon.svg';
 import LogoBranca from '../../assets/img/logo-branca.svg';
 import IconTelefone from '../../assets/img/telefone-icon.svg';
 
-function Header({ href, texto_botao }) {
+function Header({ botao }) {
+
+    const irPara = useNavigate();
 
     return (
         <div className='header'>
@@ -20,9 +22,7 @@ function Header({ href, texto_botao }) {
                         <div className='header_texto'>Transformando desejos<br />em endereços.</div>
 
                         <div className='botao_content'>
-                            <Link to={`${href}`} className='botao_header'>
-                                {texto_botao}
-                            </Link>
+                            {botao}
                         </div>
                     </div>
                 </div>

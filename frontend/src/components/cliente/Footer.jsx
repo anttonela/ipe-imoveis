@@ -1,9 +1,18 @@
+import { useNavigate } from 'react-router-dom';
+
 import IconFacebook from '../../assets/img/facebook.svg';
 import IconWhatsapp from '../../assets/img/whatsapp.svg';
 import LogoBranca from '../../assets/img/logo-branca.svg';
 import IconInstagram from '../../assets/img/instagram.svg';
 
 function Footer() {
+
+    const irPara = useNavigate();
+
+    const sairSessao = () => {
+        irPara('/login');
+    };
+
     return (
         <div className='footer_content'>
             <div className='footer'>
@@ -28,6 +37,7 @@ function Footer() {
                             <div className='footer_subtitulo'>Geral</div>
                             <div className='footer_texto'>Termo de compromisso</div>
                             <div className='footer_texto'>Política de privacidade</div>
+                            <button onClick={sairSessao} className='sair_sessao'>Sair</button>
                         </div>
                     </div>
 
