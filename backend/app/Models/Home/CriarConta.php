@@ -15,7 +15,7 @@ class CriarConta extends Banco
     private string  $sobrenome;
     private string  $email;
     private string  $senha;
-    public array    $arMensagem;
+    public array    $arMensagem = [];
 
     private function setCriarConta(): void
     {

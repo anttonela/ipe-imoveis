@@ -179,6 +179,7 @@ function ModalNovoImovel({ fecharModal }) {
                                                             type="file"
                                                             name='imagens'
                                                             accept="image/videos"
+                                                            id='imagens'                                                            
                                                             multiple
                                                             onChange={handleImageUpload}
                                                             className='input_upload'
@@ -337,7 +338,7 @@ function ModalNovoImovel({ fecharModal }) {
                         />
 
                         <div className='botao_confirmar'>
-                            <button className='botao_confirmar_adicionar' type="submit">Adicionar</button>
+                            <button className='botao_confirmar_adicionar' name='adicionar' type="submit">Adicionar</button>
                         </div>
 
 

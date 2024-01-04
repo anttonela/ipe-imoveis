@@ -14,14 +14,27 @@ class NovoProduto
     public function salvandoImagem(): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $json_data = file_get_contents("php://input");
+            $data = json_decode($json_data, true);
 
             if ($_FILES === null) {
                 http_response_code(400);
                 print json_encode(array("error" => "Dados inválidos"));
                 return;
             }
-        
-            print json_encode("em salvando imagem");
+
+            print json_encode("por fora do if | ");
+
+            $arquivo = $_FILES;
+            print json_encode($arquivo);
+
+            $arquivoNovo = explode('.', $arquivo['name']);
+            print json_encode(" | aqui no meio");
+
+            move_uploaded_file($arquivo['tmp_name'], '../../View/Upload/' . $arquivo['name']);
+            print json_encode(" | Imagem salva!");
+
+            print json_encode(" | no final");
         }
     }
 

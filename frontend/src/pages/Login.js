@@ -17,39 +17,40 @@ function Login() {
   const irPara = useNavigate();
 
   const handleSubmit = async (e) => {
+    setErroAutenticacao(false);
     e.preventDefault();
-  
+
     const dados = {
       email,
       senha: md5(senha),
       url: window.location.href,
     };
-  
+
     console.log('Dados a serem enviados:', dados);
-  
+
     try {
       const response = await fetch("http://localhost:8080/login/", {
         method: 'POST',
         body: JSON.stringify(dados),
       });
-  
+
       const data = await response.json();
       console.log('Resposta da API:', data);
-  
-      if (response.ok) {
-        if (data.admin !== null) {
-          irPara("/home/administrador");
-        } else {
-          irPara("/home");
-        }
-      } else {
-        setErroAutenticacao(true);
+
+      if (data === 'Administrador') {
+        window.location.href = '/administrador';
       }
+
+      if (data === 'Usuário') {
+        window.location.href = '/home';
+      }
+
+      setErroAutenticacao(true);
     } catch (error) {
       console.error('Erro ao enviar os dados para a API:', error);
       setErroAutenticacao(true);
     }
-  };  
+  };
 
   useEffect(() => {
     document.title = "Fazer Login";

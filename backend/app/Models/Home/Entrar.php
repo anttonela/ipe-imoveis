@@ -2,15 +2,16 @@
 
 namespace app\Models\Home;
 
+use app\Models\Crud\Functions\Select;
 use app\Models\Crud\Functions\Update;
 use app\Models\Crud\Utilizadores\Banco;
 
 class Entrar extends Banco
 {
-    private string $email;
-    private string $senha;
-    private string $url;
-    private array  $arMensagem = [];
+    private $email;
+    private $senha;
+    private $url;
+    private $arMensagem = [];
 
     private function setEntrar(): void
     {
@@ -45,17 +46,12 @@ class Entrar extends Banco
     {
         $this->setEntrar();
 
-        $posicao = strpos($this->url, '/login/chave/');
-        $urlChave = substr($this->url, $posicao + strlen('/login/chave/'));
+        $urlAtual = $this->url;
+        $parteDesejada = '/login/chave/';
+        $posicao = strpos($urlAtual, $parteDesejada);
+        $urlChave = substr($urlAtual, $posicao + strlen($parteDesejada));
 
-        $table = new Update("usuario");
-
-        $arDados = [
-            "SET" => "situacao = 2, chave = ''",
-            "WHERE" => "chave = '{$urlChave}'",
-        ];
-
-        $resultado = $this->executarFetchAll($table->condicoes($arDados));
+        $resultado = $this->executarFetchAll("UPDATE usuario SET situacao = 2, chave = '' WHERE chave = '{$urlChave}'");
         return $resultado;
     }
 
@@ -64,24 +60,22 @@ class Entrar extends Banco
         $this->setEntrar();
         $this->identificandoChave();
 
-        session_start();
-
         $arSelect = $this->executarFetchAll("SELECT senha FROM usuario WHERE email = '{$this->email}' and situacao = 2");
 
-        if (!empty($arSelect) && $arSelect[0]['senha'] === $this->senha) {
-            $_SESSION['usuario'] = true;
-            print json_encode("aqui em USUARIO");
+        if ($arSelect[0]['senha'] !== $this->senha) {
+            $this->arMensagem[] = 'Autenticação falhou, tente novamente';
 
-            if ($this->email === "arantesimovel@gmail.com") {
-                $_SESSION['administrador'] = true;
-                print json_encode("aqui em ADMINISTRADOR");
-            }
-
-            // http_response_code(200);
-            // print json_encode(["message" => "Autenticado", "admin" => $_SESSION['administrador']]);
+            return;
         }
-    }
 
+        if ($this->email === "arantesimovel@gmail.com") {
+            $this->arMensagem[] = "Administrador";
+
+            return;
+        }
+
+        $this->arMensagem[] = 'Usuário';
+    }
 
     public function imprimindoAviso(): void
     {

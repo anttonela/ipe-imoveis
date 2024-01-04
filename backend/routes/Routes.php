@@ -87,8 +87,7 @@ class Routes extends CorpoJson
 
     public function login(): void
     {
-        header("Access-Control-Allow-Origin: *");
-        header("Content-Type: application/json; charset=UTF-8");
+        $this->cabecalho();
 
         http_response_code(200);
 
