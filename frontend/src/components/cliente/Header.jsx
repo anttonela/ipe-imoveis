@@ -35,7 +35,7 @@ function Header({ botao }) {
 
                     <div className='email'>
                         <img className='informacoes_pessoais_icon' src={IconEmail} />
-                        <div className='informacoes_pessoais_texto'>Email@gmail.com</div>
+                        <div className='informacoes_pessoais_texto informacoes_pessoais_email'>arantesimovel@gmail.com</div>
                     </div>
                 </div>
 

@@ -2,18 +2,13 @@ import ModalNovoImovel from './ModalNovoImovel';
 import IconPlus from '../../assets/img/plus.svg';
 import { useState } from 'react';
 
-function BotaoNovoImovel() {
+function BotaoNovoImovel({ fecharModal }) {
 
     const [novoProduto, setNovoProduto] = useState(false);
 
     const abrirModal = () => {
         setNovoProduto(true);
     };
-
-    const fecharModal = () => {
-        setNovoProduto(false);
-        window.location.href = '/home/administrador';
-    }
 
     return (
         <>

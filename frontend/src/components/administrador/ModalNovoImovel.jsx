@@ -35,18 +35,17 @@ function ModalNovoImovel({ fecharModal }) {
     }
 
     const handleSubmitImagem = async () => {
-        const dados = {
-            imagens: images,
-        };
+        const formData = new FormData();
+        formData.append("imagem", images);
 
-        console.log('Dados a serem enviados handleSubmitImagem:', dados);
+        console.log('Dados a serem enviados handleSubmitImagem:', formData);
 
         try {
-            const response = await axios.post("http://localhost:8080/imagem", dados, {
+            const response = await axios.post("http://localhost:8080/imagem", formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
 
-            const data = await response;
+            const data = response;
             console.log('Resposta da API handleSubmitImagem:', data);
         } catch (error) {
             console.error('Erro ao enviar os dados para a API handleSubmitImagem:', error);
@@ -106,12 +105,13 @@ function ModalNovoImovel({ fecharModal }) {
         const imagemSelecionadas = e.target.files;
 
         if (imagemSelecionadas.length > 0) {
-            const imageArray = Array.from(imagemSelecionadas).map((file) => URL.createObjectURL(file));
+            const imageFiles = Array.from(imagemSelecionadas);
 
-            setImages([...images, ...imageArray]);
+            setImages([...images, ...imageFiles]);
             setMostrarImagens(false);
         }
     };
+
 
     return (
         <>
@@ -161,8 +161,8 @@ function ModalNovoImovel({ fecharModal }) {
                                                         src={type === 'PREV' ? SetaEsquerda : SetaDireita}
                                                         alt={type === 'PREV' ? 'Previous' : 'Next'}
                                                         style={{
-                                                            width: '30px',
-                                                            height: '38px',
+                                                            width: '3vh',
+                                                            height: '3.8vh',
                                                             cursor: 'pointer',
                                                         }}
                                                         onClick={onClick}
@@ -179,9 +179,8 @@ function ModalNovoImovel({ fecharModal }) {
                                                             type="file"
                                                             name='imagens'
                                                             accept="image/videos"
-                                                            id='imagens'                                                            
+                                                            id='imagens'
                                                             multiple
-                                                            onChange={handleImageUpload}
                                                             className='input_upload'
                                                         />
                                                         <img className='imagem_selecionada' src={image} alt={`Image ${index + 1}`} />

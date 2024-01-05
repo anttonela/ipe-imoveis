@@ -163,8 +163,12 @@ body {
   display: flex;
   align-items: center;
   color: #fff;
-  font-size: max(0.05em, 0.9vw);
+  font-size: 1.5vh;
   font-weight: bold;
+}
+
+.informacoes_pessoais_email {
+  font-size: 1.4vh;
 }
 
 .telefone {
@@ -831,6 +835,18 @@ body {
   cursor: pointer;
 }
 
+.sair_modal_texto {
+  font-size: 2vh;
+}
+
+.sair_modal_seta {
+  height: 2vh;
+  width: 2vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .pointer {
   cursor: pointer;
 }
@@ -925,9 +941,27 @@ body {
   width: 2vh;
 }
 
-.imagem_modal_content {
+.imagem_modal_content_cliente {
+  height: 38vh;
+  width: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imagem_modal_cliente {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 34vh;
-  width: 58vh;
+  width: 64vh;
+  background-color: #f5f5f5;
+  border-radius: 0.9vh;
+}
+
+.imagem_modal_content {
+  height: 38vh;
+  width: 60vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -936,10 +970,16 @@ body {
 .imagem_modal {
   display: grid;
   justify-content: space-between;
-  width: 58vh;
-  height: 30vh;
-  opacity: 95%;
-  background-image: url("../img/casa.png");
+  height: 34vh;
+  width: 64vh;
+  opacity: 90%;
+  border-radius: 0.9vh;
+  background-image: url('../img/maquina_amarela_4.webp');
+}
+
+.imagem_carousel {
+  height: 32.5vh;
+  object-fit: cover;
 }
 
 .modal_botoes_editar {
@@ -964,6 +1004,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.botao_editar_imagem_icon {
+  width: 2vh;
+  height: 2vh;
 }
 
 .adicionar_foto {
@@ -1030,6 +1075,12 @@ body {
   height: 0;
 }
 
+.input_upload_editar {
+  height: 30px;
+  width: 30px;
+  background-color: violet;
+}
+
 .texto_adicionar_foto {
   font-size: 2.4vh;
   color: #272727;
@@ -1052,11 +1103,12 @@ body {
 }
 
 .passar_imagem {
-  height: 3vh;
-  width: 30vh;
+  height: 1vh;
+  width: auto;
   display: flex;
-  justify-content: space-around;
-  align-items: initial;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .passar_imagem_cliente {
@@ -1067,10 +1119,13 @@ body {
 }
 
 .botao_passa_imagem {
-  width: 5vh;
+  width: 4vh;
   height: 0.5vh;
-  opacity: 50%;
-  background-color: #fafafa;
+  opacity: 40%;
+  background-color: #202020;
+  border: none;
+  box-shadow: none;
+  margin: 0vh 0.4vh 0vh 0.4vh;
 }
 
 .clicado {
@@ -1551,6 +1606,15 @@ p {
   font-weight: 600;
   color: #af2525;
   text-decoration: none;
+}
+
+.mensagem_sem_link {
+  font-size: 1.6vh;
+  font-weight: 600;
+  color: #af2525;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .mensagem_sucesso_produto {

@@ -19,6 +19,10 @@ function HomeAdministrativo() {
             });
         }
     };
+    
+    const fecharModal = () => {
+        window.location.href = '/home/administrador';
+    }
 
     useEffect(() => {
         document.title = "Home Administrativo"
@@ -29,7 +33,7 @@ function HomeAdministrativo() {
 
             <Header botao={<div onClick={descerParaImoveis} className='botao_header'>Ver Imóveis</div>} />
 
-            <BotaoNovoImovel />
+            <BotaoNovoImovel fecharModal={fecharModal} />
 
             <PrimeiroSubtitulo
                 id={"imoveis"}

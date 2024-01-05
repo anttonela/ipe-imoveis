@@ -1,5 +1,12 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import Carousel from 'react-elastic-carousel';
+
+import maquinaAmarela1 from '/home/ipeweb/Documents/ipe_imoveis/frontend/src/assets/img/maquina_amarela.jpg';
+import maquinaAmarela2 from '../../assets/img/maquina_amarela_2.avif';
+import maquinaAmarela3 from '../../assets/img/maquina_amarela_3.jpg';
+import maquinaAmarela4 from '../../assets/img/maquina_amarela_4.webp';
+import SetaDireita from '../../assets/img/seta-direita.svg';
+import SetaEsquerda from '../../assets/img/seta-esquerda.svg';
 
 import IconOlx from '../../assets/img/olx.svg';
 import IconWhatsapp from '../../assets/img/whatsapp.svg';
@@ -9,26 +16,67 @@ import IconSetaVoltar from '../../assets/img/seta-voltar.svg';
 
 function Modal({ fecharModal, cidade, valor, descricao, linkWhatsapp, linkFacebook, linkInstagram, linkOlx, classificacao, tipo }) {
 
+    const [redeSocialSemLink, setRedeSocialSemLink] = useState('');
+
+    const verificarLink = (redeSocial) => {
+        setRedeSocialSemLink(redeSocial);
+    };
+
+    const images = [
+        maquinaAmarela1,
+        maquinaAmarela2,
+        maquinaAmarela4,
+    ];
+
     return (
         <div className='modal_editar_produto'>
             <div className="modal_cliente_content">
-                <div className="sair_modal">
-                    <div className="seta_voltar_modal">
-                        <img onClick={fecharModal} src={IconSetaVoltar} />
-                    </div>
+
+                <div className='sair_modal'>
+                    <img className='sair_modal_seta' onClick={fecharModal} src={IconSetaVoltar} />
+                    <div className='sair_modal_texto inter_500'>Voltar</div>
                 </div>
 
-                <div className='imagem_modal_content'>
-                    <div className='imagem_modal'>
-                        <div className='container_passar_imagem'>
-                            <div className='passar_imagem_cliente'>
-                                <div className='botao_passa_imagem'></div>
-                                <div className='botao_passa_imagem clicado'></div>
-                                <div className='botao_passa_imagem'></div>
-                                <div className='botao_passa_imagem'></div>
-                                <div className='botao_passa_imagem'></div>
-                            </div>
-                        </div>
+                <div className='imagem_modal_content_cliente'>
+                    <div className='imagem_modal_cliente'>
+                        <Carousel
+                            itemsToShow={1}
+                            renderArrow={({ type, onClick }) => (
+                                <div className="setas">
+                                    <img
+                                        src={type === 'PREV' ? SetaEsquerda : SetaDireita}
+                                        alt={type === 'PREV' ? 'Previous' : 'Next'}
+                                        style={{
+                                            width: '3vh',
+                                            height: '3.8vh',
+                                            cursor: 'pointer',
+                                        }}
+                                        onClick={onClick}
+                                    />
+                                </div>
+                            )}
+                            renderPagination={({ pages, activePage, onClick }) => (
+                                <div className="passar_imagem">
+                                    {pages.map((page) => (
+                                        <button
+                                            key={page}
+                                            onClick={() => onClick(page)}
+                                            className={activePage === page ? 'botao_passa_imagem clicado' : 'botao_passa_imagem'}
+                                        >
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
+                        >
+                            {images.map((image, index) => (
+                                <img
+                                    key={index}
+                                    src={image}
+                                    alt={`Imagem ${index + 1}`}
+                                    className='imagem_carousel'
+                                />
+                            ))}
+                        </Carousel>
                     </div>
                 </div>
 
@@ -55,7 +103,7 @@ function Modal({ fecharModal, cidade, valor, descricao, linkWhatsapp, linkFacebo
                             </a>
                         )}
                         {!linkWhatsapp && (
-                            <div className='modal_rede_social whatsapp'>
+                            <div className='modal_rede_social whatsapp' onClick={() => verificarLink('whatsapp')}>
                                 <img className='modal_icon' src={IconWhatsapp} alt="WhatsApp" />
                             </div>
                         )}
@@ -65,7 +113,7 @@ function Modal({ fecharModal, cidade, valor, descricao, linkWhatsapp, linkFacebo
                             </a>
                         )}
                         {!linkInstagram && (
-                            <div className='modal_rede_social instagram'>
+                            <div className='modal_rede_social instagram' onClick={() => verificarLink('instagram')}>
                                 <img className='modal_icon' src={IconInstagram} alt="Instagram" />
                             </div>
                         )}
@@ -75,22 +123,27 @@ function Modal({ fecharModal, cidade, valor, descricao, linkWhatsapp, linkFacebo
                             </a>
                         )}
                         {!linkFacebook && (
-                            <div className='modal_rede_social facebook'>
+                            <div className='modal_rede_social facebook' onClick={() => verificarLink('facebook')}>
                                 <img className='modal_icon' src={IconFacebook} alt="Facebook" />
                             </div>
                         )}
                         {linkOlx && (
                             <a className='modal_rede_social olx' href={linkOlx}>
-                                <img className='icon_olx' src={IconOlx} alt="Olx" />
+                                <img className='olx_icon' src={IconOlx} alt="Olx" />
                             </a>
                         )}
                         {!linkOlx && (
-                            <div className='modal_rede_social olx'>
-                                <img className='icon_olx' src={IconOlx} alt="Olx" />
+                            <div className='modal_rede_social olx' onClick={() => verificarLink('OLX')}>
+                                <img className='olx_icon' src={IconOlx} alt="Olx" />
                             </div>
                         )}
                     </div>
                 </div>
+
+                {redeSocialSemLink && (
+                    <div className='mensagem_sem_link'>Não possue link para {redeSocialSemLink}</div>
+                )}
+
                 <div className='espacamento'></div>
             </div>
         </div>

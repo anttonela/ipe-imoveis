@@ -1,15 +1,25 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import Carousel from "react-elastic-carousel";
+
+import IconPlus from '../../assets/img/plus.png';
+import IconLapis from '../../assets/img/lapis.svg';
+import SetaDireita from '../../assets/img/seta-direita.svg';
+import SetaEsquerda from '../../assets/img/seta-esquerda.svg';
+import IconSetaVoltar from '../../assets/img/seta-voltar.svg';
+
+import maquinaAmarela1 from '/home/ipeweb/Documents/ipe_imoveis/frontend/src/assets/img/maquina_amarela.jpg';
+import maquinaAmarela2 from '../../assets/img/maquina_amarela_2.avif';
+import maquinaAmarela3 from '../../assets/img/maquina_amarela_3.jpg';
+import maquinaAmarela4 from '../../assets/img/maquina_amarela_4.webp';
 
 import SelectModal from './SelectModal';
 import InformacoesModal from './InputModal';
 import SelectAtualiza from './SelectAtualiza';
-import IconPlus from '../../assets/img/plus.png';
-import IconLapis from '../../assets/img/lapis.svg';
-import IconSetaVoltar from '../../assets/img/seta-voltar.svg';
 
 function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto, tipoProduto, situacaoProduto, valorProduto, descricaoProduto, linkWhatsappProduto, linkInstagramProduto, linkFacebookProduto, linkOlxProduto }) {
 
+    const [images, setImages] = useState([]);
+    const [mostrarCarousel, setMostrarCarousel] = useState(false);
     const [cidade, setCidade] = useState('');
     const [classificacao, setClassificacao] = useState('');
     const [valor, setValor] = useState('');
@@ -21,6 +31,7 @@ function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto,
     const [linkFacebook, setLinkFacebook] = useState('');
     const [linkOlx, setLinkOlx] = useState('');
     const [produtoAlterado, setProdutoAlterado] = useState(false);
+    const [editandoModal, setEditandoModal] = useState(true);
 
     function extrairUsuarioInstagram(linkInstagram) {
         const buscaString = /(?:https?:\/\/)?(?:www\.)?instagram\.com\/([a-zA-Z0-9_]+)/;
@@ -135,42 +146,107 @@ function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto,
         }
     };
 
+    const handleImageUpload = (e) => {
+        const imagemSelecionadas = e.target.files;
+
+        if (imagemSelecionadas.length > 0) {
+            const imageArray = Array.from(imagemSelecionadas).map((file) => URL.createObjectURL(file));
+            setImages([...images, ...imageArray]);
+            setMostrarCarousel(true);
+        }
+    };
+
+    const ativarEditarImagem = () => {
+        setEditandoModal(false);
+    };
+
+    const imagemMaquina = [
+        maquinaAmarela1,
+        maquinaAmarela2,
+        maquinaAmarela4,
+    ];
+
     return (
         <>
             <div className='modal_editar_produto'>
                 <div className='modal_content'>
 
                     <div className='sair_modal'>
-                        <img className='seta_voltar_modal' onClick={fecharModal} src={IconSetaVoltar} />
-                        <div className='botao_fechar_modal inter_500'>Voltar</div>
+                        <img className='sair_modal_seta' onClick={fecharModal} src={IconSetaVoltar} />
+                        <div className='sair_modal_texto inter_500'>Voltar</div>
                     </div>
 
-                    <div className='imagem_modal_content'>
-                        <div className='imagem_modal'>
+                    {editandoModal && (
+                        <div className='imagem_modal_content'>
+                            <div className='imagem_modal'>
+                                <div className='modal_botoes_editar'>
+                                    <div className='modal_editar'>
+                                        <div className='botao_editar_imagem' onClick={ativarEditarImagem} >
+                                            <img className='botao_editar_imagem_icon' src={IconLapis} />
+                                        </div>
 
-                            <div className='modal_botoes_editar'>
-                                <div className='modal_editar'>
-                                    <div className='botao_editar_imagem'>
-                                        <img className='botao_editar_imagem' src={IconLapis} />
-                                    </div>
-                                    <div className='botao_editar_imagem'>
-                                        <img className='botao_editar_imagem' src={IconPlus} />
+                                        <label className='botao_editar_imagem'>
+                                            <img className='botao_editar_imagem_icon' src={IconPlus} />
+                                            <input
+                                                type="file"
+                                                accept="image/videos"
+                                                multiple
+                                                className='input_upload'
+                                                onChange={handleImageUpload}
+                                            />
+                                        </label>
+
                                     </div>
                                 </div>
                             </div>
-
-                            <div className='container_passar_imagem'>
-                                <div className='passar_imagem'>
-                                    <div className='botao_passa_imagem'></div>
-                                    <div className='botao_passa_imagem clicado'></div>
-                                    <div className='botao_passa_imagem'></div>
-                                    <div className='botao_passa_imagem'></div>
-                                    <div className='botao_passa_imagem'></div>
-                                </div>
-                            </div>
-
                         </div>
-                    </div>
+                    )}
+
+                    {!editandoModal && (
+                        <div className='imagem_modal_content_cliente'>
+                            <div className='imagem_modal_cliente'>
+                                <Carousel
+                                    itemsToShow={1}
+                                    renderArrow={({ type, onClick }) => (
+                                        <div className="setas">
+                                            <img
+                                                src={type === 'PREV' ? SetaEsquerda : SetaDireita}
+                                                alt={type === 'PREV' ? 'Previous' : 'Next'}
+                                                style={{
+                                                    width: '3vh',
+                                                    height: '3.8vh',
+                                                    cursor: 'pointer',
+                                                }}
+                                                onClick={onClick}
+                                            />
+                                        </div>
+                                    )}
+                                    renderPagination={({ pages, activePage, onClick }) => (
+                                        <div className="passar_imagem">
+                                            {pages.map((page) => (
+                                                <button
+                                                    key={page}
+                                                    onClick={() => onClick(page)}
+                                                    className={activePage === page ? 'botao_passa_imagem clicado' : 'botao_passa_imagem'}
+                                                >
+                                                </button>
+                                            ))}
+                                        </div>
+                                    )}
+                                >
+                                    {imagemMaquina.map((image, index) => (
+                                        <img
+                                            key={index}
+                                            src={image}
+                                            alt={`Imagem ${index + 1}`}
+                                            className='imagem_carousel'
+                                        />
+                                    ))}
+                                </Carousel>
+                            </div>
+                        </div>
+                    )}
+
 
                     <form onSubmit={handleSubmit}>
 

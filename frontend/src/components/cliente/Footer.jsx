@@ -22,7 +22,7 @@ function Footer() {
                         <div className='contato'>
                             <div className='footer_subtitulo'>Contato</div>
                             <div className='footer_texto'>(00) 0 0000-0000</div>
-                            <div className='footer_texto'>e-mail@gmail.com</div>
+                            <div className='footer_texto'>arantesimovel@gmail.com</div>
                             <div className='footer_texto'>@ipemóveis</div>
                         </div>
 

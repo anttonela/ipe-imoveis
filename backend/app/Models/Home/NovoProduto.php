@@ -11,7 +11,7 @@ class NovoProduto
     private $linkFacebook;
     private $linkOlx;
 
-    public function salvandoImagem(): void
+    public function salvandoImagem(): bool
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $json_data = file_get_contents("php://input");
@@ -20,23 +20,37 @@ class NovoProduto
             if ($_FILES === null) {
                 http_response_code(400);
                 print json_encode(array("error" => "Dados inválidos"));
-                return;
+                return false;
             }
 
-            print json_encode("por fora do if | ");
+            print json_encode($_FILES['imagem']);
+            print json_encode(" || ");
+            print json_encode($_FILES);
+            print json_encode(" || ");
+            print_r( var_dump($_FILES));
+            print json_encode(" || ");
+            print json_encode($_POST);
+            print json_encode(" || ");
+            print json_encode($_FILES['images']);
 
-            $arquivo = $_FILES;
-            print json_encode($arquivo);
-
-            $arquivoNovo = explode('.', $arquivo['name']);
-            print json_encode(" | aqui no meio");
-
-            move_uploaded_file($arquivo['tmp_name'], '../../View/Upload/' . $arquivo['name']);
-            print json_encode(" | Imagem salva!");
-
-            print json_encode(" | no final");
+            if ( move_uploaded_file( $_POST['imagem'], '/home/ipeweb/Documents/ipe_imoveis/backend/app/View/Upload/' . date("y-m-dhi") ) )
+                return true;
+            die('deu erro');
         }
     }
+
+    private function existeArquivo() : void
+    {
+        if (is_uploaded_file($_POST['tmp_name'])) {
+            echo "File ". $_FILES['userfile']['name'] ." uploaded successfully.\n";
+            echo "Displaying contents\n";
+            readfile($_FILES['userfile']['tmp_name']);
+        } else {
+            echo "Possible file upload attack: ";
+            echo "filename '". $_FILES['userfile']['tmp_name'] . "'.";
+        }
+    }
+
 
     public function novoProduto(): void
     {
