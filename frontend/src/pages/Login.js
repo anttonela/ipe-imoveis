@@ -37,15 +37,22 @@ function Login() {
       const data = await response.json();
       console.log('Resposta da API:', data);
 
+      //verificandoSessao(data);
+      /*
       if (data === 'Administrador') {
-        window.location.href = '/administrador';
+        console.log("ADMINISTRADOR");
+        return;
+        //window.location.href = '/administrador';
       }
 
       if (data === 'Usuário') {
-        window.location.href = '/home';
-      }
+        //  window.location.href = '/home';
+        console.log("USUARIO");
+        verificandoSessao()
+        return;*/
 
-      setErroAutenticacao(true);
+      //console.log("ESTÁ EM ERRO");
+      //setErroAutenticacao(true);
     } catch (error) {
       console.error('Erro ao enviar os dados para a API:', error);
       setErroAutenticacao(true);
@@ -53,7 +60,7 @@ function Login() {
   };
 
   useEffect(() => {
-    document.title = "Fazer Login";
+    document.title = "Login";
   }, []);
 
   return (

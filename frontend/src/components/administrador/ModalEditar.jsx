@@ -3,6 +3,8 @@ import Carousel from "react-elastic-carousel";
 
 import IconPlus from '../../assets/img/plus.png';
 import IconLapis from '../../assets/img/lapis.svg';
+import IconLixeira from "../../assets/img/lixeira.svg";
+import IconDone from "../../assets/img/done.svg";
 import SetaDireita from '../../assets/img/seta-direita.svg';
 import SetaEsquerda from '../../assets/img/seta-esquerda.svg';
 import IconSetaVoltar from '../../assets/img/seta-voltar.svg';
@@ -166,6 +168,9 @@ function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto,
         maquinaAmarela4,
     ];
 
+    const done = () => {
+        setEditandoModal(true);
+    }
     return (
         <>
             <div className='modal_editar_produto'>
@@ -203,48 +208,61 @@ function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto,
                     )}
 
                     {!editandoModal && (
-                        <div className='imagem_modal_content_cliente'>
-                            <div className='imagem_modal_cliente'>
-                                <Carousel
-                                    itemsToShow={1}
-                                    renderArrow={({ type, onClick }) => (
-                                        <div className="setas">
+                        <>
+                            <div className='imagem_modal_content_cliente'>
+                                <div className='imagem_modal_cliente'>
+                                    <Carousel
+                                        itemsToShow={1}
+                                        renderArrow={({ type, onClick }) => (
+                                            <div className="setas">
+                                                <img
+                                                    src={type === 'PREV' ? SetaEsquerda : SetaDireita}
+                                                    alt={type === 'PREV' ? 'Previous' : 'Next'}
+                                                    style={{
+                                                        width: '3vh',
+                                                        height: '3.8vh',
+                                                        cursor: 'pointer',
+                                                    }}
+                                                    onClick={onClick}
+                                                />
+                                            </div>
+                                        )}
+                                        renderPagination={({ pages, activePage, onClick }) => (
+                                            <div className="passar_imagem">
+                                                {pages.map((page) => (
+                                                    <button
+                                                        key={page}
+                                                        onClick={() => onClick(page)}
+                                                        className={activePage === page ? 'botao_passa_imagem clicado' : 'botao_passa_imagem'}
+                                                    >
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        )}
+                                    >
+                                        {imagemMaquina.map((image, index) => (
                                             <img
-                                                src={type === 'PREV' ? SetaEsquerda : SetaDireita}
-                                                alt={type === 'PREV' ? 'Previous' : 'Next'}
-                                                style={{
-                                                    width: '3vh',
-                                                    height: '3.8vh',
-                                                    cursor: 'pointer',
-                                                }}
-                                                onClick={onClick}
+                                                key={index}
+                                                src={image}
+                                                alt={`Imagem ${index + 1}`}
+                                                className='imagem_carousel'
                                             />
-                                        </div>
-                                    )}
-                                    renderPagination={({ pages, activePage, onClick }) => (
-                                        <div className="passar_imagem">
-                                            {pages.map((page) => (
-                                                <button
-                                                    key={page}
-                                                    onClick={() => onClick(page)}
-                                                    className={activePage === page ? 'botao_passa_imagem clicado' : 'botao_passa_imagem'}
-                                                >
-                                                </button>
-                                            ))}
-                                        </div>
-                                    )}
-                                >
-                                    {imagemMaquina.map((image, index) => (
-                                        <img
-                                            key={index}
-                                            src={image}
-                                            alt={`Imagem ${index + 1}`}
-                                            className='imagem_carousel'
-                                        />
-                                    ))}
-                                </Carousel>
+                                        ))}
+                                    </Carousel>
+                                </div>
                             </div>
-                        </div>
+                            <div className='modal_botoes_editar'>
+                                <div className='modal_editar'>
+                                    <div className='botao_editar_imagem' >
+                                        <img className='icon_lixeira' src={IconLixeira} />
+                                    </div>
+                                    <div className='botao_editar_imagem' onClick={done}>
+                                        <img className='botao_editar_imagem_icon' src={IconDone} />
+                                    </div>
+
+                                </div>
+                            </div>
+                        </>
                     )}
 
 

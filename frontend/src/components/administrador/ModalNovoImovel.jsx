@@ -105,13 +105,12 @@ function ModalNovoImovel({ fecharModal }) {
         const imagemSelecionadas = e.target.files;
 
         if (imagemSelecionadas.length > 0) {
-            const imageFiles = Array.from(imagemSelecionadas);
+            const imageArray = Array.from(imagemSelecionadas).map((file) => URL.createObjectURL(file));
 
-            setImages([...images, ...imageFiles]);
+            setImages([...images, ...imageArray]);
             setMostrarImagens(false);
         }
     };
-
 
     return (
         <>
@@ -161,8 +160,8 @@ function ModalNovoImovel({ fecharModal }) {
                                                         src={type === 'PREV' ? SetaEsquerda : SetaDireita}
                                                         alt={type === 'PREV' ? 'Previous' : 'Next'}
                                                         style={{
-                                                            width: '3vh',
-                                                            height: '3.8vh',
+                                                            width: '30px',
+                                                            height: '38px',
                                                             cursor: 'pointer',
                                                         }}
                                                         onClick={onClick}
@@ -181,6 +180,7 @@ function ModalNovoImovel({ fecharModal }) {
                                                             accept="image/videos"
                                                             id='imagens'
                                                             multiple
+                                                            onChange={handleImageUpload}
                                                             className='input_upload'
                                                         />
                                                         <img className='imagem_selecionada' src={image} alt={`Image ${index + 1}`} />

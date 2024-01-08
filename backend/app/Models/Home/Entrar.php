@@ -55,7 +55,7 @@ class Entrar extends Banco
         return $resultado;
     }
 
-    private function verificandoSeCadastroExiste(): void
+    public function verificandoSeCadastroExiste(): void
     {
         $this->setEntrar();
         $this->identificandoChave();
@@ -64,23 +64,43 @@ class Entrar extends Banco
 
         if ($arSelect[0]['senha'] !== $this->senha) {
             $this->arMensagem[] = 'Autenticação falhou, tente novamente';
-
             return;
         }
+
+        session_start();
 
         if ($this->email === "arantesimovel@gmail.com") {
+            $_SESSION['email'] = "arantesimovel@gmail.com";
+            $_SESSION['tipo'] = "administrador";
             $this->arMensagem[] = "Administrador";
-
-            return;
         }
 
+        $_SESSION['email'] = $this->email;
+        $_SESSION['tipo'] = "usuario";
         $this->arMensagem[] = 'Usuário';
+    }
+
+    public function checandoSessao(): bool
+    {
+        return isset($_SESSION['tipo']) ? true : false;
+    }
+
+    public function checandoSessaoAdministrador(): void
+    {
+        $this->verificandoSeCadastroExiste();
+
+        //        $this->arMensagem[] = 'AQUI';
+        /*
+        if( isset($_SESSION['tipo'])  )
+        {
+            return ($_SESSION['tipo'] == 'administrador') ? true : false;
+        }*/
     }
 
     public function imprimindoAviso(): void
     {
         $this->verificandoEmailValido();
-        $this->verificandoSeCadastroExiste();
+        $this->checandoSessaoAdministrador();
 
         foreach ($this->arMensagem as $mensagem) {
             print json_encode($mensagem);

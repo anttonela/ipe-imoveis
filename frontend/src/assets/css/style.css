@@ -988,6 +988,7 @@ body {
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
+  background-color: violet;
 }
 
 .modal_editar {
@@ -1009,6 +1010,11 @@ body {
 .botao_editar_imagem_icon {
   width: 2vh;
   height: 2vh;
+}
+
+.icon_lixeira {
+  width: 1.5vh;
+  height: 1.5vh;
 }
 
 .adicionar_foto {
