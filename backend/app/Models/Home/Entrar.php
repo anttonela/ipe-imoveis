@@ -72,35 +72,48 @@ class Entrar extends Banco
         if ($this->email === "arantesimovel@gmail.com") {
             $_SESSION['email'] = "arantesimovel@gmail.com";
             $_SESSION['tipo'] = "administrador";
-            $this->arMensagem[] = "Administrador";
+            $this->arMensagem[] = "admin";
+            /*
+
+            header('Content-Type: application/json');
+
+            if ($_SESSION['tipo'] === 'administrador') {
+                echo json_encode(["mensagem" => "a sessão está em admin"]);
+            } else {
+                echo json_encode(["mensagem" => "a sessão NÃO está em admin"]);
+            }*/
+
+            return;
         }
 
         $_SESSION['email'] = $this->email;
         $_SESSION['tipo'] = "usuario";
-        $this->arMensagem[] = 'Usuário';
+        $this->arMensagem[] = 'usuario';
+        //echo json_encode(["mensagem" => "Usuário comum autenticado"]);
     }
 
-    public function checandoSessao(): bool
+    public function verificaSeEstaLogado(): void
     {
-        return isset($_SESSION['tipo']) ? true : false;
-    }
+        session_start();
 
-    public function checandoSessaoAdministrador(): void
-    {
-        $this->verificandoSeCadastroExiste();
+        if (!isset($_SESSION['email']) || !isset($_SESSION['tipo'])) {
+            print json_encode("Não cadastradooo");
+            return;
+        }
 
-        //        $this->arMensagem[] = 'AQUI';
-        /*
-        if( isset($_SESSION['tipo'])  )
-        {
-            return ($_SESSION['tipo'] == 'administrador') ? true : false;
-        }*/
+        if ($_SESSION['tipo'] === 'administrador') {
+            print json_encode("admin");
+            return;
+        }
+
+        print json_encode("usuario");
     }
 
     public function imprimindoAviso(): void
     {
         $this->verificandoEmailValido();
-        $this->checandoSessaoAdministrador();
+        //$this->verificaSeEstaLogado();
+        $this->verificandoSeCadastroExiste();
 
         foreach ($this->arMensagem as $mensagem) {
             print json_encode($mensagem);

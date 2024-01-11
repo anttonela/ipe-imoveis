@@ -37,7 +37,7 @@ function Footer() {
                             <div className='footer_subtitulo'>Geral</div>
                             <div className='footer_texto'>Termo de compromisso</div>
                             <div className='footer_texto'>Política de privacidade</div>
-                            <button onClick={sairSessao} className='sair_sessao'>Sair</button>
+                            <button onClick={sairSessao} className='sair_sessao'>Login</button>
                         </div>
                     </div>
 

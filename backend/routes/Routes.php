@@ -85,26 +85,6 @@ class Routes extends CorpoJson
         $criarConta->enviandoEmail();
     }
 
-    public function checandoSessao(): void
-    {
-        $this->cabecalho();
-
-        http_response_code(200);
-
-        $check = new Entrar();
-        $check->checandoSessao();
-    }
-
-    public function checandoSessaoAdministrador(): void
-    {
-        $this->cabecalho();
-
-        http_response_code(200);
-
-        $check = new Entrar();
-        $check->checandoSessaoAdministrador();
-    }
-
     public function login(): void
     {
         $this->cabecalho();
@@ -153,5 +133,15 @@ class Routes extends CorpoJson
 
         $modal = new RecuperarSenha();
         $modal->salvandoNovaSenha();
+    }
+
+    public function checkSessao() : void
+    {
+        $this->cabecalho();
+
+        http_response_code(200);
+
+        $modal = new Entrar();
+        $modal->verificaSeEstaLogado();
     }
 }

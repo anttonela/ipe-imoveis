@@ -182,34 +182,24 @@ function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto,
                     </div>
 
                     {editandoModal && (
-                        <div className='imagem_modal_content'>
-                            <div className='imagem_modal'>
-                                <div className='modal_botoes_editar'>
-                                    <div className='modal_editar'>
-                                        <div className='botao_editar_imagem' onClick={ativarEditarImagem} >
-                                            <img className='botao_editar_imagem_icon' src={IconLapis} />
-                                        </div>
-
-                                        <label className='botao_editar_imagem'>
-                                            <img className='botao_editar_imagem_icon' src={IconPlus} />
-                                            <input
-                                                type="file"
-                                                accept="image/videos"
-                                                multiple
-                                                className='input_upload'
-                                                onChange={handleImageUpload}
-                                            />
-                                        </label>
-
-                                    </div>
-                                </div>
+                        <>
+                            <div className='imagem_modal_content'>
+                                <img src={maquinaAmarela1} className='imagem_modal' />
                             </div>
-                        </div>
+
+                            <div className='modal_botoes_editar'>
+
+                                <div className='botao_editar_imagem' onClick={ativarEditarImagem} >
+                                    <img className='botao_editar_imagem_icon' src={IconLapis} />
+                                </div>
+
+                            </div>
+                        </>
                     )}
 
                     {!editandoModal && (
                         <>
-                            <div className='imagem_modal_content_cliente'>
+                            <div className='imagem_modal_content_administrador'>
                                 <div className='imagem_modal_cliente'>
                                     <Carousel
                                         itemsToShow={1}
@@ -251,11 +241,24 @@ function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto,
                                     </Carousel>
                                 </div>
                             </div>
+
                             <div className='modal_botoes_editar'>
                                 <div className='modal_editar'>
                                     <div className='botao_editar_imagem' >
                                         <img className='icon_lixeira' src={IconLixeira} />
                                     </div>
+
+                                    <label className='botao_editar_imagem'>
+                                        <img className='botao_editar_imagem_icon' src={IconPlus} />
+                                        <input
+                                            type="file"
+                                            accept="image/videos"
+                                            multiple
+                                            className='input_upload'
+                                            onChange={handleImageUpload}
+                                        />
+                                    </label>
+
                                     <div className='botao_editar_imagem' onClick={done}>
                                         <img className='botao_editar_imagem_icon' src={IconDone} />
                                     </div>

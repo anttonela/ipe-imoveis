@@ -1,16 +1,22 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import React from 'react';
 import Logo from '../../assets/img/logo.png';
 
 function Header() {
 
+    const irPara = useNavigate();
+
+    const voltarParaHome = () => {
+        irPara("/home");
+    };
+
     return (
         <div className="header_content">
 
             <div className="login_header">
-                <div className="login_logo">
-                    <img className="login_logo" src={Logo} />
+                <div onClick={voltarParaHome} className="login_logo">
+                    <img onClick={voltarParaHome} className="login_logo" src={Logo} />
                 </div>
 
                 <div className='login_header_texto'>
