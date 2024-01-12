@@ -3,7 +3,6 @@ import Carousel from 'react-elastic-carousel';
 
 import maquinaAmarela1 from '/home/ipeweb/Documents/ipe_imoveis/frontend/src/assets/img/maquina_amarela.jpg';
 import maquinaAmarela2 from '../../assets/img/maquina_amarela_2.avif';
-import maquinaAmarela3 from '../../assets/img/maquina_amarela_3.jpg';
 import maquinaAmarela4 from '../../assets/img/maquina_amarela_4.webp';
 import SetaDireita from '../../assets/img/seta-direita.svg';
 import SetaEsquerda from '../../assets/img/seta-esquerda.svg';

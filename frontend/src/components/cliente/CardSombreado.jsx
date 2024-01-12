@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import ImagemImoveis from '../../assets/img/imoveis.png';
+
 import ModalInformacoes from './Modal';
+import ImagemImoveis from '../../assets/img/imoveis.png';
 
 function CardSombreado({ classificacao, idCard, cidade, breve_descricao, valor, situacao, informacoes }) {
 

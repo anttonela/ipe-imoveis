@@ -1,20 +1,18 @@
 import md5 from 'md5';
-import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from "react";
 
 import Logo from "../assets/img/logo.png";
 import BannerImagem from "../assets/img/banner.png";
-import InputSenha from "../components/login/InputSenha";
 import CardInput from "../components/login/CardInput";
-import HomeAdministrativo from './HomeAdministrativo';
+import InputSenha from "../components/login/InputSenha";
 
 function Login({ setUsuarioAdmin, redirecionarAdmin }) {
 
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [erroAutenticacao, setErroAutenticacao] = useState(false);
-  const [avisoNaoTemPermissao, setAvisoNaoTemPermissao] = useState(false);
 
   const irPara = useNavigate();
 
@@ -47,7 +45,7 @@ function Login({ setUsuarioAdmin, redirecionarAdmin }) {
       }
 
       if (data === 'usuario') {
-        irPara('/home');
+        irPara('/');
         return;
       }
 
@@ -56,6 +54,10 @@ function Login({ setUsuarioAdmin, redirecionarAdmin }) {
       console.error('Erro ao enviar os dados para a API:', error);
       setErroAutenticacao(true);
     }
+  };
+
+  const voltarParaHome = () => {
+    irPara("/");
   };
 
   useEffect(() => {
@@ -73,7 +75,7 @@ function Login({ setUsuarioAdmin, redirecionarAdmin }) {
             <div className="header_content">
 
               <div className="login_header">
-                <div className="login_logo">
+                <div onClick={voltarParaHome} className="login_logo">
                   <img className="login_logo" src={Logo} />
                 </div>
 
@@ -133,12 +135,6 @@ function Login({ setUsuarioAdmin, redirecionarAdmin }) {
                   {erroAutenticacao && (
                     <div className='mensagem_content'>
                       <div className="mensagem_erro">Autenticação falhou, tente novamente</div>
-                    </div>
-                  )}
-
-                  {avisoNaoTemPermissao && (
-                    <div className='mensagem_content'>
-                      <div className="mensagem_erro">Você não tem permissão de administrador, faça seu login para acessar</div>
                     </div>
                   )}
 

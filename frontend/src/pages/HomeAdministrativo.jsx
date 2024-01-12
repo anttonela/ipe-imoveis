@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Header from '../components/cliente/Header';
 import Footer from '../components/cliente/Footer';
@@ -7,7 +8,7 @@ import FileiraCard from '../components/administrador/FileiraCard';
 import PrimeiroSubtitulo from '../components/cliente/PrimeiroSubtitulo';
 import BotaoNovoImovel from '../components/administrador/BotaoNovoImovel';
 
-function HomeAdministrativo() {
+function HomeAdministrativo({ fecharModal, setAtualizarHome }) {
 
     const descerParaImoveis = () => {
         const elemento = document.getElementById('imoveis');
@@ -19,10 +20,6 @@ function HomeAdministrativo() {
             });
         }
     };
-    
-    const fecharModal = () => {
-        window.location.href = '/home/administrador';
-    }
 
     useEffect(() => {
         document.title = "Home Administrativo"
@@ -41,18 +38,21 @@ function HomeAdministrativo() {
             />
 
             <FileiraCard
+                setAtualizarHome={setAtualizarHome}
                 fetchUrl={"http://localhost:8080/imoveis"}
             />
 
             <Subtitulo nome={"Máquinas Agrícolas"} />
 
             <FileiraCard
+                setAtualizarHome={setAtualizarHome}
                 fetchUrl={"http://localhost:8080/maquinasAgricolas"}
             />
 
             <Subtitulo nome={"Outros"} />
 
             <FileiraCard
+                setAtualizarHome={setAtualizarHome}
                 fetchUrl={"http://localhost:8080/outros"}
             />
 

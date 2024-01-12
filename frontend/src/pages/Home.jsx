@@ -1,7 +1,4 @@
 import values from 'lodash/values';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 
 import Footer from '../components/cliente/Footer';
@@ -23,7 +20,7 @@ function Home() {
     const [classificacaoSelecionada, setClassificacaoSelecionada] = useState('');
 
     const voltarParaHome = () => {
-        window.location.href = '/home';
+        window.location.href = '/';
     };
 
     const descerParaImoveis = () => {

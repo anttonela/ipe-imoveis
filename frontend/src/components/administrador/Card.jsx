@@ -7,6 +7,7 @@ import IconLixeira from "../../assets/img/lixeira.svg";
 import ImagemImoveis from "../../assets/img/imoveis.png";
 
 function Card({
+  setAtualizarHome,
   cidade,
   breve_descricao,
   valor,
@@ -51,6 +52,7 @@ function Card({
 
   const fecharModalEditar = () => {
     setModalEditar(false);
+    setAtualizarHome(true);
   };
 
   const handleDeleteClick = async (e) => {
@@ -69,7 +71,7 @@ function Card({
       });
 
       if ((await response.text()) === '"Apagado"') {
-        window.location.href = "/home/administrador";
+        setAtualizarHome(true);
       }
     } catch (error) {
       console.error("Erro ao enviar os dados para a API:", error);

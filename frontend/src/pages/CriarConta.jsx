@@ -71,6 +71,7 @@ function CriarConta() {
             setEmailEnviado(false);
             setRespostaLocalhost(resposta);
             setMensagemLogin(true);
+            
         } catch (error) {
             console.error('Erro ao enviar os dados para a API:', error);
         }

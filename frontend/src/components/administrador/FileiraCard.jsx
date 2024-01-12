@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 
 import Card from './Card';
 
-function FileiraCardSombreado({ fetchUrl }) {
-    
+function FileiraCardSombreado({ setAtualizarHome, fetchUrl }) {
+
     const [data, setData] = useState([]);
 
     const getProdutos = async () => {
@@ -26,6 +26,7 @@ function FileiraCardSombreado({ fetchUrl }) {
                 {values(data).map(produto => (
 
                     <Card
+                        setAtualizarHome={setAtualizarHome}
                         cidade={produto.cidade}
                         breve_descricao={produto.breve_descricao}
                         valor={produto.valor}

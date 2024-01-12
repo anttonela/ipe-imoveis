@@ -8,7 +8,7 @@ function Header() {
     const irPara = useNavigate();
 
     const voltarParaHome = () => {
-        irPara("/home");
+        irPara("/");
     };
 
     return (

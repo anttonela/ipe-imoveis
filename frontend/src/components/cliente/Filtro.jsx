@@ -2,7 +2,7 @@ import InputFiltro from './InputFiltro';
 import React, { useState } from 'react';
 import FiltroAtualiza from './FiltroAtualiza';
 
-function Filtro({ handleSubmit, setFiltroClicado, tipoSelecionado, setTipoSelecionado, cidade, setCidade, classificacaoSelecionada, setClassificacaoSelecionada }) {
+function Filtro({ handleSubmit, tipoSelecionado, setTipoSelecionado, cidade, setCidade, classificacaoSelecionada, setClassificacaoSelecionada }) {
 
     const [mensagemLogin, setMensagemLogin] = useState(false);
     const [respostaLocalhost, setRespostaLocalhost] = useState('');

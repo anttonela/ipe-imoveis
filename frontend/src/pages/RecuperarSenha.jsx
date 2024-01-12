@@ -159,7 +159,7 @@ function RecuperarSenha() {
       console.log("Resposta da API:", resposta);
 
       if (resposta !== '"Incorreto"') {
-        irPara("/home");
+        irPara("/");
         return;
       }
 
@@ -190,9 +190,9 @@ function RecuperarSenha() {
 
             <div className="header_content">
               <div className="login_header">
-                <div className="login_logo">
+                <Link to={`/`} className="login_logo">
                   <img className="login_logo" src={Logo} />
-                </div>
+                </Link>
 
                 <div className="login_header_texto">
                   <Link to={`/login`} className="link">

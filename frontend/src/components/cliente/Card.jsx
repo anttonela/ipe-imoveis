@@ -1,6 +1,7 @@
+import { useState } from 'react';
+
 import ModalInformacoes from './Modal';
 import FotoImovel from '../../assets/img/imoveis.png';
-import { useState } from 'react';
 
 function Card({ classificacao, idCard, cidade, breve_descricao, valor, situacao, informacoes }) {
 

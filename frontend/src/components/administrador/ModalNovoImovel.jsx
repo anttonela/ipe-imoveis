@@ -1,7 +1,4 @@
 import axios from 'axios';
-import ImageSlider from './ImageSlider';
-import Arrow from './Arrow';
-import UploadImage from './UploadPreview';
 import React, { useState } from 'react';
 import Carousel from "react-elastic-carousel";
 
@@ -29,8 +26,6 @@ function ModalNovoImovel({ fecharModal }) {
     const [produtoAdicionado, setProdutoAdicionado] = useState(false);
     const [mostrarImagens, setMostrarImagens] = useState(true);
 
-    const defaultImg = "https://www.acko.com/static/images/acko_claims_page-02.png";
-
     const opcoesClassificacao = ['Imóvel', 'Máquinas Agrícolas', 'Outros'];
 
     const opcoesTipos = {
@@ -38,25 +33,6 @@ function ModalNovoImovel({ fecharModal }) {
         'Máquinas Agrícolas': ['Máquinas Agrícolas', 'Implementos Agrícolas'],
         'Outros': ['Outros'],
     }
-
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    let currentId = currentImageIndex;
-
-    const previousSlide = () => {
-        const lastIndex = images.length - 1;
-        const shouldresetIndex = currentImageIndex === 0;
-        const index = shouldresetIndex ? lastIndex : currentImageIndex - 1;
-        setCurrentImageIndex(index);
-    };
-    const nextSlide = () => {
-        const lastIndex = images.length - 1;
-        const shouldresetIndex = currentImageIndex === lastIndex;
-        const index = shouldresetIndex ? 0 : currentImageIndex + 1;
-        setCurrentImageIndex(index);
-    };
-    const getFileFromImage = img => {
-        setImages([img, ...images]);
-    };
 
     const handleSubmitImagem = async () => {
         const formData = new FormData();
@@ -131,9 +107,7 @@ function ModalNovoImovel({ fecharModal }) {
         if (imagemSelecionadas.length > 0) {
             const imageArray = Array.from(imagemSelecionadas).map((file) => URL.createObjectURL(file));
 
-            setImages([...images, imageArray]);
-            console.log("IMAGES: " + images);
-            console.log("IMAGES ARRAY: " + imageArray);
+            setImages([...images, ...imageArray]);
             setMostrarImagens(false);
         }
     };
@@ -149,7 +123,7 @@ function ModalNovoImovel({ fecharModal }) {
 
                 <form onSubmit={handleSubmit} method="post" encType='multipart/form-data'>
 
-                    {!mostrarImagens && (
+                    {mostrarImagens && (
                         <div className='upload_imagem'>
                             <label className='card_imagem_content'>
                                 <div className='adicionar_foto'>
@@ -161,7 +135,7 @@ function ModalNovoImovel({ fecharModal }) {
                                                 type="file"
                                                 accept="image/videos"
                                                 multiple
-                                                //onChange={handleImageUpload}
+                                                onChange={handleImageUpload}
                                                 className='input_upload'
                                             />
                                         </div>
@@ -174,20 +148,51 @@ function ModalNovoImovel({ fecharModal }) {
                         </div>
                     )}
 
-                    {mostrarImagens && (
-                        <>
-                            <header>
-                                <h1>Image Carousel</h1>
-                            </header>
-                            <div className="wrapper">
-                                <UploadImage getFileFromUploadedImage={getFileFromImage} />
-                                <div className="carousel-container">
-                                    <Arrow clickFunction={previousSlide} glyph="&#9664;" />
-                                    <ImageSlider url={images[currentId]} />
-                                    <Arrow clickFunction={nextSlide} glyph="&#9654;" />
-                                </div>
+                    {!mostrarImagens && (
+                        <div className='upload_imagem'>
+                            <div className='card_imagem_content'>
+                                {images.length > 0 && (
+                                    <div className="imagem_selecionada_content">
+                                        <Carousel
+                                            renderArrow={({ type, onClick }) => (
+                                                <div className="setas">
+                                                    <img
+                                                        src={type === 'PREV' ? SetaEsquerda : SetaDireita}
+                                                        alt={type === 'PREV' ? 'Previous' : 'Next'}
+                                                        style={{
+                                                            width: '30px',
+                                                            height: '38px',
+                                                            cursor: 'pointer',
+                                                        }}
+                                                        onClick={onClick}
+                                                    />
+                                                </div>
+                                            )}
+                                            itemsToShow={1}
+                                            pagination={false}
+                                        >
+                                            {images.map((image, index) => (
+                                                <div key={index}>
+                                                    <label className='alinhamento_imagem'>
+                                                        <input
+                                                            type="file"
+                                                            name='imagens'
+                                                            accept="image/videos"
+                                                            id='imagens'
+                                                            multiple
+                                                            onChange={handleImageUpload}
+                                                            className='input_upload'
+                                                        />
+                                                        <img className='imagem_selecionada' src={image} alt={`Image ${index + 1}`} />
+                                                    </label>
+                                                </div>
+                                            ))}
+
+                                        </Carousel>
+                                    </div>
+                                )}
                             </div>
-                        </>
+                        </div>
                     )}
 
                     <div className='modal_informacoes'>

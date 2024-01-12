@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link, animateScroll as scroll } from "react-scroll";
 
 import FileiraCard from "./FileiraCard";
 import FileiraCardSombreado from "./FileiraCardSombreado";
