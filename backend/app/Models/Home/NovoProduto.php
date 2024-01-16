@@ -24,18 +24,8 @@ class NovoProduto
                 return false;
             }
 
-            print json_encode($_FILES['imagem']);
-            print json_encode(" || ");
 
-            print json_encode($_FILES);
-            print json_encode(" || ");
-
-            print_r(var_dump($_FILES));
-            print json_encode(" || ");
-
-            print json_encode($_POST);
-
-            move_uploaded_file($_POST[0], '/home/ipeweb/Documents/ipe_imoveis/backend/app/View/Upload/' . date("y-m-dhi"));
+            move_uploaded_file($_FILES["file"]["tmp_name"], '/home/ipeweb/Documents/ipe_imoveis/backend/app/View/Upload/' . date("y-m-dhi"). $_FILES["file"]["name"]);
             print json_encode("Foto salva com sucesso");
 
             /*

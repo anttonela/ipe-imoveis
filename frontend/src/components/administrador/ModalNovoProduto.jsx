@@ -12,6 +12,7 @@ import SelectAtualiza from './SelectAtualiza';
 import IconSetaVoltar from '../../assets/img/seta-voltar.svg';
 
 function ModalNovoProduto({ fecharModal }) {
+    const [selectedFile, setSelectedFile] = useState(null);
     const [images, setImages] = useState('');
     const [cidade, setCidade] = useState('');
     const [classificacao, setClassificacao] = useState('');
@@ -33,6 +34,30 @@ function ModalNovoProduto({ fecharModal }) {
         'Máquinas Agrícolas': ['Máquinas Agrícolas', 'Implementos Agrícolas'],
         'Outros': ['Outros']
     };
+
+    const handleFileChange = async (event) => {
+        const file = event.target.files[0];
+        await setSelectedFile(file);
+
+        handleUpload()
+      };
+    
+      const handleUpload = async () => {
+        if (selectedFile) {
+          try {
+            const formData = new FormData();
+            formData.append('file', selectedFile);
+    
+            const response = await axios.post('http://localhost:8080/imagem', formData);
+    
+            console.log('File uploaded successfully:', response.data);
+          } catch (error) {
+            console.error('Error uploading file:', error);
+          }
+        } else {
+          console.log('No file selected');
+        }
+      };
 
     const handleSubmitImagem = async () => {
         const formData = new FormData();
@@ -140,7 +165,8 @@ function ModalNovoProduto({ fecharModal }) {
                                             <input
                                                 type="file"
                                                 accept="image/videos"
-                                                onChange={handleImageUpload}
+                                                // onChange={handleImageUpload}
+                                                onChange={handleFileChange} 
                                                 className='input_upload'
                                             />
                                         </div>
