@@ -8,10 +8,10 @@ use app\Models\Crud\Utilizadores\Banco;
 
 class Entrar extends Banco
 {
-    private $email;
-    private $senha;
-    private $url;
-    private $arMensagem = [];
+    private string $email;
+    private string $senha;
+    private string $url;
+    private array  $arMensagem = [];
 
     private function setEntrar(): void
     {

@@ -20,11 +20,7 @@ function AppRoutes() {
             setAtualizarHome(false);
         }
 
-        if (user === true) {
-            return children;
-        } else {
-            return <Navigate to={"/login"} />;
-        }
+        return user === true ? children : <Navigate to={"/login"} />;
     };
 
     const fecharModal = () => {

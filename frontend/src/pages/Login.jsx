@@ -26,8 +26,6 @@ function Login({ setUsuarioAdmin, redirecionarAdmin }) {
       url: window.location.href,
     };
 
-    console.log('Dados a serem enviados:', dados);
-
     try {
       const response = await fetch("http://localhost:8080/login/", {
         method: 'POST',
@@ -35,10 +33,8 @@ function Login({ setUsuarioAdmin, redirecionarAdmin }) {
       });
 
       const data = await response.json();
-      console.log('Resposta do PHP:', data);
 
       if (data === 'admin') {
-        console.log("Resposta React: indo para ADMINISTRADOR");
         setUsuarioAdmin(true);
         irPara(redirecionarAdmin);
         return;

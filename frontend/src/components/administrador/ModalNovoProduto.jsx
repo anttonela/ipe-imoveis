@@ -11,8 +11,8 @@ import SelectModal from './SelectModal';
 import SelectAtualiza from './SelectAtualiza';
 import IconSetaVoltar from '../../assets/img/seta-voltar.svg';
 
-function ModalNovoImovel({ fecharModal }) {
-    const [images, setImages] = useState([]);
+function ModalNovoProduto({ fecharModal }) {
+    const [images, setImages] = useState('');
     const [cidade, setCidade] = useState('');
     const [classificacao, setClassificacao] = useState('');
     const [tipo, setTipo] = useState('');
@@ -31,8 +31,8 @@ function ModalNovoImovel({ fecharModal }) {
     const opcoesTipos = {
         'Imóvel': ['Apartamento', 'Casa', 'Fazenda', 'Terreno', 'Imóvel Comercial'],
         'Máquinas Agrícolas': ['Máquinas Agrícolas', 'Implementos Agrícolas'],
-        'Outros': ['Outros'],
-    }
+        'Outros': ['Outros']
+    };
 
     const handleSubmitImagem = async () => {
         const formData = new FormData();
@@ -67,9 +67,10 @@ function ModalNovoImovel({ fecharModal }) {
             linkInstagram,
             linkFacebook,
             linkOlx,
+            //idImagem,
         };
 
-        console.log('Dados a serem enviados handleSubmit:', dados);
+        //  console.log('Dados a serem enviados handleSubmit:', dados);
 
         try {
             const response = await fetch("http://localhost:8080/novoProduto", {
@@ -78,7 +79,7 @@ function ModalNovoImovel({ fecharModal }) {
             });
 
             const data = await response.text();
-            console.log('Resposta da API handleSubmit:', data);
+            //  console.log('Resposta da API handleSubmit:', data);
 
             setProdutoAdicionado(true);
         } catch (error) {
@@ -102,12 +103,17 @@ function ModalNovoImovel({ fecharModal }) {
     };
 
     const handleImageUpload = (e) => {
-        const imagemSelecionadas = e.target.files;
+        const imagemSelecionadas = e.target.files; // pega os arquivos que estao sendo enviados em input tipo file
+        //setImages(imagemSelecionadas);     // retorna - FormData { imagem → "[object FileList]" }
+
+        console.log("imagemSelecionadas: " + imagemSelecionadas); // retorna - imagemSelecionadas: [object FileList]
 
         if (imagemSelecionadas.length > 0) {
             const imageArray = Array.from(imagemSelecionadas).map((file) => URL.createObjectURL(file));
+            // cria um array com as imagens selecionadas e URL.createObjectURL() contem a URL representando file aí mapeia para o carrosel
 
-            setImages([...images, ...imageArray]);
+            setImages([imagemSelecionadas]); // retorna - FormData { imagem → "[object FileList]" }
+            //setImages([imageArray]);       // retorna - FormData { imagem → "blob:http://localhost:3000/843520cb-ff07-45b8-acd9-648ff3f7b4fc" }
             setMostrarImagens(false);
         }
     };
@@ -121,7 +127,7 @@ function ModalNovoImovel({ fecharModal }) {
                     <div className='botao_voltar_modal inter_500'>Voltar</div>
                 </div>
 
-                <form onSubmit={handleSubmit} method="post" encType='multipart/form-data'>
+                <form onSubmit={handleSubmitImagem} method="post" encType='multipart/form-data'>
 
                     {mostrarImagens && (
                         <div className='upload_imagem'>
@@ -134,7 +140,6 @@ function ModalNovoImovel({ fecharModal }) {
                                             <input
                                                 type="file"
                                                 accept="image/videos"
-                                                multiple
                                                 onChange={handleImageUpload}
                                                 className='input_upload'
                                             />
@@ -194,6 +199,10 @@ function ModalNovoImovel({ fecharModal }) {
                             </div>
                         </div>
                     )}
+
+                </form>
+
+                <form onSubmit={handleSubmit}>
 
                     <div className='modal_informacoes'>
 
@@ -352,10 +361,10 @@ function ModalNovoImovel({ fecharModal }) {
                     </div>
                 </form>
 
-            </div>
+            </div >
             <div className='scroll'></div>
         </>
     );
 }
 
-export default ModalNovoImovel;
+export default ModalNovoProduto;

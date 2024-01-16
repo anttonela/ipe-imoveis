@@ -60,8 +60,6 @@ function RecuperarSenha() {
       horario: horario,
     };
 
-    console.log("Dados a serem enviados:", dados);
-
     try {
       const response = await fetch("http://localhost:8080/recuperarSenha/", {
         method: "POST",
@@ -69,7 +67,6 @@ function RecuperarSenha() {
       });
 
       const resposta = await response.text();
-      console.log("Resposta da API:", resposta);
 
       if (resposta.length > 50) {
         setInputCodigo(true);
@@ -112,8 +109,6 @@ function RecuperarSenha() {
       codigo,
     };
 
-    console.log("Dados a serem enviados:", dados);
-
     try {
       const response = await fetch("http://localhost:8080/confirmarCodigo/", {
         method: "POST",
@@ -122,8 +117,6 @@ function RecuperarSenha() {
 
       const resposta = await response.text();
       const respostaSemAspas = resposta.replace(/^"(.*)"$/, '$1');
-
-      console.log("Resposta:", respostaSemAspas);
 
       if (respostaSemAspas === "Chave correta") {
         setNovaSenha(true);
@@ -147,8 +140,6 @@ function RecuperarSenha() {
       confirmarNovaSenha: md5(confirmarNovaSenha),
     };
 
-    console.log("Dados a serem enviados:", dados);
-
     try {
       const response = await fetch("http://localhost:8080/novaSenha/", {
         method: "POST",
@@ -156,7 +147,6 @@ function RecuperarSenha() {
       });
 
       const resposta = await response.text();
-      console.log("Resposta da API:", resposta);
 
       if (resposta !== '"Incorreto"') {
         irPara("/");

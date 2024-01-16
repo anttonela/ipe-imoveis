@@ -62,8 +62,6 @@ function Card({
       id: idCard,
     };
 
-    console.log("Dados a serem enviados:", dados);
-
     try {
       const response = await fetch("http://localhost:8080/apagar/", {
         method: "POST",

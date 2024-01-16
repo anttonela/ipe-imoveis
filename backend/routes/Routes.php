@@ -4,6 +4,7 @@ namespace routes;
 
 use app\Models\Home\AlterarProduto;
 use app\Models\Home\ApagarProduto;
+use app\Models\Home\Classificacoes;
 use app\Models\Home\CorpoJson;
 use app\Models\Home\CriarConta;
 use app\Models\Home\Entrar;
@@ -18,8 +19,6 @@ class Routes extends CorpoJson
     {
         $this->cabecalho();
 
-        http_response_code(200);
-
         $apagar = new ApagarProduto();
         $apagar->apagandoProduto();
     }
@@ -27,8 +26,6 @@ class Routes extends CorpoJson
     public function alterar(): void
     {
         $this->cabecalho();
-
-        http_response_code(200);
 
         $alter = new AlterarProduto();
         $alter->alterandoDadosDoProduto();
@@ -59,17 +56,21 @@ class Routes extends CorpoJson
     {
         $this->cabecalho();
 
-        http_response_code(200);
-
         $novoImovel = new NovoProduto();
         $novoImovel->novoProduto();
+    }
+
+    public function produtos(): void
+    {
+        $this->cabecalho();
+
+        $produtos = new Classificacoes();
+        $produtos->pegandoTodosOsProdutos();
     }
 
     public function imagem(): void
     {
         $this->cabecalho();
-
-        http_response_code(200);
 
         $novoProduto = new NovoProduto();
         $novoProduto->salvandoImagem();
@@ -79,8 +80,6 @@ class Routes extends CorpoJson
     {
         $this->cabecalho();
 
-        http_response_code(200);
-
         $criarConta = new CriarConta();
         $criarConta->enviandoEmail();
     }
@@ -88,8 +87,6 @@ class Routes extends CorpoJson
     public function login(): void
     {
         $this->cabecalho();
-
-        http_response_code(200);
 
         $login = new Entrar();
         $login->imprimindoAviso();
@@ -99,8 +96,6 @@ class Routes extends CorpoJson
     {
         $this->cabecalho();
 
-        http_response_code(200);
-
         $modal = new IdModal();
         $modal->abrindoModalDoId();
     }
@@ -108,8 +103,6 @@ class Routes extends CorpoJson
     public function recuperarSenha(): void
     {
         $this->cabecalho();
-
-        http_response_code(200);
 
         $modal = new RecuperarSenha();
         $modal->enviandoEmail();
@@ -119,8 +112,6 @@ class Routes extends CorpoJson
     {
         $this->cabecalho();
 
-        http_response_code(200);
-
         $modal = new RecuperarSenha();
         $modal->confirmandoSeCodigoEstaCorreto();
     }
@@ -129,8 +120,6 @@ class Routes extends CorpoJson
     {
         $this->cabecalho();
 
-        http_response_code(200);
-
         $modal = new RecuperarSenha();
         $modal->salvandoNovaSenha();
     }
@@ -138,8 +127,6 @@ class Routes extends CorpoJson
     public function checkSessao() : void
     {
         $this->cabecalho();
-
-        http_response_code(200);
 
         $modal = new Entrar();
         $modal->verificaSeEstaLogado();

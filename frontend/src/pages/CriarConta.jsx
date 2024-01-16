@@ -44,8 +44,6 @@ function CriarConta() {
         setBotaoCriarConta(false);
         setBotaoEnviandoEmail(true);
 
-        console.log('Dados a serem enviados:', dados);
-
         try {
             const response = await fetch('http://localhost:8080/criarConta/', {
                 method: 'POST',
@@ -53,7 +51,6 @@ function CriarConta() {
             });
 
             const resposta = await response.text();
-            console.log("Resposta da API: " + resposta);
 
             setBotaoEnviandoEmail(true);
             setBotaoCriarConta(false);

@@ -6,7 +6,11 @@ use app\Models\Crud\Utilizadores\Banco;
 
 class ConteudoCard extends Banco
 {
-    public function select($nomeCategoria): void
+    private string $classificacao;
+    private string $tipo;
+    private string $cidade;
+
+    private function setSelect(): void
     {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
@@ -18,12 +22,18 @@ class ConteudoCard extends Banco
             $data = json_decode($json_data, true);
         }
 
-        $classificacao = $data['classificacao'];
-        $tipo = $data['tipo'];
-        $cidade = $data['cidade'];
+        $this->classificacao = $data['classificacao'];
+        $this->tipo = $data['tipo'];
+        $this->cidade = $data['cidade'];
+    }
 
-        if (!empty($classificacao) && !empty($tipo) && !empty($cidade)) {
-            $selectFiltro = $this->executarFetchAll("SELECT * FROM produto WHERE classificacao = '{$classificacao}' and tipo = '{$tipo}' and cidade = '{$cidade}'");
+    public function select($nomeCategoria): void
+    {
+        $this->setSelect();
+
+        if (!empty($this->classificacao) && !empty($this->tipo) && !empty($this->cidade)) {
+            $selectFiltro = $this->executarFetchAll("SELECT * FROM produto WHERE classificacao = '{$this->classificacao}' and tipo = '{$this->tipo}' and 
+            cidade = '{$this->cidade}'");
 
             foreach ($selectFiltro as &$row) {
                 $row['valor'] = number_format($row['valor'], 2, ',', '.');

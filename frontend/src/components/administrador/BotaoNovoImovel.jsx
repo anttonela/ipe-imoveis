@@ -1,14 +1,30 @@
-import ModalNovoImovel from './ModalNovoImovel';
+import { useEffect, useState } from 'react';
+import values from 'lodash/values';
+
 import IconPlus from '../../assets/img/plus.svg';
-import { useState } from 'react';
+
+import ModalNovoProduto from './ModalNovoProduto';
 
 function BotaoNovoImovel({ fecharModal }) {
 
+    //const [data, setData] = useState([]);
     const [novoProduto, setNovoProduto] = useState(false);
+
+    // const getProdutos = async () => {
+    //     fetch("http://localhost:8080/produtos/")
+    //         .then((response) => response.json())
+    //         .then((responseJson) => (
+    //             setData(responseJson)
+    //         ));
+    // }
 
     const abrirModal = () => {
         setNovoProduto(true);
     };
+
+    // useEffect(() => {
+    //     getProdutos();
+    // }, []);
 
     return (
         <>
@@ -32,7 +48,14 @@ function BotaoNovoImovel({ fecharModal }) {
 
             {novoProduto && (
                 <div className='modal_editar_produto'>
-                    <ModalNovoImovel fecharModal={fecharModal} />
+
+
+                    <ModalNovoProduto
+                        //idCard={produto.id}
+                        fecharModal={fecharModal}
+                    />
+
+
                 </div>
             )}
         </>
