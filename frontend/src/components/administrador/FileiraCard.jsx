@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import Card from './Card';
 
-function FileiraCardSombreado({ setAtualizarHome, fetchUrl }) {
+function FileiraCardSombreado({ caminhoImagem, setAtualizarHome, fetchUrl }) {
 
     const [data, setData] = useState([]);
 
@@ -26,6 +26,7 @@ function FileiraCardSombreado({ setAtualizarHome, fetchUrl }) {
                 {values(data).map(produto => (
 
                     <Card
+                        caminhoImagem={caminhoImagem}
                         setAtualizarHome={setAtualizarHome}
                         cidade={produto.cidade}
                         breve_descricao={produto.breve_descricao}

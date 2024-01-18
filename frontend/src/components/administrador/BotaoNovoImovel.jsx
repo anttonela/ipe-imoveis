@@ -7,24 +7,11 @@ import ModalNovoProduto from './ModalNovoProduto';
 
 function BotaoNovoImovel({ fecharModal }) {
 
-    //const [data, setData] = useState([]);
     const [novoProduto, setNovoProduto] = useState(false);
-
-    // const getProdutos = async () => {
-    //     fetch("http://localhost:8080/produtos/")
-    //         .then((response) => response.json())
-    //         .then((responseJson) => (
-    //             setData(responseJson)
-    //         ));
-    // }
 
     const abrirModal = () => {
         setNovoProduto(true);
     };
-
-    // useEffect(() => {
-    //     getProdutos();
-    // }, []);
 
     return (
         <>
@@ -49,12 +36,9 @@ function BotaoNovoImovel({ fecharModal }) {
             {novoProduto && (
                 <div className='modal_editar_produto'>
 
-
                     <ModalNovoProduto
-                        //idCard={produto.id}
                         fecharModal={fecharModal}
                     />
-
 
                 </div>
             )}

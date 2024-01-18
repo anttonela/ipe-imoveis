@@ -12,8 +12,9 @@ import SelectAtualiza from './SelectAtualiza';
 import IconSetaVoltar from '../../assets/img/seta-voltar.svg';
 
 function ModalNovoProduto({ fecharModal }) {
+
     const [selectedFile, setSelectedFile] = useState(null);
-    const [images, setImages] = useState('');
+    const [images, setImages] = useState([]);
     const [cidade, setCidade] = useState('');
     const [classificacao, setClassificacao] = useState('');
     const [tipo, setTipo] = useState('');
@@ -26,6 +27,7 @@ function ModalNovoProduto({ fecharModal }) {
     const [linkOlx, setLinkOlx] = useState('');
     const [produtoAdicionado, setProdutoAdicionado] = useState(false);
     const [mostrarImagens, setMostrarImagens] = useState(true);
+    const [idImagem, setIdImagem] = useState('');
 
     const opcoesClassificacao = ['Imóvel', 'Máquinas Agrícolas', 'Outros'];
 
@@ -37,49 +39,39 @@ function ModalNovoProduto({ fecharModal }) {
 
     const handleFileChange = async (event) => {
         const file = event.target.files[0];
-        await setSelectedFile(file);
+        setSelectedFile(file);
 
-        handleUpload()
-      };
-    
-      const handleUpload = async () => {
-        if (selectedFile) {
-          try {
-            const formData = new FormData();
-            formData.append('file', selectedFile);
-    
-            const response = await axios.post('http://localhost:8080/imagem', formData);
-    
-            console.log('File uploaded successfully:', response.data);
-          } catch (error) {
-            console.error('Error uploading file:', error);
-          }
-        } else {
-          console.log('No file selected');
+        const imagemSelecionadas = event.target.files;
+
+        if (imagemSelecionadas.length > 0) {
+            const newImages = Array.from(imagemSelecionadas).map((file) => URL.createObjectURL(file));
+
+            setImages((prevImages) => [...prevImages, ...newImages]);
+            setMostrarImagens(false);
         }
-      };
 
-    const handleSubmitImagem = async () => {
-        const formData = new FormData();
-        formData.append("imagem", images);
+        handleUpload();
+    };
 
-        console.log('Dados a serem enviados handleSubmitImagem:', formData);
+    const handleUpload = async () => {
+        if (selectedFile) {
+            try {
+                const formData = new FormData();
+                formData.append('file', selectedFile);
 
-        try {
-            const response = await axios.post("http://localhost:8080/imagem", formData, {
-                headers: { "Content-Type": "multipart/form-data" },
-            });
-
-            const data = response;
-            console.log('Resposta da API handleSubmitImagem:', data);
-        } catch (error) {
-            console.error('Erro ao enviar os dados para a API handleSubmitImagem:', error);
+                const response = await axios.post('http://localhost:8080/uploadImagem', formData);
+                console.log('Resposta handleUpload:', response.data);
+                setIdImagem(response.data);
+            } catch (error) {
+                console.error('Erro em fazer upload da foto:', error);
+            }
+        } else {
+            console.log('Nenhuma foto selecionada');
         }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        handleSubmitImagem();
 
         const dados = {
             cidade,
@@ -92,25 +84,25 @@ function ModalNovoProduto({ fecharModal }) {
             linkInstagram,
             linkFacebook,
             linkOlx,
-            //idImagem,
+            idImagem,
         };
 
-        //  console.log('Dados a serem enviados handleSubmit:', dados);
+        console.log('Dados a serem enviados:', dados);
 
         try {
-            const response = await fetch("http://localhost:8080/novoProduto", {
+            const response = await fetch('http://localhost:8080/novoProduto', {
                 method: 'POST',
                 body: JSON.stringify(dados),
             });
 
             const data = await response.text();
-            //  console.log('Resposta da API handleSubmit:', data);
+            console.log('Resposta da API:', data);
 
             setProdutoAdicionado(true);
         } catch (error) {
-            console.error('Erro ao enviar os dados para a API handleSubmit:', error);
+            console.error('Erro ao enviar os dados para a API:', error);
         }
-    };
+    }
 
     const formatarMoeda = (value) => {
         const numero = parseFloat(value.replace(/[^\d]/g, '')) / 100;
@@ -127,22 +119,6 @@ function ModalNovoProduto({ fecharModal }) {
         }
     };
 
-    const handleImageUpload = (e) => {
-        const imagemSelecionadas = e.target.files; // pega os arquivos que estao sendo enviados em input tipo file
-        //setImages(imagemSelecionadas);     // retorna - FormData { imagem → "[object FileList]" }
-
-        console.log("imagemSelecionadas: " + imagemSelecionadas); // retorna - imagemSelecionadas: [object FileList]
-
-        if (imagemSelecionadas.length > 0) {
-            const imageArray = Array.from(imagemSelecionadas).map((file) => URL.createObjectURL(file));
-            // cria um array com as imagens selecionadas e URL.createObjectURL() contem a URL representando file aí mapeia para o carrosel
-
-            setImages([imagemSelecionadas]); // retorna - FormData { imagem → "[object FileList]" }
-            //setImages([imageArray]);       // retorna - FormData { imagem → "blob:http://localhost:3000/843520cb-ff07-45b8-acd9-648ff3f7b4fc" }
-            setMostrarImagens(false);
-        }
-    };
-
     return (
         <>
             <div className='modal_novo_imovel'>
@@ -152,8 +128,7 @@ function ModalNovoProduto({ fecharModal }) {
                     <div className='botao_voltar_modal inter_500'>Voltar</div>
                 </div>
 
-                <form onSubmit={handleSubmitImagem} method="post" encType='multipart/form-data'>
-
+                <form method="post" encType='multipart/form-data'>
                     {mostrarImagens && (
                         <div className='upload_imagem'>
                             <label className='card_imagem_content'>
@@ -165,8 +140,7 @@ function ModalNovoProduto({ fecharModal }) {
                                             <input
                                                 type="file"
                                                 accept="image/videos"
-                                                // onChange={handleImageUpload}
-                                                onChange={handleFileChange} 
+                                                onChange={handleFileChange}
                                                 className='input_upload'
                                             />
                                         </div>
@@ -203,25 +177,26 @@ function ModalNovoProduto({ fecharModal }) {
                                             pagination={false}
                                         >
                                             {images.map((image, index) => (
-                                                <div key={index}>
-                                                    <label className='alinhamento_imagem'>
-                                                        <input
-                                                            type="file"
-                                                            name='imagens'
-                                                            accept="image/videos"
-                                                            id='imagens'
-                                                            multiple
-                                                            onChange={handleImageUpload}
-                                                            className='input_upload'
-                                                        />
-                                                        <img className='imagem_selecionada' src={image} alt={`Image ${index + 1}`} />
-                                                    </label>
-                                                </div>
+                                                <label key={index}>
+                                                    <input
+                                                        type="file"
+                                                        accept="image/videos"
+                                                        onChange={handleFileChange}
+                                                        className='input_upload'
+                                                    />
+                                                    <img
+                                                        className='imagem_selecionada'
+                                                        src={image}
+                                                        alt={`Image ${index + 1}`}
+                                                        style={{ pointerEvents: mostrarImagens ? 'none' : 'auto' }}
+                                                    />
+                                                </label>
                                             ))}
-
                                         </Carousel>
+
                                     </div>
                                 )}
+
                             </div>
                         </div>
                     )}
@@ -229,7 +204,6 @@ function ModalNovoProduto({ fecharModal }) {
                 </form>
 
                 <form onSubmit={handleSubmit}>
-
                     <div className='modal_informacoes'>
 
                         <div className='modal_select'>

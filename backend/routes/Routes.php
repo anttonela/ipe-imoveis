@@ -68,13 +68,14 @@ class Routes extends CorpoJson
         $produtos->pegandoTodosOsProdutos();
     }
 
-    public function imagem(): void
+    /*
+    public function uploadImagem(): void
     {
         $this->cabecalho();
 
         $novoProduto = new NovoProduto();
         $novoProduto->salvandoImagem();
-    }
+    }*/
 
     public function criarConta(): void
     {

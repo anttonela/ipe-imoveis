@@ -7,6 +7,7 @@ import IconLixeira from "../../assets/img/lixeira.svg";
 import ImagemImoveis from "../../assets/img/imoveis.png";
 
 function Card({
+  caminhoImagem,
   setAtualizarHome,
   cidade,
   breve_descricao,
@@ -96,7 +97,7 @@ function Card({
     <div className="espacamento_fileira">
       <div className="card card_administrativo">
         <div className="card_imagem">
-          <img className="card_imagem" src={ImagemImoveis} />
+          <img className="card_imagem" src={caminhoImagem} />
         </div>
 
         <div className="card_informacoes_content">
