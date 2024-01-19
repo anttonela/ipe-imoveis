@@ -68,14 +68,20 @@ class Routes extends CorpoJson
         $produtos->pegandoTodosOsProdutos();
     }
 
-    /*
+    public function imagem(): void
+    {
+        $this->cabecalho();
+        $mostrarImagem = new NovoProduto();
+        $mostrarImagem->mostrarImagemNaRota();
+    }
+
     public function uploadImagem(): void
     {
         $this->cabecalho();
 
         $novoProduto = new NovoProduto();
         $novoProduto->salvandoImagem();
-    }*/
+    }
 
     public function criarConta(): void
     {
@@ -125,7 +131,7 @@ class Routes extends CorpoJson
         $modal->salvandoNovaSenha();
     }
 
-    public function checkSessao() : void
+    public function checkSessao(): void
     {
         $this->cabecalho();
 

@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Carousel from "react-elastic-carousel";
 
@@ -34,6 +35,8 @@ function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto,
     const [linkOlx, setLinkOlx] = useState('');
     const [produtoAlterado, setProdutoAlterado] = useState(false);
     const [editandoModal, setEditandoModal] = useState(true);
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [primeiraVez, setPrimeiraVez] = useState(false);
 
     function extrairUsuarioInstagram(linkInstagram) {
         const buscaString = /(?:https?:\/\/)?(?:www\.)?instagram\.com\/([a-zA-Z0-9_]+)/;
@@ -99,6 +102,66 @@ function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto,
         linkOlxProduto,
     ]);
 
+
+    const handleFileChange = async (event) => {
+        const file = event.target.files[0];
+        setSelectedFile(file);
+
+        const imagemSelecionadas = event.target.files;
+
+        if (imagemSelecionadas.length > 0) {
+            const newImages = Array.from(imagemSelecionadas).map((file) => URL.createObjectURL(file));
+
+            setImages((prevImages) => [...prevImages, ...newImages]);
+        }
+
+        if (primeiraVez === false) {
+            try {
+                const formData = new FormData();
+                formData.append('file', selectedFile);
+
+                const response = await axios.post('http://localhost:8080/uploadImagem', formData);
+                console.log('Resposta handleUpload:', response.data);
+                //  setIdImagem(response.data);
+                setPrimeiraVez(true);
+            } catch (error) {
+                console.error('Erro em fazer upload da foto:', error);
+            }
+            return;
+        }
+
+        handleUpload();
+    };
+
+    const handleUpload = async () => {
+        if (selectedFile) {
+            try {
+                const formData = new FormData();
+                formData.append('file', selectedFile);
+
+                const response = await axios.post('http://localhost:8080/uploadImagem', formData);
+                console.log('Resposta handleUpload:', response.data);
+                //  setIdImagem(response.data);
+            } catch (error) {
+                console.error('Erro em fazer upload da foto:', error);
+            }
+        } else {
+            console.log('Nenhuma foto selecionada');
+        }
+    };
+
+    const handleRemoveImage = (index) => {
+        const novasImagens = [...imagensParaCarousel];
+        novasImagens.splice(index, 1);
+        setImages(novasImagens);
+
+        if (index === imagemAtual && novasImagens.length > 0) {
+            const novaImagemAtual = index === novasImagens.length ? index - 1 : index;
+            setImagemAtual(novaImagemAtual);
+        }
+    };
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -148,16 +211,6 @@ function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto,
         }
     };
 
-    const handleImageUpload = (e) => {
-        const imagemSelecionadas = e.target.files;
-
-        if (imagemSelecionadas.length > 0) {
-            const imageArray = Array.from(imagemSelecionadas).map((file) => URL.createObjectURL(file));
-            setImages([...images, ...imageArray]);
-            setMostrarCarousel(true);
-        }
-    };
-
     const ativarEditarImagem = () => {
         setEditandoModal(false);
     };
@@ -167,6 +220,8 @@ function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto,
         maquinaAmarela2,
         maquinaAmarela4,
     ];
+
+    const imagensParaCarousel = [...imagemMaquina, ...images];
 
     const done = () => {
         setEditandoModal(true);
@@ -230,13 +285,18 @@ function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto,
                                             </div>
                                         )}
                                     >
-                                        {imagemMaquina.map((image, index) => (
-                                            <img
-                                                key={index}
-                                                src={image}
-                                                alt={`Imagem ${index + 1}`}
-                                                className='imagem_carousel'
-                                            />
+                                        {imagensParaCarousel.map((image, index) => (
+                                            <>
+                                                <img
+                                                    className='imagem_selecionada'
+                                                    src={image}
+                                                    alt={`Image ${index + 1}`}
+                                                    style={{ pointerEvents: editandoModal ? 'none' : 'auto' }}
+                                                />
+                                                <button className="botao_lixeira" onClick={() => handleRemoveImage(index)}>
+                                                    <img src={IconLixeira} alt="Remover Imagem" />
+                                                </button>
+                                            </>
                                         ))}
                                     </Carousel>
                                 </div>
@@ -255,7 +315,7 @@ function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto,
                                             accept="image/videos"
                                             multiple
                                             className='input_upload'
-                                            onChange={handleImageUpload}
+                                            onChange={handleFileChange}
                                         />
                                     </label>
 

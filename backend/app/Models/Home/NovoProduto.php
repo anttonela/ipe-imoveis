@@ -82,24 +82,73 @@ class NovoProduto
 
             $table->salvarInserir($arProduto);
 
-            $arPegarNomeDaImagem = [
-                "COLUMN" => "nome_imagem",
-                "WHERE" => "id_img = '{$data['idImagem']}'",
-            ];
+            $ids = explode(',', $data['idImagem']);
 
-            $nomeDaImagem = $tabelaDoSelect->executarFetchAll($tabelaDoSelect->condicoes($arPegarNomeDaImagem));
+            foreach ($ids as $id) {
+                $arPegarNomeDaImagem = [
+                    "COLUMN" => "nome_imagem",
+                    "WHERE" => "id_img = '{$id}'",
+                ];
+
+                $nomeDaImagem = $tabelaDoSelect->executarFetchAll($tabelaDoSelect->condicoes($arPegarNomeDaImagem));
+
+                if (is_array($nomeDaImagem) && count($nomeDaImagem) > 0) {
+                    $nomeImagem = $nomeDaImagem[0]['nome_imagem'];
+                    print json_encode("Nome da imagem para ID {$id}: {$nomeImagem}");
+                }
+            }
+
+            /*
 
             $nomeImagem = !empty($nomeDaImagem[0]['nome_imagem']) ? $nomeDaImagem[0]['nome_imagem'] : null;
             $caminhoImagem = '../../View/Upload/' . $nomeImagem;
 
             if (file_exists('../../View/Upload/' . $nomeImagem)) {
-                print json_encode("Imagem existe"); 
+                print json_encode("Imagem existe");
                 header('Content-Type: image/jpeg');
                 readfile($caminhoImagem);
                 return;
-            } 
+            }
 
             print json_encode("Imagem não encontrada");
+
+            */
         }
+    }
+
+    public function mostrarImagemNaRota()
+    {
+        print json_encode("aqui");
+
+        $caminhoImagem = __DIR__ . '/Home/Documents/ipe_imoveis/backend/app/View/Upload/24-01-170856imagem_casa.jpeg';
+
+        if (file_exists($caminhoImagem)) {
+            $conteudoImagem = file_get_contents($caminhoImagem);
+
+            header('Content-Type: image/jpeg');
+            echo $conteudoImagem;
+            exit;
+        } else {
+            http_response_code(404);
+            echo 'Imagem não encontrada';
+            exit;
+        }
+        /*
+        $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        $nomeImagem = basename($url);
+
+        $caminhoImagem = __DIR__ . '/../app/View/Upload/' . $nomeImagem;
+
+        if (file_exists($caminhoImagem)) {
+            $conteudoImagem = file_get_contents($caminhoImagem);
+
+            header('Content-Type: image/jpeg');
+            echo $conteudoImagem;
+            exit;
+        } else {
+            http_response_code(404);
+            echo 'Imagem não encontrada';
+            exit;
+        }*/
     }
 }

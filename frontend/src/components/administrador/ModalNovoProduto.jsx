@@ -27,7 +27,11 @@ function ModalNovoProduto({ fecharModal }) {
     const [linkOlx, setLinkOlx] = useState('');
     const [produtoAdicionado, setProdutoAdicionado] = useState(false);
     const [mostrarImagens, setMostrarImagens] = useState(true);
-    const [idImagem, setIdImagem] = useState('');
+    const [idImagem, setIdImagem] = useState([]);
+    const [primeiraVez, setPrimeiraVez] = useState(false);
+    const [mensagemImagemNula, setMensagemImagemNula] = useState(false);
+    const [mensagemErro, setMensagemErro] = useState(false);
+    const [mensagemErroSemNenhumLink, setMensagemErroSemNenhumLink] = useState(false);
 
     const opcoesClassificacao = ['Imóvel', 'Máquinas Agrícolas', 'Outros'];
 
@@ -50,6 +54,21 @@ function ModalNovoProduto({ fecharModal }) {
             setMostrarImagens(false);
         }
 
+        if (primeiraVez === false) {
+            try {
+                const formData = new FormData();
+                formData.append('file', selectedFile);
+
+                const response = await axios.post('http://localhost:8080/uploadImagem', formData);
+                console.log('Resposta handleUpload:', response.data);
+                setIdImagem((prevIdImagens) => [...prevIdImagens, response.data]);
+                setPrimeiraVez(true);
+            } catch (error) {
+                console.error('Erro em fazer upload da foto:', error);
+            }
+            return;
+        }
+
         handleUpload();
     };
 
@@ -61,7 +80,8 @@ function ModalNovoProduto({ fecharModal }) {
 
                 const response = await axios.post('http://localhost:8080/uploadImagem', formData);
                 console.log('Resposta handleUpload:', response.data);
-                setIdImagem(response.data);
+
+                setIdImagem((prevIds) => [...prevIds, response.data]);
             } catch (error) {
                 console.error('Erro em fazer upload da foto:', error);
             }
@@ -70,8 +90,28 @@ function ModalNovoProduto({ fecharModal }) {
         }
     };
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setMensagemImagemNula(false);
+        setMensagemErro(false);
+        setMensagemErroSemNenhumLink(false);
+
+        if (!cidade || !classificacao || !tipo || !situacao || !valor || !descricao) {
+            setMensagemErro(true);
+            return;
+        }
+
+        if (!idImagem || idImagem.length === 0) {
+            setProdutoAdicionado(false);
+            setMensagemImagemNula(true);
+            return;
+        }
+
+        if (!linkWhatsapp && !linkInstagram && !linkFacebook && !linkOlx) {
+            setMensagemErroSemNenhumLink(true);
+            return;
+        }
 
         const dados = {
             cidade,
@@ -84,7 +124,7 @@ function ModalNovoProduto({ fecharModal }) {
             linkInstagram,
             linkFacebook,
             linkOlx,
-            idImagem,
+            idImagem: idImagem.join(','),
         };
 
         console.log('Dados a serem enviados:', dados);
@@ -99,6 +139,7 @@ function ModalNovoProduto({ fecharModal }) {
             console.log('Resposta da API:', data);
 
             setProdutoAdicionado(true);
+            setIdImagem([]);
         } catch (error) {
             console.error('Erro ao enviar os dados para a API:', error);
         }
@@ -174,7 +215,18 @@ function ModalNovoProduto({ fecharModal }) {
                                                 </div>
                                             )}
                                             itemsToShow={1}
-                                            pagination={false}
+                                            renderPagination={({ pages, activePage, onClick }) => (
+                                                <div className="passar_imagem">
+                                                    {pages.map((page) => (
+                                                        <button
+                                                            key={page}
+                                                            onClick={() => onClick(page)}
+                                                            className={activePage === page ? 'botao_passa_imagem clicado' : 'botao_passa_imagem'}
+                                                        >
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            )}
                                         >
                                             {images.map((image, index) => (
                                                 <label key={index}>
@@ -354,6 +406,18 @@ function ModalNovoProduto({ fecharModal }) {
                             <div className='mensagem_sucesso_produto'>
                                 Produto adicionado com sucesso
                             </div>
+                        )}
+
+                        {mensagemImagemNula && (
+                            <div className='mensagem_sem_link'>É necessário adicionar imagem do produto</div>
+                        )}
+
+                        {mensagemErro && (
+                            <div className='mensagem_sem_link'>É necessário preencher todos os dados do formulário</div>
+                        )}
+
+                        {mensagemErroSemNenhumLink && (
+                            <div className='mensagem_sem_link'>É necessário ter um tipo de contato com o vendedor</div>
                         )}
 
                         <div className='espacamento'></div>
