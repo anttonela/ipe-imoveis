@@ -7,6 +7,7 @@ use app\Models\Home\ApagarProduto;
 use app\Models\Home\Classificacoes;
 use app\Models\Home\CorpoJson;
 use app\Models\Home\CriarConta;
+use app\Models\Home\DeletarImagem;
 use app\Models\Home\Entrar;
 use app\Models\Home\Filtro;
 use app\Models\Home\IdModal;
@@ -81,6 +82,14 @@ class Routes extends CorpoJson
 
         $novoProduto = new NovoProduto();
         $novoProduto->salvandoImagem();
+    }
+
+    public function deletarImagem(): void
+    {
+        $this->cabecalho();
+
+        $deletarImagem = new DeletarImagem();
+        $deletarImagem->deletarImagem();
     }
 
     public function criarConta(): void

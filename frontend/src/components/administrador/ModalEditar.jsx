@@ -37,6 +37,8 @@ function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto,
     const [editandoModal, setEditandoModal] = useState(true);
     const [selectedFile, setSelectedFile] = useState(null);
     const [primeiraVez, setPrimeiraVez] = useState(false);
+    const [imagensParaCarousel, setImagensParaCarousel] = useState('');
+    const [identificarQualImagem, setIdentificarQualImagem] = useState('');
 
     function extrairUsuarioInstagram(linkInstagram) {
         const buscaString = /(?:https?:\/\/)?(?:www\.)?instagram\.com\/([a-zA-Z0-9_]+)/;
@@ -150,18 +152,6 @@ function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto,
         }
     };
 
-    const handleRemoveImage = (index) => {
-        const novasImagens = [...imagensParaCarousel];
-        novasImagens.splice(index, 1);
-        setImages(novasImagens);
-
-        if (index === imagemAtual && novasImagens.length > 0) {
-            const novaImagemAtual = index === novasImagens.length ? index - 1 : index;
-            setImagemAtual(novaImagemAtual);
-        }
-    };
-
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -211,21 +201,30 @@ function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto,
         }
     };
 
-    const ativarEditarImagem = () => {
-        setEditandoModal(false);
-    };
-
     const imagemMaquina = [
         maquinaAmarela1,
         maquinaAmarela2,
         maquinaAmarela4,
     ];
 
-    const imagensParaCarousel = [...imagemMaquina, ...images];
+    const ativarEditarImagem = () => {
+        setEditandoModal(false);
+        setImagensParaCarousel([...imagemMaquina, ...images]);
+    };
 
-    const done = () => {
+    const terminouDeEditar = () => {
         setEditandoModal(true);
-    }
+    };
+
+    const handleRemoverImagem = (imagemParaRemover) => {
+        const novasImagens = images.filter((_, index) => index !== imagemParaRemover);
+        console.log('New images:', novasImagens);
+        setImages([...novasImagens]);
+
+        const imagensAtualizadas = imagensParaCarousel.filter((_, index) => index !== imagemParaRemover);
+        setImagensParaCarousel([...imagensAtualizadas]);
+    };
+
     return (
         <>
             <div className='modal_editar_produto'>
@@ -244,7 +243,7 @@ function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto,
 
                             <div className='modal_botoes_editar'>
 
-                                <div className='botao_editar_imagem' onClick={ativarEditarImagem} >
+                                <div className='botao_editar_imagem pointer' onClick={ativarEditarImagem} >
                                     <img className='botao_editar_imagem_icon' src={IconLapis} />
                                 </div>
 
@@ -278,7 +277,7 @@ function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto,
                                                     <button
                                                         key={page}
                                                         onClick={() => onClick(page)}
-                                                        className={activePage === page ? 'botao_passa_imagem clicado' : 'botao_passa_imagem'}
+                                                        className={activePage === page ? 'botao_passa_imagem clicado pointer' : 'botao_passa_imagem pointer'}
                                                     >
                                                     </button>
                                                 ))}
@@ -293,9 +292,9 @@ function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto,
                                                     alt={`Image ${index + 1}`}
                                                     style={{ pointerEvents: editandoModal ? 'none' : 'auto' }}
                                                 />
-                                                <button className="botao_lixeira" onClick={() => handleRemoveImage(index)}>
-                                                    <img src={IconLixeira} alt="Remover Imagem" />
-                                                </button>
+                                                <div>
+                                                    <button onClick={() => handleRemoverImagem(index)}>Remover Foto Remover Foto</button>
+                                                </div>
                                             </>
                                         ))}
                                     </Carousel>
@@ -304,11 +303,11 @@ function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto,
 
                             <div className='modal_botoes_editar'>
                                 <div className='modal_editar'>
-                                    <div className='botao_editar_imagem' >
+                                    <div className='botao_editar_imagem pointer'>
                                         <img className='icon_lixeira' src={IconLixeira} />
                                     </div>
 
-                                    <label className='botao_editar_imagem'>
+                                    <label className='botao_editar_imagem pointer'>
                                         <img className='botao_editar_imagem_icon' src={IconPlus} />
                                         <input
                                             type="file"
@@ -319,7 +318,7 @@ function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto,
                                         />
                                     </label>
 
-                                    <div className='botao_editar_imagem' onClick={done}>
+                                    <div className='botao_editar_imagem pointer' onClick={terminouDeEditar}>
                                         <img className='botao_editar_imagem_icon' src={IconDone} />
                                     </div>
 
