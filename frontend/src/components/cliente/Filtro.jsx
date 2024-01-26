@@ -1,11 +1,9 @@
+import React from 'react';
 import InputFiltro from './InputFiltro';
-import React, { useState } from 'react';
 import FiltroAtualiza from './FiltroAtualiza';
 
 function Filtro({ handleSubmit, tipoSelecionado, setTipoSelecionado, cidade, setCidade, classificacaoSelecionada, setClassificacaoSelecionada }) {
 
-    const [mensagemLogin, setMensagemLogin] = useState(false);
-    const [respostaLocalhost, setRespostaLocalhost] = useState('');
     const opcoesClassificacao = ['Imóvel', 'Máquinas Agrícolas', 'Outros'];
 
     const opcoesTipos = {

@@ -42,13 +42,13 @@ function Footer() {
                     </div>
 
                     <div className='redes_sociais'>
-                        <img src={IconInstagram} className='rede_social_icon' />
-                        <img src={IconFacebook} className='rede_social_icon' />
-                        <img src={IconWhatsapp} className='rede_social_icon' />
+                        <img src={IconInstagram} className='rede_social_icon' alt='icon' />
+                        <img src={IconFacebook} className='rede_social_icon' alt='icon' />
+                        <img src={IconWhatsapp} className='rede_social_icon' alt='icon' />
                     </div>
 
                     <div className='logo_branca'>
-                        <img src={LogoBranca} className='logo_branca' />
+                        <img src={LogoBranca} className='logo_branca' alt='icon' />
                     </div>
                 </div>
             </div>

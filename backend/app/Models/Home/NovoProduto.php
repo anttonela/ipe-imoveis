@@ -21,7 +21,7 @@ class NovoProduto
                 return false;
             }
 
-            move_uploaded_file($_FILES["file"]["tmp_name"], '/home/ipeweb/Documents/ipe_imoveis/backend/app/View/Upload/' .
+            move_uploaded_file($_FILES["file"]["tmp_name"], '/home/ipeweb/Documents/ipe_imoveis/frontend/src/assets/upload/' .
                 date("y-m-dhi") . $_FILES["file"]["name"]);
 
             $nomeImagem = date("y-m-dhi") . $_FILES["file"]['name'];
@@ -65,23 +65,6 @@ class NovoProduto
             empty($data['linkInstagram']) ?  $this->linkInstagram = "" : $this->linkInstagram = "https://www.instagram.com/" . $data['linkInstagram'] . "/";
             empty($data['linkFacebook']) ?  $this->linkFacebook = "" : $this->linkFacebook = "https://www.facebook.com/" . $data['linkFacebook'] . "/";
 
-            $arProduto = [
-                "classificacao" => $data['classificacao'],
-                "tipo" => $data['tipo'],
-                "cidade" => $data['cidade'],
-                "situacao" => $data['situacao'],
-                "valor" => $data['valor'],
-                "breve_descricao" => implode(' ', array_slice(explode(' ', $data['descricao']), 0, 9)),
-                "descricao" => $data['descricao'],
-                "link_whatsapp" => "{$this->linkWhatsapp}",
-                "link_instagram" => "{$this->linkInstagram}",
-                "link_facebook" => "{$this->linkFacebook}",
-                "link_olx" => $data['linkOlx'],
-                "id_img" => "{$data['idImagem']}"
-            ];
-
-            $table->salvarInserir($arProduto);
-
             $ids = explode(',', $data['idImagem']);
 
             foreach ($ids as $id) {
@@ -94,61 +77,26 @@ class NovoProduto
 
                 if (is_array($nomeDaImagem) && count($nomeDaImagem) > 0) {
                     $nomeImagem = $nomeDaImagem[0]['nome_imagem'];
-                    print json_encode("Nome da imagem para ID {$id}: {$nomeImagem}");
+                    print json_encode($nomeImagem);
                 }
             }
 
-            /*
+            $arProduto = [
+                "classificacao" => $data['classificacao'],
+                "tipo" => $data['tipo'],
+                "cidade" => $data['cidade'],
+                "situacao" => $data['situacao'],
+                "valor" => $data['valor'],
+                "breve_descricao" => implode(' ', array_slice(explode(' ', $data['descricao']), 0, 9)),
+                "descricao" => $data['descricao'],
+                "link_whatsapp" => "{$this->linkWhatsapp}",
+                "link_instagram" => "{$this->linkInstagram}",
+                "link_facebook" => "{$this->linkFacebook}",
+                "link_olx" => $data['linkOlx'],
+                "nome_img" => "{$nomeImagem}",
+            ];
 
-            $nomeImagem = !empty($nomeDaImagem[0]['nome_imagem']) ? $nomeDaImagem[0]['nome_imagem'] : null;
-            $caminhoImagem = '../../View/Upload/' . $nomeImagem;
-
-            if (file_exists('../../View/Upload/' . $nomeImagem)) {
-                print json_encode("Imagem existe");
-                header('Content-Type: image/jpeg');
-                readfile($caminhoImagem);
-                return;
-            }
-
-            print json_encode("Imagem não encontrada");
-
-            */
+            $table->salvarInserir($arProduto);
         }
-    }
-
-    public function mostrarImagemNaRota()
-    {
-        print json_encode("aqui");
-
-        $caminhoImagem = __DIR__ . '/Home/Documents/ipe_imoveis/backend/app/View/Upload/24-01-170856imagem_casa.jpeg';
-
-        if (file_exists($caminhoImagem)) {
-            $conteudoImagem = file_get_contents($caminhoImagem);
-
-            header('Content-Type: image/jpeg');
-            echo $conteudoImagem;
-            exit;
-        } else {
-            http_response_code(404);
-            echo 'Imagem não encontrada';
-            exit;
-        }
-        /*
-        $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-        $nomeImagem = basename($url);
-
-        $caminhoImagem = __DIR__ . '/../app/View/Upload/' . $nomeImagem;
-
-        if (file_exists($caminhoImagem)) {
-            $conteudoImagem = file_get_contents($caminhoImagem);
-
-            header('Content-Type: image/jpeg');
-            echo $conteudoImagem;
-            exit;
-        } else {
-            http_response_code(404);
-            echo 'Imagem não encontrada';
-            exit;
-        }*/
     }
 }

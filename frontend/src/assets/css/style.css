@@ -241,7 +241,7 @@ body {
 .select_tipo_modal {
   height: 5vh;
   display: flex;
-  align-items: end;
+  align-items: flex-end;
 }
 
 .botao_filtro_content {
@@ -990,7 +990,7 @@ body {
   width: 60vh;
   display: flex;
   justify-content: center;
-  align-items: end;
+  align-items: flex-end;
 }
 
 .imagem_modal_cliente {
@@ -1009,7 +1009,7 @@ body {
   width: 60vh;
   display: flex;
   justify-content: center;
-  align-items: end;
+  align-items: flex-end;
 }
 
 .imagem_modal {
@@ -1083,10 +1083,22 @@ body {
   height: 28.5vh;
 }
 
+.apagar_imagem_fundo {
+  background-color: violet;
+  appearance: none;
+  height: 5vh;
+  width: 3vh;
+  border: none;
+  color: inherit;
+  outline: none;
+  box-shadow: none;
+  margin-left: -50px;
+}
+
 .situacao {
   height: 4vh;
   display: flex;
-  align-items: end;
+  align-items:flex-end;
 }
 
 .alinhamento_imagem {
@@ -1576,7 +1588,7 @@ body {
 
 .nova_senha_botao_content {
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   justify-content: center;
   height: 9vh;
 }
@@ -1667,6 +1679,16 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.imagem_nao_baixada {
+  font-size: 1.6vh;
+  font-weight: 600;
+  color: #af2525;
+  display: flex;
+  justify-content: center;
+  align-items: initial;
+  height: 30px;
 }
 
 .mensagem_sucesso_produto {

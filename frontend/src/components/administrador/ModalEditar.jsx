@@ -22,7 +22,6 @@ import SelectAtualiza from './SelectAtualiza';
 function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto, tipoProduto, situacaoProduto, valorProduto, descricaoProduto, linkWhatsappProduto, linkInstagramProduto, linkFacebookProduto, linkOlxProduto }) {
 
     const [images, setImages] = useState([]);
-    const [mostrarCarousel, setMostrarCarousel] = useState(false);
     const [cidade, setCidade] = useState('');
     const [classificacao, setClassificacao] = useState('');
     const [valor, setValor] = useState('');
@@ -36,9 +35,11 @@ function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto,
     const [produtoAlterado, setProdutoAlterado] = useState(false);
     const [editandoModal, setEditandoModal] = useState(true);
     const [selectedFile, setSelectedFile] = useState(null);
-    const [primeiraVez, setPrimeiraVez] = useState(false);
+    const [primeiraFotoSelecionada, setPrimeiraFotoSelecionada] = useState(false);
+    const [primeiraFotoRemovida, setPrimeiraFotoRemovida] = useState(false);
     const [imagensParaCarousel, setImagensParaCarousel] = useState('');
-    const [identificarQualImagem, setIdentificarQualImagem] = useState('');
+    const [mensagemLimiteImagens, setMensagemLimiteImagens] = useState(false);
+    //const [identificarQualImagem, setIdentificarQualImagem] = useState('');
 
     function extrairUsuarioInstagram(linkInstagram) {
         const buscaString = /(?:https?:\/\/)?(?:www\.)?instagram\.com\/([a-zA-Z0-9_]+)/;
@@ -106,26 +107,32 @@ function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto,
 
 
     const handleFileChange = async (event) => {
+        setMensagemLimiteImagens(false);
         const file = event.target.files[0];
         setSelectedFile(file);
 
         const imagemSelecionadas = event.target.files;
 
+        if (imagensParaCarousel.length > 9) {
+            setMensagemLimiteImagens(true);
+            return;
+        }
+
         if (imagemSelecionadas.length > 0) {
             const newImages = Array.from(imagemSelecionadas).map((file) => URL.createObjectURL(file));
 
-            setImages((prevImages) => [...prevImages, ...newImages]);
+            setImagensParaCarousel((prevImages) => [...prevImages, ...newImages]);
         }
 
-        if (primeiraVez === false) {
+        if (primeiraFotoSelecionada === false) {
             try {
                 const formData = new FormData();
                 formData.append('file', selectedFile);
 
                 const response = await axios.post('http://localhost:8080/uploadImagem', formData);
                 console.log('Resposta handleUpload:', response.data);
-                //  setIdImagem(response.data);
-                setPrimeiraVez(true);
+                //setIdImagem((prevIdImagens) => [...prevIdImagens, response.data]);
+                setPrimeiraFotoSelecionada(true);
             } catch (error) {
                 console.error('Erro em fazer upload da foto:', error);
             }
@@ -136,19 +143,16 @@ function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto,
     };
 
     const handleUpload = async () => {
-        if (selectedFile) {
-            try {
-                const formData = new FormData();
-                formData.append('file', selectedFile);
+        try {
+            const formData = new FormData();
+            formData.append('file', selectedFile);
 
-                const response = await axios.post('http://localhost:8080/uploadImagem', formData);
-                console.log('Resposta handleUpload:', response.data);
-                //  setIdImagem(response.data);
-            } catch (error) {
-                console.error('Erro em fazer upload da foto:', error);
-            }
-        } else {
-            console.log('Nenhuma foto selecionada');
+            const response = await axios.post('http://localhost:8080/uploadImagem', formData);
+            console.log('Resposta handleUpload:', response.data);
+            //setIdImagem(data.response)
+            setPrimeiraFotoSelecionada(true);
+        } catch (error) {
+            console.error('Erro em fazer upload da foto:', error);
         }
     };
 
@@ -169,7 +173,7 @@ function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto,
             linkOlx,
         };
 
-        console.log('Dados a serem enviados:', dados);
+        //('Dados a serem enviados:', dados);
 
         try {
             const response = await fetch('http://localhost:8080/alterar/', {
@@ -178,7 +182,7 @@ function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto,
             });
 
             const data = await response.text();
-            console.log('Resposta da API:', data);
+            //console.log('Resposta da API:', data);
 
             setProdutoAlterado(true);
         } catch (error) {
@@ -196,9 +200,15 @@ function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto,
 
         if (novoValor === '' || novoValor.match(/^\$/)) {
             setValor(novoValor);
-        } else {
-            setValor(formatarMoeda(novoValor));
+            return;
         }
+
+        setValor(formatarMoeda(novoValor));
+    };
+
+    const ativarEditarImagem = () => {
+        setEditandoModal(false);
+        setImagensParaCarousel([...imagemMaquina, ...images]);
     };
 
     const imagemMaquina = [
@@ -207,22 +217,34 @@ function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto,
         maquinaAmarela4,
     ];
 
-    const ativarEditarImagem = () => {
-        setEditandoModal(false);
-        setImagensParaCarousel([...imagemMaquina, ...images]);
-    };
-
     const terminouDeEditar = () => {
         setEditandoModal(true);
     };
 
-    const handleRemoverImagem = (imagemParaRemover) => {
+    const removerImagem = (imagemParaRemover) => {
+        const formData = new FormData();
+        formData.append('file', selectedFile);
+
+        const response = axios.post('http://localhost:8080/uploadImagem', formData);
+        console.log('Resposta handleUpload:', response.data);
         const novasImagens = images.filter((_, index) => index !== imagemParaRemover);
-        console.log('New images:', novasImagens);
         setImages([...novasImagens]);
+        console.log("imagem para remover:" + imagemParaRemover);
 
         const imagensAtualizadas = imagensParaCarousel.filter((_, index) => index !== imagemParaRemover);
+        setImages([...imagensAtualizadas]);
         setImagensParaCarousel([...imagensAtualizadas]);
+    };
+
+    const handleRemoverImagem = (imagemParaRemover, nomeDaFoto) => {
+        removerImagem(imagemParaRemover);
+        console.log("nome da foto: " + nomeDaFoto);
+
+        if (primeiraFotoRemovida === false) {
+            removerImagem(imagemParaRemover);
+        }
+
+        setPrimeiraFotoRemovida(true);
     };
 
     return (
@@ -231,20 +253,20 @@ function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto,
                 <div className='modal_content'>
 
                     <div className='sair_modal'>
-                        <img className='sair_modal_seta' onClick={fecharModal} src={IconSetaVoltar} />
+                        <img className='sair_modal_seta' onClick={fecharModal} src={IconSetaVoltar} alt='icon' />
                         <div className='sair_modal_texto inter_500'>Voltar</div>
                     </div>
 
                     {editandoModal && (
                         <>
                             <div className='imagem_modal_content'>
-                                <img src={maquinaAmarela1} className='imagem_modal' />
+                                <img src={maquinaAmarela1} className='imagem_modal' alt='icon' />
                             </div>
 
                             <div className='modal_botoes_editar'>
 
                                 <div className='botao_editar_imagem pointer' onClick={ativarEditarImagem} >
-                                    <img className='botao_editar_imagem_icon' src={IconLapis} />
+                                    <img className='botao_editar_imagem_icon' src={IconLapis} alt='icon' />
                                 </div>
 
                             </div>
@@ -292,8 +314,9 @@ function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto,
                                                     alt={`Image ${index + 1}`}
                                                     style={{ pointerEvents: editandoModal ? 'none' : 'auto' }}
                                                 />
+
                                                 <div>
-                                                    <button onClick={() => handleRemoverImagem(index)}>Remover Foto Remover Foto</button>
+                                                    <button onClick={() => handleRemoverImagem(index, image)}>Remover Foto Remover Foto</button>
                                                 </div>
                                             </>
                                         ))}
@@ -303,12 +326,8 @@ function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto,
 
                             <div className='modal_botoes_editar'>
                                 <div className='modal_editar'>
-                                    <div className='botao_editar_imagem pointer'>
-                                        <img className='icon_lixeira' src={IconLixeira} />
-                                    </div>
-
                                     <label className='botao_editar_imagem pointer'>
-                                        <img className='botao_editar_imagem_icon' src={IconPlus} />
+                                        <img className='botao_editar_imagem_icon' src={IconPlus} alt='icon' />
                                         <input
                                             type="file"
                                             accept="image/videos"
@@ -318,15 +337,21 @@ function ModalEditar({ fecharModal, idCard, cidadeProduto, classificacaoProduto,
                                         />
                                     </label>
 
+                                    <div className='botao_editar_imagem pointer'>
+                                        <img className='icon_lixeira' src={IconLixeira} alt='icon' />
+                                    </div>
+
                                     <div className='botao_editar_imagem pointer' onClick={terminouDeEditar}>
-                                        <img className='botao_editar_imagem_icon' src={IconDone} />
+                                        <img className='botao_editar_imagem_icon' src={IconDone} alt='icon' />
                                     </div>
 
                                 </div>
                             </div>
+                            {mensagemLimiteImagens && (
+                                <div className='imagem_nao_baixada'>Erro: O limite máximo de imagens são 10</div>
+                            )}
                         </>
                     )}
-
 
                     <form onSubmit={handleSubmit}>
 

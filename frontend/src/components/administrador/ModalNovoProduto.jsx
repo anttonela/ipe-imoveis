@@ -28,7 +28,7 @@ function ModalNovoProduto({ fecharModal }) {
     const [produtoAdicionado, setProdutoAdicionado] = useState(false);
     const [mostrarImagens, setMostrarImagens] = useState(true);
     const [idImagem, setIdImagem] = useState([]);
-    const [primeiraVez, setPrimeiraVez] = useState(false);
+    const [primeiraFotoSelecionada, setPrimeiraFotoSelecionada] = useState(false);
     const [mensagemImagemNula, setMensagemImagemNula] = useState(false);
     const [mensagemErro, setMensagemErro] = useState(false);
     const [mensagemErroSemNenhumLink, setMensagemErroSemNenhumLink] = useState(false);
@@ -54,7 +54,7 @@ function ModalNovoProduto({ fecharModal }) {
             setMostrarImagens(false);
         }
 
-        if (primeiraVez === false) {
+        if (primeiraFotoSelecionada === false) {
             try {
                 const formData = new FormData();
                 formData.append('file', selectedFile);
@@ -62,7 +62,7 @@ function ModalNovoProduto({ fecharModal }) {
                 const response = await axios.post('http://localhost:8080/uploadImagem', formData);
                 console.log('Resposta handleUpload:', response.data);
                 setIdImagem((prevIdImagens) => [...prevIdImagens, response.data]);
-                setPrimeiraVez(true);
+                setPrimeiraFotoSelecionada(true);
             } catch (error) {
                 console.error('Erro em fazer upload da foto:', error);
             }

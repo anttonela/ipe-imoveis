@@ -1,27 +1,16 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import ModalEditar from "./ModalEditar";
 import IconLapis from "../../assets/img/lapis.svg";
 import IconLixeira from "../../assets/img/lixeira.svg";
-import ImagemImoveis from "../../assets/img/imoveis.png";
+import ImagemProduto from "../../assets/img/maquina_amarela_4.webp";
 
-function Card({
-  caminhoImagem,
-  setAtualizarHome,
-  cidade,
-  breve_descricao,
-  valor,
-  situacao,
-  classificacao,
-  idCard,
-  tipo,
-  descricao,
-  whatsapp,
-  instagram,
-  facebook,
-  olx,
-}) {
+function Card({ nomeImagem, setAtualizarHome, cidade, breve_descricao, valor, situacao, classificacao, idCard, tipo, descricao, whatsapp, instagram, facebook, olx, }) {
+
+  const [classificacaoRota, setClassificacaoRota] = useState("");
+  const [modalApagar, setModalApagar] = useState(false);
+  const [modalEditar, setModalEditar] = useState(false);
+
   switch (classificacao) {
     case "imovel":
       classificacao = "Imóvel";
@@ -33,11 +22,6 @@ function Card({
       classificacao = "Outros";
       break;
   }
-
-  const [classificacaoRota, setClassificacaoRota] = useState("");
-  const [modalApagar, setModalApagar] = useState(false);
-  const [modalEditar, setModalEditar] = useState(false);
-  const navigate = useNavigate();
 
   const fecharModalApagar = () => {
     setModalApagar(false);
@@ -97,7 +81,7 @@ function Card({
     <div className="espacamento_fileira">
       <div className="card card_administrativo">
         <div className="card_imagem">
-          <img className="card_imagem" src={caminhoImagem} />
+          <img className="card_imagem" src={ImagemProduto} alt="Imagem do Produto" />
         </div>
 
         <div className="card_informacoes_content">
@@ -105,7 +89,7 @@ function Card({
 
             <div className="card_sobre">
               <div className="card_editar">
-                <div className="nome_produto inter_700">{cidade}</div>
+                <div className="nome_produto inter_700">{nomeImagem}</div>
                 <div className="card_editar_icons">
 
                   <div className="editar_icons">

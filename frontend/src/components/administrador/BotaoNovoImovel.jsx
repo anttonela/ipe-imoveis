@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import values from 'lodash/values';
+import { useState } from 'react';
 
 import IconPlus from '../../assets/img/plus.svg';
 
@@ -22,7 +21,7 @@ function BotaoNovoImovel({ fecharModal }) {
                         <div className='conteudo_adicionar_imovel'>
                             <div className='botao_adicionar_content'>
                                 <button type='button' className='botao_adicionar'>
-                                    <img className='icon_plus' src={IconPlus}></img>
+                                    <img className='icon_plus' src={IconPlus} alt='icon'></img>
                                 </button>
                             </div>
 
